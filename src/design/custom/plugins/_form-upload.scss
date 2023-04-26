@@ -1,0 +1,66 @@
+//
+// Form-Upload
+//
+
+@import "~vue2-dropzone/dist/vue2Dropzone.min.css";
+
+/* Dropzone */
+.dropzone {
+  min-height: 150px;
+  border: 2px dashed $gray-400 !important;
+  background: $card-bg !important;
+  border-radius: 6px !important;
+
+  .dz-message {
+    font-size: 24px;
+    color: $gray-400;
+    margin: 1.5em 0 !important;
+  }
+}
+
+.vue-dropzone > .dz-preview .dz-details {
+  background-color: #e5e5e5 !important;
+  color: rgba(0, 0, 0, 0.9) !important;
+  border-radius: 20px;
+}
+
+.vue-dropzone > .dz-preview .dz-image {
+  height: 120px !important;
+  width: 120px !important;
+}
+
+.vue-dropzone {
+  .dz-details,
+  .dz-image {
+    z-index: 3 !important;
+  }
+  .dz-filename {
+    &:hover {
+      overflow: visible !important;
+    }
+  }
+}
+
+.dz-remove {
+  display: inline-block !important;
+  right: 0;
+  top: 0 !important;
+  padding: 5px !important;
+  width: 1.6em;
+  height: 1.6em;
+  position: absolute;
+  z-index: 1000;
+  font-size: 1.2em !important;
+  line-height: 1em;
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid gray !important;
+  border-radius: 1.3em;
+  background-color: red;
+  opacity: 0.5;
+}
+
+.dz-remove:hover {
+  text-decoration: none !important;
+  opacity: 1;
+}

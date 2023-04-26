@@ -1,0 +1,67 @@
+{
+  "name": "vue-pdf-app",
+  "version": "2.1.0",
+  "description": "Vue 2 pdf viewer",
+  "main": "dist/vue-pdf-app.umd.js",
+  "unpkg": "dist/vue-pdf-app.umd.min.js",
+  "private": false,
+  "types": "src/types/pdf-viewer.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sandanat/vue-pdf-app"
+  },
+  "files": [
+    "dist",
+    "src/types/pdf-viewer.d.ts"
+  ],
+  "keywords": [
+    "vue",
+    "vuejs",
+    "pdfjs",
+    "pdf",
+    "viewer"
+  ],
+  "author": "sandanat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sandanat/vue-pdf-app/issues"
+  },
+  "homepage": "https://github.com/sandanat/vue-pdf-app#readme",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "build:lib": "vue-cli-service build --target lib src/components/pdf-viewer.vue",
+    "build:icons": "webpack --config webpack-icons.config.js",
+    "build:npm": "npm run build:lib & npm run build:icons",
+    "dist-transit": "node dist-transit.js",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@mdi/font": "^5.9.55",
+    "@types/pdfjs-dist": "^2.1.6",
+    "@typescript-eslint/eslint-plugin": "^2.33.0",
+    "@typescript-eslint/parser": "^2.33.0",
+    "@vue/cli-plugin-babel": "~4.4.0",
+    "@vue/cli-plugin-eslint": "~4.4.0",
+    "@vue/cli-plugin-typescript": "~4.4.0",
+    "@vue/cli-service": "~4.4.0",
+    "@vue/eslint-config-typescript": "^5.0.2",
+    "core-js": "^3.6.5",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "fs-extra": "^9.1.0",
+    "mini-css-extract-plugin": "^1.3.9",
+    "sass": "^1.32.8",
+    "sass-loader": "^10.1.1",
+    "svg-url-loader": "^7.1.1",
+    "typescript": "~3.9.3",
+    "vue-property-decorator": "^8.4.2",
+    "vue-router": "^3.4.9",
+    "vue-template-compiler": "^2.6.11",
+    "webpack-bundle-analyzer": "^3.8.0",
+    "webpack-cli": "^4.5.0"
+  }
+}
