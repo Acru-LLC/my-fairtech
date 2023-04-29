@@ -101,25 +101,25 @@ const integratsiyaService = {
     //methods-1
     getHududGazInfoMethod1(value, withLoader = false) {
         return ApiService.post(
-            `hudud-gaz/method1?pin=${value}`, withLoader
+            `hudud-gaz/getby_pin?pin=${value}`, withLoader
         );
     },
     //methods-2
     getHududGazInfoMethod2(value, withLoader = false) {
         return ApiService.post(
-            `hudud-gaz/method2?kad_num=${value}`, withLoader
+            `hudud-gaz/getby_kad_num?kad_num=${value}`, withLoader
         );
     },
     //methods-3
     getHududGazInfoMethod3(value, withLoader = false) {
         return ApiService.post(
-            `hudud-gaz/method3?tin=${value}`, withLoader
+            `hudud-gaz/getby_tin?tin=${value}`, withLoader
         );
     },
     //methods-4
     getHududGazInfoMethod4(value, withLoader = false) {
         return ApiService.post(
-            `hudud-gaz/method4?customer_code=${value}`, withLoader
+            `hudud-gaz/getby_customer_code?customer_code=${value}`, withLoader
         );
     },
 

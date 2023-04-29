@@ -347,7 +347,7 @@
                v-if="$can('view', 'integration-iiv')"
                @click="toRouter('IntegrationIIVInfoIndex')"
           >
-            <div class="arrow-up-success">
+            <div class="arrow-up">
               <span class="itinerary-number"> </span>
             </div>
             <div class="icon-wrapper">

@@ -2,7 +2,7 @@
     <section class="section-s">
         <h1>FAIR TECH axborot tizimlari kompleksi</h1>
         <div class="card-wrapper">
-            <div class="card-main"
+            <div class="card-main card-main1"
                  v-if="$can('view', 'project-menu-fair-tech')"
                  @click="$emit('isLoginBtn', 'fair_tech')">
                 <a class="logos">
@@ -12,7 +12,7 @@
                     <span class="pro-name">Fair Tech</span>
                 </div>
             </div>
-            <div class="card-main"
+            <div class="card-main card-main2"
                  v-if="$can('view', 'project-menu-fair-price')"
                  @click="$emit('isLoginBtn', 'fair_price')">
                 <a class="logos">
@@ -22,7 +22,7 @@
                     <span class="pro-name">Fair Price</span>
                 </div>
             </div>
-            <div class="card-main"
+            <div class="card-main card-main3"
                  v-if="$can('view', 'project-menu-pharm-info')"
                  @click="$emit('isLoginBtn', 'pharm_info')">
                 <a class="logos">
@@ -33,7 +33,7 @@
                 </div>
             </div>
 
-            <div class="card-main"
+            <div class="card-main card-main4"
                  v-if="$can('view', 'project-menu-product-info')"
                  @click="$emit('isLoginBtn', 'product_info')">
                 <a class="logos">
@@ -43,7 +43,7 @@
                     <span class="pro-name">Product Info</span>
                 </div>
             </div>
-            <div class="card-main"
+            <div class="card-main card-main5"
                  v-if="$can('view', 'project-menu-integration')"
                  @click="$emit('isLoginBtn', 'integration')">
                 <a class="logos">
@@ -246,23 +246,23 @@ h1 {
     filter: drop-shadow(0px 0px 5px var(--hover-font-color));
 }
 
-.card-main:first-child {
+.card-main1 {
     background: url(../../../assets/pharm/fairTech.jpg);
 }
 
-.card-main:nth-child(2) {
+.card-main2 {
     background: url(../../../assets/pharm/product.jpg);
 }
 
-.card-main:nth-child(3) {
+.card-main3 {
     background: url(../../../assets/pharm/pharmacy.jpeg);
 }
 
-.card-main:nth-child(4) {
+.card-main4 {
     background: url(../../../assets/pharm/price.jpg);
 }
 
-.card-main:nth-child(5) {
+.card-main5 {
     background: url(../../../assets/pharm/integration.jpg);
 }
 
