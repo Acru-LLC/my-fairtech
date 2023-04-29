@@ -314,20 +314,34 @@
             <h3 class="mt-3">{{ $t('submodules.integration.iqtisodiy_taraqqiyot_info.title') }}</h3>
           </div>
         </b-col>
-        <b-col>
-          <div class="service-card"
-               @click="toRouter('IntegrationTovarXomashyoInfoIndex')"
-               v-if="$can('view', 'integration-tovar-xomashyo')"
-          >
-            <div class="arrow-up">
-              <span class="itinerary-number"></span>
-            </div>
-            <div class="icon-wrapper">
-              <i class="mdi mdi-database" style="font-size: 2.5rem;"></i>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.tovar_xomashyo_info.title') }}</h3>
-          </div>
-        </b-col>
+<!--        <b-col>-->
+<!--          <div class="service-card"-->
+<!--               @click="toRouter('IntegrationTovarXomashyoInfoIndex')"-->
+<!--               v-if="$can('view', 'integration-tovar-xomashyo')"-->
+<!--          >-->
+<!--            <div class="arrow-up">-->
+<!--              <span class="itinerary-number"></span>-->
+<!--            </div>-->
+<!--            <div class="icon-wrapper">-->
+<!--              <i class="mdi mdi-database" style="font-size: 2.5rem;"></i>-->
+<!--            </div>-->
+<!--            <h3 class="mt-3">{{ $t('submodules.integration.tovar_xomashyo_info.title') }}</h3>-->
+<!--          </div>-->
+<!--        </b-col>-->
+          <b-col>
+              <div class="service-card"
+                   @click="toRouter('IntegrationYoshlarInfoIndex')"
+                   v-if="$can('view', 'integration-yoshlar')"
+              >
+                  <div class="arrow-up-success">
+                      <span class="itinerary-number"> </span>
+                  </div>
+                  <div class="icon-wrapper">
+                      <img :src="require('@/assets/integration/yoshlar.png')" height="50"/>
+                  </div>
+                  <h3 class="mt-3">{{ $t('submodules.integration.yoshlar_info.title') }}</h3>
+              </div>
+          </b-col>
         <b-col>
           <div class="service-card"
                v-if="$can('view', 'integration-soliq-qomita')"
@@ -373,20 +387,20 @@
       </b-row>
 
       <b-row class="pl-5 pr-5 pt-3">
-        <b-col>
-          <div class="service-card"
-               @click="toRouter('IntegrationYoshlarInfoIndex')"
-               v-if="$can('view', 'integration-yoshlar')"
-          >
-            <div class="arrow-up-success">
-              <span class="itinerary-number"> </span>
-            </div>
-            <div class="icon-wrapper">
-              <img :src="require('@/assets/integration/yoshlar.png')" height="50"/>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.yoshlar_info.title') }}</h3>
-          </div>
-        </b-col>
+<!--        <b-col>-->
+<!--          <div class="service-card"-->
+<!--               @click="toRouter('IntegrationYoshlarInfoIndex')"-->
+<!--               v-if="$can('view', 'integration-yoshlar')"-->
+<!--          >-->
+<!--            <div class="arrow-up-success">-->
+<!--              <span class="itinerary-number"> </span>-->
+<!--            </div>-->
+<!--            <div class="icon-wrapper">-->
+<!--              <img :src="require('@/assets/integration/yoshlar.png')" height="50"/>-->
+<!--            </div>-->
+<!--            <h3 class="mt-3">{{ $t('submodules.integration.yoshlar_info.title') }}</h3>-->
+<!--          </div>-->
+<!--        </b-col>-->
         <b-col>
         </b-col>
         <b-col>
