@@ -2640,10 +2640,12 @@
     "appeal_proccess_status1": "Ijro uchun yuborilganlar",
     "appeal_proccess_status2": "Ijro jarayonida",
     "appeal_proccess_status3": "Yakunlanganlar",
-    "executive": "Ijrochi",
+    "executive": "Ma'sul Ijrochi",
     "get_info_apteka": "Dorixonani to'liq ma'lumotlarini ko'rish",
     "files_ijro": "Ijro fayllari",
     "files_sud": "Sud fayllari",
-    "files_apteka": "Dorixona fayllari"
+    "files_apteka": "Dorixona fayllari",
+    "send_date": "Yuborilgan sana",
+    "arizaForm": "Ariza shakli"
   }
 }

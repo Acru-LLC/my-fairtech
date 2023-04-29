@@ -138,6 +138,7 @@ export default {
         },
         selected: {
             handler(v) {
+                    this.ijroStatus = v
                 this.getProjects(v);
             },
         },
@@ -588,20 +589,20 @@ export default {
                     <b-col>
                         <div class="d-flex flex-container" style="justify-content: space-between">
                             <div class="btn-group btn-group-example mb-2" role="group" style="width: 100px">
-<!--                                <b-button-->
-<!--                                        :variant="!$route.query.page ? 'primary' : 'outline-primary'"-->
-<!--                                        class="w-xs"-->
-<!--                                        @click="changeListType(null)"-->
-<!--                                >-->
-<!--                                    <i class="fa fa-th"></i>-->
-<!--                                </b-button>-->
-<!--                                <b-button-->
-<!--                                        :variant="$route.query.page === 'list' ? 'primary' : 'outline-primary'"-->
-<!--                                        class="w-xs"-->
-<!--                                        @click="changeListType('list')"-->
-<!--                                >-->
-<!--                                    <i class="fa fa-list"></i>-->
-<!--                                </b-button>-->
+                                <!--                                <b-button-->
+                                <!--                                        :variant="!$route.query.page ? 'primary' : 'outline-primary'"-->
+                                <!--                                        class="w-xs"-->
+                                <!--                                        @click="changeListType(null)"-->
+                                <!--                                >-->
+                                <!--                                    <i class="fa fa-th"></i>-->
+                                <!--                                </b-button>-->
+                                <!--                                <b-button-->
+                                <!--                                        :variant="$route.query.page === 'list' ? 'primary' : 'outline-primary'"-->
+                                <!--                                        class="w-xs"-->
+                                <!--                                        @click="changeListType('list')"-->
+                                <!--                                >-->
+                                <!--                                    <i class="fa fa-list"></i>-->
+                                <!--                                </b-button>-->
                             </div>
                             <div class="d-flex align-items-center">
                                 <div class="mr-3">
@@ -613,13 +614,13 @@ export default {
                                             class="btn-custom mb-0"
                                             name="radios-btn-default"
                                     >
-                                        <b-form-radio button-variant="outline-success" value="CREATED">
+                                        <b-form-radio button-variant="outline-success" value="BEING_SEEN">
                                             <span> {{ $t("pharm.appeal_proccess_status1") }}</span>
                                             <b-badge v-if="totalCreated > 0" class="ml-1" variant="primary">
                                                 {{ totalCreated }}
                                             </b-badge>
                                         </b-form-radio>
-                                        <b-form-radio button-variant="outline-primary" value="FINISHED">
+                                        <b-form-radio button-variant="outline-primary" value="PROCCESS">
                                             <span> {{ $t("pharm.appeal_proccess_status2") }}</span>
                                             <b-badge v-if="totalFinished > 0" class="ml-1" variant="success">
                                                 {{ totalFinished }}
@@ -627,7 +628,7 @@ export default {
                                         </b-form-radio>
 
 
-                                        <b-form-radio button-variant="outline-danger" value="DEADLINE">
+                                        <b-form-radio button-variant="outline-danger" value="FINISHED">
                                             <span> {{ $t("pharm.appeal_proccess_status3") }}</span>
                                             <b-badge v-if="totalDeadline > 0" class="ml-1" variant="success">
                                                 {{ totalDeadline }}
@@ -665,44 +666,32 @@ export default {
                             <div class="media">
                                 <div class="media-body">
                                     <h5 class="font-size-15 font-weight-bold">
-                                        <a class="text-dark" href="#">{{ grid.mnumber }}</a>
+                                        <a class="text-dark" href="#"> {{ $t('pharm.appeal_number') }}:  {{ grid.mnumber }}</a>
                                     </h5>
                                     <p class="pre m-0 font-weight-semibold">
                                         {{ getName(grid) }}
                                     </p>
-                                    <b-row v-if="grid.isClosed" class="text-muted mt-0 mb-0 pre">
+                                    <b-row class="text-muted mt-0 mb-0 pre">
                                         <b-col md="12" lg="3">
-                                            {{ $t('column.closed_date') }}
+                                            {{ $t('pharm.send_date') }}
                                             <p class="text-dark">
-                                                {{ grid.closedDate }}
+                                                {{ new Date(grid.updateJson).ddmmyyyyhhmmss() }}
                                             </p>
                                         </b-col>
-                                        <b-col md="12" lg="9">
-                                            {{ $t('column.closed_employee') }}
+                                        <b-col md="12" lg="5">
+                                            {{ $t('pharm.appeal_fio') }}
+                                            <p >
+                        <span >
+                          {{ grid.consumerFirstName || '' }}
+                          {{ grid.consumerLastName || '' }}
+                          {{ grid.consumerMiddleName || '' }}
+                        </span>
+                                            </p>
+                                        </b-col>
+                                        <b-col md="12" lg="4">
+                                            {{ $t('pharm.pharmacyName') }}
                                             <p class="text-dark">
-                        <span class="font-weight-bold">
-                          {{ grid.closedEmployeeFirstName || '' }}
-                          {{ grid.closedEmployeeLastName || '' }}
-                          {{ grid.closedEmployeeMiddleName || '' }}
-                        </span>
-                                                <br>
-                                                <span class="small">
-                          {{
-                                                    getName({
-                                                      nameUz: grid.closedEmployeeDepartmentNameUz,
-                                                      nameRu: grid.closedEmployeeDepartmentNameRu,
-                                                      nameLt: grid.closedEmployeeDepartmentNameLt,
-                                                    })
-                                                    }}
-                          <br>
-                          {{
-                                                    getName({
-                                                      nameUz: grid.closedEmployeePositionNameUz,
-                                                      nameRu: grid.closedEmployeePositionNameRu,
-                                                      nameLt: grid.closedEmployeePositionNameLt,
-                                                    })
-                                                    }}
-                        </span>
+                                                {{ grid.pharmacyName }}
                                             </p>
                                         </b-col>
                                     </b-row>
@@ -716,53 +705,15 @@ export default {
                         <div class="px-3 py-3 border-top">
                             <ul class="list-inline mb-0">
                                 <li class="list-inline-item mr-3">
-                  <span
-                          v-if=" grid.status === 'CREATED' && new Date(replaceDate(grid.end)).getTime() > Date.now()"
-                          class="badge badge-success"
-                  >
-                      {{ $t(grid.status) }}
-                  </span>
-                                    <span
-                                            v-else-if="grid.status === 'CREATED' && new Date(replaceDate(grid.end)).getTime() < Date.now()"
-                                            class="badge badge-danger"
-                                    >
-                    {{ $t("deadlineEnd") }}
-                  </span>
-                                    <span v-else-if="grid.status === 'REVISION'" class="badge badge-warning">
-                    {{ $t(grid.status) }}
-                  </span>
-                                    <span v-else-if="grid.status === 'SEND_TO_MANAGER'" class="badge badge-warning">
-                    {{ $t('submodules.projects.send_to_the_director') }}
-                  </span>
-                                    <span v-else-if="grid.status === 'RETURN_FOR_REVISION'" class="badge badge-warning">
-                    {{ $t('REVISION') }}
-                  </span>
-                                    <span v-else-if="grid.status === 'COMMISSION_REVISION'" class="badge badge-warning">
-                    {{ $t('submodules.commission.returnsee') }}
-                  </span>
 
-                                    <span v-else-if="grid.status === 'RETURN_FOR_REVISION_TO_BEFORE_COMMISSION'"
-                                          class="badge badge-warning">{{
-                                        $t('submodules.commission.return_to_before_project')
-                                        }}</span>
-                                    <span v-else-if="grid.status === 'RECREATED'" class="badge badge-primary">
-                    {{ $t('submodules.commission.recreated') }}
-                  </span>
-                                    <span v-else-if="grid.status === 'REVISION_AFTER_COMMISSION'"
-                                          class="badge badge-warning">
-                    {{ $t('submodules.commission.return_from_commission') }}
-                  </span>
-                                    <span v-else-if="grid.status === 'REVIEW_FINISHED'" class="badge badge-success">
-                    {{ $t('submodules.commission.REVIEW_FINISHED') }}
-                  </span>
-                                    <span v-else-if="grid.status === 'TEMPORARILY_CLOSED'" class="badge badge-success">
-                    {{ $t('submodules.commission.doc_status.temporarily_closed') }}
-                  </span>
-                                    <span v-else-if="grid.status === 'CANCELLED_TO_DEFECT_FILES'"
-                                          class="badge badge-warning">
-                    {{ $t('submodules.commission.doc_status.cancelled_to_defect_files') }}
-                  </span>
-                                    <span v-else class="badge badge-primary">{{ $t(grid.status) }}</span>
+                                    <span
+                                            v-if="grid.status === 'BEING_SEEN'"
+                                            class="badge badge-success"
+                                    >
+                                 {{ $t("submodules.commission.BEING_SEEN") }}  </span>
+                                    <span v-else class="badge badge-primary">
+                                        {{ $t(grid.status) }}
+                                    </span>
                                 </li>
                                 <li
                                         v-if="!_empty(grid.end)"
@@ -774,19 +725,19 @@ export default {
                                     {{ new Date(replaceDate(grid.end)).daym_shortyyyy() }}
                                 </li>
                             </ul>
-<!--                            <project-list-buttons-->
-<!--                                    :isCommission="isCommission"-->
-<!--                                    :project="grid"-->
-<!--                                    :selectedTrItem="selectedTrItem"-->
-<!--                                    @dlt="dlt"-->
-<!--                                    @getTask="getTasks"-->
-<!--                                    @goComments="goComments"-->
-<!--                                    @changeStatus="changeStatus"-->
-<!--                                    @showQuorumModal="showQuorumModal"-->
-<!--                                    @showRejectedModal="showRejectedModal"-->
-<!--                                    @showRejectedSeeModal="showRejectedSeeModal"-->
-<!--                                    @handleProjectInformationCompleted="handleProjectInformationCompleted"-->
-<!--                            />-->
+                            <!--                            <project-list-buttons-->
+                            <!--                                    :isCommission="isCommission"-->
+                            <!--                                    :project="grid"-->
+                            <!--                                    :selectedTrItem="selectedTrItem"-->
+                            <!--                                    @dlt="dlt"-->
+                            <!--                                    @getTask="getTasks"-->
+                            <!--                                    @goComments="goComments"-->
+                            <!--                                    @changeStatus="changeStatus"-->
+                            <!--                                    @showQuorumModal="showQuorumModal"-->
+                            <!--                                    @showRejectedModal="showRejectedModal"-->
+                            <!--                                    @showRejectedSeeModal="showRejectedSeeModal"-->
+                            <!--                                    @handleProjectInformationCompleted="handleProjectInformationCompleted"-->
+                            <!--                            />-->
                         </div>
                     </div>
                 </div>

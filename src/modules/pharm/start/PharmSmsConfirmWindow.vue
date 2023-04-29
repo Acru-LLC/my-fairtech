@@ -13,16 +13,19 @@
                     </div>
                     <div class="profile-card__txt">
                         {{ resInfo.message }}
-                        <br><br><strong>Murajaat uchun tel: {{ resInfo.sendToPhone }}</strong></div>
-                    <div class="profile-card-loc">
+                        <br><br>
+                        <div class="profile-card-loc">
         <span class="profile-card-loc__icon">
           <svg class="icon"><use xlink:href="#icon-location"></use></svg>
         </span>
 
-                        <span class="profile-card-loc__txt">
-          O'zbekiston Respublikasi Raqobatni rivojlantirish va iste'molchilar huquqlarini himoya qilish qo'mitasi
+                            <span class="profile-card-loc__txt">
+      {{ resInfo.department ? resInfo.department : '' }}
         </span>
+                        </div>
                     </div>
+                    <h5 class="mt-0">Murajaat uchun: {{ resInfo.callPhone ? resInfo.callPhone : '' }},
+                        {{ resInfo.address ? resInfo.address : '' }}</h5>
 
                     <!--                    <div class="profile-card-inf">-->
                     <!--                        <div class="profile-card-inf__item">-->
@@ -47,14 +50,11 @@
                     <!--                    </div>-->
 
 
-                    <div class="profile-card-ctr">
-                        <button class="profile-card__button button--blue
-
-
-" @click="confirmation">
-                            Tasdiqlash
+                    <div class="profile-card-ctr" v-if="!resInfo.isChecked">
+                        <button class="profile-card__button button--blue" @click="confirmation(true)">
+                            Ha
                         </button>
-                        <button class="profile-card__button button--orange">Rad etish</button>
+                        <button class="profile-card__button button--orange" @click="confirmation(false)">Yo'q</button>
                     </div>
                 </div>
 
@@ -62,24 +62,24 @@
 
         </div>
         <b-modal hide-header hide-header-close hide-footer v-model="isModal" centered title="BootstrapVue">
-            <div class="profile-card-message js-message">
-                <form class="profile-card-form">
-                    <div class="profile-card-form__container">
-                        <textarea placeholder="Say something..."></textarea>
-                    </div>
+            <div class="p-2">
+                <b-form-textarea
+                        placeholder="Taklif va shikoyatlar uchun"
+                        rows="8"
+                        max-rows="8"
+                        no-auto-shrink
+                        v-model="message"
+                ></b-form-textarea>
+            </div>
 
-                    <div class="profile-card-form__bottom">
-                        <button class="profile-card__button button--blue js-message-close">
-                            Send
-                        </button>
+            <div class="profile-card-form__bottom">
+                <button class="profile-card__button button--blue" @click="isConfirirm">
+                    Yuborish
+                </button>
 
-                        <button class="profile-card__button button--gray js-message-close">
-                            Cancel
-                        </button>
-                    </div>
-                </form>
-
-                <div class="profile-card__overlay js-message-close"></div>
+                <button class="profile-card__button button--gray" @click="isModalClose">
+                    Rad etish
+                </button>
             </div>
         </b-modal>
     </div>
@@ -92,13 +92,41 @@ import Service from "../pharmService";
 export default {
     data() {
         return {
+            wasAnswer: false,
             isModal: false,
+            message: "",
             resInfo: {}
         }
     },
     methods: {
-        confirmation() {
+        confirmation(bool) {
             this.isModal = true
+            this.wasAnswer = bool
+        },
+        isModalClose() {
+            this.isModal = false
+            this.message = ''
+        },
+        async isConfirirm() {
+            let data = {
+                smsId: this.resInfo.smsId,
+                comment: this.message,
+                wasAnswer: this.wasAnswer
+            }
+            await Service.setRepeatMessageFromUser(data)
+                .then((res) => {
+                    this.resInfo = res.data;
+                    this.$toast(res.data, {type: 'success'});
+                    this.isModal = false
+                    window.location.reload()
+                })
+                .catch((err) => {
+                    this.catchErr(err);
+                    this.isModal = true
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
         },
         async getUserInfoById() {
             await Service.getUserAppealInfoById(this.$route.params.id)
@@ -113,9 +141,8 @@ export default {
                 });
         },
     },
-    async created() {
-        await this.getUserInfoById()
-
+    created() {
+        this.getUserInfoById()
     }
 }
 </script>

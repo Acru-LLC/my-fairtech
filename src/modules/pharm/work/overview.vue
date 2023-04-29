@@ -13,6 +13,7 @@ import simplebar from "simplebar-vue";
 import {TokenService} from "@/shared/services/storage.service";
 import pharmService from "@/modules/pharm/pharmService";
 import DorixonaAllInfo from "@/modules/pharm/work/DorixonaInfo.vue";
+import {jsPDF} from "jspdf";
 
 export default {
     components: {
@@ -74,6 +75,129 @@ export default {
         },
     },
     methods: {
+        generatePDF() {
+            require('jspdf-autotable');
+            const columns = [
+                {title: "", dataKey: "title"},
+                {title: "", dataKey: "body"}
+            ];
+            const doc = new jsPDF({
+                orientation: "portrait",
+                unit: "in",
+                format: "letter"
+            });
+
+            // text is placed using x, y coordinates
+            doc.setFontSize(12).text(this.heading1, 0.5, 1.0);
+            // create a line under heading
+            doc.setLineWidth(0.01).line(0.5, 1.1, 8.0, 1.1);
+            // Using autoTable plugin
+
+            this.pdfData = [
+                {
+                    title: "Murojaat ID",
+                    body: this.proj.mnumber.substring(1)
+                },
+                {
+                    title: "Arizachi F.I.SH",
+                    body: this.toLatin(this.proj.consumerFirstName ? this.proj.consumerFirstName : '') + ' ' + this.toLatin(this.proj.consumerLastName ? this.proj.consumerLastName : '') + ' ' + this.toLatin(this.proj.consumerMiddleName ? this.proj.consumerMiddleName : '')
+                },
+                {
+                    title: "Arizachi telefon nomeri",
+                    body: this.proj.consumerPhone ? this.proj.consumerPhone : ''
+                },
+                {
+                    title: "Arizachi JSHSHIRi",
+                    body: this.proj.consumerPinfl ? this.proj.consumerPinfl : ''
+                },
+                {
+                    title: "Ariza yuborilgan sana",
+                    body: this.proj.createJson ? this.proj.createJson : ''
+                },
+                {
+                    title: "Chek ro'yxatdan o'tkazilgan sana",
+                    body: this.proj.medicationPaymentDate ? this.proj.medicationPaymentDate : ''
+                },
+                {
+                    title: "Dori nomi",
+                    body: this.toLatin(this.proj.medicationName ? this.proj.medicationName : '')
+                },
+                {
+                    title: "Mxik kodi",
+                    body: this.proj.medicationMxikCode ? this.proj.medicationMxikCode : ''
+                },
+                {
+                    title: "Sotilgan narx",
+                    body: this.proj.medicationPaymentPrice ? this.proj.medicationPaymentPrice : ''
+                },
+                {
+                    title: "Sotishga ruxsat etilgan eng yuqori(referent) narx",
+                    body: this.proj.medicationReferentPrice ? this.proj.medicationReferentPrice : ''
+                },
+                {
+                    title: "Ortiqcha to'langan summa",
+                    body: this.proj.medicationPaymentPrice - this.proj.medicationReferentPrice
+                },
+                {
+                    title: "Chek raqami",
+                    body: this.proj.medicationCheckNumber ? this.proj.medicationCheckNumber : ''
+                },
+                {
+                    title: "Dorixona nomi",
+                    body: this.toLatin(this.proj.pharmacyName ? this.proj.pharmacyName : '')
+                },
+                {
+                    title: "Dorixona direktori F.I.SH",
+                    body: this.toLatin(this.proj.medicationFounderName ? this.proj.medicationFounderName : '')
+                },
+                {
+                    title: "Dorixona direktori pasporti",
+                    body: this.toLatin(this.proj.medicationFounderPassport ? this.proj.medicationFounderPassport : '')
+                },
+                {
+                    title: "Dorixona STIRi",
+                    body: this.proj.pharmacyTin ? this.proj.pharmacyTin : ''
+                },
+                {
+                    title: "Dorixona manzili",
+                    body: this.toLatin(this.proj.pharmacyRegionName ? this.proj.pharmacyRegionName : '') + ' ' + this.toLatin(this.proj.pharmacyDistrictName ? this.proj.pharmacyDistrictName : '') + ' ' + this.toLatin(this.proj.pharmacyAddress ? this.proj.pharmacyAddress : '')
+                },
+                {
+                    title: "Dorixona elektron pochtasi",
+                    body: this.toLatin(this.proj.pharmacyEmail ? this.proj.pharmacyEmail : '')
+                },
+                {
+                    title: "",
+                    body: ""
+                },
+                {
+                    title: "",
+                    body: "                                                             Sana:" + new Date().ddmmyyyy()
+                },
+            ]
+
+            doc.autoTable({
+                columns,
+                body: this.pdfData,
+                margin: {left: 0.5, top: 1.25, right: 0.5},
+                columnStyles: {
+                    title: {columnWidth: 3},
+                    body: {columnWidth: 'auto'}
+                }
+            });
+
+            doc.setFont("Montserrat", "italic", "400")
+                .text(this.moreText, 0.5, 3.5, {align: "left", maxWidth: "10.5"});
+
+            doc.setFont("times", "italic", "400")
+
+                .text(
+                    "",
+                    0.5,
+                    doc.internal.pageSize.height - 0.5
+                )
+                .save(`${this.heading}.pdf`);
+        },
         isDorixonaSidebar() {
             this.ismodalDorixonaInfo = true
             this.$refs.isSidebar_ref.getById()
@@ -117,6 +241,20 @@ export default {
                 name: this.isCommission ? 'CommissionProjects' : 'ProjectsMain',
                 query: {page: "tasks", id: this.$route.query.id},
             });
+        },
+        getInfoConsumer() {
+            let id = this.$route.query.id;
+            if (id) {
+                pharmService
+                    .getUserApplicationInfo(id, true)
+                    .then((rs) => {
+                        this.$toast(this.$t('succes.title'), {type: 'success'});
+                    })
+                    .catch(() => {
+                    });
+            } else {
+                this.$router.go(-1);
+            }
         },
         getById() {
             let id = this.$route.query.id;
@@ -193,6 +331,10 @@ export default {
     },
     data() {
         return {
+            heading: "Ariza shakli",
+            heading1: "O'zbekiston Respublikasi Raqobatni rivojlantirish va iste'molchilar huquqlarini himoya qilish qo'mitasi",
+            moreText: [],
+            pdfData: [],
             commit: '',
             extendedDate: '',
             isCommit: false,
@@ -203,7 +345,7 @@ export default {
             projectInformationCompletionDate: null,
             replaceDate: replaceDate,
             barChart: [],
-            title: this.$t("projDetails"),
+            title: this.$t("pharm.appeal_proccess"),
             proj: {},
             reopen_application: {
                 date: null,
@@ -234,7 +376,7 @@ export default {
         <div class="row mb-2">
             <div class="col-12">
                 <Back
-                        :to="{name: isCommission ? 'CommissionProjects' : 'ProjectsMain', query: {page: applicationPageType}}"/>
+                        :to="{name: 'AppealWork'}"/>
             </div>
         </div>
         <!-- end row -->
@@ -244,108 +386,54 @@ export default {
                     <div class="col-4">
                         <div class="card grid-card-height">
                             <div class="card-body">
-                                <div class="media">
-                                    <div class="media-body overflow-hidden">
-                                        <!--                    <b-button @click.prevent="getTask" variant="link" class="p-0 float-right">-->
-                                        <!--                      <i class="bx bx-task label-icon"></i>-->
-                                        <!--                      {{ $t("tasks_list") }}aaaaaaaa-->
-                                        <!--                    </b-button>-->
-                                        <!--                                        <h5 class="font-size-15" v-b-popover.bottom.hover :title="proj.name">-->
-                                        <!--                                            {{ proj.consumerFirstName }}-->
-                                        <!--                                        </h5>-->
-                                        <!--                                        <h5 class="text-truncate font-size-13" v-b-popover.bottom.hover-->
-                                        <!--                                            :title="getName(proj)">-->
-                                        <!--                                            {{ getName(proj) }}-->
-                                        <!--                                        </h5>-->
-                                        <span
-                                                class="badge"
-                                                :class="'badge-primary'"
-                                        >{{ $t(proj.status) }}</span>
-                                    </div>
-                                </div>
                                 <b-row>
-                                    <b-col cols="6">
-                                        {{ $t('submodules.commission.inner_input_reg_number') }}
-                                        <p class="text-muted">{{
-                                            proj.mnumber
+
+                                    <b-col cols="12">
+                                        <span
+                                                v-if="proj.status === 'BEING_SEEN'"
+                                                class="badge badge-success"
+                                        >
+                                 {{ $t("submodules.commission.BEING_SEEN") }}  </span>
+                                        <span v-else class="badge badge-primary">
+                                        {{ $t(proj.status) }}
+                                    </span>
+                                    </b-col>
+                                    <b-col cols="12">
+                                        {{ $t('pharm.appeal_number') }}
+                                        <p class="text-muted">{{ proj.mnumber }}</p>
+                                    </b-col>
+                                    <b-col cols="12">
+                                        {{ $t("column.send_date") }}
+                                        <p class="text-muted"> {{ new Date(proj.createJson).ddmmyyyy() }}</p>
+                                    </b-col>
+                                    <b-col cols="12">
+                                        {{ $t("pharm.executive") }}
+                                        <p class="text-muted"> {{
+                                            `${proj?.innerEmployeeName ?? ''}`
                                             }}</p>
                                     </b-col>
-                                    <!--                                    <b-col cols="12">-->
-                                    <!--                                        {{ $t('column.business_entity') }}-->
-                                    <!--                                        <p class="text-muted">{{ proj.medicationName }}</p>-->
-                                    <!--                                    </b-col>-->
                                 </b-row>
-                                <!--                                <simplebar style="height: 100px">-->
-                                <!--                                    <p class="text-muted">{{ proj.description }}</p>-->
-                                <!--                                </simplebar>-->
-                                <!--                                <router-link-->
-                                <!--                                        v-if="isCommission && proj.applicationDto?.projectId"-->
-                                <!--                                        class="btn btn-primary"-->
-                                <!--                                        :to="`/projects/main?page=overview&id=${proj.applicationDto?.projectId}`"-->
-                                <!--                                >-->
-                                <!--                                    {{ $t('actions.view_project') }}-->
-                                <!--                                </router-link>-->
-                                <!--                                <b-btn-->
-                                <!--                                        v-if="showReopenProjectButton"-->
-                                <!--                                        variant="success"-->
-                                <!--                                        @click="projectReopenApplication"-->
-                                <!--                                >-->
-                                <!--                                    {{ $t('submodules.dxa.reopen_application') }}-->
-                                <!--                                </b-btn>-->
                                 <div class="row task-dates">
-                                    <div class="col-lg-6">
-                                        <div class="mt-4">
-                                            <h5 class="font-size-14">
-                                                <i class="bx bx-calendar mr-1 text-primary"></i>
-                                                {{ $t("column.on_date") }}
-                                            </h5>
-                                            <p class="text-muted mb-0">
-                                                {{ new Date(proj.createJson).ddmmyyyy() }}
-                                                <!--                                                {{-->
-                                                <!--                                                replaceDate(proj.createJson) ? replaceDate(proj.createJson).daym_shortyyyy() : ""-->
-                                                <!--                                                }}-->
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <!--                                    <div class="col-lg-4">-->
-                                    <!--                                        <div class="mt-4">-->
-                                    <!--                                            <h5 class="font-size-14">-->
-                                    <!--                                                <i class="bx bx-calendar-check mr-1 text-primary"></i>-->
-                                    <!--                                                {{ $t("column.finishing_date") }}-->
-                                    <!--                                            </h5>-->
-                                    <!--                                            <p class="text-muted mb-0">-->
-                                    <!--                                                {{ new Date(proj.createJson).ddmmyyyy() }}-->
-
-                                    <!--                                                {{-->
-                                    <!--                                                replaceDate(proj.end)-->
-                                    <!--                                                    ? replaceDate(proj.end).daym_shortyyyy()-->
-                                    <!--                                                    : ""-->
-                                    <!--                                                }}-->
-                                    <!--                                            </p>-->
-                                    <!--                                        </div>-->
-                                    <!--                                    </div>-->
-                                    <div class="col-lg-6">
-                                        <div class="mt-4 float-right">
-                                            <h5 class="font-size-14">
-                                                <i class="bx bx-user mr-1 text-primary"></i>
-                                                {{ $t("pharm.executive") }}
-                                            </h5>
-                                            <p class="text-muted mb-0">
-                                                {{
-                                                `${proj?.innerEmployeeName ?? ''}`
-                                                }}
-                                            </p>
-                                        </div>
-                                    </div>
                                     <div class="row task-dates ml-2">
-                                        <!-- Muddatni uzaytirish-->
-                                        <b-button variant="success" @click="changeTerm">
-                                            <i class="fa fa-calendar-plus"></i>
-                                            {{ $t("submodules.projects.add_day") }}
-                                        </b-button>
 
+                                        <b-button class="ml-2" variant="success" @click="generatePDF"
+                                        >
+                                            <i class="fa fa-download"></i>
+                                            {{ $t("pharm.arizaForm") }}
+                                        </b-button>
                                     </div>
                                 </div>
+
+                                <!--                                <div class="row task-dates">-->
+                                <!--                                    <div class="row task-dates ml-2">-->
+
+                                <!--                                        &lt;!&ndash; Muddatni uzaytirish&ndash;&gt;-->
+                                <!--                                        <b-button variant="success" @click="changeTerm">-->
+                                <!--                                            <i class="fa fa-calendar-plus"></i>-->
+                                <!--                                            {{ $t("submodules.projects.add_day") }}-->
+                                <!--                                        </b-button>-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
                             </div>
                         </div>
                     </div>
@@ -361,7 +449,9 @@ export default {
                                     </b-col>
                                     <b-col cols="12">
                                         {{ $t('pharm.pharmacyAddress') }}
-                                        <p class="text-muted">{{ proj.pharmacyAddress }}</p>
+                                        <p class="text-muted">{{ proj.pharmacyRegionName }}{{
+                                            proj.pharmacyDistrictName
+                                            }}{{ proj.pharmacyAddress }}</p>
                                     </b-col>
                                     <b-col cols="12">
                                         {{ $t('pharm.pharmacyTin') }}
@@ -372,7 +462,7 @@ export default {
                                 <div class="row task-dates">
                                     <div class="row task-dates ml-2">
 
-                                        <b-button class="ml-2" variant="primary" @click="isDorixonaSidebar">
+                                        <b-button class="ml-2" variant="success" @click="isDorixonaSidebar">
                                             <i class="fa fa-eye"></i>
                                             {{ $t("pharm.get_info_apteka") }}
                                         </b-button>
@@ -387,22 +477,24 @@ export default {
                                 <b-row>
 
                                     <b-col cols="12"><h5><b> {{ $t('pharm.consumer') }}</b></h5></b-col>
-                                    <b-col cols="6">
-
-                                        <!--                                        <p class="text-muted">{{-->
-                                        <!--                                                proj.mnumber-->
-                                        <!--                                            }}</p>-->
+                                    <b-col cols="12">
+                                        {{ $t('pharm.appeal_fio') }}
+                                        <p class="text-muted">{{ proj.consumerFirstName }} {{ proj.consumerLastName }}
+                                            {{ proj.consumerMiddleName }}</p>
                                     </b-col>
-                                    <!--                                    <b-col cols="12">-->
-                                    <!--                                        {{ $t('column.business_entity') }}-->
-                                    <!--                                        <p class="text-muted">{{ proj.medicationName }}</p>-->
-                                    <!--                                    </b-col>-->
+                                    <b-col cols="12">
+                                        {{ $t('pharm.consumerPhone') }}
+                                        <p class="text-muted">{{ proj.consumerPhone }}</p>
+                                    </b-col>
+                                    <b-col cols="12">
+                                        {{ $t('pharm.consumerPinfl') }}
+                                        <p class="text-muted">{{ proj.consumerPinfl }}</p>
+                                    </b-col>
                                 </b-row>
+
 
                             </div>
                         </div>
-                        <!--                        <FileController class="grid-card-height" :is-revision="isRevision" :project="proj"-->
-                        <!--                                        @get-project-by-id="getById"/>-->
                     </div>
                 </div>
                 <div class="row">
@@ -507,12 +599,11 @@ export default {
         </b-modal>
         <!-- end row -->
         <!--        dorixona malumotlari-->
-        <b-sidebar v-model="ismodalDorixonaInfo"  class="sidebar-part" right shadow sidebar-class="p-0"
+        <b-sidebar v-model="ismodalDorixonaInfo" class="sidebar-part" right shadow sidebar-class="p-0"
                    width="50%">
             <DorixonaAllInfo
                     ref="isSidebar_ref"
                     :applicationId="proj.id"
-                    @close="closeSidebar"
             />
         </b-sidebar>
     </div>

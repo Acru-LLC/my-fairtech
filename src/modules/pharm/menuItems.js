@@ -1,4 +1,5 @@
 import i18n from "@/i18n";
+import {ability} from "@/shared/store/ability";
 
 export default [
     // {
@@ -21,7 +22,7 @@ export default [
                 link: {name: "PharmMonitor"},
                 parentId: "pharmParentMenuId",
                 code: "pharm_info",
-                // hasPerm: () => ability.can('view', '')
+                hasPerm: () => ability.can('view', 'pharm-monitor')
             },
             //PHARM - WORK WITH DOCUMENT
             {
@@ -36,7 +37,7 @@ export default [
                 // },
                 link: {name: "AppealWork"},
                 parentId: "pharmParentMenuId",
-                // hasPerm: () => ability.can('view', '')
+                hasPerm: () => ability.can('view', 'pharm-appeal-work')
             },
             //PHARM - PHARMACY LIST
             {
@@ -51,7 +52,7 @@ export default [
                 // },
                 link: {name: "PharmStart2"},
                 parentId: "pharmParentMenuId",
-                // hasPerm: () => ability.can('view', '')
+                hasPerm: () => ability.can('view', 'pharm-pharmacy-list')
             },
             //PHARM - SEND MESSAGE
             {
@@ -66,7 +67,7 @@ export default [
                 // },
                 link: {name: "PharmStart3"},
                 parentId: "pharmParentMenuId",
-                // hasPerm: () => ability.can('view', '')
+                hasPerm: () => ability.can('view', 'pharm-send-message')
             },
     //     ]
     // }

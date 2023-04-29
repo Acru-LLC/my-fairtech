@@ -87,8 +87,10 @@ export default {}
     --font-color: #2E4F4F;
     --hover-font-color: #2DB1FD;
     --wrapper-width: clamp(10rem, 70vw, 60rem);
-    --ul-padding: clamp(.5rem, 2vw, 2rem);
-    --card-height: clamp(15rem, 25vw, 19rem);
+    --ul-padding: clamp(.6rem, 3vw, 3rem);
+    --card-height: clamp(18rem, 28vw, 22rem);
+    --color: #ffffff;
+    --background: #2196f3;
 }
 
 * {
@@ -103,6 +105,13 @@ h1 {
     color: #6f7070;
     z-index: 1;
     font-family: 'engraversgothic-bt-regular', sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    width: 100%;
+    letter-spacing: 5px;
+    text-shadow: -2px -2px 0px var(--background),
+    1px 1px 1px var(--background),
+    1px 1px 1px rgba(68, 67, 67, 0.33);
 }
 
 .section-s {
@@ -113,7 +122,6 @@ h1 {
     position: relative;
     display: grid;
     place-content: center;
-    place-content: center;
 }
 
 /*.active {*/
@@ -122,7 +130,8 @@ h1 {
 /*}*/
 
 .card-wrapper {
-    margin: 0px auto;
+    margin: 0 20px 0 20px;
+    padding: 10px ;
     border: 2px solid var(--hover-font-color);
     display: flex;
     justify-content: center;
@@ -157,10 +166,19 @@ h1 {
 }
 
 .pro-name {
-    font-size: 22px;
+    font-size: 28px;
     font-weight: bold;
-    color: var(--hover-font-color);
+    color: #ffffff;
     font-family: 'engraversgothic-bt-regular', sans-serif;
+    text-align: center;
+    width: 100%;
+    margin: 0px auto;
+    letter-spacing: 3px;
+    position: absolute;
+    margin-top: -10px;
+    text-shadow: -2px -2px 0px var(--background),
+    3px 3px 3px var(--background),
+    3px 3px 3px #00000055;
 }
 
 .card-main {

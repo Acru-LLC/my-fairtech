@@ -1851,12 +1851,64 @@ export default {
     data() {
         return {
             resInformation_Date: null,
-            loadingTableItems: false
+            loadingTableItems: false,
+            tableFields1: [
+                {
+                    label: "#",
+                    thClass: "text-center",
+                    tdClass: "text-center",
+                    sortable: false,
+                    key: "index",
+                },
+                {
+                    label: this.$t('submodules.integration.soliqQomita_info.response.regContractorDto.companyBanks.mfo'),
+                    key: 'mfo',
+                    thStyle: {
+                        minWidth: '230px',
+                    },
+                },
+                {
+                    label: this.$t('submodules.integration.soliqQomita_info.response.regContractorDto.companyBanks.paymentAccount'),
+                    key: 'paymentAccount',
+                    thStyle: {
+                        minWidth: '150px',
+                    },
+                },
+                {
+                    label: this.$t('submodules.integration.soliqQomita_info.response.regContractorDto.companyBanks.status'),
+                    key: 'status',
+                    thStyle: {
+                        minWidth: '220px',
+                    }
+                },
+                {
+                    label: this.$t('submodules.integration.soliqQomita_info.response.regContractorDto.companyBanks.attribute'),
+                    key: 'attribute',
+                    thStyle: {
+                        minWidth: '220px',
+                    }
+                },
+                {
+                    label: this.$t('submodules.integration.soliqQomita_info.response.regContractorDto.companyBanks.openDate'),
+                    key: 'openDate',
+                    thStyle: {
+                        minWidth: '220px',
+                    }
+                },
+                {
+                    label: this.$t('submodules.integration.soliqQomita_info.response.regContractorDto.companyBanks.closeDate'),
+                    key: 'closeDate',
+                    thStyle: {
+                        minWidth: '220px',
+                    }
+                }
+
+            ],
         }
     },
     props: {
         applicationId: {
-            type: String,
+            type: null,
             default: "",
         }
     },

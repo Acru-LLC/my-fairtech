@@ -2113,9 +2113,9 @@ export default {
                                                         <th class="text-center" scope="col">
                                                             {{ $t("pharm.appeal_date") }}
                                                         </th>
-                                                        <th class="text-center" scope="col">
-                                                            {{ $t("pharm.medicine_name") }}
-                                                        </th>
+<!--                                                        <th class="text-center" scope="col"  style="width: 300px">-->
+<!--                                                            {{ $t("pharm.medicine_name") }}-->
+<!--                                                        </th>-->
                                                         <!--                                                        <th class="text-center" scope="col">-->
                                                         <!--                                                            {{ $t("profile.inn") }}-->
                                                         <!--                                                        </th>-->
@@ -2176,10 +2176,11 @@ export default {
                                                                 {{ new Date(item.createJson).ddmmyyyyhhmmss() }}
                                                             </p>
                                                         </td>
-                                                        <td class="text-center"
-                                                            :class="(index % 2===1) ? 'font-weight-bold' : ''">
-                                                            <p class="pre m-0">{{ item.medicationName }}</p>
-                                                        </td>
+<!--                                                        <td class="text-center"-->
+
+<!--                                                            :class="(index % 2===1) ? 'font-weight-bold' : ''">-->
+<!--                                                            <p  style="width: 300px !important;" class="pre m-0">{{ item.medicationName }}</p>-->
+<!--                                                        </td>-->
                                                         <td class="text-center"
                                                             :class="(index % 2===1) ? 'font-weight-bold' : ''">
                                                             <b-badge variant="success" class="p-1"

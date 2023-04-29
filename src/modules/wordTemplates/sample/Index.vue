@@ -491,7 +491,6 @@ export default {
                     }
                     this.editingItem.headerId = this.templateHeaderId
                     this.editingItem.templateBodyHtml = this.body2
-                    console.log(this.editingItem.templateBodyHtml)
                     this.Export2Word(element, filename)
 
                     // crudAndListsService.create(MAIN_API_URL, this.editingItem).then(res => {

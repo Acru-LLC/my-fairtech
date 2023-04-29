@@ -49,7 +49,7 @@ export default [
                 name: 'ApplicationMain',
                 meta: {
                     authRequired: true,
-                    hasPerm: () => ability.can('view', 'projects')
+                    // hasPerm: () => ability.can('view', 'projects')
                 },
                 component: () => import('@/modules/pharm/work/projects-grid')
             },

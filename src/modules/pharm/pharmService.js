@@ -520,25 +520,40 @@ export default {
     getUserAppealInfoById(mNumber) {
         return ApiService.post(`/pharm/pharm-sms/confirm?mNumber=${mNumber}`)
     },
+    setRepeatMessageFromUser(data) {
+        return ApiService.post(`/pharm/pharm-sms/confirm-answer`, data)
+    },
     getDoerAppealList(data) {
         return ApiService.post(`/pharm/doer/list-search?keyword=${data.search}&status=${data.status}`, data.pg)
     },
     getByIdApplicationInfo: function (id, withLoader = false) {
         return ApiService.get(`/pharm/get/${id}`, withLoader)
     },
+    getUserApplicationInfo: function (id, withLoader = false) {
+        return ApiService.get(`/pharm/doer/get-pdf-by-id/${id}`, withLoader)
+    },
     // Soliq Qomitasi'
     getSoliqQomitasiInfoByInn(inn, withLoader = false) {
         return ApiService.get(`pharm/get-pharmacy-data/by-pharm-id/${inn}`, withLoader);
     },
-    leaveFile: function (id, cmt, file) {
+    leaveFile: function (id, cmt, file, code) {
         let bodyFormData = new FormData();
         bodyFormData.append('file', file)
         bodyFormData.append('comment', cmt)
         bodyFormData.append('pharmId', id)
+        bodyFormData.append('sector_code', code)
         return ApiService.formDataFile(`/pharm/doer/attachedFile-create`, bodyFormData)
     },
-    listFiles: function (id, data) {
-        return ApiService.post(`/project-comment/attached-file/${id}`, data)
+    listFiles: function (pharmId, search, code, data) {
+        return ApiService.post(`/pharm/doer/list-pharmId/${pharmId}?code=${code}&search=${search}`, data)
     },
+
+    // listFiles: function (pharmId, keyword) {
+    //     return ApiService.post(`/pharm/doer/list-file?keyword=${keyword}&pharmId=${pharmId}`)
+    // },
+
+    // listFiles: function (id, data) {
+    //     return ApiService.post(`/project-comment/attached-file/${id}`, data)
+    // },
 }
 
