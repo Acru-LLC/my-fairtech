@@ -85,18 +85,9 @@
                     value-field="id"
                 >
                     <template #first>
-                        <b-form-select-option
-                            :value="null"
-                            disabled
-                        >{{ $t('column.status') }}
-                        </b-form-select-option>
-                        <b-form-select-option v-for="(status, index) in statuses" :key="`${status}-${index}`"
-                                              :value="status.id">{{
-                                getName({
-                                    nameRu: status.nameRu,
-                                    nameLt: status.nameLt,
-                                    nameUz: status.nameUz,
-                                })
+                        <b-form-select-option v-for="(code, index) in codes" :key="`${code}-${index}`"
+                                              :value="code.value">{{
+                                code.text
                             }}
                         </b-form-select-option>
                     </template>
@@ -136,10 +127,10 @@ export default {
             editingItem: {},
             statuses: [],
             codes: [
-                { value:'', text: 'Please select an option' },
-                { value:'', text: 'Please select an option' },
-                { value:'', text: 'Please select an option' },
-                { value:'', text: 'Please select an option' }
+                { value:'LETTER', text: "So'rov xati" },
+                { value:'DEED', text: "Sudga yo'llanma" },
+                { value:'NOTICE', text: "Bildirgi" },
+                { value:'ACT', text: "Dalolatnoma" }
             ],
             regions: []
         }
