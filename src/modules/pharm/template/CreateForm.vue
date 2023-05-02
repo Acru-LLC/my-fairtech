@@ -72,13 +72,35 @@
                     sm="12"
                     md="6"
             >
-                <BaseInputWithValidation
-                        rules="required"
-                        class="required"
-                        v-model="editingItem1.code"
-                        :label="$t('column.code')"
-                        :placeholder="$t('column.code')"
-                />
+<!--                <BaseInputWithValidation-->
+<!--                        rules="required"-->
+<!--                        class="required"-->
+<!--                        v-model="editingItem1.code"-->
+<!--                        :label="$t('column.code')"-->
+<!--                        :placeholder="$t('column.code')"-->
+<!--                />-->
+                <BaseSelectWithValidation
+                    v-model="editingItem1.code"
+                    :label="$t('column.status')"
+                    value-field="id"
+                >
+                    <template #first>
+                        <b-form-select-option
+                            :value="null"
+                            disabled
+                        >{{ $t('column.status') }}
+                        </b-form-select-option>
+                        <b-form-select-option v-for="(status, index) in statuses" :key="`${status}-${index}`"
+                                              :value="status.id">{{
+                                getName({
+                                    nameRu: status.nameRu,
+                                    nameLt: status.nameLt,
+                                    nameUz: status.nameUz,
+                                })
+                            }}
+                        </b-form-select-option>
+                    </template>
+                </BaseSelectWithValidation>
             </b-col>
         </b-row>
     </ValidationObserver>
@@ -113,6 +135,12 @@ export default {
             },
             editingItem: {},
             statuses: [],
+            codes: [
+                { value:'', text: 'Please select an option' },
+                { value:'', text: 'Please select an option' },
+                { value:'', text: 'Please select an option' },
+                { value:'', text: 'Please select an option' }
+            ],
             regions: []
         }
     },
