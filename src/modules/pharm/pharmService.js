@@ -508,6 +508,9 @@ export default {
     getListPharmMonitor(data) {
         return ApiService.post(`/pharm/list-search?keyword=${data.search}`, data.params)
     },
+    getListPharmMonitorCreated(data) {
+        return ApiService.post(`/pharm/listByStatus?keyword=${data.search}`, data.params)
+    },
     getByIdPharmAppeals(application_id, department_id) {
         return ApiService.post(`application-dxa/receive?id=${application_id}&department_id=${department_id ? department_id : ''}`)
     },
@@ -516,6 +519,9 @@ export default {
     },
     setEmployeesAttachchedToAppeal(data) {
         return ApiService.post(`/pharm/doer/attached-employee`, data)
+    },
+    setRegionAttachchedToAppeal(data) {
+        return ApiService.post(`/pharm/pharm-attached/attached-department?id=${data.pharmId}&depId=${data.regionId}`, data)
     },
     getUserAppealInfoById(mNumber) {
         return ApiService.post(`/pharm/pharm-sms/confirm?mNumber=${mNumber}`)
@@ -547,7 +553,12 @@ export default {
     listFiles: function (pharmId, search, code, data) {
         return ApiService.post(`/pharm/doer/list-pharmId/${pharmId}?code=${code}&search=${search}`, data)
     },
-
+    saveFileEntity: function (url, payload) {
+        return ApiService.post(`${url}`, payload);
+    },
+    downloadFileDoc: function (code, payload) {
+        return ApiService.get(`pharm/file/download?code=${code}`, payload);
+    },
     // listFiles: function (pharmId, keyword) {
     //     return ApiService.post(`/pharm/doer/list-file?keyword=${keyword}&pharmId=${pharmId}`)
     // },

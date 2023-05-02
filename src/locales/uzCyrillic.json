@@ -2633,6 +2633,8 @@
     "createJson": "Ariza kelib tushgan sana",
     "founderSharePercent": "Ta'sischi ulushi foizi",
     "founderShareSum": "Ta'sischi ulushi summasi",
+    "medicationCheckNumber": "Chek raqami",
+    "farq": "Narx farqi",
     "medication": "Dori vositasi ma'lumotlari",
     "medicationMxikCode": "Mxik kodi",
     "medicationName": "Dori nomi",
@@ -2649,7 +2651,7 @@
     "updateJson": "Ariza ma'lumotlari yangilangan sana",
     "menu_work_with_document": "Xujjat bilan ishlash",
     "menu_pharmacy_list": "Dorixona ma'lumotlari",
-    "menu_send_message": "SMS habar yuborish",
+    "menu_send_message": "Yuborilgan SMS habarlar",
     "attachched_employee": "Ijrochi tayinlash",
     "send_to_region": "Ijro uchun yuborildi",
     "appeal_proccess": "Ijro etish",
@@ -2662,6 +2664,15 @@
     "files_sud": "Sud fayllari",
     "files_apteka": "Dorixona fayllari",
     "send_date": "Yuborilgan sana",
-    "arizaForm": "Ariza shakli"
+    "arizaForm": "Ariza shakli",
+    "template": "Ijro uchun shablon",
+    "akt": "AKT",
+    "region_attachched": "Biriktirilmagan arizalar",
+    "attachched_region": "Arizani hududga biriktirish",
+    "templates": "Shablonlar",
+    "request_application": " So'rov xati",
+    "notification": "Bildirgi",
+    "act": "Dalolatnoma",
+    "referral_court": "Sudga yo'llanma"
   }
 }

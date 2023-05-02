@@ -12,11 +12,12 @@ import DocumentHistory from "@/modules/commission/document-history/document-hist
  */
 import {cnfDoc, showMsgSuccess} from "@/helper";
 import crudAndListsService from "@/shared/services/crud_and_list.service";
+import helperService from "@/shared/services/helper.service";
 
 export default {
     components: {
-        DocumentTree,
-        DocumentHistory,
+        // DocumentTree,
+        // DocumentHistory,
         Regions,
         // VueApexCharts,
         // Receivers,
@@ -47,9 +48,8 @@ export default {
             attachchedModal: false,
             attachchedModalLoader: false,
             form1: {
-                employeeId: null,
+                regionId: null,
                 pharmId: null,
-                comment: ''
             },
 
             loadingMonthlyChartData: false,
@@ -695,6 +695,7 @@ export default {
             //   },
             // ],
             list: [],
+            regions: [],
             appealList: [],
             searchValue: "",
             page: 1,
@@ -730,7 +731,7 @@ export default {
     },
     async created() {
         await this.getList();
-        await this.getEmployeesByDepartment();
+        await this.getRegions();
 
 
         // CHECK FOR PERMISSIONS
@@ -795,12 +796,13 @@ export default {
         openSignatureModalForAttachchedEmployees() {
             this.attachchedModalLoader = true
 
-            if (this.form1.employeeId) {
+            if (this.form1.regionId) {
                 this.form1.pharmId = this.selectedAppealTrItem.id
-                Service.setEmployeesAttachchedToAppeal(this.form1)
+                Service.setRegionAttachchedToAppeal(this.form1)
                     .then(async (res) => {
                         this.$toast(res.data, {type: 'success'});
                         await this.getList();
+                        this.selectedAppealTrItem = {}
                         // this.$toast(data, {type: 'success'});
                     })
                     .catch((err) => {
@@ -809,6 +811,7 @@ export default {
                     .finally(() => {
                         this.attachchedModalLoader = false
                         this.attachchedModal = false
+
 
                     });
             } else {
@@ -820,18 +823,15 @@ export default {
         setAttachchedEmployees() {
             this.attachchedModal = true;
         },
-        getEmployeesByDepartment() {
-            Service.getEmployeesInnerDepartment(this.params)
-                .then(({data}) => {
-                    this.employeeAttachched = data.list;
-                    // this.employeeAttachched = [];
+        async getRegions() {
+            await helperService.fetchRegions()
+                .then(res => {
+                    this.regions = res.data
+                    // this.regionSelected(this.contractorDto.addressDto.regionId, true)
                 })
-                .catch((err) => {
-                    // this.catchErr(err);
+                .catch(e => {
+                    console.log(e)
                 })
-                .finally(() => {
-                    this.loading = false;
-                });
         },
         async fetchDataForChartForDXA() {
             // this.loadingChartData = true
@@ -1075,15 +1075,14 @@ export default {
                 this.$toast(this.$t('messages.fill_required_fields'), {type: 'error'});
             }
         },
-
-        customLabelAttachchedEmployees(opt) {
-            let selected = this.employeeAttachched.find(e => e.id == opt);
-            if (selected) {
-                return `${selected.fullName} (${this.getName({
-                    nameUz: selected.departmentNameUz,
-                    nameLt: selected.departmentNameLt,
-                    nameRu: selected.departmentNameRu
-                })})`
+        customLabelRegion(opt) {
+            let selectedRegion = this.regions.find(e => e.id == opt);
+            if (selectedRegion) {
+                return `${this.getName({
+                    nameRu: selectedRegion.nameRu,
+                    nameLt: selectedRegion.nameLt,
+                    nameUz: selectedRegion.nameUz,
+                })}`
             }
             return ``;
         },
@@ -1546,7 +1545,7 @@ export default {
         },
         getList() {
             this.loading = true;
-            Service.getListPharmMonitor(this.params)
+            Service.getListPharmMonitorCreated(this.params)
                 .then((res) => {
                     this.appealList = res.data.list;
                     this.total = res.data.total;
@@ -1706,31 +1705,31 @@ export default {
                 scrollable
                 v-model="attachchedModal"
                 size="md"
-                :title="`${$t('pharm.attachched_employee')}`"
+                :title="`${$t('pharm.attachched_region')}`"
                 style="height: 600px"
         >
-            <div>
+            <div style="min-height: 200px">
                 <BaseMultiselectWithValidation
                         rules="required"
                         class="required"
-                        v-model="form1.employeeId"
-                        :options="employeeAttachched.map(e => e.id)"
-                        :label="$t('assign_employee')"
+                        v-model="form1.regionId"
+                        :options="regions.map(e => e.id)"
+                        :label="$t('send_message.region')"
                         label-on-top
                         placeholder=""
-                        :custom-label="customLabelAttachchedEmployees"
+                        :custom-label="customLabelRegion"
                         open-direction="bottom"
                         :max-height="600"
                         :show-labels="false"
                 ></BaseMultiselectWithValidation>
             </div>
 
-            <b-form-textarea
-                    class="mt-3"
-                    v-model="form1.comment"
-                    :placeholder="$t('submodules.doc.summary')"
-                    rows="5"
-            ></b-form-textarea>
+            <!--            <b-form-textarea-->
+            <!--                    class="mt-3"-->
+            <!--                    v-model="form1.comment"-->
+            <!--                    :placeholder="$t('submodules.doc.summary')"-->
+            <!--                    rows="5"-->
+            <!--            ></b-form-textarea>-->
 
             <template v-slot:modal-footer>
                 <b-button
@@ -1742,7 +1741,7 @@ export default {
                             :show="attachchedModalLoader"
                             rounded="sm"
                     >
-                        {{ $t("actions.continue") }}
+                        {{ $t("pharm.attachched_region") }}
                     </b-overlay>
                 </b-button>
             </template>
@@ -2069,16 +2068,16 @@ export default {
                                             <!--                                                    </template>-->
                                             <!--                                                </b-form-radio-group>-->
                                         </b-collapse>
-                                        <b-button
-                                                class="my-1"
-                                                variant="secondary"
-                                                @click="applicationStatusDXAFilterCollapse = !applicationStatusDXAFilterCollapse"
-                                        >
-                                            {{
-                                            applicationStatusDXAFilterCollapse ? $t('actions.status_filter_close') : $t('actions.status_filter_open')
-                                            }}
-                                        </b-button>
-                                        <div class="d-inline-block mt-1 float-right">
+                                        <!--                                        <b-button-->
+                                        <!--                                                class="my-1"-->
+                                        <!--                                                variant="secondary"-->
+                                        <!--                                                @click="applicationStatusDXAFilterCollapse = !applicationStatusDXAFilterCollapse"-->
+                                        <!--                                        >-->
+                                        <!--                                            {{-->
+                                        <!--                                            applicationStatusDXAFilterCollapse ? $t('actions.status_filter_close') : $t('actions.status_filter_open')-->
+                                        <!--                                            }}-->
+                                        <!--                                        </b-button>-->
+                                        <div class="d-inline-block mt-1 float-left">
                                             <div class="search-box">
                                                 <div class="position-relative">
                                                     <input
@@ -2113,9 +2112,9 @@ export default {
                                                         <th class="text-center" scope="col">
                                                             {{ $t("pharm.appeal_date") }}
                                                         </th>
-<!--                                                        <th class="text-center" scope="col"  style="width: 300px">-->
-<!--                                                            {{ $t("pharm.medicine_name") }}-->
-<!--                                                        </th>-->
+                                                        <!--                                                        <th class="text-center" scope="col"  style="width: 300px">-->
+                                                        <!--                                                            {{ $t("pharm.medicine_name") }}-->
+                                                        <!--                                                        </th>-->
                                                         <!--                                                        <th class="text-center" scope="col">-->
                                                         <!--                                                            {{ $t("profile.inn") }}-->
                                                         <!--                                                        </th>-->
@@ -2176,11 +2175,11 @@ export default {
                                                                 {{ new Date(item.createJson).ddmmyyyyhhmmss() }}
                                                             </p>
                                                         </td>
-<!--                                                        <td class="text-center"-->
+                                                        <!--                                                        <td class="text-center"-->
 
-<!--                                                            :class="(index % 2===1) ? 'font-weight-bold' : ''">-->
-<!--                                                            <p  style="width: 300px !important;" class="pre m-0">{{ item.medicationName }}</p>-->
-<!--                                                        </td>-->
+                                                        <!--                                                            :class="(index % 2===1) ? 'font-weight-bold' : ''">-->
+                                                        <!--                                                            <p  style="width: 300px !important;" class="pre m-0">{{ item.medicationName }}</p>-->
+                                                        <!--                                                        </td>-->
                                                         <td class="text-center"
                                                             :class="(index % 2===1) ? 'font-weight-bold' : ''">
                                                             <b-badge variant="success" class="p-1"
@@ -2320,7 +2319,7 @@ export default {
                                             v-model="currentAppDetailsTabIndex"
                                             fill
                                     >
-                                        <b-tab :title="$t('submodules.doc.tab_doc')">
+                                        <b-tab :title="$t('pharm.arizaForm')">
                                             <b-overlay
                                                     :opacity="0.1"
                                                     :show="loadingById"
@@ -2358,7 +2357,7 @@ export default {
                                                     <b-button
                                                             @click="setAttachchedEmployees"
                                                             variant="primary">{{
-                                                        $t('pharm.attachched_employee')
+                                                        $t('pharm.attachched_region')
                                                         }}</b-button>
                                                     </span>
                                                             </td>
@@ -2557,7 +2556,9 @@ export default {
                                                             class="text-right"
                                                     >
                                                           <b-badge variant="primary">
-                                                         <b class="p-1">{{ selectedAppealTrItem.medicationPaymentPrice }}</b>
+                                                         <b class="p-1">{{
+                                                             selectedAppealTrItem.medicationPaymentPrice
+                                                             }}</b>
                                                        </b-badge>
                                                     </span>
                                                             </td>
@@ -2572,7 +2573,9 @@ export default {
                                                             class="text-right"
                                                     >
                                                        <b-badge variant="success">
-                                                         <b  class="p-1">{{ selectedAppealTrItem.medicationReferentPrice }}</b>
+                                                         <b class="p-1">{{
+                                                             selectedAppealTrItem.medicationReferentPrice
+                                                             }}</b>
                                                        </b-badge>
                                                     </span>
                                                             </td>
@@ -2587,7 +2590,7 @@ export default {
                                                             class="text-right"
                                                     >
                                                        <b-button variant="danger">
-                                                         <b  class="p-1">{{
+                                                         <b class="p-1">{{
                                                              selectedAppealTrItem.medicationPaymentPrice - selectedAppealTrItem.medicationReferentPrice
                                                              }}</b>
                                                        </b-button>
@@ -2727,62 +2730,62 @@ export default {
 
                                             </b-overlay>
                                         </b-tab>
-                                        <b-tab
-                                                :title="$t('submodules.doc.tab_doc_tree')"
-                                                lazy
-                                        >
-                                            <b-overlay
-                                                    :opacity="0.1"
-                                                    :show="loadingById"
-                                                    rounded="sm"
-                                            >
-                                                <div
-                                                        class="text-center card mt-3"
-                                                        v-if="!selectedApplicationItem"
-                                                >
-                                                    <h5
-                                                            style="opacity: 0.3"
-                                                            class="p-3"
-                                                    >
-                                                        {{ $t("submodules.doc.selected_doc") }}
-                                                    </h5>
-                                                </div>
-                                                <document-tree
-                                                        v-else
-                                                        ref="documentTreeRef"
-                                                        :doc-id="selectedApplicationItem.id"
-                                                        @toggleLoading="toggleLoading"
-                                                ></document-tree>
-                                            </b-overlay>
-                                        </b-tab>
-                                        <b-tab
-                                                :title="$t('submodules.doc.tab_doc_history')"
-                                                lazy
-                                        >
-                                            <b-overlay
-                                                    :opacity="0.1"
-                                                    :show="loadingById"
-                                                    rounded="sm"
-                                            >
-                                                <div
-                                                        class="text-center card mt-3"
-                                                        v-if="!selectedApplicationItem"
-                                                >
-                                                    <h5
-                                                            style="opacity: 0.3"
-                                                            class="p-3"
-                                                    >
-                                                        {{ $t("submodules.doc.selected_doc") }}
-                                                    </h5>
-                                                </div>
-                                                <document-history
-                                                        v-else
-                                                        ref="documentHistoryRef"
-                                                        :doc-id="selectedApplicationItem.id"
-                                                        @toggleLoading="toggleLoading"
-                                                ></document-history>
-                                            </b-overlay>
-                                        </b-tab>
+                                        <!--                                        <b-tab-->
+                                        <!--                                                :title="$t('submodules.doc.tab_doc_tree')"-->
+                                        <!--                                                lazy-->
+                                        <!--                                        >-->
+                                        <!--                                            <b-overlay-->
+                                        <!--                                                    :opacity="0.1"-->
+                                        <!--                                                    :show="loadingById"-->
+                                        <!--                                                    rounded="sm"-->
+                                        <!--                                            >-->
+                                        <!--                                                <div-->
+                                        <!--                                                        class="text-center card mt-3"-->
+                                        <!--                                                        v-if="!selectedApplicationItem"-->
+                                        <!--                                                >-->
+                                        <!--                                                    <h5-->
+                                        <!--                                                            style="opacity: 0.3"-->
+                                        <!--                                                            class="p-3"-->
+                                        <!--                                                    >-->
+                                        <!--                                                        {{ $t("submodules.doc.selected_doc") }}-->
+                                        <!--                                                    </h5>-->
+                                        <!--                                                </div>-->
+                                        <!--                                                <document-tree-->
+                                        <!--                                                        v-else-->
+                                        <!--                                                        ref="documentTreeRef"-->
+                                        <!--                                                        :doc-id="selectedApplicationItem.id"-->
+                                        <!--                                                        @toggleLoading="toggleLoading"-->
+                                        <!--                                                ></document-tree>-->
+                                        <!--                                            </b-overlay>-->
+                                        <!--                                        </b-tab>-->
+                                        <!--                                        <b-tab-->
+                                        <!--                                                :title="$t('submodules.doc.tab_doc_history')"-->
+                                        <!--                                                lazy-->
+                                        <!--                                        >-->
+                                        <!--                                            <b-overlay-->
+                                        <!--                                                    :opacity="0.1"-->
+                                        <!--                                                    :show="loadingById"-->
+                                        <!--                                                    rounded="sm"-->
+                                        <!--                                            >-->
+                                        <!--                                                <div-->
+                                        <!--                                                        class="text-center card mt-3"-->
+                                        <!--                                                        v-if="!selectedApplicationItem"-->
+                                        <!--                                                >-->
+                                        <!--                                                    <h5-->
+                                        <!--                                                            style="opacity: 0.3"-->
+                                        <!--                                                            class="p-3"-->
+                                        <!--                                                    >-->
+                                        <!--                                                        {{ $t("submodules.doc.selected_doc") }}-->
+                                        <!--                                                    </h5>-->
+                                        <!--                                                </div>-->
+                                        <!--                                                <document-history-->
+                                        <!--                                                        v-else-->
+                                        <!--                                                        ref="documentHistoryRef"-->
+                                        <!--                                                        :doc-id="selectedApplicationItem.id"-->
+                                        <!--                                                        @toggleLoading="toggleLoading"-->
+                                        <!--                                                ></document-history>-->
+                                        <!--                                            </b-overlay>-->
+                                        <!--                                        </b-tab>-->
 
                                     </b-tabs>
                                 </div>

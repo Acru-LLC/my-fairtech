@@ -422,6 +422,7 @@ export default {
                                             {{ $t("pharm.arizaForm") }}
                                         </b-button>
                                     </div>
+
                                 </div>
 
                                 <!--                                <div class="row task-dates">-->

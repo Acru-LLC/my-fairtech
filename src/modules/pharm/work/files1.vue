@@ -1,7 +1,78 @@
 <template>
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title mb-4">{{ $t("pharm.files_ijro") }}</h4>
+            <b-row>
+                <b-col cols="6">
+                    <h4 class="card-title mb-4">{{ $t("pharm.files_ijro") }}</h4>
+                </b-col>
+                <b-col cols="6">
+                    <!--                    <b-button class="float-right" variant="success" @click="getFileDoc"-->
+                    <!--                    >-->
+                    <!--                        <i class="fa fa-download"></i>-->
+                    <!--                        {{ $t("pharm.template") }}-->
+                    <!--                    </b-button>-->
+
+                    <!--                    <a style="border: 1px solid #d2d0d0; border-radius: 3px; background: #bbecf5"-->
+                    <!--                       :download="$t('pharm.template')" :href="`${getBaseUrl}${project.templatePath}`"-->
+                    <!--                       class="text-dark p-2 float-right">-->
+                    <!--                        <i class="bx bx-download"></i>-->
+                    <!--                        {{ $t("pharm.template") }}-->
+                    <!--                    </a>-->
+                    <b-button id="button-1" variant="outline-success">{{$t('pharm.templates')}}</b-button>
+                    <!-- Tooltip title specified via prop title -->
+                    <b-tooltip variant="success" placement="topright" target="button-1">
+                        <a class="text-dark p-2 mt-1 float-right"
+                           style="width:100%; border: 1px solid #34C38F; border-radius: 3px; background: #bbecf5"
+                           :download="getExt(project.templatePath) === 'pdf' ? false : project.templatePath"
+                           :href="getExt(project.templatePath) === 'pdf' ? `#` : `${baseUrl}/${project.templatePath}`"
+                           @click="viewFile(project.templatePath)"
+                        >
+                            <i class="bx bx-download"></i>
+<!--                            {{ $t("pharm.template") }} -->
+                            {{$t('pharm.request_application')}}
+                        </a>
+                        <a class="text-dark p-2  mt-1 float-right"
+                           style="width:100%;border: 1px solid #34C38F; border-radius: 3px; background: #bbecf5"
+                           :download="getExt(project.templatePath) === 'pdf' ? false : project.templatePath"
+                           :href="getExt(project.templatePath) === 'pdf' ? `#` : `${baseUrl}/${project.templatePath}`"
+                           @click="viewFile(project.templatePath)"
+                        >
+                            <i class="bx bx-download"></i>
+                            <!--                            {{ $t("pharm.template") }} -->
+                            {{$t('pharm.notification')}}
+                        </a>
+                        <a class="text-dark p-2 mt-1 float-right"
+                           style="width:100%;border: 1px solid #34C38F; border-radius: 3px; background: #bbecf5"
+                           :download="getExt(project.templatePath) === 'pdf' ? false : project.templatePath"
+                           :href="getExt(project.templatePath) === 'pdf' ? `#` : `${baseUrl}/${project.templatePath}`"
+                           @click="viewFile(project.templatePath)"
+                        >
+                            <i class="bx bx-download"></i>
+                            <!--                            {{ $t("pharm.template") }} -->
+                            {{$t('pharm.act')}}
+                        </a>
+                        <a class="text-dark p-2 mt-1 float-right"
+                           style="width:100%;border: 1px solid #34C38F; border-radius: 3px; background: #bbecf5"
+                           :download="getExt(project.templatePath) === 'pdf' ? false : project.templatePath"
+                           :href="getExt(project.templatePath) === 'pdf' ? `#` : `${baseUrl}/${project.templatePath}`"
+                           @click="viewFile(project.templatePath)"
+                        >
+                            <i class="bx bx-download"></i>
+                            <!--                            {{ $t("pharm.template") }} -->
+                            {{$t('pharm.referral_court')}}
+                        </a>
+                    </b-tooltip>
+
+                    <!--                    <a class="text-dark p-2 float-right"-->
+                    <!--                       style="border: 1px solid #d2d0d0; border-radius: 3px; background: #bbecf5"-->
+                    <!--                       :download="getExt(project.templatePath) === 'pdf' ? false : project.templatePath"-->
+                    <!--                       :href="getExt(project.templatePath) === 'pdf' ? `#` : `${baseUrl}/${project.templatePath}`"-->
+                    <!--                       @click="viewFile(project.templatePath)"-->
+                    <!--                    >-->
+                    <!--                        <i class="bx bx-download"></i>-->
+                    <!--                        {{ $t("pharm.template") }} </a>-->
+                </b-col>
+            </b-row>
             <simplebar id="file-list" ref="filesRef" style="height: 384px">
                 <div class="table-responsive mb-0">
                     <table class="table table-centered table-hover" style="table-layout: fixed; width: 100%">
@@ -107,10 +178,25 @@ export default {
     components: {
         simplebar,
     },
+    computed: {
+        getBaseUrl() {
+            return process.env.VUE_APP_ROOT_URL;
+        },
+    },
     created() {
         this.listFiles();
     },
     methods: {
+        getFileDoc() {
+            pharmService
+                .downloadFileDoc('TEMPLATE', true)
+                .then((rs) => {
+                    console.log(rs)
+                    this.proj = rs.data;
+                })
+                .catch(() => {
+                });
+        },
         viewFile(uploadPath) {
             if (this.getExt(uploadPath) === "pdf") {
                 this.fileUploadPath = uploadPath;

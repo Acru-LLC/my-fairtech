@@ -24,6 +24,21 @@ export default [
                 code: "pharm_info",
                 hasPerm: () => ability.can('view', 'pharm-monitor')
             },
+            //PHARM - MONITOR - CREATED
+            {
+                id: "pharm-monitor-created",
+                label: i18n.t('pharm.region_attachched'),
+                icon: "mdi mdi-file-document-multiple",
+                // badge: {
+                //     component: () => MenuBadgeComponent,
+                //     params: 'monitor',
+                //     variant: 'success',
+                // },
+                link: {name: "PharmMonitorCreated"},
+                parentId: "pharmParentMenuId",
+                code: "pharm_info",
+                hasPerm: () => ability.can('view', 'pharm-monitor-created')
+            },
             //PHARM - WORK WITH DOCUMENT
             {
                 id: "pharm-work-with-document",
@@ -68,6 +83,21 @@ export default [
                 link: {name: "PharmStart3"},
                 parentId: "pharmParentMenuId",
                 hasPerm: () => ability.can('view', 'pharm-send-message')
+            },
+            //PHARM - Template
+            {
+                id: "pharm-template",
+                label: i18n.t('pharm.template'),
+                icon: "mdi mdi-file-document-multiple",
+                code: "pharm_info",
+                // badge: {
+                //     component: () => MenuBadgeComponent,
+                //     params: 'monitor',
+                //     variant: 'success',
+                // },
+                link: {name: "PharmTemplate"},
+                parentId: "pharmParentMenuId",
+                hasPerm: () => ability.can('view', 'pharm-template')
             },
     //     ]
     // }

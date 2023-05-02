@@ -1,7 +1,28 @@
 <template>
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title mb-4">{{ $t("pharm.files_apteka") }}</h4>
+            <b-row>
+                <b-col cols="6">
+                    <h4 class="card-title mb-4">{{ $t("pharm.files_apteka") }}</h4>
+                </b-col>
+                <b-col cols="6">
+<!--                    <a style="border: 1px solid #d2d0d0; border-radius: 3px; background: #bbecf5"-->
+<!--                       :download="$t('pharm.akt')" :href="`${getBaseUrl}${fileUploadPath}`" class="text-dark p-2 float-right">-->
+<!--                        <i class="bx bx-download"></i>-->
+<!--                        {{ $t("pharm.akt") }}-->
+<!--                    </a>-->
+                    <a class="text-dark p-2 float-right" style="border: 1px solid #d2d0d0; border-radius: 3px; background: #bbecf5"
+                       :download="getExt(project.aktPath) === 'pdf' ? false : project.aktPath"
+                       :href="getExt(project.aktPath) === 'pdf' ? `#` : `${baseUrl}/${project.aktPath}`"
+                       @click="viewFile(project.aktPath)"
+                    >
+                        <i class="bx bx-download"></i>
+                        {{ $t("pharm.akt") }}
+                        <!--                        <FileView :uploadPath="file.uploadPath" class="my-card-hovered"/>-->
+                        <!--                        <small class="text-center">{{ getFileSize(parseFloat(file.fileSize)) }}</small>-->
+                    </a>
+                </b-col>
+            </b-row>
             <simplebar id="file-list" ref="filesRef" style="height: 384px">
                 <div class="table-responsive mb-0">
                     <table class="table table-centered table-hover" style="table-layout: fixed; width: 100%">
@@ -54,7 +75,7 @@
         </div>
         <b-modal v-model="viewFileModal" :title="$t('actions.view')" scrollable size="xl">
             <div v-if="fileUploadPath" style="height: 700px">
-                <embed :src="`${baseUrl}/${fileUploadPath}`" height="800" type="application/pdf" width="100%"/>
+                <embed :src="`${baseUrl}/${project.aktPath}`" height="800" width="100%"/>
             </div>
             <template v-slot:modal-footer>
                 <b-button variant="secondary" @click="viewFileModal = false">
@@ -109,6 +130,11 @@ export default {
     },
     created() {
         this.listFiles();
+    },
+    computed: {
+        getBaseUrl() {
+            return process.env.VUE_APP_ROOT_URL;
+        },
     },
     methods: {
         viewFile(uploadPath) {

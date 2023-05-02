@@ -88,7 +88,7 @@
 <script>
 import { getFileSize, imageTypes, getExtFromName } from "@/helper";
 export default {
-  props: ["cmt", "save", "name", "edit", "item"],
+    props: ["cmt", "save", "name", "edit", "item"],
   watch: {
     file(v) {
       if (v) {

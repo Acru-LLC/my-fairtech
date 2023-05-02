@@ -21,6 +21,14 @@ export default [
                 }
             },
             {
+                name: "PharmMonitorCreated",
+                path: "monitor-created",
+                component: () => import("@/modules/pharm/monitor-created/monitor"),
+                meta: {
+                    // hasPerm: () => ability.can('view', '')
+                }
+            },
+            {
                 name: "AppealWork",
                 path: "work-with-document",
                 component: () => import("@/modules/pharm/work/projects-grid.vue"),
@@ -53,8 +61,30 @@ export default [
                 },
                 component: () => import('@/modules/pharm/work/projects-grid')
             },
-
-
+            {
+                path: 'template',
+                name: 'PharmTemplate',
+                meta: {
+                    authRequired: true,
+                    // hasPerm: () => ability.can('view', 'projects')
+                },
+                component: () => import('@/modules/pharm/template/Index.vue')
+            },
+            {
+                name: "CreatePharmTemplate",
+                path: "header/create",
+                component: () => import("@/modules/pharm/template/CreateOrUpdate"),
+                meta: {
+                    bcLinkText: i18n.t('column.document_status'),
+                    bcTo: {name: "CreateOrganizations"}
+                },
+            },
+            {
+                name: "UpdatePharmTemplate",
+                path: "header/update/:id",
+                component: () => import("@/modules/pharm/template/CreateOrUpdate"),
+                meta: {},
+            },
         ]
     }
 ]
