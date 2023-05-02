@@ -94,10 +94,10 @@ export default {
             // Using autoTable plugin
 
             this.pdfData = [
-                {
-                    title: "Murojaat ID",
-                    body: this.proj.mnumber.substring(1)
-                },
+                // {
+                //     title: "Murojaat ID",
+                //     body: this.proj.mnumber.substring(1)
+                // },
                 {
                     title: "Arizachi F.I.SH",
                     body: this.toLatin(this.proj.consumerFirstName ? this.proj.consumerFirstName : '') + ' ' + this.toLatin(this.proj.consumerLastName ? this.proj.consumerLastName : '') + ' ' + this.toLatin(this.proj.consumerMiddleName ? this.proj.consumerMiddleName : '')
@@ -332,7 +332,7 @@ export default {
     data() {
         return {
             heading: "Ariza shakli",
-            heading1: "O'zbekiston Respublikasi Raqobatni rivojlantirish va iste'molchilar huquqlarini himoya qilish qo'mitasi",
+            heading1: "Raqobatni qo'mitasiga kelib tushgan murojaat",
             moreText: [],
             pdfData: [],
             commit: '',

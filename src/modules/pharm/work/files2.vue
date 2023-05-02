@@ -11,16 +11,16 @@
 <!--                        <i class="bx bx-download"></i>-->
 <!--                        {{ $t("pharm.akt") }}-->
 <!--                    </a>-->
-                    <a class="text-dark p-2 float-right" style="border: 1px solid #d2d0d0; border-radius: 3px; background: #bbecf5"
-                       :download="getExt(project.aktPath) === 'pdf' ? false : project.aktPath"
-                       :href="getExt(project.aktPath) === 'pdf' ? `#` : `${baseUrl}/${project.aktPath}`"
-                       @click="viewFile(project.aktPath)"
-                    >
-                        <i class="bx bx-download"></i>
-                        {{ $t("pharm.akt") }}
+<!--                    <a class="text-dark p-2 float-right" style="border: 1px solid #d2d0d0; border-radius: 3px; background: #bbecf5"-->
+<!--                       :download="getExt(project.aktPath) === 'pdf' ? false : project.aktPath"-->
+<!--                       :href="getExt(project.aktPath) === 'pdf' ? `#` : `${baseUrl}/${project.aktPath}`"-->
+<!--                       @click="viewFile(project.aktPath)"-->
+<!--                    >-->
+<!--                        <i class="bx bx-download"></i>-->
+<!--                        {{ $t("pharm.akt") }}-->
                         <!--                        <FileView :uploadPath="file.uploadPath" class="my-card-hovered"/>-->
                         <!--                        <small class="text-center">{{ getFileSize(parseFloat(file.fileSize)) }}</small>-->
-                    </a>
+<!--                    </a>-->
                 </b-col>
             </b-row>
             <simplebar id="file-list" ref="filesRef" style="height: 384px">

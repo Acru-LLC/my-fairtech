@@ -23,9 +23,9 @@
                     <b-tooltip variant="success" placement="topright" target="button-1">
                         <a class="text-dark p-2 mt-1 float-right"
                            style="width:100%; border: 1px solid #34C38F; border-radius: 3px; background: #bbecf5"
-                           :download="getExt(project.templatePath) === 'pdf' ? false : project.templatePath"
-                           :href="getExt(project.templatePath) === 'pdf' ? `#` : `${baseUrl}/${project.templatePath}`"
-                           @click="viewFile(project.templatePath)"
+                           :download="getExt(project.pharmFileDto.letterExtension) === 'pdf' ? false : project.pharmFileDto.letterPath"
+                           :href="getExt(project.pharmFileDto.letterPath) === 'pdf' ? `#` : `${baseUrl}/${project.pharmFileDto.letterPath}`"
+                           @click="viewFile(project.pharmFileDto.letterPath)"
                         >
                             <i class="bx bx-download"></i>
 <!--                            {{ $t("pharm.template") }} -->
@@ -33,9 +33,9 @@
                         </a>
                         <a class="text-dark p-2  mt-1 float-right"
                            style="width:100%;border: 1px solid #34C38F; border-radius: 3px; background: #bbecf5"
-                           :download="getExt(project.templatePath) === 'pdf' ? false : project.templatePath"
-                           :href="getExt(project.templatePath) === 'pdf' ? `#` : `${baseUrl}/${project.templatePath}`"
-                           @click="viewFile(project.templatePath)"
+                           :download="getExt(project.pharmFileDto.noticeExtension) === 'pdf' ? false : project.pharmFileDto.noticePath"
+                           :href="getExt(project.pharmFileDto.noticePath) === 'pdf' ? `#` : `${baseUrl}/${project.pharmFileDto.noticePath}`"
+                           @click="viewFile(project.pharmFileDto.noticePath)"
                         >
                             <i class="bx bx-download"></i>
                             <!--                            {{ $t("pharm.template") }} -->
@@ -43,9 +43,9 @@
                         </a>
                         <a class="text-dark p-2 mt-1 float-right"
                            style="width:100%;border: 1px solid #34C38F; border-radius: 3px; background: #bbecf5"
-                           :download="getExt(project.templatePath) === 'pdf' ? false : project.templatePath"
-                           :href="getExt(project.templatePath) === 'pdf' ? `#` : `${baseUrl}/${project.templatePath}`"
-                           @click="viewFile(project.templatePath)"
+                           :download="getExt(project.pharmFileDto.actExtension) === 'pdf' ? false : project.pharmFileDto.actPath"
+                           :href="getExt(project.pharmFileDto.actPath) === 'pdf' ? `#` : `${baseUrl}/${project.pharmFileDto.actPath}`"
+                           @click="viewFile(project.pharmFileDto.actPath)"
                         >
                             <i class="bx bx-download"></i>
                             <!--                            {{ $t("pharm.template") }} -->
@@ -53,9 +53,9 @@
                         </a>
                         <a class="text-dark p-2 mt-1 float-right"
                            style="width:100%;border: 1px solid #34C38F; border-radius: 3px; background: #bbecf5"
-                           :download="getExt(project.templatePath) === 'pdf' ? false : project.templatePath"
-                           :href="getExt(project.templatePath) === 'pdf' ? `#` : `${baseUrl}/${project.templatePath}`"
-                           @click="viewFile(project.templatePath)"
+                           :download="getExt(project.pharmFileDto.deedExtension) === 'pdf' ? false : project.pharmFileDto.deedPath"
+                           :href="getExt(project.pharmFileDto.deedPath) === 'pdf' ? `#` : `${baseUrl}/${project.pharmFileDto.deedPath}`"
+                           @click="viewFile(project.pharmFileDto.deedPath)"
                         >
                             <i class="bx bx-download"></i>
                             <!--                            {{ $t("pharm.template") }} -->
