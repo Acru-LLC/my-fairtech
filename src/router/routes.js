@@ -27,7 +27,7 @@ export default [
     {
         path: '/login',
         name: 'Login',
-        component: () => import('@/shared/views/auth/login'),
+        component: () => import('@/shared/views/auth/one-id'),
         meta: {
             public: true, // allow even if not logged in
             onlyWhenLoggedOut: true
@@ -56,7 +56,7 @@ export default [
         name: 'PharmSmsConfirmWindow',
         component: () => import('@/modules/pharm/start/PharmSmsConfirmWindow'),
         meta: {
-            public: true, 
+            public: true,
             onlyWhenLoggedOut: true
         }
     },
