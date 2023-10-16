@@ -2,43 +2,43 @@
   "fire_price": {
     "title": "Fire Price",
     "regions": {
-      "title": "Xududlar"
+      "title": "Худудлар"
     },
     "dokon": {
-      "title": "Savdo do'konlari"
+      "title": "Савдо дўконлари"
     },
     "complexes": {
-      "title": "Savdo komplekslari"
+      "title": "Савдо комплекслари"
     },
     "birja": {
-      "title": "Birja"
+      "title": "Биржа"
     },
     "bozor": {
-      "title": "Bozorlar"
+      "title": "Бозорлар"
     }
   },
   "word_templates": {
-    "menu_title": "Javob xatlar",
-    "organizations": "Tashkilotlar",
-    "templates": "Javob xatlar shabloni",
-    "create_template": "Yangi shablon yaratish",
-    "template_name": "Shablon nomi",
-    "categories": "Shablon kategoriyalari",
-    "category_name": "Kategoriya nomi",
-    "example_document": "Namunaviy xat shakllari",
-    "example_text": "Bu yerga matn kiriting",
-    "full_text": "To'liq matni ko'rish",
-    "person_type": "Murojaat turi",
-    "outgoingDate": "Javob xati sanasi",
-    "outgoingNumber": "Javob xati raqami",
-    "incomingDate": "Kelib tushgan ariza sanasi",
-    "incomingNumber": "Kelib tushgan ariza raqami",
-    "template_header_name": "Shablon yuqori qismi",
-    "template_header_name1": "Yuqori qism matni 1",
-    "template_header_name2": "Yuqori qism matni 2",
-    "template_list": "Xat shakllari ro'yhati",
-    "legal": "Yuridik murojaat",
-    "physical": "Jismoniy murojaat"
+    "menu_title": "Жавоб хатлар",
+    "organizations": "Ташкилотлар",
+    "templates": "Жавоб хатлар шаблони",
+    "create_template": "Янги шаблон яратиш",
+    "template_name": "Шаблон номи",
+    "categories": "Шаблон категориялари",
+    "category_name": "Категория номи",
+    "example_document": "Намунавий хат шакллари",
+    "example_text": "Бу ерга матн киритинг",
+    "full_text": "Тўлиқ матни кўриш",
+    "person_type": "Мурожаат тури",
+    "outgoingDate": "Жавоб хати санаси",
+    "outgoingNumber": "Жавоб хати рақами",
+    "incomingDate": "Келиб тушган ариза санаси",
+    "incomingNumber": "Келиб тушган ариза рақами",
+    "template_header_name": "Шаблон юқори қисми",
+    "template_header_name1": "Юқори қисм матни 1",
+    "template_header_name2": "Юқори қисм матни 2",
+    "template_list": "Хат шакллари рўйҳати",
+    "legal": "Юридик мурожаат",
+    "physical": "Жисмоний мурожаат"
   },
   "send_message": {
     "menu": "SMS хабар",
@@ -63,7 +63,7 @@
     "code": "Код",
     "success": "СМС хабар муваффақиятли юборилди"
   },
-  "info_regions": "Маълумотлар (Ҳудудлар кесимида)",
+  "info_regions": "Тизимдаги охирги фойдаланувчилар",
   "note_bell": "Еслатма",
   "territorial_administration": "Худудий бошқармаси",
   "not_translated": {
@@ -89,7 +89,7 @@
   "docName": "Ҳужжат номи",
   "docDate": "Ҳужжат санаси",
   "docNumber": "Ҳужжат рақами",
-  "assign_employee": "Ходим бирикитириш",
+  "assign_employee": "Ходим бириктириш",
   "create_new_task": "Янги вазифа яратиш",
   "attached_files": "Бириктирилган файллар",
   "application_created_files": "Лойиҳада яратилган файллар",
@@ -205,6 +205,7 @@
     "already_registered": "Рўйхатдан ўтганмисиз?",
     "not_yet_registered": "Ҳали рўйхатдан ўтмаганмисиз?",
     "login_with_e_signature": "Э-Имзо билан кириш",
+    "login_with_one_id": "OneID билан кириш",
     "e_signatures": "Электрон имзолар",
     "no_e_signatures_found": "Электрон имзолар топилмади",
     "select_juridical_signature": "Илтимос, юридик шахснинг электрон имзосини танланг",
@@ -267,6 +268,8 @@
     "empty_table": "Маълумот топилмади"
   },
   "actions": {
+    "sorting":"Фильтрлар",
+    "empty": "Маълумот мавжуд эмас",
     "qrcode": "QR-код қўйиш",
     "view_pdf": "Pdf форматда кўриш",
     "choose_file": "Файлни танлаш",
@@ -391,11 +394,13 @@
     "accepted_by": "Томонидан қабул қилинган",
     "please_select_region": "Илтимос вилоятни танланг",
     "notification_header": "Билдиришномалар",
+    "message_header": "Хабарлар",
     "view_signatories": "Имзолаганларни кўриш",
     "signatory_time": "Имзолаган вақти"
   },
   "validator": {
-    "required": "Илтимос, бу майдонни тўлдиринг",
+    "required": "",
+    "required_text": "*мажбурий майдон",
     "confirmed": "Пароль бир хил эмас",
     "integer": "Бутун сон бўлиши лозим",
     "regex": "Нотўғри формат",
@@ -583,16 +588,17 @@
     "can_register": "Системада рўйхатдан ўта олсин",
     "can_login": "Тизимга кира олсин",
     "employee": "Ходим",
-    "personal_number": "ЖШШИР",
+    "personal_number": "ЖШ ШИР",
     "gender": "Жинси",
     "passport_given_by": "Ким томонидан берилган",
     "passport_end_date": "Тугаш санаси",
     "passport_given_date": "Берилган санаси",
     "passport_number": "Паспорт рақами",
     "passport_series": "Паспорт серияси",
+    "passport_series_and_number": "Паспорт серияси ва рақами",
     "passports": "Паспортлар",
     "passports_avtoyul": "Паспортлар (Автоюл)",
-    "birthdate": "Туғилган кун",
+    "birthdate": "Туғилган сана",
     "curator": "Куратор",
     "is_legal_org": "Юридик ташкилот",
     "ad_size": "Ўлчам таснифи",
@@ -1294,7 +1300,7 @@
       "minimum_collection": "1 кв/м учун минимал йиғим (М)"
     },
     "ad_passport_info": {
-      "title": "Ташқи реклама конструкцияси маълумотлари"
+      "title": "АСОСИЙ САХИФА"
     },
     "ad_monitoring": {
       "title": "Мониторинг",
@@ -1361,6 +1367,34 @@
     "integration": {
       "error_message": "Маълумот базада мавжуд емас",
       "title": "Интеграция",
+      "bodyTitle":"ʻʻFAIR TECHʼʼ ЯГОНА АХБОРОТ ТИЗИМИНИНГ ИНТЕГРАЦИОН ПЛАТФОРМАСИ",
+      "personallashtirish": {
+        "required_info_title": "Жисмоний шахс ҳақидаги маълумотни киритинг",
+        "menu_title": "Персоналлаштириш агентлиги",
+        "method1": "ЖШ ШИР ҳамда паспорт серия ва рақами орқали сўров",
+        "method2": "Туғилган сана ҳамда паспорт серия ва рақами орқали сўров",
+        "method3": "ЖШ ШИР ҳамда Паспорт серия ва рақами орқали сўров",
+        "method4": "Туғилган сана ҳамда паспорт серия ва рақами орқали сўров",
+        "method5": "ЖШ ШИР ва туғилган сана орқали сўров",
+        "success": "Маълумотларни юклаб олиш муваффақиятли бажарилди",
+        "error": "Маълумотларни юклаб олиш хатолик",
+        "search_button": "Қидирув",
+        "select_options": "Сўров турини танланг",
+        "form_title": "МАЪЛУМОТНОМА ШАКЛИ"
+      },
+      "agrosanoat_info": {
+        "title": "O'zbekiston Respublikasi ko'p tarmoqli agrosanoat birjasi AJ",
+        "menu_title": "Агросаноат биржаси АЖ",
+        "method1": "Махсулотлар қўйилиши тўғрисида маълумот",
+        "method2": "Битимлар тўғрисидаги маълумот",
+        "method3": "Етказиб бериш тўғрисида маълумот",
+        "method4": "Бекор қилинган битимлар тўғрисида маълумот",
+        "method5": "Савдода қатнашиш учун буюртмалар тўғрисида маълумот",
+        "method6": "Савдода берилган буюртмалар тўғрисида маълумот",
+        "error": {
+          "required": "Илтимос, белгиланган мажбурий саналарни танланг"
+        }
+      },
       "e_auction_info": {
         "title": "Э-аукцион",
         "lot": "Лот",
@@ -1408,7 +1442,7 @@
       },
       "statistics_info": {
         "title": "Ўзбекистон Республикаси Давлат статистика қўмитаси маълумотларига кўра айрим турдаги маҳсулотлар ва товарлар нархлари",
-        "menu_title": "Давлат статистика қўмитаси",
+        "menu_title": "Президент ҳузуридаги статистика агентлиги",
         "download_all_info": "Маълумотларни юклаб олиш",
         "download_success": "Маълумотларни юклаб олиш муваффақиятли бажарилди",
         "download_error": "Маълумотларни юклаб олишда хатолик юз берди",
@@ -1424,28 +1458,28 @@
         "siis_view_created_at": "Техник қатор"
       },
       "yoshlar_info": {
-        "title": "Yoshlar siyosati va sport vazirligi",
-        "fullTitle": "Yoshlar siyosati va sport vazirligi",
-        "service": "Murojaat turini tanlang",
-        "service1": "Million dasturchi",
-        "service2": "Xalkaro imtixon",
-        "service3": "NTMlarning xarajatlarini bir kismini koplash"
+        "title": "Ёшлар сиёсати ва спорт вазирлиги",
+        "fullTitle": "Ёшлар сиёсати ва спорт вазирлиги",
+        "service": "Мурожаат турини танланг",
+        "service1": "Миллион дастурчи",
+        "service2": "Халқаро имтихон",
+        "service3": "НТМларнинг харажатларини бир кисмини коплаш"
       },
       "iiv_info": {
-        "title": "Ichki ishlar vazirligi",
-        "fullTitle": "O‘zbekiston Respublikasi Ichki ishlar vazirligi",
-        "sud": "Sudlanganlik to'grisida",
-        "organization_id": "So'rov yuboruvchi tashkilot kodi",
-        "region_id": "Hudud soato kodi",
-        "consent": "Foydalanuvchining shaxsiy ma'lumotlaridan foydalanishga rozilik"
+        "title": "Ички ишлар вазирлиги",
+        "fullTitle": "Ички ишлар вазирлиги",
+        "sud": "Судланганлик тўгрисида",
+        "organization_id": "Сўров юборувчи ташкилот коди",
+        "region_id": "Ҳудуд соати коди",
+        "consent": "Фойдаланувчининг шахсий маълумотларидан фойдаланишга розилик"
       },
       "ssv_info": {
         "title": "Соғлиқни сақлаш вазирлиги",
-        "fullTitle": "Ўзбекистон Республикаси Соғлиқни сақлаш вазирлиги",
-        "psix": "Руҳий касалликлар бўйича диспансер ҳисобида туриши ёки турмаслиги тўғрисида маълумот",
-        "narko": "Наркология бўйича диспансер ҳисобида туриши ёки турмаслиги тўғрисида маълумот",
+        "fullTitle": "Соғлиқни сақлаш вазирлиги",
+        "psix": "Рухий касалликлар диспансери",
+        "narko": "Наркология диспансери",
         "tibbiy": "Тиббий ижтимоий эксперт комиссияларининг маълумотномалари",
-        "pinfl": "ЖШШИР",
+        "pinfl": "ЖШ ШИР",
         "pasport": "Паспорт/ИД серияси ва рақами",
         "by_cert": "Туғилганлик ҳақида гувоҳнома",
         "serial": "Гувоҳнома серияси",
@@ -1460,26 +1494,26 @@
       },
       "moliya_info": {
         "title": "Молия вазирлиги",
-        "fullTitle": "Ўзбекистон Республикаси Молия вазирлиги"
+        "fullTitle": "Молия вазирлиги"
       },
       "soliqQomita_info": {
         "title": "Солиқ қўмитаси",
-        "fullTitle": "Ўзбекистон Республикаси Давлат солиқ қўмитаси",
+        "fullTitle": "Давлат солиқ қўмитаси",
         "tin": "СТИР",
         "response": {
           "fullName": "Субъектнинг тўлиқ номи",
           "shortname": "Субъектнинг қисқача номи",
-          "faxNumber": "Субъектнинг фах raqami",
+          "faxNumber": "Субъектнинг фах рақами",
           "phoneNumber": "Телефон рақами",
           "email": "Е-mail",
           "inn": "СТИР рақами",
-          "pinfl": "ЖШШИР рақами",
+          "pinfl": "ЖШ ШИР",
           "oked": "ИФУТ рақами",
           "vatCode": "ҚҚС коди",
           "address": "Манзили",
           "director": "Раҳбар тўғрисида маълумотлар",
           "accounter": "Ҳисобчи",
-          "mobileNumber": "Мобиле телефон рақами",
+          "mobileNumber": "Мобил телефон рақами",
           "canRegister": "Ким томонидан рўйхатга олинган",
           "address_Dto": "Манзили тўғрисида маълумотлар",
           "addressDto": {
@@ -1498,13 +1532,13 @@
           "formOfOwnership": "Мулкчилик шакли",
           "contractorDirectorDto": "Субъект Раҳбари",
           "contractorAccountantDto": "Субъект ҳисобчиси",
-          "lastModified": "Охирги таҳрирланган",
+          "lastModified": "Охирги тахрирланган",
           "regContractor_Dto": "Субъект тўғрисидаги маълумотлар",
           "regContractorDto": {
             "company_Info": "Рўйхатга олиш маълумотлари",
             "company": {
               "reregistrationDate": "Қайта рўйхатга олиш санаси",
-              "opf": "Ташкилий-ҳуқуқий шакли",
+              "opf": "Ташкилий-хуқуқий шакли",
               "businessFund": "Устав фонди миқдори",
               "soogu": "ДБИБТ коди",
               "liquidationDate": "Тугатиш санаси (реестрдан чиқарилган сана)",
@@ -1530,7 +1564,7 @@
               "taxStatus": "Корхона мақоми",
               "vatNumber": "ҚҚС рақами",
               "soato": "СОАТО коди",
-              "pinfl": "ЖШШИР"
+              "pinfl": "ЖШ ШИР"
             },
             "companyLink": "Корхона ҳаволаси",
             "company_Banks": "Банк маълумотлари",
@@ -1560,21 +1594,21 @@
               "postCode": "Почта индекси"
             },
             "companyShippingAddress": "Субъектнинг фаолиятни амалга ошириш манзили",
-            "director_info": "Раҳбар тўғрисида маълумотлар",
+            "director_info": "Рахбар тўғрисида маълумотлар",
             "director": {
               "gender": "Жинси",
               "tin": "СТИР",
               "citizenship": "Фуқаролик",
               "countryCode": "Мамлакат",
               "nationality": "Миллати",
-              "pinfl": "ЖШШИР",
+              "pinfl": "ЖШ ШИР",
               "passportNumber": "Паспорт/ID рақами",
               "lastName": "Фамилияси",
               "firstName": "Исми",
               "middleName": "Отасининг исми",
               "passportSeries": "Паспорт/ID серияси"
             },
-            "director_Address": "Раҳбарнинг манзили",
+            "director_Address": "Рахбарнинг манзили",
             "directorAddress": {
               "soato": "СОАТО коди",
               "sectorCode": "Сектор",
@@ -1584,7 +1618,7 @@
               "streetName": "Кўча (кварталь, массив)",
               "villageCode": "Маҳалла коди"
             },
-            "director_Contact": "Раҳбар билан боғланиш учун маълумотлар",
+            "director_Contact": "Рахбар билан боғланиш учун маълумотлар",
             "directorContact": {
               "phone": "Телефон рақами",
               "email": "Е-mail"
@@ -1592,7 +1626,7 @@
             "accountant_info": "Ҳисобчи тўғрисидаги маълумотлар",
             "accountant": {
               "tin": "СТИР",
-              "pinfl": "ЖШШИР",
+              "pinfl": "ЖШ ШИР",
               "lastName": "Фамилияси",
               "firstName": "Исми",
               "middleName": "Отасининг исми",
@@ -1653,7 +1687,7 @@
                 "citizenship": "Фуқаролик",
                 "passportSeries": "Паспорт/ID серияси",
                 "passportNumber": "Паспорт/ID рақами",
-                "pinfl": "ЖШШИР",
+                "pinfl": "ЖШ ШИР",
                 "tin": "СТИР",
                 "birthDate": "Туғилган кун санаси",
                 "individualId": "жисмоний шахс ИД си",
@@ -1670,8 +1704,8 @@
         }
       },
       "iqtisodiy_taraqqiyot_info": {
-        "title": "Иқтисодий тараққиёт ва камбағалликни қисқартириш вазирлиги",
-        "fullTitle": "Ўзбекистон Республикаси Иқтисодий тараққиёт ва камбаг‘алликни қисқартириш вазирлиги",
+        "title": "Камбағалликни қисқартириш ва бандлик вазирлиги",
+        "fullTitle": "Иқтисодий тараққиёт ва камбаг‘алликни қисқартириш вазирлиги",
         "info1": "Қишлоқ хўжалиги ва озиқ-овқат маҳсулотлари нархлари тўғрисида маълумотлар (Давлат статистика қўмитаси маълумотлар базаси билан интеграциялашган)",
         "info2": "Ўзбекистон Республикаси ва ҳудудларда озиқ-овқат   маҳсулотлари нархлари тўғрисида кунлик маълумот",
         "info3": "Ўзбекистон Республикаси ва ҳудудларда қишлоқ хўжалиги маҳсулотлари нархлари тўғрисида кунлик маълумот",
@@ -1694,6 +1728,7 @@
           "Fargona_viloyati": "Фарғона вилояти",
           "Xorazm_viloyati": "Хоразм вилояти",
           "Toshkent_shahri": "Тошкент шаҳри",
+          "qomita": "Марказий аппарат",
           "maxsulot_navi": "Махсулот нави",
           "olchov_birligi": "Ўлчов бирлиги",
           "minimum": "Минимал",
@@ -1702,7 +1737,8 @@
       },
       "davlat_active_info": {
         "title": "Давлат активларини бошқариш агентлиги",
-        "fullTitle": "Ўзбекистон Республикаси Давлат активларини бошқариш агентлиги",
+        "fullTitle": "Давлат активларини бошқариш агентлиги",
+        "tabTitle": "Давлат иштирокидаги корхоналар тўғрисида маълумотлар",
         "request_idnt": "Сўров идентификатори",
         "bussines_name": "Корхона номи",
         "requisitec_acc": "Корхона манзили",
@@ -1715,27 +1751,27 @@
       },
       "qurilish_info": {
         "title": "Қурилиш вазирлиги",
-        "fullTitle": "Ўзбекистон Республикаси Қурилиш вазирлиги"
+        "fullTitle": "Қурилиш вазирлиги"
       },
       "investitsiya_tashqiSavdo_info": {
         "title": "Инвестициялар ва ташқи савдо вазирлиги",
-        "fullTitle": "Ўзбекистон Республикаси Инвестициялар ва ташқи савдо вазирлиги"
+        "fullTitle": "Инвестициялар ва ташқи савдо вазирлиги"
       },
       "adliya_info": {
         "title": "Адлия вазирлиги",
-        "fullTitle": "Ўзбекистон Республикаси Адлия вазирлиги"
+        "fullTitle": "Адлия вазирлиги"
       },
       "transport_info": {
         "title": "Транспорт вазирлиги",
-        "fullTitle": "Ўзбекистон Республикаси Транспорт вазирлиги"
+        "fullTitle": "Транспорт вазирлиги"
       },
       "qishloq_xojaligi_info": {
         "title": "Қишлоқ хўжалиги вазирлиги",
-        "fullTitle": "Ўзбекистон Республикаси Қишлоқ хўжалиги вазирлиги"
+        "fullTitle": "Қишлоқ хўжалиги вазирлиги"
       },
       "suv_xojaligi_info": {
         "title": "Сув хўжалиги вазирлиги",
-        "fullTitle": "Ўзбекистон Республикаси Сув хўжалиги вазирлиги",
+        "fullTitle": "Сув хўжалиги вазирлиги",
         "fields": {
           "name": "Корхона номи",
           "phone": "Корхона телефон рақами",
@@ -1775,16 +1811,25 @@
           "version_no": "Корхона упдате қилингани",
           "website": "Корхона wебсайти",
           "welcome_mail": "Корхона раҳбари почтасига келадиган хабар",
-          "year": "Балл олган йили"
+          "year": "Балл олган йили",
+          "bank_name": "Банк номи",
+          "mfo": "Банк МФОси",
+          "bank_inn": "Банк ИИНси",
+          "xtut": "Банк хтут",
+          "guvohnoma": "гувоҳнома",
+          "soliq_dalolatnomasi": "солиқ далолатномаси",
+          "ishchilar_malumotlari": "ишчилар малумотлари",
+          "oviti_hamkorlik": "овити ҳамкорлик",
+          "oviti_hamkorlik_shartnomasi": "овити ҳамкорлик шартномаси"
         }
       },
       "veterinariya_chorvachilik_info": {
         "title": "Ветеринария қўмитаси",
-        "fullTitle": "Ўзбекистон Республикаси Ветьеринария ва чорвачиликни ривожлантириш давлат қўмитаси"
+        "fullTitle": "Ветьеринария ва чорвачиликни ривожлантириш давлат қўмитаси"
       },
       "soliq_info": {
         "title": "Давлат солиқ қўмитаси",
-        "fullTitle": "Ўзбекистон Республикаси Давлат солиқ қўмитаси",
+        "fullTitle": "Давлат солиқ қўмитаси",
         "methods": {
           "1": "Юридик шахс тўғрисидаги маълумот",
           "2": "ЯТТ тўғрисидаги маълумот",
@@ -1799,15 +1844,53 @@
       },
       "bojxona_info": {
         "title": "Давлат божхона қўмитаси",
-        "fullTitle": "Ўзбекистон Республикаси Давлат божхона қўмитаси"
+        "fullTitle": "Давлат божхона қўмитаси",
+        "stir": "СТИР рақами бўйича",
+        "tnved": "ТНВEД коди бўйича",
+        "reg_number": "Регистрация рақами",
+        "id": "ИД БЮД",
+        "process": "Божхона режими",
+        "send_stir": "СТИР жўнатувчи/қабул қилувчи",
+        "sender_name": "Жўнатувчи номи",
+        "receiver_name": "Қабул қилувчи номи",
+        "idn": "Шартнома ИДН рақами",
+        "contract_currency": "Валюта бирлиги",
+        "currency_dollr": "Доллар курси",
+        "current_currency": "Валюта курси",
+        "departure_recipient_country": "Келиб чиққан мамлакатлар",
+        "entry_exit_date": "Расмийлаштирилган сана",
+        "goods": "Имтиёзлар хужжати",
+        "number_commodity": "Товар рақами",
+        "tn_code": "ТИФ ТН товар коди",
+        "product_name": "Товар номи",
+        "weight_netto": "Соф, нетто",
+        "brutto": "Соф, брутто",
+        "statistical_value": "Статистик қиймат",
+        "invoice_value": "Фактура қиймати",
+        "unit_measure": "Ўлчов бирлиги",
+        "made_in_country": "Ишлаб чиқарилган мамлакат",
+        "characteristic_product": "Товарнинг ўзига хос хусусияти",
+        "added_quantity": "Қўшимча ўлчов бирлигидаги миқдор",
+        "amount_payments20": "Тўловлар миқдори (импорт божи)",
+        "amount_payments27": "Тўловлар миқдори (импорт акциз солиғи)",
+        "amount_payments29": "Тўловлар миқдори (импорт ҚҚС)",
+        "total_payments": "Жами тўловлар миқдори",
+        "amount_benefits20": "Имтиёзлар миқдори (импорт божи)",
+        "amount_benefits27": "Имтиёзлар миқдори (импорт акциз солиғи)",
+        "amount_benefits29": "Имтиёзлар миқдори (импорт ҚҚС)",
+        "total_benefits": "Жами Имтиёзлар",
+        "documentLgot": "Имтиёзга асос бўлган ҳужжатлар",
+        "docdata": "Имтиёз хақида маълумот",
+        "docno": "Имтиёз номери",
+        "docname": "Имтиёз номи"
       },
       "ekologiya_info": {
         "title": "Экология қўмитаси",
-        "fullTitle": "Ўзбекистон Республикаси Экология ва атроф-муҳитни муҳофаза қилиш давлат қўмитаси"
+        "fullTitle": "Экология ва атроф-муҳитни муҳофаза қилиш давлат қўмитаси"
       },
       "osimlik_info": {
         "title": "Ўсимликлар карантини ва ҳимояси агентлиги",
-        "fullTitle": "Ўзбекистон Республикаси Ўсимликлар карантини ва ҳимояси агентлиги",
+        "fullTitle": "Ўсимликлар карантини ва ҳимояси агентлиги",
         "number_or_tin": "СТИР ёки Рақам",
         "fields": {
           "KRNew_Information": "Элемент илдизи",
@@ -1898,9 +1981,9 @@
       },
       "kadastr_soliq_info": {
         "title": "Кадастр агентлиги",
-        "fullTitle": "Ўзбекистон Республикаси Давлат солиқ қўмитаси ҳузуридаги Кадастр агентлиги",
+        "fullTitle": "Давлат солиқ қўмитаси ҳузуридаги Кадастр агентлиги",
         "method_1": "Кадастр рақами бўйича",
-        "method_2": "ЖШШИР рақами бўйича",
+        "method_2": "ЖШ ШИР рақами бўйича",
         "method_3": "СТИР рақами бўйича",
         "response": {
           "step1_inn": "Сўров юбораётган ташкилотнинг СТИР рақами ёзилган",
@@ -1947,7 +2030,7 @@
           "passport": "Пасспорт рақами",
           "inn": "СТИР",
           "percent": "Эгалик қисми фоизда",
-          "pinfl": "ЖШШИР",
+          "pinfl": "ЖШ ШИР",
           "dom_num": "Уй рақами",
           "kvartira_num": "Хонадон рақами",
           "neighborhood": "Маҳалла",
@@ -1961,13 +2044,48 @@
           "cadastr_list": "Кадастр рўйҳати"
         }
       },
+      "org_info": {
+        "menu_title": "Orginfo",
+        "title": "Orginfo"
+      },
       "tehnik_info": {
-        "title": "Ўзбекистон техник жиҳатдан тартибга солиш агентлиги",
-        "fullTitle": "Ўзбекистон Республикаси Инвестициялар ва ташқи савдо вазирлиги ҳузуридаги Ўзбекистон техник жиҳатдан тартибга солиш агентлиги"
+        "title": "Техник жиҳатдан тартибга солиш агентлиги",
+        "fullTitle": "Инвестициялар ва ташқи савдо вазирлиги ҳузуридаги Техник жиҳатдан тартибга солиш агентлиги",
+        "res": {
+          "certificate_id": "Сертификат (реестр) рақами",
+          "legal_consumer_stir_or_pinfl": "СТИР, ЖШ ШИР",
+          "legal_consumer_name": "Истемолчи номи",
+          "transaction_id": "Сўров идинтификатори",
+          "legal_consumer_adress": "Манзили",
+          "service_type": "Хизмат турлари (8-9…)",
+          "service_item_id": "Прибор рақами",
+          "control_apply_date": "Қиёслашдан ўтказиш ҳақида ариза берилган сана",
+          "control_date": "Қиёслашдан ўтказилган сана",
+          "certificate_expire_date": "Сертификатнинг муддати",
+          "certificate_given_by": "Сертификат берган шахснинг Ф.И.Ш.",
+          "certificate_file": "Сертификат (Xabarnoma) файли (PDF)"
+        },
+        "res2": {
+          "nBlank": "Сертификат бланкаси рақами",
+          "inn": "Ишлаб чиқарувчи СТИР рақами",
+          "registeredGov": "Давлат реестери бўйича мувофиқлик сертификати рақами",
+          "resultcode": "Натижа коди ",
+          "resultnote": "Жавобнинг таснифи",
+          "certOrganName": "Сертификатлаштириш органи",
+          "frоmOf": "Сертификат берилган сана",
+          "deadlinecertificate": "Сертификат тугаш муддати",
+          "nameProduct": "Махсулотнинг номланиши",
+          "schemeCertificate": "Сертификатлаштириш схемаси",
+          "organName": "Юридик шахс номи",
+          "codeTnVed": "Tn-VED рақами",
+          "stranalzgotovitel": "Ишлаб чиқарувчи мамлакат",
+          "stranalzgotovitelCode": "Ишлаб чиқарувчи мамлакат коди",
+          "status": "Сертификат статуси"
+        }
       },
       "farmasevtika_info": {
         "title": "Фармацевтика агентлиги",
-        "fullTitle": "Ўзбекистон Республикаси Фармацевтика тармоғини ривожлантириш агентлиги",
+        "fullTitle": "Фармацевтика тармоғини ривожлантириш агентлиги",
         "response": "Сўровга жавоб",
         "methods": {
           "1": "Солиқ тўловчилар томонидан тўланган солиқлар ва ходимларнинг ўртача сони тўғрисидаго маълумотлари",
@@ -1982,18 +2100,18 @@
           "debt_tax": "Солиқ қарздорлиги"
         },
         "fields2": {
-          "pinfl": "ЖШШИР",
+          "pinfl": "ЖШ ШИР",
           "tin": "СТИР",
           "products": "Маҳсулотлар"
         }
       },
       "sugurta_moliya_info": {
         "title": "Суғурта агентлиги",
-        "fullTitle": "Ўзбекистон Республикаси Молия вазирлиги ҳузуридаги Суғурта бозорини ривожлантириш агентлиги"
+        "fullTitle": "Молия вазирлиги ҳузуридаги Суғурта бозорини ривожлантириш агентлиги"
       },
       "kommunal_info": {
         "title": "Уй-жой коммунал хизмат кўрсатиш вазирлиги",
-        "fullTitle": "Ўзбекистон Республикаси Уй-жой коммунал хизмат кўрсатиш вазирлиги",
+        "fullTitle": "Уй-жой коммунал хизмат кўрсатиш вазирлиги",
         "response_date": "Мурожаат вақти",
         "customer_fio": "Ф.И.Ш.",
         "estate_address": "Манзили",
@@ -2029,7 +2147,7 @@
           "PHONE_MOBILE": "Телефон рақами",
           "PHONE_MOBILE_D": "Мобиле телефон рақами",
           "KF_TR": "Трансформация коэф.",
-          "PINFL": "ЖШШИР",
+          "PINFL": "ЖШ ШИР",
           "INN": "СТИР",
           "KADASTR_CODE": "Кадастр рақами",
           "METER_TYPE": "Ҳисоблагич тури",
@@ -2066,7 +2184,7 @@
       "hududgaz_info": {
         "title": "“Ҳудудгазтаъминот” АЖ",
         "fullTitle": "“Ҳудудгазтаъминот” АЖ",
-        "method_1": "ЖШШИР рақами бўйича",
+        "method_1": "ЖШ ШИР рақами бўйича",
         "method_2": "Кадастр рақами бўйича",
         "method_3": "СТИР рақами бўйича",
         "method_4": "Истьемолчи хисоб раками bo'yicha",
@@ -2101,23 +2219,23 @@
       "suv_taminot_info": {
         "title": "“Ўзсувтаъминот” АЖ",
         "fullTitle": "“Ўзсувтаъминот” АЖ",
-        "cprd": "Xisobod davri oyi",
-        "dstr": "Istemolchi yashash manzili tumani",
-        "chrg": "Xisobod oyi davomida yetkazib berilgan,ichimlik suv hamda oqova suv xizmati uchun hisoblangan summa",
-        "rgn": "Istemolchi yashash manzili viloyati",
-        "pay": "Xisobod oyi davomida amalga oshirilgan to'lov summa",
-        "pid": "Istemolchi hisob raqami",
-        "sld": "Xisobod oyi boshiga qoldiq summa",
-        "ivol": "Xisobod oyi davomida yetkazib berilgan ichimlik suv hajmi (metr kub)",
-        "addr": "Istemolchi yashash manzili",
-        "fio": "Istemolchi F.I.SH"
+        "cprd": "Хисобод даври ойи",
+        "dstr": "Истемолчи яшаш манзили тумани",
+        "chrg": "Хисобод ойи давомида етказиб берилган,ичимлик сув ҳамда оқова сув хизмати учун ҳисобланган сумма",
+          "rgn": "Истемолчи яшаш манзили вилояти",
+        "pay": "Хисобод ойи давомида амалга оширилган тўлов сумма",
+        "pid": "Истемолчи ҳисоб рақами",
+        "sld": "Хисобод ойи бошига қолдиқ сумма",
+        "ivol": "Хисобод ойи давомида етказиб берилган ичимлик сув ҳажми (метр куб)",
+        "addr": "Истемолчи яшаш манзили",
+        "fio": "Истемолчи Ф.И.Ш"
       },
       "tovar_xomashyo_info": {
-        "title": "“Ўзбекистон Республика товар-хомашё биржаси” АЖ",
-        "fullTitle": "“Ўзбекистон Республика товар-хомашё биржаси” АЖ"
+        "title": "“Товар-хомашё биржаси” АЖ",
+        "fullTitle": "“Товар-хомашё биржаси” АЖ"
       },
       "price_stock": {
-        "menu_title": "Биржа махсулот нархлари",
+        "menu_title": "“Товар-хом ашё биржаси” АЖ",
         "realization": "Реализация",
         "region_name": "Ҳудуд",
         "product_name": "Махсулот",
@@ -2348,7 +2466,7 @@
       "sanitizerGel": "Қўл учун антисептик гел 50 мл (дона)",
       "dryNapkin": "Қуруқ салфетка, 50 дона қадоқланган (дона)",
       "wetNapkin": "Нам салфетка, 10 дона қадоқланган",
-      "babyDiaper": "Bolalar tagligi (dona)",
+      "babyDiaper": "Болалар таглиги (дона)",
       "toiletPaper": "Хожатхона қоғози 1 дона",
       "chlorine": "Хлор (125гр қадоқланган)",
       "toothpaste": "Тиш пастаси (дона)",
@@ -2617,62 +2735,1408 @@
     }
   },
   "pharm": {
+    "pharm_big": "Улгуржи",
+    "pharmUlgurji": {
+      "number": "Мурожаат рақами",
+      "receiveAppeal": "Келиб тушган сана",
+      "invoiceNumber": "Инвоиcе номери",
+      "invoiceDate": "Инвоиcе санаси",
+      "invoiceId": "Инвоиcе IDси",
+      "salerName": "Сотувчи ташкилот номи",
+      "salertin": "Сотувчи ташкилот СТИРи",
+      "salerAddress": "Сотувчи ташкилот манзили",
+      "salerEmail": "Сотувчи ташкилотнинг электрон почта манзили",
+      "salerRegionName": "Сотувчи ташкилот вилояти",
+      "salerDistrictName": "Сотувчи ташкилот тумани",
+      "buyerName" : "Харидор ташкилот номи",
+      "buyerTin" : "Харидор ташкилот СТИРи",
+      "buyerAddress" : "Харидор ташкилот манзили",
+      "buyerEmail" : "Харидор ташкилотнинг электрон почта манзили",
+      "buyerRegionName" : "Харидор ташкилот вилояти",
+      "buyerDistrictName" : "Харидор ташкилот тумани",
+      "productName" : "Махсулот номи",
+      "productMxikCode" : "Махсулот МХИТ коди",
+      "productPaymentPrice" : "Сотилган нарх",
+      "productReferentPrice" : "Сотиш рухсат берилган нарх",
+      "productOneItemDifferentPrice" : "1 та махсулот учун оширилган нарх",
+      "productDifferencePrice" : "Тўлиқ махсулот сони учун оширилган нарх",
+      "productCount" : "Сотилган махсулот сони",
+      "productPackageName" : "Ўлчов бирлиги",
+      "productPackageCode" : "Пакет коди",
+      "productCommittentTinOrPinfl" : "Ишлаб чиқарувчи ташкилот СТИРи"
+    },
+    "pharm_chakana": "Чакана",
+    "new": {
+      "sendRequestToPharmacy": "Dorixonaga so'rov yuborish",
+      "noSendRequestToPharmacy": "So'rov yuborilmagan dorixonalar",
+      "generate_dos": "Hujjat shakllantirish",
+      "file_type": {
+        "bildirgi": "Bildirgi",
+        "buyruq_namunasi": "Buyruq namunasi",
+        "vakolatli_organga_xat": "Vakolatli organga xat",
+        "dastur": "Dastur",
+        "mamuriy_dalolatnoma": "Ma'muriy dalolatnoma",
+        "sudga_yuborish": "Sudga yuborish",
+        "sorov_xati": "So'rov xati"
+      }
+    },
+    "chakanaData": {
+      "sendToRegion": "Ижро учун йўналтирилган",
+      "process": "Жараёнда",
+      "create": "Мурожат келиб тушди",
+      "time_extended": "Муддати узайтирилган",
+      "finished": "Якунланган",
+      "receive": "Келиб тушган",
+      "prosecc": "Ижро жараёнида",
+      "pass": "Тасдиқлаш",
+      "finish": "Якунлаш",
+      "chooseIjro": "Ижрочи танлаш",
+      "appealer": "Мурожаатчи",
+      "sellDate": "Маҳсулот сотилган сана",
+      "sectionControl": "Маъсул ҳудуд",
+      "appealDatas": "Мурожаат маълумотлари",
+      "customerDatas": "Истеъмолчи маълумотлари",
+      "fish": "Ф.И.Ш",
+      "jshshri": "ЖШШИРи",
+      "phoneNumber": "Телефон рақами",
+      "appealNumber": "Мурожаат рақами",
+      "cardNumber": "Чек рақами",
+      "submitDate": "Рўйхатдан ўтган сана",
+      "submitAppealDate": "Мурожаат юборилган сана",
+      "appealPosition": "Мурожаат ҳолати",
+      "allPrice": "Жами оширилган нархлар миқдори",
+      "pillName": "Дори воситаси номи",
+      "mxikCode": "МХИК коди",
+      "refPrice": "Референт нарх",
+      "sellPrice": "Сотилган нарх",
+      "fullPrice": "Оширилган нарх",
+      "pharmInfo": "Дорихона маълумотлари",
+      "selectIjro": "Қўшимча маълумотлар",
+      "masulArea": "Масъул ҳудуд",
+      "appealDate": "Мурожаат бириктирилган сана",
+      "finishingIjro": "Ижро якуни",
+      "ijrochi": "Ижрочи",
+      "pharmName": "Дорихона номи",
+      "pharmStr": "Дорихона СТИРи",
+      "pharmBoss": "Дорихона директори Ф.И.Ш",
+      "passNumber": "Паспорт серияси ва рақами",
+      "pharmLoc": "Дорихона жойлашган вилоят",
+      "pharmLocInside": "Дорихона жойлашган туман ёки шаҳар",
+      "pharmAccounter": "Дорихона ҳисобчиси Ф.И.Ш",
+      "email": "Электрон манзили",
+      "workFile": "Иш ҳужжатлари",
+      "typeWork": "Ҳужжат тури",
+      "sendFile": "Ҳужжат юборилган сана",
+      "fileName": "Файл номи",
+      "seeDown": "Кўриш ва юклаб олиш",
+
+      "countInfo": "Счет-фактура маълумотлари",
+      "countId": "Счет-фактура ID рақами",
+      "countDate": "Счет-фактура санаси",
+      "countNumber": "Счет-фактура рақами",
+      "productNumber": "Маҳсулот сони",
+      "calculate": "Ўлчов бирлиги",
+      "packageCode": "Пакет коди",
+      "jamiPrice": "Жами оширилган нарх",
+      "sellerInfo": "Сотувчи ташкилот маълумотлари",
+      "buyerInfo": "Харид қилувчи ташкилот маълумотлари"
+    },
+    "seller_info": "Сотувчи ташкилот",
+    "seller": "Сотувчи ташкилот маълумотлари",
+    "buyer": "Харид қилувчи ташкилот",
+    "region": "Ҳудуд",
+    "district": "Туман",
+    "products": "Сотилган маҳсулот маълумотлари",
+    "payload": {
+      "invoiceId": "Фаcтуранинг ид рақами",
+      "invoiceDoc": {
+        "invoiceNo": "Фаcтура рақами",
+        "invoiceDate": "Фаcтура санаси"
+      },
+      "seller": {
+        "tinOrPinfl": "СТИР/ПИНФЛ рақами",
+        "name": "Ташкилот номи",
+        "address": "Манзили",
+        "email": "Почтаси",
+        "region": {
+          "code": "Ҳудуд коди",
+          "name": "Туман номи"
+        },
+        "district": {
+          "code": "Туман код",
+          "name": "Туман номи"
+        }
+      },
+      "buyer": {
+        "tinOrPinfl": "СТИР/ПИНФЛ рақами",
+        "name": "Ташкилот номи",
+        "address": "Манзили",
+        "email": "Почтаси",
+        "region": {
+          "code": "Ҳудуд коди",
+          "name": "Туман номи"
+        },
+        "district": {
+          "code": "Туман код",
+          "name": "Туман номи"
+        }
+      },
+      "products": {
+        "name": "Дори воситаси номи",
+        "mxikCode": "МХИК коди",
+        "paymentPrice": "Сотилган улгуржи нархи",
+        "referentPrice": "Референт улгуржи нархи",
+        "packageCode": "Пакет коди",
+        "packageName": "Ўлчов бирлиги ",
+        "count": "Махсулот сони",
+        "committentTinOrPinfl": "Ишлаб чиқарувчи СТИР ёки ПИНФЛ рақами"
+      }
+    },
+    "month": "Ойлик ҳисобот шакллантириш",
     "menu_title": "Pharm Info",
-    "received_applications": "Kelib tushganlar",
-    "appeal_number": "Murojaat raqami",
-    "appeal_fio": "Murojaatchi F.I.O. si",
-    "appeal_date": "Murojaat yuborilgan sana",
-    "medicine_name": "Dori nomi",
-    "status": "Holati",
-    "consumer": "Iste'molchi ma'lumotlari",
-    "consumerFirstName": "Ismi",
-    "consumerLastName": "Familyasi",
-    "consumerMiddleName": "Otasining ismi",
-    "consumerPhone": "Telefon raqami",
-    "consumerPinfl": "JSHSHIR",
-    "createJson": "Ariza kelib tushgan sana",
-    "founderSharePercent": "Ta'sischi ulushi foizi",
-    "founderShareSum": "Ta'sischi ulushi summasi",
-    "medicationCheckNumber": "Chek raqami",
-    "farq": "Narx farqi",
-    "medication": "Dori vositasi ma'lumotlari",
-    "medicationMxikCode": "Mxik kodi",
-    "medicationName": "Dori nomi",
-    "medicationPaymentDate": "Sotilgan sanasi",
-    "medicationPaymentPrice": "Sotilgan narxi",
-    "medicationReferentPrice": "Referent narxi",
-    "mnumber": "Murojaat raqami",
-    "pharmacy": "Dorixona ma'lumotlari",
-    "pharmacyAddress": "Dorixona manzili",
-    "pharmacyEmail": "Dorixona elektron pochtasi",
-    "pharmacyName": "Dorixona nomi",
-    "pharmacySoato": "Dorixona soato si",
-    "pharmacyTin": "Dorixona STIR raqami",
-    "updateJson": "Ariza ma'lumotlari yangilangan sana",
-    "menu_work_with_document": "Xujjat bilan ishlash",
-    "menu_pharmacy_list": "Dorixona ma'lumotlari",
-    "menu_send_message": "Yuborilgan SMS habarlar",
-    "attachched_employee": "Ijrochi tayinlash",
-    "send_to_region": "Ijro uchun yuborildi",
-    "appeal_proccess": "Ijro etish",
-    "appeal_proccess_status1": "Ijro uchun yuborilganlar",
-    "appeal_proccess_status2": "Ijro jarayonida",
-    "appeal_proccess_status3": "Yakunlanganlar",
-    "executive": "Ma'sul Ijrochi",
-    "get_info_apteka": "Dorixonani to'liq ma'lumotlarini ko'rish",
-    "files_ijro": "Ijro fayllari",
-    "files_sud": "Sud fayllari",
-    "files_apteka": "Dorixona fayllari",
-    "send_date": "Yuborilgan sana",
-    "arizaForm": "Ariza shakli",
-    "template": "Ijro uchun shablon",
-    "akt": "AKT",
-    "region_attachched": "Biriktirilmagan arizalar",
-    "attachched_region": "Arizani hududga biriktirish",
-    "templates": "Shablonlarni yuklab olish",
-    "request_application": " So'rov xati",
-    "notification": "Bildirgi",
-    "act": "Dalolatnoma",
-    "referral_court": "Sudga yo'llanma"
+    "isChecked": "Пул қайтарилсинми",
+    "received_applications": "Келиб тушганлар",
+    "appeal_number": "Мурожаат рақами",
+    "appeal_fio": "Мурожаатчи Ф.И.О. си",
+    "appeal_date": "Мурожаат юборилган сана",
+    "medicine_name": "Дори номи",
+    "status": "Ҳолати",
+    "consumer": "Истеъмолчи маълумотлари",
+    "consumerFirstName": "Исми",
+    "consumerLastName": "Фамиляси",
+    "consumerMiddleName": "Отасининг исми",
+    "consumerPhone": "Телефон рақами",
+    "consumerPinfl": "ЖШ ШИР",
+    "createJson": "Ариза келиб тушган сана",
+    "founderSharePercent": "Таъсисчи улуши фоизи",
+    "founderShareSum": "Таъсисчи улуши суммаси",
+    "medicationCheckNumber": "Чек рақами",
+    "farq": "Нарх фарқи",
+    "medication": "Дори воситаси маълумотлари",
+    "medicationMxikCode": "Мхик коди",
+    "medicationName": "Дори номи",
+    "medicationPaymentDate": "Сотилган санаси",
+    "medicationPaymentPrice": "Сотилган нархи",
+    "medicationReferentPrice": "Референт нархи",
+    "mnumber": "Мурожаат рақами",
+    "pharmacy": "Дорихона маълумотлари",
+    "pharmacyAddress": "Дорихона манзили",
+    "pharmacyEmail": "Дорихона электрон почтаси",
+    "pharmacyName": "Дорихона номи",
+    "pharmacySoato": "Дорихона соато си",
+    "pharmacyTin": "Дорихона СТИР рақами",
+    "updateJson": "Ариза маълумотлари янгиланган сана",
+    "menu_work_with_document": "Хужжат билан ишлаш",
+    "menu_pharmacy_list": "Дорихона маълумотлари",
+    "menu_send_message": "Юборилган СМС ҳабарлар",
+    "menu_send_message_citizen": "Истемолчига СМС ҳабар юбориш",
+    "attachched_employee": "Ижрочи тайинлаш",
+    "send_to_region": "Ижро учун юборилди",
+    "appeal_proccess": "Ижро этиш",
+    "appeal_proccess_status1": "Ижро учун юборилганлар",
+    "appeal_proccess_status2": "Ижро жараёнида",
+    "appeal_proccess_status3": "Якунланганлар",
+    "executive": "Маъсул Ижрочи",
+    "get_info_apteka": "Дорихонани тўлиқ маълумотларини кўриш",
+    "files_ijro": "Ижро файллари",
+    "files_sud": "Суд файллари",
+    "files_apteka": "Дорихона файллари",
+    "send_date": "Юборилган сана",
+    "arizaForm": "Ариза шакли",
+    "arizaForm1": "Ариза шакли файлини юклаб олиш",
+    "template": "Ижро учун шаблон",
+    "templates_name": "Шаблон номи",
+    "templates_type": "Шаблон тури",
+    "templates_download": "Юклаб олиш",
+    "akt": "АКТ",
+    "region_attachched": "Бириктирилмаган аризалар",
+    "attachched_region": "Аризани ҳудудга бириктириш",
+    "templates": "Шаблонларни юклаб олиш",
+    "request_application": "Сўров хати",
+    "notification": "Билдирги",
+    "act": "Далолатнома",
+    "referral_court": "Судга йўлланма",
+    "CREATED": "Мурожаат яратилди",
+    "SEND_TO_REGION": "Ҳудудий бошқармага бириктирилди",
+    "BEING_SEEN": "Ижрочи бириктирилди",
+    "PROCCESS": "Ижро жараёнида",
+    "SEND_TO_COURT": "Судга юборилди",
+    "TIME_EXTENDED": "Вақт узайтирилди",
+    "FINISHED": "Мурожаат якунланди"
+  },
+  "alcohol": {
+    "title": "Хўжалик юритувчи субъектларнинг йиллик ишлаб чиқариш қувватлари учун талаб этиладиган истеъмол ва техник этил спирти ҳақида маълумот",
+    "menu": "Спирт хариди назорати",
+    "form": "Спирт хариди",
+    "stir": "Харидор СТИРи",
+    "name": "Харидор номи",
+    "address": "Харидор манзили",
+    "inner_date": "Маълумот киритилган сана",
+    "basisOfNeed": "Эхтиёж асоси",
+    "authorizationDoc": "Рухсат бериш хужжати",
+    "authorizationDocNumber": "Рухсат бериш хужжатининг (серияси) рақами",
+    "authorizationDocFile": "Рухсат бериш хужжатининг файли",
+    "productionCapacityYear": "Йиллик ишлаб чиқариш қуввати (дал)",
+    "alcoholType": "Талаб этиладиган спирт тури",
+    "quantity": "Миқдори (дал)",
+    "increased": "Эхтиёждан ортган қисми (дал)",
+    "basis_of_need": {
+      "title": "Эхтиёж асоси"
+    },
+    "alcohol_type": {
+      "short_title": "Спирт тури",
+      "title": "Талаб этиладиган спирт тури"
+    },
+    "authorization_doc": {
+      "title": "Рухсат бериш хужжати"
+    },
+    "istemol": "Истемол этил спирти миқдори (дал)",
+    "texnik": "Техник этил спирти миқдори (дал)",
+    "istemolShort": "Истеъмол спирти",
+    "texnikShort": "Техник спирти",
+    "birja_add": "Биржа савдолари орқали харид қилинган хажм",
+    "year_info": "Йиллик ишлаб чиқариш",
+    "birja_info": "Биржа орқали қилинган харид",
+    "date": "Харид қилинган сана",
+    "amount": "Харид қилинган миқдор (дал)",
+    "birja_istemol": "Истемол этил спирти",
+    "birja_texnik": "Техник этил спирти",
+    "info": "Тадбиркорлик субъектларининг йиллик ишлаб чиқариш қувватлари учун талаб этиладиган истемол ва техник этил спирти махсулотининг миқдори тўғрисида маълумот",
+    "info_short": "Миқдори тўғрисида маълумот",
+    "infoFull": "Тадбиркорлик субъектларининг йиллик ишлаб чиқариш қувватлари учун талаб этиладиган истемол ва техник этил спирти махсулотининг миқдори тўғрисида умумлаштирилган маълумот",
+    "infoFull_short": "Миқдори тўғрисида умумлаштирилган маълумот"
+  },
+  "tender": {
+    "title": "Давлат буюртмаси бўйича ўтказиладиган танлов (тендер) савдоларини рақобат қонунчилигига риоя этилиши устидан амалга оширилган назорат ишлари",
+    "tender_create_title": "ДАВЛАТ БУЮРТМАСИ БЎЙИЧА ЎТКАЗИЛГАН ТАНЛОВ (ТЕНДЕР) САВДОЛАРИ БЎЙИЧА УМУМИЙ МАЪЛУМОТЛАР",
+    "short_title": "ДАВЛАТ БУЮРТМАСИ БЎЙИЧА ЎТКАЗИЛГАН ТАНЛОВ (ТЕНДЕР) САВДОЛАРИ НАТИЖАЛАРИ БЎЙИЧА ҚЎЛЛАНИЛГАН ТАЪСИР ЧОРАЛАРИ ВА НАТИЖАЛАРИ",
+    "short_title1": "Қўлланилган таъсир чоралари ва натижалари",
+    "reference": "Маълумотномалар",
+    "select": "Илтимос, рўйҳатдан бирини танланг",
+    "menu": "Тендер савдолари",
+    "list": "Ўрганилган савдолар",
+    "menu_create": "Савдоларни назорат қилиш",
+    "status": "Ҳолати",
+    "FINISHED": "ЯКУНЛАНГАН",
+    "PROCCESS": "ТУГАЛЛАНМАГАН",
+    "notFinishTotal": "Якунланмаган харид маълумотлари",
+    "halfFinishTotal": "Якунланмаган таъсир чоралари",
+    "finishTotal": "Якунланганлар",
+    "all": "Барчаси",
+    "qonun_buzildi": "Қонун бузилиш ҳолати аниқланди",
+    "qonun_buzilmadi": "Қонун бузилиш ҳолати аниқланмади",
+    "tender_not_finished": "Тендер маълумотлари якунланмаганлар",
+
+    "menus": {
+      "menu": "Тендер савдоларини назорат қилиш"
+    },
+    "basis_of_learning": {
+      "title": "Ўрганиш асоси"
+    },
+    "office_type": {
+      "title": "Идора тури"
+    },
+    "office": {
+      "title": "Идоралар"
+    },
+    "purchase_type": {
+      "title": "Харид тури"
+    },
+    "purchase_field_type": {
+      "title": "Xarid maydoni turi"
+    },
+    "breaking_law": {
+      "title": "Рақобат қонунчилигининг бузилиши",
+      "create": {
+        "step1": {
+          "title": "Қўлланилган чоралар"
+        },
+        "step2": {
+          "title": "Қўмита ва худудий бошқармалар томонидан қўлланилган таъсир чоралари"
+        },
+        "step3": {
+          "title": "Қўмита ва худудий бошқармалар томонидан қўлланилган таъсир чораларининг ижроси"
+        }
+      }
+    },
+    "create": {
+      "step1": {
+        "title": "Харидни ўрганиш асоси",
+        "docDate": "Хужжат санаси",
+        "docNumber": "Хужжат рақами",
+        "file": "Хужжат файли"
+      },
+      "step2": {
+        "title": "Буюртмачи маълумотлари",
+        "stir": "Буюртмачи СТИРи",
+        "name": "Буюртмачи номи",
+        "director": "Буюртмачи рахбари",
+        "address": "Буюртмачи манзили"
+      },
+      "step3": {
+        "title": "Иштирокчилар маълумотлари",
+        "title2": "Иштирокчининг тасисчилари",
+        "stir": "СТИР",
+        "name": "Иштирокчи номи",
+        "director": "Иштирокчи рахбари",
+        "pinfl": "ЖШ ШИР",
+        "address": "Иштирокчи манзили",
+        "fio": "Ф.И.Ш",
+        "percent": "Улуши %",
+        "manzil": "Манзили",
+        "add": "Қўшиш"
+      },
+      "step4": {
+        "title": "Харид маълумотлари",
+        "lotNumber": "Лот рақами",
+        "purchaseDate": "Харидга қўйилган сана",
+        "purchaseSubject": "Харид предмети",
+        "startingPrice": "Бошланғич нарх"
+      },
+      "step5": {
+        "title": "Харид натижалари",
+        "participant_info": "Харид бўйича иштирокчилар маълумотлари",
+        "offer_price": "Таклиф суммаси"
+      },
+      "step6": {
+        "title": "Ғолиб иштирокчи",
+        "winner": "Ғолиб деб топилган иштирокчи",
+        "founders": "Тасисчилари",
+        "date": "Баённома санаси",
+        "isCheck": "Қонун бузилиш холатлари аниқландими",
+        "check": "Қонун бузилдими"
+      },
+      "step7": {
+        "title": "Қонун бузилиш холатлари",
+        "title2": "Харид бўйича аниқланган қонун бузилиш холатлари",
+        "title3": "Аниқланган қонун бузилиш холатлари"
+      },
+      "step8": {
+        "title": "Якунлаш",
+        "check": "Илтимос, маълумотлар тўғри киритилганлигини тасдиқланг?"
+      }
+    },
+    "tender_applied_measures": {
+      "title": "Қўлланилган тасир чоралари"
+    },
+    "tender_open_work_condition": {
+      "title": "Қўзғатилган иш холати"
+    },
+    "tender_content_court": {
+      "title": "Суд қарори мазмуни"
+    },
+    "create_qtch": {
+      "step1": {
+        "title": "Қўлланилган чоралар"
+      },
+      "step2": {
+        "title": "Қўмита ва худудий бошқармалар томонидан қўлланилган таъсир чоралари",
+        "inner_title": "Бошқармалар томонидан қўлланилган таъсир чоралари",
+        "inner_title1": "Қўлланилган таъсир чоралари",
+        "docDateOne": "Қўзғатилган иш санаси",
+        "docNumOne": "Қўзғатилган иш рақами",
+        "basis": "Асос"
+      },
+      "step3": {
+        "title": "Қўмита ва худудий бошқармалар томонидан қўлланилган таъсир чораларининг ижроси",
+        "inner_title": "Маъмурий жавобгарликка тортилган",
+        "docDateOne": "Маъмурий баённома санаси",
+        "docNumOne": "Маъмурий баённома рақами",
+        "price": "Суммаси",
+        "equal": "Баравари (БҲМ)",
+        "invoiceNum": "Инвойс рақами"
+      },
+      "step4": {
+        "title": "Қўмита ва худудий бошқармалар томонидан қўлланилган таъсир чораларининг ижроси",
+        "inner_title": "Кўрсатманинг ижроси",
+        "ischeck_title1": "Маъмурий жавобгарлик маълумотлари киритилмайди.",
+        "ischeck_title2": "Кўрсатманинг ижросини киритишга ўтишни тасдиқланг",
+        "solutionContent": "Ижро мазмуни"
+      }
+    }
+  },
+  "purchase_info": {
+    "menu": "Комплаенс",
+    "data_create": "Маълумотларни киритиш",
+    "complaens_open_work_basis": {
+      "title": "Иш қўзғатиш асоси"
+    },
+    "complaens_field_work": {
+      "title": "Иш қўзғатилган соҳа"
+    },
+    "complaens_broken_docs": {
+      "title": "Бузилган қонун ҳужжатлари"
+    },
+    "complaens_rejection_work": {
+      "title": "Ишни рад этиш асоси"
+    },
+    "complaens_procrastination_work": {
+      "title": "Кўрсатма ижросини кечиктириш"
+    },
+    "complaens_termination_work": {
+      "title": "Ишни тугатиш асоси"
+    },
+    "complaens_decision_work": {
+      "title": "Қарор мазмуни"
+    },
+    "complaens_cause_work": {
+      "title": "Ишни кейинга қолдириш сабаби"
+    },
+    "complaens_basis_temination": {
+      "title": "Тўхтатиш асоси"
+    },
+    "info_enter1": "Қўзғатилган иш мазмунини киритиш",
+    "info_enter2": "Ишни кўриб чиқиш натижаларини киритиш",
+    "info_enter3": "Кўрсатма ижросини киритиш",
+    "info_enter4": "Кўрсатма ижросини киритиш",
+    "form1": {
+      "title": "Қўзғатилган иш мазмуни",
+      "title1": "Иш қўзғатилган субъект маълумоти",
+      "title2": "Ишни қисқача мазмуни ва уни кўриб чиқиш",
+      "tin1": "Субъект СТИР и",
+      "who": "Маъсул Ижрочи",
+      "dates": "Қолдирилган муддатлар",
+      "sabab": "Ишни кейинга қолдириш сабаби",
+      "q_date": "Қолдирилган сана",
+      "y_date": "Ўзгартирилган сана",
+      "tin": "СТИР",
+      "director": "Субъект рахбари",
+      "address": "Субъект манзили",
+      "name": "Субъект номи",
+      "summ": "Аниқланган сумма",
+      "mazmun": "Аниқланган холат мазмуни",
+      "number": "Иш рақами",
+      "date": "Иш қўзғатилган сана",
+      "see_date": "Иш кўрил(ади)ган сана",
+      "see_time": "Иш кўрил(ади)ган вақт",
+      "new_see_date": "Янги иш кўрил(ади)ган сана",
+      "new_see_time": "Янги иш кўрил(ади)ган вақт",
+      "leave": "Муддатни узайтириш",
+      "work_leave": "Ишни кейинга қолдириш",
+      "work_stop": "Ишни тўхтатиш",
+      "work_restore": "Иш юритишни тиклаш",
+      "department": "Бўлинма номи",
+      "employee": "Маъсул ходим"
+    },
+    "forma2": {
+      "title": "Ишни кўриб чиқиш натижалари",
+      "decision_date": "Қарор санаси",
+      "entered": "Умумий иш натижасини киритиш",
+      "all_info": "Умумий иш натижаси",
+      "decisionOfContent": "Умумий иш мазмуни",
+      "mazmun": "Қарор мазмуни",
+      "date": "Санаси",
+      "is_instruction": "Кўрсатма берилган",
+      "short_mazmun": "Қисқача мазмуни",
+      "execution_date": "Ижро этиш муддати"
+    },
+    "form3": {
+      "title_full": "Иш бўйича чиқарилган қарор ва кўрсатма ижроси бўйича маълумотлар",
+      "title": "Қарор ва кўрсатма ижроси",
+      "title1": "Қарор ижроси",
+      "title2": "Кўрсатма ижроси",
+      "date": "Ижро қилинган сана",
+      "mazmun": "Ижро мазмуни",
+      "summ": "Маъмурий жарима суммаси",
+      "full_summ": "Ундирилган жами маблағ",
+      "file": "Хужжат файли",
+      "sum1": "Истемолчига қайтарилган сумма",
+      "sum2": "Хисоб рақамига ундирилган сумма",
+      "sum3": "Маъмурий жарима"
+    },
+    "form4": {
+      "title": "Кўрсатма ижроси",
+      "date": "Ижро қилинган сана",
+      "mazmun": "Ижро мазмуни",
+      "complaens_procrastination_work": "Ижросини кечиктириш асоси",
+      "file": "Хужжат файли"
+    }
+  },
+  "passport": {
+    "title": "Ташқи реклама ва ахборот объектини (конструкциясини) ўрнатиш учун реклама жойининг паспорти лойиҳасини келишиш сўровномалари",
+    "menu_main": "Паспорт келишиш",
+    "menu_arrived": "Келиб тушган сўров",
+    "menu_arrived_info": "Келиб тушган сўров маълумотлари",
+    "menu_see": "Кўрилган сўровлар",
+    "form1": "Реклама жойининг паспорти лойиҳасини келишиш учун сўровнома мазмуни",
+    "form2": "Реклама жойининг паспорти лойиҳаси бўйича маълумотлар ва илова ҳужжатлари",
+    "form1_short": "Келишиш учун сўровнома мазмуни",
+    "form2_short": "Маълумотлар ва илова ҳужжатлари",
+    "result": "Сўровномани кўриб чиқиш натижаси",
+    "json": {
+      "applier_id": "Уникал рақами",
+      "person_name": "Номи",
+      "person_type": "Шахс тури",
+      "legal": "Юридик шахс",
+      "physical": "Жисмоний шахс",
+      "stir": "СТИР",
+      "location": "Реклама объекти ўрнатилган жой",
+      "signature": "Ариза берувчининг ЭРИ/имзоси",
+      "comingDate": "Сўровнома яратилган сана",
+      "arrialDate": "Сўровнома келиб тушган сана",
+      "arrialDate_short": "Келиб тушган сана",
+      "placeType": null,
+      "legalPerson": "юрудик шахс",
+      "legalPersons": {
+        "name": "Субъектнинг номи",
+        "tin": "СТИР",
+        "accountNumber": "Хисоб рақами",
+        "address": "Юридик манзили",
+        "phone": "Телефон рақами",
+        "email": "Электрон почта манзили",
+        "directorName": "Рахбарнинг Ф.И.Ш",
+        "region": "Вилоят соато cоде",
+        "district": "Туман соато cоде"
+      },
+      "physicalPerson": "Жисмоний шахс",
+      "physicalPersons": {
+        "name": "Ф.И.Ш",
+        "passport": "Паспорт/ИД серияси ва рақами",
+        "pinfl": "ЖШ ШИР",
+        "address": "Манзили",
+        "tin": "СТИР",
+        "business": "Жисмоний шахс фаолият тури",
+        "phone": "Телефон рақами",
+        "email": "Электрон почта манзили",
+        "birthDate": "Туғилган йил сана куни",
+        "region": "Вилоят соато cоде",
+        "district": "Туман соато cоде"
+      },
+      "types": "Реклама ўрнатилган жой",
+      "buildingType": "Ер участкаси, бино ва иншоотлар",
+      "buildingTypes": {
+        "address": "Объектнинг жойлашган манзили",
+        "sketch": "Ташқи реклама ва ахборот объекти (конструкцияси)-нинг эскиз лойиҳаси",
+        "files": "Хусусийлаштирилган ер участкасига, шунингдек хусусий мулк бўлган бинолар ва иншоотга бўлган мулк ҳуқуқини тасдиқловчи ҳужжатлар",
+        "orders": "Кўп квартирали уйдаги жойлар мулкдорларининг умумий йиғилиши қарорлари",
+        "letters": "Хусусийлаштирилган ер участкалари, шунингдек хусусий мулк бўлган  бинолар ва иншоотлар мулкдорларининг розилик хати",
+        "agreement": "Кўп квартирали уйдаги жойлар мулкдорлари ҳамда жисмоний ва  юридик шахслар билан тузилган шартнома",
+        "procuration": "Белгиланган тартибда расмийлаштирилган ишончнома"
+      },
+      "transportType": "Транспорт воситалари",
+      "transportTypes": {
+        "carSign": "Гувоҳнома серияси ва рақами",
+        "stateSimble": "Давлат белгиси ва рақами",
+        "sketch": "Транспорт воситасида жойлаштирилиши назарда тутилган реклама ва ахборотнинг эскизи"
+      }
+    },
+    "finish": {
+      "result": "Натижа",
+      "rejected": "Келишишни рад этиш асослари",
+      "department": "Сўровномани кўриб чиққан худудий орган",
+      "employee": "Сўровномани кўриб чиққан маъсул ходим",
+      "date": "Сўровномани кўриб чиқилган сана",
+      "date1": "Сўровномани кўриб чиқиш учун юборилган сана"
+    }
+  },
+  "system": {
+    "oneId": {
+      "welcome_text": "FAIR TECH ягона ахборот тизимига хуш келибсиз!",
+      "login_with": "ТИЗИМИ ОРҚАЛИ КИРИШ",
+      "text_info": "“FAIR TECH” ягона ахборот тизими Рақобат қўмитасига масофадан туриб мурожаат қилиш, уларнинг ҳолатини онлайн кузатиш ва натижалари ҳақида хабардор қилиш, шунингдек Қўмита интерактив хизматларидан фойдаланиш имконини беради."
+    },
+    "title": "FAIR TECH",
+    "sub_title": "ЯГОНА АХБОРОТ ТИЗИМИ",
+    "remember_me": "Эслаб қолиш",
+    "forgot_password": "Паролни унутдингизми?",
+    "login": "КИРИШ",
+    "eri_text": "Фойдаланувчи шахсий кабинетига кириш учун логин ва паролдан ташқари электрон рақамли имзо калити талаб этилади. Илтимос электрон рақамли имзони киритинг!",
+    "eri_btn": "ЭРИ ОРҚАЛИ КИРИШ",
+    "tex_support": "Техник қўллаб-қувватлаш",
+    "tutorial": "Қўлланма",
+    "footer_left_text": "РАҚОБАТ ҚЎМИТАСИ",
+    "footer_right_text": "“РАҚАМЛИ ТРАНСФОРМАЦИЯ ВА АУТСОРСИНГ МАРКАЗИ” ДУК 2023",
+    "search_input": "Қидирув",
+    "date_info": "07 АВГУСТ 2023",
+    "role": "Админ",
+    "full_name": "Алиев Али",
+    "dropdown_profile": "Профил",
+    "dropdown_exit": "Чиқиш",
+    "directions": {
+      "directions_text": "АХБОРОТ ТИЗИМЛАРИ ВА МОДУЛЛАР",
+      "count_type": "Та"
+    },
+    "systems": {
+      "systems_text": "РАҚАМЛАШТИРИЛГАН СОХАЛАР",
+      "count_type": "Та"
+    },
+    "digital_departments": {
+      "digital_departments_name": "ИНТEГРАЦИЯЛАР",
+      "count_type": "Та"
+    },
+    "users": {
+      "users_name": "ФОЙДАЛАНУВЧИЛАР",
+      "count_type": "Та"
+    },
+    "fair_price": {
+      "fair_price_name": "Fair Price",
+      "fair_price_title": "ФАИР ПРИCE АХБОРОТ ТИЗИМИ",
+      "fair_price_analysis": "ТАХЛИЛЛАР",
+      "fair_price_analysis_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "fair_price_control": "НАРХЛАР НАЗОРАТИ",
+      "fair_price_control_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "fair_price_history": "НАРХЛАР ТАРИХИ",
+      "fair_price_history_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "login_btn": "ТИЗИМГА КИРИШ"
+    },
+    "alcohol": {
+      "alcohol_name": "АЛCОҲОЛ",
+      "alcohol_title": "АЛCОҲОЛ АХБОРОТ ТИЗИМИ",
+      "alcohol_analysis": "ТАХЛИЛЛАР",
+      "alcohol_analysis_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "alcohol_control": "НАРХЛАР НАЗОРАТИ",
+      "alcohol_control_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "alcohol_history": "НАРХЛАР ТАРИХИ",
+      "alcohol_history_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "login_btn": "ТИЗИМГА КИРИШ"
+    },
+    "compliance": {
+      "compliance_name": "CОМПЛИАНCE",
+      "compliance_title": "CОМПЛИАНCE АХБОРОТ ТИЗИМИ",
+      "compliance_analysis": "ТАХЛИЛЛАР",
+      "compliance_analysis_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "compliance_control": "НАРХЛАР НАЗОРАТИ",
+      "compliance_control_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "compliance_history": "НАРХЛАР ТАРИХИ",
+      "compliance_history_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "login_btn": "ТИЗИМГА КИРИШ"
+    },
+    "rais": {
+      "rais_name": "Хисобот",
+      "rais_title": "РАИС УЧУН АХБОРОТ ТИЗИМИ",
+      "rais_analysis": "ТАХЛИЛЛАР",
+      "rais_analysis_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "rais_control": "РАИС НАЗОРАТИ",
+      "rais_control_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "rais_history": "РАИС ТАРИХИ",
+      "rais_history_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "login_btn": "ТИЗИМГА КИРИШ"
+    },
+    "data_analysis": {
+      "data_analysis_name": "ТАХЛИЛ",
+      "data_analysis_title": "ТАХЛИЛЛАР АХБОРОТ ТИЗИМИ",
+      "data_analysis": "ТАХЛИЛЛАР",
+      "data_analysis_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "data_analysis_control": "НАРХЛАР НАЗОРАТИ",
+      "data_analysis_control_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "data_analysis_history": "НАРХЛАР ТАРИХИ",
+      "data_analysis_history_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "login_btn": "ТИЗИМГА КИРИШ"
+    },
+    "pharm_info": {
+      "pharm_name": "Pharm Info",
+      "pharm_title": "ДОРИХОНА АХБОРОТ ТИЗИМИ",
+      "pharm_analysis": "ТАХЛИЛЛАР",
+      "pharm_analysis_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "pharm_control": "НАРХЛАР НАЗОРАТИ",
+      "pharm_control_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "pharm_history": "НАРХЛАР ТАРИХИ",
+      "pharm_history_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "login_btn": "ТИЗИМГА КИРИШ"
+    },
+    "product_info": {
+      "product_name": "МАХСУЛОТ",
+      "product_title": "МАҲСУЛОТЛАР АХБОРОТ ТИЗИМИ",
+      "product_analysis": "ТАХЛИЛЛАР",
+      "product_analysis_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "product_control": "НАРХЛАР НАЗОРАТИ",
+      "product_control_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "product_history": "НАРХЛАР ТАРИХИ",
+      "product_history_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "login_btn": "ТИЗИМГА КИРИШ"
+    },
+    "integrations": {
+      "integrations_name": "ИНТEГРАЦИЯ",
+      "integrations_title": "ИНТEГРАЦИЯ АХБОРОТ ТИЗИМИ",
+      "integrations_analysis": "ТАХЛИЛЛАР",
+      "integrations_analysis_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "integrations_control": "НАРХЛАР НАЗОРАТИ",
+      "integrations_control_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "integrations_history": "НАРХЛАР ТАРИХИ",
+      "integrations_history_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "login_btn": "ТИЗИМГА КИРИШ"
+    },
+    "fair_tech": {
+      "fair_tech_name": "FAIR TECH",
+      "fair_tech_title": "FAIR TECH АХБОРОТ ТИЗИМИ",
+      "fair_tech_analysis": "ТАХЛИЛЛАР",
+      "fair_tech_analysis_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "fair_tech_control": "НАРХЛАР НАЗОРАТИ",
+      "fair_tech_control_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "fair_tech_history": "НАРХЛАР ТАРИХИ",
+      "fair_tech_history_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
+      "login_btn": "ТИЗИМГА КИРИШ"
+    }
+  },
+  "month" : {
+    "january" : "ЯНВАР",
+    "february" : "ФEВРАЛ",
+    "march" : "МАРТ",
+    "april" : "АПРEЛ",
+    "may" : "МАЙ",
+    "june" : "ИЮН",
+    "july" : "ИЮЛ",
+    "august" : "АВГУСТ",
+    "september" : "СЕНТЯБР",
+    "october" : "ОКТЯБР",
+    "november" : "НОЯБР",
+    "december" : "ДЕКАБР"
+  },
+  "rais": {
+    "title":"ҚЎМИТА ВА УНИНГ ҲУДУДИЙ ОРГАНЛАРИ ФАОЛИЯТИДА ОНЛАЙН МОНИТОРИНГ ҚИЛИШ ВА ҲИСОБОТЛАРНИ ШАКЛЛАНТИРИШ",
+    "calendar": "Календар",
+    "cancel": "Бекор қилиш",
+    "send": "Тасдиқлаш",
+    "position": "Ҳолат",
+    "interval": "Вақт оралиғи",
+    "section":{
+      "tabTitle": "СОҲАЛАР",
+      "dishonest":"ИНСОФСИЗ РАҚОБАТ АМАЛИЁТЛАРИГА, ТИЛ БИРИКТИРИШЛАР ВА КАРТЕЛЬ КЕЛИШУВЛАРГА ҚАРШИ КУРАШИШ СОҲАСИ",
+      "monopoly":"МОНОПОЛИЯГА ҚАРШИ ТАРТИБГА СОЛИШ, НАРХЛАР ВА ТАРИФЛАРНИ НАЗОРАТ ҚИЛИШ СОҲАСИ",
+      "economy":"ИҚТИСОДИЙ КОНЦЕНТРАЦИЯ ВА ИҚТИСОДИЁТДА ДАВЛАТ ИШТИРОКИНИ НАЗОРАТ ҚИЛИШ СОҲАСИ",
+      "customer":"ИСТЕЪМОЛЧИЛАР ҲУҚУҚЛАРИНИ ҲИМОЯ ҚИЛИШ СОҲАСИ",
+      "product":"ТОВАР-ХОМ АШЁ БИРЖАЛАРИ ВА ИСТЕЪМОЛ БОЗОРЛАРИДА НАРХЛАРНИ НАЗОРАТ ҚИЛИШ СОҲАСИ",
+      "finance":"ТОВАР, МОЛИЯ ВА РАҚАМЛИ БОЗОРЛАРНИ ТАҲЛИЛ ҚИЛИШ ВА ТАРТИБГА СОЛИШ СОҲАСИ",
+      "lawDoc":"ҚОНУН ХУЖЖАТЛАРИ ВА ДАВЛАТ ОРГАНЛАРИ ҚАРОРЛАРИНИНГ РАҚОБАТ МУҲИТИГА ТАЪСИРИНИ ҲАМДА ДАВЛАТ КЎМАГИНИ САМАРАДОРЛИГИНИ БАҲОЛАШ СОҲАСИ",
+      "legalField":"ЮРИДИК ТАЪМИНЛАШ СОҲАСИ",
+      "public":"ЖАМОТЧИЛИК БИЛАН АЛОҚАЛАРНИ ТАШКИЛ ЭТИШ СОҲАСИ",
+      "regionalOffice":"ҲУДУДИЙ БОШҚАРМАЛАР ФАОЛИЯТИНИ МУВОФИҚЛАШТИРИШ СОҲАСИ",
+      "appealsField":"МУРОЖААТЛАР БИЛАН ИШЛАШ, ИЖРО ИНТИЗОМИ ВА НАТИЖАДОРЛИКНИ БАҲОЛАШ СОҲАСИ",
+      "internalAudit":"ИЧКИ АУДИТ, КОРРУПЦИЯГА ҚАРШИ КУРАШИШ ВА ҲУҚУҚНИ ҚЎЛЛАШ АМАЛИЁТИНИ ЎРГАНИШ СОҲАСИ",
+      "tender":"ДАВЛАТ БУЮРТМАСИ БЎЙИЧА ЎТКАЗИЛГАН ТАНЛОВ (ТЕНДЕР) САВДОЛАРИНИ ЎРГАНИШ СОҲАСИНИНГ САМАРАДОРЛИГИ ВА УЛАРНИ БАҲОЛАШ НАТИЖАЛАРИ",
+      "withRegionTenderLast": "ҲУДУДИЙ БОШҚАРМАСИНИНГ ДАВЛАТ БУЮРТМАСИ БЎЙИЧА ЎТКАЗИЛГАН ТАНЛОВ (ТЕНДЕР) САВДОЛАРИНИ ЎРГАНИШ СОҲАСИНИНГ САМАРАДОРЛИГИ ВА УЛАРНИ БАҲОЛАШ НАТИЖАЛАРИ",
+      "withRegionTender": "НИНГ ДАВЛАТ БУЮРТМАСИ БЎЙИЧА ЎТКАЗИЛГАН ТАНЛОВ (ТЕНДЕР) САВДОЛАРИНИ ЎРГАНИШ СОҲАСИНИНГ САМАРАДОРЛИГИ ВА УЛАРНИ БАҲОЛАШ НАТИЖАЛАРИГА ДОИР МАЪЛУМОТЛАР",
+      "workIntended":"ҚЎЗҒАТИЛГАН ИШЛАРНИ КЎРИБ ЧИҚИШ СОҲАСИНИНГ САМАРАДОРЛИГИ ВА УЛАРНИ БАҲОЛАШ НАТИЖАЛАРИ",
+      "monitorResultFirst":"ҚЎЗҒАТИЛГАН ИШЛАР ВА УЛАРНИ КЎРИБ ЧИҚИШ НАТИЖАЛАРИ БЎЙИЧА МОНИТОРИНГ РЎЙХАТИ",
+      "monitorResultSecond":"ҚЎЗҒАТИЛГАН ИШЛАР БЎЙИЧА ЧИҚАРИЛГАН ҚАРОР ВА КЎРСАТМАЛАР ИЖРОСИГА ДОИР МОНИТОРИНГ РЎЙХАТИ",
+      "withworkIntended":"НИНГ ҚЎЗҒАТИЛГАН ИШЛАРНИ КЎРИБ ЧИҚИШ СОҲАСИНИНГ САМАРАДОРЛИГИ ВА УЛАРНИ БАҲОЛАШ НАТИЖАЛАРИГА ДОИР МАЪЛУМОТЛАР",
+      "legalEffect":"ЮРИДИК ТАЪМИНЛАШ СОҲАСИНИНГ САМАРАДОРЛИГИ ВА УЛАРНИ БАҲОЛАШ НАТИЖАЛАРИ",
+      "withlegalEffect": "НИНГ ЮРИДИК ТАЪМИНЛАШ СОҲАСИНИНГ САМАРАДОРЛИГИ ВА УЛАРНИ БАҲОЛАШ НАТИЖАЛАРИГА ДОИР МАЪЛУМОТЛАР",
+      "appealEffect":"МУРОЖААТЛАР БИЛАН ИШЛАШ СОҲАСИНИНГ САМАРАДОРЛИГИ ВА УЛАРНИ БАҲОЛАШ НАТИЖАЛАРИ",
+      "withappealEffect":"НИНГ МУРОЖААТЛАР БИЛАН ИШЛАШ СОҲАСИНИНГ САМАРАДОРЛИГИ ВА УЛАРНИ БАҲОЛАШ НАТИЖАЛАРИГА ДОИР МАЪЛУМОТЛАР",
+      "legalAll" : "СУДЛАРДА ИШТИРОКИ ҲАҚИДА СТАТИСТИК МАЪЛУМОТ",
+      "legalEconomic": "ИҚТИСОДИЙ СУДЛАРДА ИШТИРОКИ ҲАҚИДА СТАТИСТИК МАЪЛУМОТ",
+      "legalPersonal": "ФУҚАРОЛИК ИШЛАРИ БЎЙИЧА СУДЛАРДА ИШТИРОКИ ҲАҚИДА СТАТИСТИК МАЪЛУМОТ",
+      "legalAdministrative": "МАЪМУРИЙ СУДЛАРДА ИШТИРОКИ ҲАҚИДА СТАТИСТИК МАЪЛУМОТ",
+      "firstLegalList": "БИРИНЧИ ИНСТАНЦИЯ  СУДЛАРИДА ИШТИРОК ЭТГАН ИШЛАР РЎЙХАТИ",
+      "secondLegalList": "АПЕЛЛЯЦИЯ ВА КАССАЦИЯ ИНСТАНЦИЯЛАРИ СУДЛАРИДА ИШТИРОК ЭТГАН ИШЛАР РЎЙХАТИ",
+      "thirdLegalList": "ТАКРОРИЙ КАССАЦИЯ ВА СУД ҚАРОРЛАРИНИ ЯНГИ ОЧИЛГАН ҲОЛАТЛАР БЎЙИЧА ҚАЙТА КЎРИШ БОСҚИЧИДА ИШТИРОК ЭТГАН ИШЛАР РЎЙХАТИ",
+      "tovarProduct":"ТАДБИРКОРЛИК СУБЪЕКТЛАРИ ТОМОНИДАН ИСТЕЪМОЛ ВА ТЕХНИК ЭТИЛ СПИРТИДАН МАҚСАДЛИ ФОЙДАЛАНИЛИШИГА ДОИР МАЪЛУМОТ",
+      "courtSession": "СУД МАЖЛИСЛАРИ ЖАДВАЛИ"
+
+    },
+    "department":{
+      "tabTitle":"бўлимлар бўйича",
+      "republic":"РЕСПУБЛИКА",
+      "qoraqalpoq":"ҚОРАҚАЛПОҒИСТОН РЕСПУБЛИКАСИ ҲУДУДИЙ БОШҚАРМАСИ",
+      "andijon":"АНДИЖОН ВИЛОЯТИ ҲУДУДИЙ БОШҚАРМАСИ",
+      "buxoro":"БУХОРО ВИЛОЯТИ ҲУДУДИЙ БОШҚАРМАСИ",
+      "jizzax":"ЖИЗЗАХ ВИЛОЯТИ ҲУДУДИЙ БОШҚАРМАСИ",
+      "navoi":"НАВОИЙ ВИЛОЯТИ ҲУДУДИЙ БОШҚАРМАСИ",
+      "namangan":"НАМАНГАН ВИЛОЯТИ ҲУДУДИЙ БОШҚАРМАСИ",
+      "samarqand":"САМАРҚАНД ВИЛОЯТИ ҲУДУДИЙ БОШҚАРМАСИ",
+      "sirdaryo":"СИРДАРЁ ВИЛОЯТИ ҲУДУДИЙ БОШҚАРМАСИ",
+      "surxondaryo":"СУРХОНДАРЁ ВИЛОЯТИ ҲУДУДИЙ БОШҚАРМАСИ",
+      "fargona":"ФАРҒОНА ВИЛОЯТИ ҲУДУДИЙ БОШҚАРМАСИ",
+      "toshkentV":"ТОШКЕНТ ВИЛОЯТИ ҲУДУДИЙ БОШҚАРМАСИ",
+      "toshkentSh":"ТОШКЕНТ ШАҲАР ҲУДУДИЙ БОШҚАРМАСИ",
+      "qashqadaryo":"ҚАШҚАДАРЁ ВИЛОЯТИ ҲУДУДИЙ БОШҚАРМАСИ",
+      "xorazm":"ХОРАЗМ ВИЛОЯТИ ҲУДУДИЙ БОШҚАРМАСИ",
+      "qomita":"ЎЗБЕКИСТОН РЕСПУБЛИКАСИ РАҚОБАТНИ РИВОЖЛАНТИРИШ ВА ИСТЕЪМОЛЧИЛАР ҲУҚУҚЛАРИНИ ҲИМОЯ ҚИЛИШ ҚЎМИТАСИ"
+    },
+    "departmentSmall": {
+      "qoraqalpoq": "Қорақалпоғистон Республикаси ҳудудий бошқармасининг",
+      "andijon": "Андижон вилояти ҳудудий бошқармасининг",
+      "buxoro": "Бухоро вилояти ҳудудий бошқармасининг",
+      "jizzax": "Жиззах вилояти ҳудудий бошқармасининг",
+      "navoi": "Навоий вилояти ҳудудий бошқармасининг",
+      "namangan": "Наманган вилояти ҳудудий бошқармасининг",
+      "samarqand": "Самарқанд вилояти ҳудудий бошқармасининг",
+      "sirdaryo": "Сирдарё вилояти ҳудудий бошқармасининг",
+      "surxondaryo": "Сурхондарё вилояти ҳудудий бошқармасининг",
+      "fargona": "Фарғона вилояти ҳудудий бошқармасининг",
+      "toshkentV": "Тошкент вилояти ҳудудий бошқармасининг",
+      "toshkentSh": "Тошкент шаҳар ҳудудий бошқармасининг",
+      "qashqadaryo": "Қашқадарё вилояти ҳудудий бошқармасининг",
+      "xorazm": "Хоразм вилояти ҳудудий бошқармасининг",
+      "qomita": "Ўзбекистон Республикаси рақобатни ривожлантириш ва истеъмолчилар ҳуқуқларини ҳимоя қилиш қўмитасининг"
+    },
+    "departmentRegion": {
+      "qoraqalpoq": "Қорақалпоғистон Республикаси ҳудудий бошқармаси",
+      "andijon": "Андижон вилояти ҳудудий бошқармаси",
+      "buxoro": "Бухоро вилояти ҳудудий бошқармаси",
+      "jizzax": "Жиззах вилояти ҳудудий бошқармаси",
+      "navoi": "Навоий вилояти ҳудудий бошқармаси",
+      "namangan": "Наманган вилояти ҳудудий бошқармаси",
+      "samarqand": "Самарқанд вилояти ҳудудий бошқармаси",
+      "sirdaryo": "Сирдарё вилояти ҳудудий бошқармаси",
+      "surxondaryo": "Сурхондарё вилояти ҳудудий бошқармаси",
+      "fargona": "Фарғона вилояти ҳудудий бошқармаси",
+      "toshkentV": "Тошкент вилояти ҳудудий бошқармаси",
+      "toshkentSh": "Тошкент шаҳар ҳудудий бошқармаси",
+      "qashqadaryo": "Қашқадарё вилояти ҳудудий бошқармаси",
+      "xorazm": "Хоразм вилояти ҳудудий бошқармаси",
+      "qomita": "Ўзбекистон Республикаси рақобатни ривожлантириш ва истеъмолчилар ҳуқуқларини ҳимоя қилиш қўмитаси"
+    },
+    "region":{
+      "tabTitle":"ҲУДУДЛАР",
+      "republic":"РЕСПУБЛИКА",
+      "qoraqalpoq":"ҚОРАҚАЛПОҒИСТОН РЕСПУБЛИКАСИ",
+      "andijon":"АНДИЖОН ВИЛОЯТИ",
+      "buxoro":"БУХОРО ВИЛОЯТИ",
+      "jizzax":"ЖИЗЗАХ ВИЛОЯТИ",
+      "navoi":"НАВОИЙ ВИЛОЯТИ",
+      "namangan":"НАМАНГАН ВИЛОЯТИ",
+      "samarqand":"САМАРҚАНД ВИЛОЯТИ",
+      "sirdaryo":"СИРДАРЁ ВИЛОЯТИ",
+      "surxondaryo":"СУРХОНДАРЁ ВИЛОЯТИ",
+      "fargona":"ФАРҒОНА ВИЛОЯТИ",
+      "toshkentV":"ТОШКЕНТ ВИЛОЯТИ",
+      "toshkentSh":"ТОШКЕНТ ШАҲАР",
+      "qashqadaryo":"ҚАШҚАДАРЁ ВИЛОЯТИ",
+      "xorazm":"ХОРАЗМ ВИЛОЯТИ",
+      "qomita":"ҚЎМИТА"
+    },
+    "control":{
+      "tabTitle":"ҲИСОБОТ ВА МОНИТОРИНГ",
+      "monitor":"МОНИТОРИНГ ВА НАЗОРАТ",
+      "listData":"РЎЙХАТ ВА МАЪЛУМОТЛАР",
+      "report":"ҲИСОБОТ",
+      "activity":"ФАОЛИЯТНИ ИНСОН ОМИЛИСИЗ БАҲОЛАШ ТИЗИМИ"
+    },
+    "final":{
+      "tabTitle": "НАТИЖАНИ КЎРИШ",
+      "activityInfo":"ФАОЛИЯТ САМАРАДОРЛИГИНИНГ СОҲАЛАР БЎЙИЧА МАЪЛУМОТИ",
+      "activityRate":"ФАОЛИЯТ САМАРАДОРЛИГИНИНГ СОҲАЛАР БЎЙИЧА НАТИЖАЛАРИНИ БАҲОЛАШ",
+      "activityAll":"ФАОЛИЯТ САМАРАДОРЛИГИНИНГ СОҲАЛАР БЎЙИЧА МАЪЛУМОТ ВА НАТИЖАЛАРИНИ БАҲОЛАШ"
+
+    }
+  },
+  "jurist": {
+    "title": "Юрист",
+    "menu": "Юрист",
+    "nofile": "Филе бириктирилмаган",
+    "references": {
+      "title": "Маълумотнома",
+      "ishtirokchi": "Sudda ishtirokchi",
+      "participantCourt": {
+        "title": "Судда иштирокчилик мақоми"
+      },
+      "othersParticipantCourt": {
+        "title": "Судда бошқа иштирокчилар"
+      },
+      "courtPersonType": {
+        "title": "Шахс тури"
+      },
+      "judicialDirection": {
+        "title": "Суд йўналиши"
+      },
+      "SeeWorkCourtName": {
+        "title": "Судлар"
+      },
+      "workResult": {
+        "title": "Иш натижаси"
+      },
+      "petitionPersonType": {
+        "title": "Шикоят (протест) берган шахс (Ариза берган шахс)"
+      }
+    },
+    "data_window": {
+      "title": "Судларда иштирок этиш",
+      "form1": {
+        "nomi": "Биринчи инстансия",
+        "vacant_name": "Иштирокчи",
+        "title": "Биринчи инстансия",
+        "title_inner1": "Давонинг қисқача мазмуни",
+        "title_inner2": "Ишни судда кўриб чиқишнинг қисқача мазмуни",
+        "qaror": "Суд қарори файли",
+        "file": "Суд қарорини бириктиринг",
+        "workNumber": "Иш рақами",
+        "workDate": "Иш кўрил(ади)ган сана",
+        "petitionNumber": "Ариза рақами",
+        "petitionDate": "Ариза санаси",
+        "period": "Даво предмети",
+        "pinfl": "ЖШ ШИР",
+        "tin": "СТИР",
+        "name": "Номи",
+        "fio": "Ф.И.О",
+        "address": "Манзили",
+        "workFio": "Идора вакили ф.и.о",
+        "info1": "Давогар маълумотлари",
+        "info2": "Жавобгар маълумотлари",
+        "info3": "Учинчи шахс маълумотлари",
+        "seeWorkCourtName": "Ишни кўрган суд номи"
+      },
+      "form1_result": {
+        "nomi": "Биринчи инстанция қисқача мазмуни",
+        "title": "Ишни судда кўриб чиқишнинг қисқача мазмуни"
+      },
+      "form2": {
+        "nomi": "Апеллятсия",
+        "title": "Апеллятсия инстансияси",
+        "title_inner1": "Аппелятсия шикояти (протести)нинг қисқача мазмуни",
+        "title_inner2": "Ишни судда кўриб чиқишнинг қисқача мазмуни",
+        "appealNumber": "Шикоят (Протест) рақами",
+        "appealDate": "Шикоят (Протест) санаси",
+        "appealWorkNumber": "Иш рақами",
+        "petitionPersonType_id": "Шикоят (Протест) берган шахс",
+        "appealFile": "Шикоят (Протест)ни бириктиринг",
+        "appeal_file": "Шикоят (Протест) файли",
+        "othersFio": "Номи/Ф.И.О",
+        "othersAddress": "Манзили",
+        "judicialDirectionId": "Суд ёъналиши",
+        "seeWorkCourtNameId": "Ишни кўрган суд номи"
+      },
+      "form2_result": {
+        "nomi": "Апеллятсия қисқача мазмуни",
+        "title": "Ишни судда кўриб чиқишнинг қисқача мазмуни"
+      },
+      "form3": {
+        "nomi": "Кассация",
+        "title": "Кассация инстанцияси",
+        "title_inner1": "Кассация шикояти (протести)нинг қисқача мазмуни",
+        "title_inner2": "Ишни судда кўриб чиқишнинг қисқача мазмуни",
+        "appealNumber": "Шикоят (Протест) рақами",
+        "appealDate": "Шикоят (Протест) санаси",
+        "appealWorkNumber": "Иш рақами",
+        "petitionPersonType_id": "Шикоят (Протест) берган шахс ",
+        "appealFile": "Шикоят (Протест)ни бириктиринг",
+        "appeal_file": "Шикоят (Протест) файли",
+        "othersFio": "Номи/Ф.И.О",
+        "othersAddress": "Манзили",
+        "judicialDirectionId": "Суд йўналиши",
+        "seeWorkCourtNameId": "Ишни кўрган суд номи"
+      },
+      "form3_result": {
+        "nomi": "Кассация ишининг қисқача мазмуни",
+        "title": "Ишни судда кўриб чиқишнинг қисқача мазмуни"
+      },
+      "form4": {
+        "nomi": "Такрорий кассация",
+        "title": "Суд қарорини такрорий кассация тартибида кўриб чиқиш",
+        "title_inner1": "Такрорий кассация аризасининг қисқача мазмуни",
+        "title_inner2": "Ишни судда кўриб чиқишнинг қисқача мазмуни",
+        "appealNumber": "Ариза рақами",
+        "appealDate": "Ариза санаси",
+        "appealWorkNumber": "Иш рақами",
+        "petitionPersonType_id": "Шикоят (Протест) берган шахс",
+        "appealFile": "Шикоят (Протест)ни бириктиринг",
+        "appeal_file": "Шикоят (Протест) файли",
+        "othersFio": "Номи/Ф.И.О",
+        "othersAddress": "Манзили",
+        "judicialDirectionId": "Суд йўналиши",
+        "seeWorkCourtNameId": "Ишни кўрган суд номи"
+      },
+      "form4_result": {
+        "nomi": "Такрорий Кассация ишининг қисқача мазмуни",
+        "title": "Ишни судда кўриб чиқишнинг қисқача мазмуни"
+      },
+      "form5": {
+        "nomi": "Янги очилган ҳолат",
+        "title": "Суд қарорини янги очилган холатлар бўйича қайта кўриш",
+        "title_inner1": "Аризанинг қисқача мазмуни",
+        "title_inner2": "Ишни судда кўриб чиқишнинг қисқача мазмуни",
+        "appealNumber": "Ариза рақами",
+        "appealDate": "Ариза санаси",
+        "appealWorkNumber": "Иш рақами",
+        "petitionPersonType_id": "Ариза берган шахс ",
+        "appealFile": "Аризани бириктиринг",
+        "appeal_file": "Ариза файли",
+        "othersFio": "Номи/Ф.И.О",
+        "othersAddress": "Манзили",
+        "judicialDirectionId": "Суд йўналиши",
+        "seeWorkCourtNameId": "Ишни кўрган суд номи"
+      },
+      "form5_result": {
+        "nomi": "Янги очилган ҳолат ишининг қисқача мазмуни",
+        "title": "Ишни судда кўриб чиқишнинг қисқача мазмуни"
+      }
+    }
+  },
+  "dashboard": {
+    "slide_bar": {
+      "info_btn" : "Маълумот",
+      "ask_title": "Фаир теч хақида биласизми ?",
+      "ask_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписcинг элит, сед до эиусмод темпор инcидидунт ут лаборе эт долоре магна алиқуа. Ут эним ад миним вениам, қуис ноструд эхерcитатион улламcо лаборис ниси ут алиқуип эх эа cоммодо cонсеқуат.",
+      "detail_btn": "Батафсил..."
+    },
+    "results": {
+      "done_task": "Қилинган ишлар",
+      "saw_task": "Кўриб чиқилган ишлар сони",
+      "total": "Жами",
+      "ta": "та",
+      "status": {
+        "1": "Қониқарсиз",
+        "2": "Қониқарли",
+        "3": "Кўриб чиқилмоқда"
+      }
+    },
+    "statistics": {
+      "onTime": "Ҳозир тизимда",
+      "online": "Онлайн",
+      "info": "Лорем ипсум долор сит амет, элит...",
+      "employees": "Барча ҳодимлар",
+      "task1": "Топшириқ",
+      "task2": "Топшириқ",
+      "task3": "Топшириқ",
+      "chat": "Ички чат"
+    },
+    "table": {
+        "user": "Фойдаланувчи",
+        "department": "Бўлим номи",
+        "position": "Лавозими",
+        "time": "Вақти",
+        "login": "Логин",
+        "roles": "Роллар",
+        "status": "Холати",
+        "movements": "Харакатлар"
+    }
+  },
+  "appeals": {
+    "title": "Мурожаатлар",
+    "menu": "Мурожаатлар",
+    "enter": "Мурожаатларни киритиш",
+    "view": "Умумий мурожаатлар",
+    "quarter": "Чорак",
+    "references": {
+      "title": "Маълумотнома",
+      "appealsIssue": {
+        "title": "Мурожаатларда кўтарилган масалалар"
+      },
+      "regionalOffice": {
+        "title": "Ҳудудий бошқармалар"
+      }
+    },
+    "form": {
+      "written": "Ёзма мурожаатлар",
+      "electron": "Электрон мурожаатлар",
+      "verbal": "Оғзаки мурожаатлар",
+      "means": "Чоралар кўрилди",
+      "explained": "Тушинтирилди",
+      "rejected": "Рад этилди",
+      "beingSeen": "Кўриб чиқилмоқда",
+      "repeated": "Такрорийлар",
+      "expired": "Муддати бузилганлар",
+      "modda25": "25-модда"
+    }
+  },
+  "activity":{
+    "rateInfo":{
+      "rateTitle":"ҚЎМИТА ВА УНИНГ ҲУДУДИЙ ОРГАНЛАРИ ФАОЛИЯТИ САМАРАДОРЛИГИНИ БАҲОЛАШ НАТИЖАЛАРИГА ДОИР МАЪЛУМОТЛАР",
+      "infoTitle":"ҚЎМИТА ВА УНИНГ ҲУДУДИЙ ОРГАНЛАРИ ФАОЛИЯТИ САМАРАДОРЛИГИНИ СОҲАЛАР БЎЙИЧА БАҲОЛАШ МАЪЛУМОТИ",
+      "withRegionRate": "ФАОЛИЯТИ САМАРАДОРЛИГИНИ БАҲОЛАШ НАТИЖАЛАРИГА ДОИР МАЪЛУМОТЛАР",
+      "withRegionInfo": "ФАОЛИЯТИ САМАРАДОРЛИГИНИ СОҲАЛАР БЎЙИЧА БАҲОЛАШ МАЪЛУМОТИ",
+      "viaInfo":"БЎЙИЧА МАЪЛУМОТИ",
+      "viaRate":"БЎЙИЧА БАҲОСИ",
+      "positionYear": "йил ҳолатига",
+      "place":"Ҳудудлар",
+      "ratePosition":"Баҳолаш натижаси бўйича ўрин кўрсаткичи",
+      "allBallTotal":"Ҳамма баллар йиғиндиси",
+      "ofThese":"шулардан,",
+      "ifThis":"шундан,",
+      "allBall":"Жами баллар",
+      "maxBall5":"(энг юқори балл - 5 балл)",
+      "maxBall4":"(энг юқори балл - 4 балл)",
+      "maxBall3":"(энг юқори балл - 3 балл)",
+      "procent":"(фоиз ҳисобида)",
+      "ofThose":"шундан, қўлланилган таъсир чоралари",
+      "appeals":{
+        "title":"МУРОЖААТЛАР БИЛАН ИШЛАШ СОҲАСИ",
+        "aloneTitle":"ҚЎМИТА ВА УНИНГ ҲУДУДИЙ ОРГАНЛАРИНИНГ МУРОЖААТЛАР БИЛАН ИШЛАШ СОҲАСИНИНГ САМАРАДОРЛИГИ ВА УЛАРНИ БАҲОЛАШ НАТИЖАЛАРИГА ДОИР МАъЛУМОТЛАР",
+        "allAppeals":"Жами муро-жаатлар сони",
+        "allAppealsPdf":"Жами мурожаатлар сони",
+        "numberOfControl":"Назо-ратга олин-ганлар сони",
+        "provide":"Чора кўрилган",
+        "explain":"Тушун-тирилган",
+        "drawExplain":"Тушунтирилган",
+        "rejected":"Рад этилган",
+        "repeatAppeal":"Такро-рий муро-жаат-лар",
+        "residualAppeal":"Қолдиқ-даги муро-жаатлар",
+        "brokeDeadline":"Муддати бузил-ган",
+        "successAppeals":"Ижобий ҳал этилган мурожаатлар ҳажмига нисбатан берилган балл",
+        "sawAppeals":"Кўриб ҳал этилган муро-жаатлар сони",
+        "drawSawAppeals":"Кўриб ҳал этилган мурожаатлар сони",
+        "resolveAppeals":"ҳал қилинган муро-жаатларга нисбатан улуши",
+        "resolveAppealsPdf":"ҳал қилинган мурожаатларга нисбатан улуши"
+      },
+      "casesFiled":{
+        "title":"ҚЎЗҒАТИЛГАН ИШЛАРНИ КЎРИБ ЧИҚИШ СОҲАСИ",
+        "aloneTitle":"ҚЎМИТА ВА УНИНГ ҲУДУДИЙ ОРГАНЛАРИНИНГ ҚЎЗҒАТИЛГАН ИШЛАРНИ КЎРИБ ЧИҚИШ СОҲАСИНИНГ САМАРАДОРЛИГИ ВА УЛАРНИ БАҲОЛАШ НАТИЖАЛАРИГА ДОИР МАЪЛУМОТЛАР",
+        "workNumber":"Ишлар сони",
+        "workDone":"Тамомланган ишлар",
+        "findLawBreakInfo":"Қонун бузилиш аниқланган",
+        "finished":"Туга-тилган",
+        "findLawBrokeFinished":"Қонун-бузилиш ҳолати тасдиқлан-ганлиги сабабли тугатилган",
+        "brokeDeadline":"Ишни кўриб чиқиш муддати бузилган",
+        "workRemain":"Қолдиқдаги ишлар",
+        "findLawBreak":"Аниқланган қонунбузилиш ҳолатлари ҳажмига нисбатан берилган балл",
+        "formalized":"Расмийлаш-тирилган маъмурий баённома ҳажмига нисбатан берилган балл",
+        "allWorkNumber":"Жами қўзға-тилган ишлар сони",
+        "allWorkDone":"Тамом-ланган ишлар сони",
+        "allFindLawBreakInfo":"Қонун-бузилиш аниқлан-ган ишлар сони",
+        "allFinished":"Туга-тилган ишлар сони",
+        "allFindLawBrokeFinished":"Қонун-бузилиш ҳолати тасдиқлан-маганлиги сабабли тугатилган ишлар сони",
+        "instructions":"Ижро қилиш муддати ўтган қарор ва кўрсат-малар",
+        "training":"Кўрсат-малар",
+        "allRasmiy":"Расмийлаш-тирилган маъмурий баённома-лар сони"
+      },
+      "tender":{
+          "title":"ДАВЛАТ БУЮРТМАСИ БЎЙИЧА ЎТКАЗИЛГАН ТАНЛОВ (ТЕНДЕР) САВДОЛАРИНИ ЎРГАНИШ СОҲАСИ",
+          "aloneTitle":"ҚЎМИТА ВА УНИНГ ҲУДУДИЙ ОРГАНЛАРИНИНГ ДАВЛАТ БУЮРТМАСИ БЎЙИЧА ЎТКАЗИЛГАН ТАНЛОВ (ТЕНДЕР) САВДОЛАРИНИ ЎРГАНИШ СОҲАСИНИНГ САМАРАДОРЛИГИ ВА УЛАРНИ БАҲОЛАШ НАТИЖАЛАРИГА ДОИР МАЪЛУМОТЛАР",
+          "numberOfPurchase":"Ўрга-нилган харид-лар сони",
+          "findLawBroken":"Қонун-бузи-лиши аниқ-ланган ишлар",
+          "voluntarily":"Ихтиё-рий бар-тараф этил-ган",
+          "sendProc":"Проку-рату-рага юбо-рилган",
+          "sendCal":"Хисоб пала-тасига юбо-рилган",
+          "impact":"Таъсир чора қўлла-нилган",
+          "teachAway":"Кўрсат-ма берил-ган",
+          "heldAccountable":"Маъму-рий жавоб-гарлик-ка тортил-ган",
+
+          "allSell":"Жами ўтка-зилган савдо-лар сони",
+          "allStudy":"Жами ўрга-нилган савдо-лар сони",
+          "eSell":"Савдо etender.uzex.uz орқали ўтка-зилган",
+          "tSell":"Савдо tender.mc.uz орқали ўтка-зилган",
+          "xSell":"Савдо xt-xarid.uz орқали ўтка-зилган",
+          "taskSell":"1000/02-17-сон топши-риқ асосида ўрганил-ган савдолар",
+          "learnPros":"Ўрганиш фоизи",
+          "lackSell":"Кам-чилик аниқ-ланган савдо-лар",
+          "studySell":"Ўрганил-ган харид-ларга нис-батан фоизи",
+          "noStudySell":"Ўрганил-май қолган савдолар",
+          "allStydySell":"Жами ўрга-нилган савдо-лар сони",
+          "kpiSystem":"KPI-тизими бўйича тўпланган жами баллар",
+          "task":"1000/02-17-сон топшириқ асосида харидларни ўрганиш ҳажмига нисбатан берилган балл",
+          "purchases":"Харидларни ўрганиш ҳажмига нисбатан берилган балл",
+          "purchaseField":"Харидларни ўрганиш натижасида камчиликлар аниқланганлик учун берилган балл"
+      },
+      "legal":{
+          "firstToast": "Биринчи инстансия судлари натижалари топилмади",
+          "secondToast": "Апелляция ва кассация инстанциялари судларида иштирок этганлиги бўйича маълумот топилмади",
+          "thirdToast": "Такрорий кассация ва суд қарорларини янги очилган ҳолатлар бўйича қайта кўриш босқичида иштирок этганлиги бўйича маълумот топилмади",
+          "title":"ЮРИДИК ТАъМИНЛАШ СОҲАСИ",
+          "courtTitle": "Қўмита ва унинг ҳудудий бошқармалари ходимлари иштирок этаётган ишларнинг суд мажлисларида кўриб чиқилиши бўйича",
+          "courtShortTitle": "ходимлари иштирок этаётган ишларнинг суд мажлисларида кўриб чиқилиши бўйича",
+          "courtBigTitle": "СУД МАЖЛИСИ ЖАДВАЛИ",
+          "aloneTitle":"ҚЎМИТА ВА УНИНГ ҲУДУДИЙ ОРГАНЛАРИНИНГ ЮРИДИК ТАЪМИНЛАШ СОҲАСИНИНГ САМАРАДОРЛИГИ ВА УЛАРНИ БАҲОЛАШ НАТИЖАЛАРИГА ДОИР МАЪЛУМОТЛАР",
+          "courtNumber":"Судда иштирок этган ишлар сони",
+          "wordDone":"Якун-ланган ишлар сони",
+          "plaintiffInfo":"Давогарлигида",
+          "responsibleInfo":"Жавобгарлигида",
+          "fullCases":"Тўлиқ қаноат-ланти-рилган ишлар сони",
+          "partlyCases":"Қисман қаноат-ланти-рилган ишлар сони",
+          "numberOfReject":"Рад этилган ишлар сони",
+          "plaintiff":"Даъвогар сифатида иштирок этган ишларда даъво талаблари қаноатланти-рилганлик учун берилган балл",
+          "responsible":"Жавобгар сифатида иштирок этган ишларда даъво талаблари рад этилганлик учун берилган балл",
+          "allWork":"Жами ишлар сони",
+          "allTitle": "Қўмита марказий аппарати ва ҳудудий бошқармаларининг судларда иштироки ҳамда суд натижалари тўғрисида",
+          "economicTitle": "Қўмита марказий аппарати ва ҳудудий бошқармаларининг иқтисодий судларда иштироки ҳамда суд натижалари тўғрисида",
+          "personalTitle": "Қўмита марказий аппарати ва ҳудудий бошқармаларининг фуқаролик ишлари бўйича судларда иштироки ҳамда суд натижалари тўғрисида",
+          "administrativeTitle": "Қўмита марказий аппарати ва ҳудудий бошқармаларининг маъмурий судларда иштироки ҳамда суд натижалари тўғрисида",
+          "withAdministrativeTitle": "маъмурий судларда иштироки ҳамда суд натижалари тўғрисида",
+          "withPersonalTitle": "фуқаролик ишлари бўйича судларда иштироки ҳамда суд натижалари тўғрисида",
+          "withEconomicTitle": "иқтисодий судларда иштироки ҳамда суд натижалари тўғрисида",
+          "withRegionTitle": "судларда иштироки ҳамда суд натижалари тўғрисида",
+          "information": "МАЪЛУМОТ",
+          "all": {
+            "place": "Марказий аппарат ва ҳудудий бошқармалар",
+            "numberOfWork": "Ҳамма ишлар сони",
+            "total": "Жами",
+            "ofTheseHuge": "ШУЛАРДАН,",
+            "ofThese": "шулардан,",
+            "ofThis": "шундан,",
+            "attend": "Даъвогар сифатида иштирок этган ишлар",
+            "responsible": "Жавобгар сифатида иштирок этган ишлар",
+            "thirdPerson": "Учинчи шахс сифатида иштирок этган ишлар",
+            "complainer": "Аризачи (шикоятчи) сифатида иштирок этган ишлар",
+            "finished": "Кўриб тамом-ланган ишлар сони",
+            "satisfied": "Тўлиқ қаноат-ланти-рилган",
+            "partlySatisfied": "Қисман қаноат-ланти-рилган",
+            "rejected": "Рад этил-ган",
+            "workDone": "Иш юритиш тугатил-ган",
+            "noRead": "Кўр-масдан қолди-рилган",
+            "anyotherWork": "Қолдиқ ишлар",
+            "department": {
+              "qoraqalpoq": "Қорақалпоғистон Республикаси ҳудудий бошқармаси томонидан",
+              "andijon": "Андижон вилояти ҳудудий бошқармаси томонидан",
+              "buxoro": "Бухоро вилояти ҳудудий бошқармаси томонидан",
+              "jizzax": "Жиззах вилояти ҳудудий бошқармаси томонидан",
+              "navoi": "Навоий вилояти ҳудудий бошқармаси томонидан",
+              "namangan": "Наманган вилояти ҳудудий бошқармаси томонидан",
+              "samarqand": "Самарқанд вилояти ҳудудий бошқармаси томонидан",
+              "sirdaryo": "Сирдарё вилояти ҳудудий бошқармаси томонидан",
+              "surxondaryo": "Сурхондарё вилояти ҳудудий бошқармаси томонидан",
+              "fargona": "Фарғона вилояти ҳудудий бошқармаси томонидан",
+              "toshkentV": "Тошкент вилояти ҳудудий бошқармаси томонидан",
+              "toshkentSh": "Тошкент шаҳар ҳудудий бошқармаси томонидан",
+              "qashqadaryo": "Қашқадарё вилояти ҳудудий бошқармаси томонидан",
+              "xorazm": "Хоразм вилояти ҳудудий бошқармаси томонидан",
+              "qomita": "Ўзбекистон Республикаси рақобатни ривожлантириш ва истеъмолчилар ҳуқуқларини ҳимоя қилиш қўмитаси томонидан"
+
+            },
+            "first": {
+              "label": "БИРИНЧИ ИНСТАНЦИЯ СУДЛАРИДА",
+              "titlePart1": "Қўмита ва унинг ҳудудий бошқармалари томонидан",
+              "titlePart2": "иштирок этганлиги ва суд натижалари бўйича",
+              "davogar": "Даъвогар",
+              "javobgar": "Жавобгар",
+              "shaxs": "Учинчи шахс",
+              "davoPred": "Даъво предмети",
+              "davoArizaRaqam": "Даъво ариза (ариза) рақами",
+              "davoArizaSana": "Даъво ариза (ариза) санаси",
+              "ishYunalish": "Иш кўр(аёт)ган суд йўналиши",
+              "ishYunalish1": "Иш кўраётган суд йўналиши",
+              "ishNomi": "Ишни кўр(аёт)ган суд номи",
+              "ishNomi1": "Ишни кўраётган суд номи",
+              "courtSes": "Суд инстанцияси",
+              "ishKorishSana": "Иш кўришга тайинланган сана",
+              "ishRaqam": "Иш рақами",
+              "ishtirokchi": "Иштирок этган ходим(лар) Ф.И.Ш.",
+              "qarorSana": "Қарор (ажрим) санаси",
+              "qarorMaz": "Қарор (ажрим) мазмуни"
+            },
+            "second": {
+              "label": "АПЕЛЛЯЦИЯ ВА КАССАЦИЯ ИНСТАНЦИЯЛАРИ СУДЛАРИДА",
+              "titlePart1": "Қўмита ва унинг ҳудудий бошқармалари томонидан",
+              "titlePart2": "иштирок этганлиги ва суд натижалари бўйича",
+              "davogar": "Даъвогар",
+              "javobgar": "Жавобгар",
+              "shaxs": "Учинчи шахс",
+              "davoPred": "Даъво предмети",
+              "ishYunalish": "Иш кўр(аёт)ган суд йўналиши",
+              "ishNomi": "Ишни кўр(аёт)ган суд номи",
+              "ishRaqam": "Иш рақами",
+              "appeal":"Апелляция инстанцияси суди",
+              "cash":"Кассация инстанцияси суди",
+
+              "complain": "Шикоят (протест) берган шахс",
+              "date": "Рақами ва санаси",
+              "ishtirokchi": "Иштирок этган ходим(лар) Ф.И.Ш.",
+              "qarorSana": "Қарор (ажрим) санаси",
+              "qarorMaz": "Қарор (ажрим) мазмуни"
+            },
+            "third": {
+              "label": "ТАКРОРИЙ КАССАЦИЯ ВА СУД ҚАРОРЛАРИНИ ЯНГИ ОЧИЛГАН ҲОЛАТЛАР БЎЙИЧА ҚАЙТА КЎРИШ БОСҚИЧИДА",
+              "repeat":"Такрорий кассация инстанцияси суди",
+              "againReview":"Суд қарорларини янги очилган ҳолатлар бўйича қайта кўриш",
+              "humanProtest": "Ариза (протест) берган шахс",
+              "human": "Ариза берган шахс"
+            }
+          }
+      },
+      "control":{
+        "titleFirst":"Рақобат, табиий монополиялар, истеъмолчиларнинг ҳуқуқларини ҳимоя қилиш ва реклама тўғрисидаги қонун ҳужжатларини бузганлик учун қўзғатилган ишлар ва уларни кўриб чиқиш натижалари бўйича",
+        "titleFirstSmall":"рақобат, табиий монополиялар, истеъмолчиларнинг ҳуқуқларини ҳимоя қилиш ва реклама тўғрисидаги қонун ҳужжатларини бузганлик учун қўзғатилган ишлар ва уларни кўриб чиқиш натижалари бўйича",
+        "titleSecond":"Рақобат, табиий монополиялар, истеъмолчиларнинг ҳуқуқларини ҳимоя қилиш ва реклама тўғрисидаги қонун ҳужжатларини бузганлик учун қўзғатилган ишлар бўйича чиқарилган қарор ва кўрсатмаларнинг ижросига доир",
+        "titleSecondSmall":"рақобат, табиий монополиялар, истеъмолчиларнинг ҳуқуқларини ҳимоя қилиш ва реклама тўғрисидаги қонун ҳужжатларини бузганлик учун қўзғатилган ишлар бўйича чиқарилган қарор ва кўрсатмаларнинг ижросига доир",
+        "monitorTitle":"МОНИТОРИНГ ЖАДВАЛИ",
+        "mark":"Рақобатни ривожлантириш ва истеъмолчилар ҳуқуқларини ҳимоя қилиш қўмитасининг 2023 йил 16 майдаги 56-ICh-сонли буйруғига 1-илова",
+        "placeName":"Ҳудуд номи",
+        "placeDescription":"(марказий аппарат ёки  ҳудудий орган)",
+        "commission":"Комиссия раиси",
+        "responsible":"Масъул",
+        "responsibleDescription":"(бўлинма ёки ходим)",
+        "caseDate":"Иш қўзғатилган сана",
+        "workNumber":"Иш рақами",
+        "caseName":"Иш қўзғатилган субъект номи",
+        "caseReason":"Иш қўзғатиш учун асос",
+        "caseReasonDescription":"(мурожаат, ўрганиш, в.ҳ.к)",
+        "violatedLaw":"Талаблари бузилган қонун ёки қонуности ҳужжати",
+        "substance":"Қонун ёки қонуности ҳужжати моддаси",
+        "substanceDescription":"(банди, хатбоши)",
+        "positionFind":"Аниқланган ҳолат",
+        "summary":"Қисқача мазмуни",
+        "price":"Суммаси",
+        "rusultOfReview":"Ишни кўриб чиқиш натижаси",
+        "decideReview":"Ишни кўриб чиқиш бўйича қабул қилинган қарор",
+        "decideReviewDescription":"(рақами ва санаси)",
+        "decideSummary":"Қабул қилинган қарорнинг қисқача мазмуни",
+        "reasonReview":"Ишни кўриб чиқишни тугатиш учун асос",
+        "instruction":"Берилган кўрсатма",
+        "instructionDescription":"(санаси ва рақами)",
+        "summaryOfInstruction":"Берилган кўрсатманинг қисқача мазмуни",
+        "timeOfInstruction":"Кўрсатмани ижро этиш муддати",
+        "baseInstruction":"Кўрсатма ижросини узайтириб туриш учун асос",
+        "performanceInstruction":"Қўрсатма ижроси",
+        "doneWork":"Ижро этилмаган кўрсатма ва қарор бўйича қилинган ишлар",
+        "administrative":"Маъмурий ижроси",
+        "chargeMoney":"Ундирилган жами маблағ",
+        "mln":"(млн сўм)",
+        "ofThis":"Шундан:",
+        "returnCustomer":"Истеъмолчига қайтарилган",
+        "specialNumber":"Махсус ҳисоб рақамга ундирилган",
+        "penalty":"Маъмурий жарима ҳисобидан",
+        "comment":"Изоҳ"
+      },
+      "product": {
+        "title": "Хўжалик юритувчи субъектларнинг йиллик ишлаб чиқариш қувватлари учун талаб этиладиган истеъмол ва техник этил спирти маҳсулотининг миқдорлари тўғрисида",
+        "titleSmall": "xўжалик юритувчи субъектларнинг йиллик ишлаб чиқариш қувватлари учун талаб этиладиган истеъмол ва техник этил спирти маҳсулотининг миқдорлари тўғрисида",
+        "alcoholic": "Спиртга эҳтиёжи мавжуд бўлган ХЮСлар сони",
+        "powerPerYear": "Йиллик ишлаб чиқариш қуввати (дал)",
+        "requaredDal": "Талаб этиладиган миқдор (дал)",
+        "buyByBirja": "Биржа савдолари орқали харид қилинган миқдор (дал)",
+        "buyByNeed": "Эҳтиёжга нисбатан харид қилинган миқдор (фоизда)",
+        "fullBuyByNeed": "Эҳтиёждан ортган биржага чиқарилиши лозим бўлган миқдор (дал)",
+        "lastBuyNumb": "Харид қилинган охирги сана",
+        "consumeAlco": "Истеъмол спирти (дал)",
+        "technicALco": "Техник спирт (дал)",
+        "consumeAlcoPro": "Истеъмол спирти (фоизда)",
+        "technicALcoPro": "Техник спирт (фоизда)"
+        }
+      }
+    },
+  "references": {
+    "fairtech": "Fair Tech маълумотномалар"
+  },
+  "product_dashboard_info": {
+    "menu_items": {
+      "main": "Asosiy",
+      "documents": "Hujjatlar",
+      "murojaat": "Murojaatlar",
+      "murojaat_create": "Murojaatlar yaratish",
+      "drafts": "Qoralamalar",
+      "other_services": "Interaktiv xizmatlar",
+      "settings": "Sozlamalar"
+    },
+    "region_placeholder": "Viloyatni tanlang",
+    "district_placeholder": "Tumanni tanlang",
+    "select_type": "Murojaatchi turini tanlang",
+    "customer_ifo_title": "Iste`molchi ma`lumotlari",
+    "for_customer_title": "Ite`molchilar uchun",
+    "customer_infos": {
+      "surname": "Familiyasi",
+      "name": "Ismi",
+      "middle_name": "Sharifi",
+      "birth_date": "Tug`ilgan sanasi",
+      "sex": "Jinsi",
+      "pnfl": "JSH SHIR",
+      "birth_region": "Tug`ilgan viloyati",
+      "birth_district": "Tug`ilgan tumani",
+      "who_given": "Kim tomonidan berilgan",
+      "passport_data": "Passport (ID) seriiyasi va raqami",
+      "passport_given_date": "Passport berilgan sana",
+      "validity_period": "Amal qilish muddati"
+    },
+    "register_title": "Murojaatni ro`yxatga olish",
+    "type": "Murojaat turi",
+    "murojaat_view": "Murojaat ko`rinishi",
+    "ariza": "ariza",
+    "appeal": "shikoyat",
+    "offer": "taklif",
+    "standart": "standart murojaat",
+    "review": "qayta ko`rib chiqish",
+    "other": "------",
+    "address": {
+      "title": "Manzil",
+      "region": "Viloyat",
+      "district": "Tuman"
+    },
+    "murojaat_type": "Murojaatchi turi",
+    "full_name": "Murojaatchi F I SH",
+    "phone_number": "Telefon raqami",
+    "post_address": "Pochta manzili",
+    "street_address": "Ko`cha mahalla",
+    "more_info": "Qisqacha mazmuni",
+    "upload_btn": "+Fayl yuklash",
+    "draft_btn": "Qoralama saqlash",
+    "send_btn": "Yuborish"
   }
 }
