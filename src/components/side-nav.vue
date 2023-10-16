@@ -118,7 +118,7 @@ export default {
                 <li class="menu-title" v-if="item.isTitle" :key="item.id">
                     {{ $t(item.label).toUpperCase() }}
                 </li>
-                <li v-if="!item.isTitle && !item.isLayout && getCP(item.code ? item.code : '')" :key="item.id">
+              <li v-if="!item.isTitle && !item.isLayout" :key="item.id">
                     <a
                             v-if="hasItems(item)"
                             href="javascript:void(0);"
