@@ -4,8 +4,8 @@ import { ability } from '@/shared/store/ability'
 export default [
   {
     id: "referencesParentMenuId",
-    label: i18n.t("submodules.references.title_plural"),
-    icon: "mdi mdi-information",
+    label: i18n.t("product_dashboard_info.menu_items.documents"),
+    // icon: "mdi mdi-information",
     code: "fair_tech",
     hasPerm: () => ability.can('view', 'advertisement-location-types') ||
       ability.can('view', 'advertisement-design-types') ||
@@ -68,7 +68,7 @@ export default [
     subItems: [
       {
         id: "reference-1",
-        label: i18n.t("submodules.advertisement.title"),
+        label: i18n.t("product_dashboard_info.menu_items.documents"),
         icon: "mdi mdi-billboard",
         parentId: "referencesParentMenuId",
         hasPerm: () => ability.can('view', 'advertisement-location-types') ||

@@ -162,7 +162,7 @@
                                                                 class="ml-5 a-tag-underline-hover"
                                                                 :variant="el.docStatusCode == 'PENDING' ? 'warning' : el.docStatusCode == 'READY' ? 'success' : ''"
                                                             >
-                                                                {{ 
+                                                                {{
                                                                     getName({
                                                                         nameRu: el.docStatusNameRu,
                                                                         nameLt: el.docStatusNameLt,
@@ -214,7 +214,7 @@
                                                                             style="font-size: .7rem"
                                                                             :variant="el2.docStatusCode == 'PENDING' ? 'warning' : el2.docStatusCode == 'READY' ? 'success' : ''"
                                                                         >
-                                                                            {{ 
+                                                                            {{
                                                                                 getName({
                                                                                     nameRu: el2.docStatusNameRu,
                                                                                     nameLt: el2.docStatusNameLt,

@@ -1,18 +1,8 @@
-import management_menu from "@/modules/management/menuItems";
-import references_menu from "@/modules/references/menuItems";
-import reestr_contractors_menu from "@/modules/reestr-contractors/menuItems";
-import advertisement_menu from "@/modules/advertisement/menuItems";
-import letter_menu from "@/modules/letter/menuItems";
-import chat_menu from "@/modules/chat/menuItems";
-import excel_table from "@/modules/excel-table/menuItems";
-import report_menu from "@/modules/report/menuItems";
-import products_menu from "@/modules/products/menuItems"
-import integration_menu from "@/modules/integration/menuItems"
-import sendMessageToPhone from "@/modules/sendMessageToPhone/menuItems"
-import wordTemplates from "@/modules/wordTemplates/menuItems"
-import pharmMenu from "@/modules/pharm/menuItems"
-import i18n from "@/i18n";
-import {TokenService} from '@/shared/services/storage.service'
+import main_menu from "@/modules/management/menuItems";
+import documents_menu from "@/modules/advertisement/menuItems";
+import murojaat_menu from "@/modules/reestr-contractors/menuItems";
+import other_services from "@/modules/letter/menuItems";
+import settings_menu from "@/modules/chat/menuItems";
 
 function copy(o) {
   return Object.assign({}, o)
@@ -20,28 +10,20 @@ function copy(o) {
 
 // RUXSAT BOR MENULARNI FILTERLAB QAYTAR (EXPORT QIL)
 export default [
-  ...management_menu,
-  ...advertisement_menu,
-  ...reestr_contractors_menu,
-  ...letter_menu,
-  ...products_menu,
-  ...report_menu,
-  ...excel_table,
-  ...integration_menu,
-  ...references_menu,
-  ...chat_menu,
-  ...sendMessageToPhone,
-  ...wordTemplates,
-  ...pharmMenu,
-  {
-    id: "ProjectLessons1",
-    label: i18n.t("modules.management.project_lessons.title"),
-    icon: "mdi mdi-video",
-    code: "fair_tech",
-    link: { name: "ProjectLessons" },
-    parentId: "reportParentMenuId",
-    hasPerm: () => !TokenService.getIsOuter()
-  },
+  ...main_menu,
+  ...documents_menu,
+  ...murojaat_menu,
+  ...other_services,
+  ...settings_menu
+  // {
+  //   id: "ProjectLessons1",
+  //   label: i18n.t("modules.management.project_lessons.title"),
+  //   icon: "mdi mdi-video",
+  //   code: "fair_tech",
+  //   link: { name: "ProjectLessons" },
+  //   parentId: "reportParentMenuId",
+  //   hasPerm: () => !TokenService.getIsOuter()
+  // },
 
   // ...fire_price_menu,
 ].map(copy).filter(function f(o) {

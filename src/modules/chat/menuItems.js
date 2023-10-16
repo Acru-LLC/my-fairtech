@@ -4,10 +4,8 @@ import { ability } from '@/shared/store/ability'
 export default [
   {
     id: "chatMainId",
-    label: i18n.t('submodules.chat.title'),
-    icon: "mdi mdi-chat",
-    link: { name: "Chat" },
-    code: "fair_tech",
-    hasPerm: () => ability.can('view', 'chat')
+    label: i18n.t('product_dashboard_info.menu_items.settings'),
+    // icon: "mdi mdi-chat",
+    link: { name: "Settings" }
   }
 ];

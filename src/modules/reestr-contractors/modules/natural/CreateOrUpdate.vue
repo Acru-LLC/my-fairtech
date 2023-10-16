@@ -1248,7 +1248,7 @@ export default {
                 // delete this.editingItem.supplementDocs
                 return this.editingItem
                 /* this.getBase64(this.editingItem.supplementDocs[0].file).then(data => {
-                    
+
                 }) */
             } else {
                 return this.editingItem
