@@ -7,6 +7,6 @@ export default [
   {
     name: "Document",
     path: "/documents",
-    component: () => import('@/router/views/dashboards/default')
+    component: () => import('../advertisement/pages/DocumentsStory')
   },
 ]

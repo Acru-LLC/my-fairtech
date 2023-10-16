@@ -9,6 +9,6 @@ export default [
     {
         name: "MurojaatDraft",
         path: "/murojaat-draft",
-        component: () => import("../../shared/views/auth/one-id"),
+        component: () => import("@/modules/reestr-contractors/modules/DraftForm"),
     },
 ]
