@@ -129,10 +129,10 @@ export default {
             <!-- Start Page Content here -->
             <!-- ============================================================== -->
 
-            <div class="main-content">
-                <div class="page-content">
+            <div class="main-content" style="overflow: unset!important;">
+                <div>
                     <!-- Start Content-->
-                    <div class="container-fluid">
+                    <div>
                         <slot />
                     </div>
                 </div>
@@ -175,8 +175,9 @@ export default {
 <style lang="scss">
 .mm-active {
   a.active {
-    background-color: #556ee6;
-    color: #fff!important;
+    background-color: #fff;
+    color: #2E5C55!important;
+    border-radius: 6px;
     i.bx {
       color: #fff!important;
       &:hover {
