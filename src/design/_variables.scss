@@ -5,12 +5,13 @@
 //
 
 // Vertical Sidebar - Default Light
-$sidebar-bg: #ffffff;
-$sidebar-menu-item-color: #545a6d;
-$sidebar-menu-sub-item-color: #545a6d;
+$sidebar-bg: #25695c;
+$sidebar-menu-item-color: #fff;
+$sidebar-menu-sub-item-color: #fff;
 $sidebar-menu-item-icon-color: #7f8387;
 $sidebar-menu-item-hover-color: #383c40;
-$sidebar-menu-item-active-color: #556ee6;
+$sidebar-menu-item-hover-icon-color: #eabb3b;
+$sidebar-menu-item-active-color: #fff;
 $sidebar-width:  280px;
 $sidebar-collapsed-width:  70px;
 $sidebar-li-collapsed-width:  230px;
@@ -54,8 +55,8 @@ $rightbar-width:  280px;
 $display-none: none;
 $display-block: block;
 
-// Brand 
-$navbar-brand-box-width: 250px;
+// Brand
+$navbar-brand-box-width: 280px;
 
 // Boxed layout width
 $boxed-layout-width:    1300px;

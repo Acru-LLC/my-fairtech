@@ -29,8 +29,9 @@
 }
 
 .navbar-brand-box {
-    padding: 0 1.5rem;
+    //padding: 0 1.5rem;
     text-align: center;
+    background-color: #25695c;
     width: $navbar-brand-box-width;
 }
 
@@ -101,8 +102,8 @@
 
 .page-content {
     padding: calc(#{$grid-gutter-width}) calc(#{$grid-gutter-width} / 2) 1rem calc(#{$grid-gutter-width} / 2);
-    background-color: #f8f8fb;
-    background: url("~@/assets/images/image-asset.jpeg") no-repeat center center fixed;
+    background-color: #fff;
+    //background: url("~@/assets/images/image-asset.jpeg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -193,7 +194,7 @@
 }
 
 body[data-topbar="dark"] {
-    /* #page-topbar { 
+    /* #page-topbar {
         background-color: $header-dark-bg;
     } */
     /* .navbar-header {
@@ -210,7 +211,7 @@ body[data-topbar="dark"] {
 
     .header-item {
         color: $header-dark-item-color;
-    
+
         &:hover {
             color: $header-dark-item-color;
         }
@@ -219,7 +220,7 @@ body[data-topbar="dark"] {
     .header-profile-user {
         background-color: rgba($white, 0.25);
     }
-    
+
     .noti-icon {
         i {
             color: $header-dark-item-color;
@@ -235,7 +236,7 @@ body[data-topbar="dark"] {
     }
 
     .app-search {
-    
+
         .form-control {
             background-color: rgba($topbar-search-bg,0.07);
             color: $white;

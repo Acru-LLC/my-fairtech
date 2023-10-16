@@ -97,6 +97,9 @@
                     vertical-align: middle;
                     color: $sidebar-menu-item-active-color;
                     transition: all 0.4s;
+                    background: #244759;
+                    border-radius:4px;
+                    text-align: center;
                 }
 
                 &:hover {

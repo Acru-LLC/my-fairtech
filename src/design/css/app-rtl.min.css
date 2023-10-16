@@ -327,7 +327,7 @@ body[data-layout="horizontal"] .footer {
     content: "\F0140";
     font-family: 'Material Design Icons';
     display: block;
-    float: left;
+    float: right;
     -webkit-transition: -webkit-transform .2s;
     transition: -webkit-transform .2s;
     transition: transform .2s;
@@ -362,7 +362,7 @@ body[data-layout="horizontal"] .footer {
     #sidebar-menu ul li ul.sub-menu li a {
       padding: .4rem 3.5rem .4rem 1.5rem;
       font-size: 13px;
-      color: #545a6d; }
+      color: #fff; }
       #sidebar-menu ul li ul.sub-menu li a:hover {
         color: #383c40; }
     #sidebar-menu ul li ul.sub-menu li ul.sub-menu {
@@ -869,10 +869,10 @@ body[data-layout="horizontal"][data-layout-size="boxed"] .container-fluid, body[
 
 /*!
  * Waves v0.7.6
- * http://fian.my.id/Waves 
- * 
- * Copyright 2014-2018 Alfiana E. Sibuea and other contributors 
- * Released under the MIT license 
+ * http://fian.my.id/Waves
+ *
+ * Copyright 2014-2018 Alfiana E. Sibuea and other contributors
+ * Released under the MIT license
  * https://github.com/fians/Waves/blob/master/LICENSE */
 .waves-effect {
   position: relative;
@@ -2601,7 +2601,7 @@ input[switch="dark"]:checked + label {
     .wizard.vertical-wizard .content > .body {
       padding: 0; }
 
-/* 
+/*
 Datatable
 */
 div.dataTables_wrapper div.dataTables_filter {
