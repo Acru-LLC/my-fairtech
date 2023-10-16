@@ -1,25 +1,106 @@
-<script setup>
-import VanillaTilt from 'vanilla-tilt-vue'
-</script>
-<script>
-import {mapActions, mapMutations} from 'vuex'
-import i18n from "@/i18n";
-// import AuthLayout from "@/shared/layouts/auth"
-// import ESigns from './components/ESigns'
-/**
- * Login component
- */
+<template>
+  <div>
+    <b-overlay :show="loading" class="loader">
+      <div class="wrap-login100">
+        <div class="body-content">
+          <div class="login100-more">
+            <!--                <div class="language-select">-->
+            <!--                    <select name="languages" id="languages">-->
+            <!--                        <option value="Uz">UZ</option>-->
+            <!--                        <option value="En">EN</option>-->
+            <!--                        <option value="Ru">RU</option>-->
+            <!--                    </select>-->
+            <!--                </div>-->
+            <b-dropdown variant="white" right toggle-class="header-item" class="language-bar d-flex">
+              <template v-slot:button-content>
+                {{ text }}
+<!--                <span class="flag-icon flag-icon-uz" id="selectSpan"-->
+<!--                      style="width: 21px; height: 21px; border-radius: 50%; background-size: cover"></span>-->
+                <!-- Uzbek flag icon -->
+              </template>
+              <b-dropdown-item
+                  v-for="(entry, i) in languages"
+                  :key="i"
+                  :value="entry"
+                  :class="{ active: currentLocale.language === entry.language }"
+                  @click="changeLocale(entry.language)"
+                  class="notify-item"
+              >
+                <!--                <img :src="entry.flag" alt="Flag" class="language-img">-->
+                <span class="align-middle">{{ entry.title }}</span>
+              </b-dropdown-item>
+            </b-dropdown>
+            <VanillaTilt parallax>
+              <div class="logo">
+              </div>
+            </VanillaTilt>
+          </div>
+          <div class="box position-relative d-flex flex-column justify-content-center">
 
+            <div class="m-auto">
+              <b-row class="welcome-text">{{ $t('system.oneId.welcome_text') }}</b-row>
+              <b-row class="bg-white p-3 oneID d-flex align-items-center mb-5">
+                <img src="../auth/images/loginImages/oneID.svg" alt="">
+                <b-card-text style="color: #2C675B; font-size: 25px" class="ml-4">{{ $t('system.oneId.login_with') }}</b-card-text>
+              </b-row>
+              <b-row>
+                <div class="container-login100-form-btn">
+                  <a href='https://sso.egov.uz/sso/oauth/Authorization.do?response_type=one_code&client_id=fair_tech&redirect_uri=https://fairtech.uz/one-id/login&scope=fair_tech&state=eyJtZXRob2QiOiJJRFBXIn0=selfOne Id,left=0,top=0,width=1000,height=1000,toolbar=0,scrollbars=0,status=0' class="login100-form-btn btn">
+                    {{ $t('system.login') }}
+                  </a>
+                </div>
+              </b-row>
+              <b-card-text>
+                <span class="info-text d-flex flex-column justify-content-center font-size-20 text-white position-absolute">{{ $t('system.oneId.text_info') }}</span>
+              </b-card-text>
+            </div>
+
+            <div class="text-footer">
+              <p class="title-footer">{{ $t('system.tex_support') }}</p>
+              <img src="../auth/images/loginImages/phone.svg" alt="">
+              <p class="svg-footer1 ml-2">+ 99871 1234567</p>
+
+              <div class="text-footer2">
+                <img src="../auth/images/loginImages/message.svg" alt="">
+                <a href="#" class="svg-footer2 ml-2">@rqbot</a>
+                <div class="text-footer-right">
+                  <img src="../auth/images/loginImages/tutorial.svg" alt="">
+                  <a href="#"></a><span class="svg-footer3 cursor-pointer"> {{ $t('system.tutorial') }}</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+        <div class="footer-info">
+          <div class="txt-left-footer">
+            {{ $t('system.footer_left_text') }}
+          </div>
+          <div class="txt-right-footer">
+            {{ $t('system.footer_right_text') }}
+          </div>
+        </div>
+      </div>
+    </b-overlay>
+  </div>
+</template>
+
+<script>
+import {AuthService} from "@/shared/services/auth.service";
+import ApiService from "@/shared/services/api.service";
+import {TokenService} from "@/shared/services/storage.service";
+import store from "@/state/store"
+import VanillaTilt from "vanilla-tilt-vue";
+import {mapMutations} from "vuex";
+import i18n from "@/i18n";
 export default {
+  components: {VanillaTilt},
   data() {
     return {
-      showPassword: false,
-      email: "",
-      password: "",
-      submitted: false,
-      authError: null,
-      tryingToLogIn: false,
-      isAuthError: false,
+      loading: false,
+      popup: false,
       languages: [
         {
           flag: require("../auth/images/mainPageImages/flags/uzbekistan.png"),
@@ -27,7 +108,7 @@ export default {
           title: "O'Z",
         },
         {
-          flag: require("../auth/images/mainPageImages/flags/uzbkril.png"),
+          flag: require("../auth/images/mainPageImages/flags/uzbekistan.png"),
           language: "uzCyrillic",
           title: "ЎЗ",
 
@@ -49,38 +130,10 @@ export default {
       currentLocale: {},
     };
   },
-
   methods: {
     ...mapMutations({
       setLocale: "SET_LOCALE"
     }),
-    toggleVisibilityPassword() {
-      this.showPassword = !this.showPassword;
-    },
-    ...mapActions("auth", ["login", "loginByToken"]),
-    // Try to log the user in with the username
-    // and password they provided.
-    async tryToLogIn() {
-      // this.$refs.observer.validate().then(valid => {
-      //     if (valid) {
-      this.login({Username: this.email, Password: this.password})
-      // } else {
-      //     this.$toast(this.$t('messages.fill_required_fields'), { type: 'error' });
-      // }
-      // })
-
-    },
-    async loginByEsp(data, tin, pinfl, INN) {
-      let authData = {
-        signedData: data,
-        TIN: tin,
-        INN: INN,
-        PNFL: pinfl,
-        username: "",
-        password: "",
-      };
-      this.loginByToken(authData)
-    },
     async changeLocale(localeCode) {
       if (this.$i18n.locale !== localeCode) {
         window.location.reload();
@@ -88,155 +141,58 @@ export default {
         this.currentLocale = this.languages.find(locale => locale.language === localeCode)
       }
     },
+
+    redirectToOneId(){
+      // this.popup = window.open(
+      //     "https://sso.egov.uz/sso/oauth/Authorization.do" +
+      //     "?response_type=" + "one_code" +
+      //     "&client_id=" + "fair_tech" +
+      //     "&redirect_uri=" + "https://fairtech.uz/one-id/login" +
+      //     "&scope=" + "fair_tech" +
+      //     "&state=" + "eyJtZXRob2QiOiJJRFBXIn0=",
+      //     "_self",
+      //     "One Id",
+      //     "left=0,top=0,width=1000,height=1000,toolbar=0,scrollbars=0,status=0"
+      // );
+    },
+    async getMount() {
+      // this.loading = true;
+      let { state, code } = this.$route.query;
+      if (!state || !code  ) {
+        this.redirectToOneId()
+      } else {
+        try {
+          let res = await AuthService.loginRequestToOneId({code, state});
+          if (res?.data) {
+            TokenService.saveToken(res?.data?.token);
+            store.dispatch('auth/loginOneId', res.data);
+            ApiService.setHeader();
+            await this.$router.push("/");
+            return true
+          }
+        } catch (e) {
+          console.error(e);
+          TokenService.removeToken();
+          await this.$router.push({path: "/"});
+        } finally {
+          this.loading = false;
+        }
+      }
+    },
   },
   mounted() {
-    document.body.classList.add("auth-body-bg");
+    this.getMount();
     this.value = this.languages.find((x) => x.language === i18n.locale);
     this.text = this.value.title;
     this.flag = this.value.flag;
   },
-}
+};
 </script>
-
-<template>
-  <div class="wrap-login100">
-    <div class="body-content">
-      <div class="login100-more">
-        <!--                <div class="language-select">-->
-        <!--                    <select name="languages" id="languages">-->
-        <!--                        <option value="Uz">UZ</option>-->
-        <!--                        <option value="En">EN</option>-->
-        <!--                        <option value="Ru">RU</option>-->
-        <!--                    </select>-->
-        <!--                </div>-->
-        <b-dropdown variant="white" right toggle-class="header-item" class="language-bar d-flex">
-          <template v-slot:button-content>
-            {{ text }}
-            <!--                  <span class="flag-icon flag-icon-uz" id="selectSpan"-->
-            <!--                        style="width: 21px; height: 21px; border-radius: 50%; background-size: cover"></span>-->
-            <!-- Uzbek flag icon -->
-          </template>
-          <b-dropdown-item
-              v-for="(entry, i) in languages"
-              :key="i"
-              :value="entry"
-              :class="{ active: currentLocale.language === entry.language }"
-              @click="changeLocale(entry.language)"
-              class="notify-item"
-          >
-            <!--                  <img :src="entry.flag" alt="Flag" class="language-img">-->
-            <span class="align-middle">{{ entry.title }}</span>
-          </b-dropdown-item>
-        </b-dropdown>
-        <VanillaTilt parallax>
-          <div class="logo">
-            <!--          <img src="images/logo.png" class="logo" alt="">-->
-          </div>
-        </VanillaTilt>
-      </div>
-      <div class="box position-relative d-flex flex-column justify-content-center">
-        <div class="layout">
-          <!--             login100-form-title   <form class="login100-form validate-form">-->
-          <span class="login100-form-title p-b-43">
-                        {{ $t('system.title') }}
-            <!--						FAIR TECH-->
-					</span>
-          <span class="yagonaAT">
-                      {{ $t('system.sub_title') }}
-            <!--                        YAGONA AXBOROT TIZIMI-->
-                    </span>
-
-
-          <div class="wrap-input100 validate-input d-flex align-items-center">
-            <input class="input100" v-model="email" type="text" required placeholder="login"
-                   id="input-field">
-            <img class="icon1" src="../auth/images/loginImages/icon1.png" alt="">
-            <!--                        <span class="focus-input100"></span>-->
-            <!--                        <span class="label-input100">login</span>-->
-          </div>
-
-
-          <div class="wrap-input100 validate-input d-flex align-items-center" data-validate="Password is required">
-            <input class="input100" v-model="password" id="input"
-                   :type="showPassword ? 'text' : 'password'" required
-                   placeholder="parol">
-            <img class="icon2" src="../auth/images/loginImages/icon2.png" alt="">
-            <!--                        <span class="show-icon">-->
-            <i class="fa fa-eye show-icon" @click="toggleVisibilityPassword"></i>
-            <!--                          <img class="show-icon" src="../auth/images/loginImages/eye-solid.png" @click="toggleVisibilityPassword" alt="">-->
-            <!--                        </span>-->
-            <!--                        <span class="label-input100">parol</span>-->
-          </div>
-
-          <div class="flex-sb-m w-full">
-            <div class="contact100-form-checkbox">
-              <input class="input-checkbox100 mr-2" id="ckb1" type="checkbox" name="remember-me">
-              <!--                            <label class="label-checkbox100" for="ckb1">-->
-              <!--                                Eslab qolish-->
-              <!--                            </label>-->
-              {{ $t('system.remember_me') }}
-            </div>
-
-            <div>
-              <a href="#" class="txt1">
-                {{ $t('system.forgot_password') }}
-              </a>
-            </div>
-          </div>
-
-
-          <div class="container-login100-form-btn">
-            <button @click="tryToLogIn" class="login100-form-btn">
-              {{ $t('system.login') }}
-            </button>
-          </div>
-
-          <!--                </form>-->
-        </div>
-
-        <div class="layout2">
-                <span class="txt3">
-                  {{ $t('system.eri_text') }}
-                  <!--						Foydalanuvchi shaxsiy kabinetiga kirish uchun login va paroldan tashqari elektron raqamli imzo kaliti talab etiladi. Iltimos elektron raqamli imzoni kiriting!-->
-					</span>
-          <div class="eri">
-            <!--            <img class="eri-icon" src="images/loginImages/eri-icon.svg" alt="">-->
-            <a href="#">
-              <button class="eri-btn">{{ $t('system.eri_btn') }}</button>
-            </a>
-          </div>
-        </div>
-        <div class="text-footer">
-          <p class="title-footer">{{ $t('system.tex_support') }}</p>
-          <img src="../auth/images/loginImages/phone.svg" alt="">
-          <p class="svg-footer1 ml-2">+ 99871 1234567</p>
-
-          <div class="text-footer2">
-            <img src="../auth/images/loginImages/message.svg" alt="">
-            <a href="#" class="svg-footer2 ml-2">@rqbot</a>
-            <div class="text-footer-right">
-              <img src="../auth/images/loginImages/tutorial.svg" alt="">
-              <a href="#"></a><span class="svg-footer3"> {{ $t('system.tutorial') }}</span>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-    <div class="footer-info">
-      <div class="txt-left-footer">
-        {{ $t('system.footer_left_text') }}
-      </div>
-      <div class="txt-right-footer">
-        {{ $t('system.footer_right_text') }}
-      </div>
-    </div>
-  </div>
-</template>
-
-<style lang="scss" scoped>
+<style scoped>
+.loader {
+  height: 100vh;
+  width: 100vw;
+}
 @font-face {
   font-family: "NoirPro-Regular";
   src: url("fonts/NoirPro-Regular.ttf") format("truetype");
@@ -300,10 +256,10 @@ ul, li {
 }
 
 .language-bar {
-  //background-color: #E1E8E7;
-  //border-radius: 50%;
-  //width: 33px;
-  //height: 33px;
+//background-color: #E1E8E7;
+//border-radius: 50%;
+//width: 33px;
+//height: 33px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -445,9 +401,9 @@ iframe {
 }
 
 .svg-footer3 {
-  //display: inline-block;
-  //width: 71px;
-  //height: 19px;
+//display: inline-block;
+//width: 71px;
+//height: 19px;
   flex-direction: column;
   justify-content: center;
   color: #FFFFFF !important;
@@ -472,7 +428,7 @@ iframe {
 
 .txt-left-footer {
   color: #2C665A;
-  //font-family: "NoirPro-Regular", sans-serif;
+//font-family: "NoirPro-Regular", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -481,7 +437,7 @@ iframe {
 
 .txt-right-footer {
   color: #2C665A;
-  //font-family: "NoirPro-Regular", sans-serif;
+//font-family: "NoirPro-Regular", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -557,9 +513,9 @@ iframe {
 
 .box {
   width: 50%;
-  //display: flex;
-  //flex-direction: column;
-  //justify-content: space-around;
+//display: flex;
+//flex-direction: column;
+//justify-content: space-around;
 }
 
 /*==================================================================
@@ -626,7 +582,7 @@ iframe {
   flex-direction: column;
   justify-content: space-around;
   padding: 1rem;
-  //margin-top: 7%;
+//margin-top: 7%;
   margin-bottom: 3%;
   /*top: 10px;*/
   /*right: 150px;*/
@@ -651,7 +607,7 @@ iframe {
   font-family: "NoirPro-Regular", sans-serif;
   font-size: 60px;
   color: #ffffff;
-  //line-height: 1;
+//line-height: 1;
   font-weight: bold;
   text-align: center;
   /*position: absolute;*/
@@ -662,7 +618,7 @@ iframe {
 .yagonaAT {
   font-size: 24px;
   color: #ffffff;
-  line-height: 24px;
+  line-height: 14px;
   text-align: center;
   margin-bottom: 20px;
   /*position: absolute;*/
@@ -723,7 +679,6 @@ iframe {
   padding: 0 8% 0 8%;
   color: #FFFFFF;
   transition: all 0.4s;
-  //background-image: url("images/loginImages/eye-solid.svg");
 }
 .input100:hover{
   box-shadow: 0 0 11px 12px #808588a6;
@@ -739,7 +694,7 @@ iframe {
   right: 10px; /* Adjust the distance from the right edge of the input */
   transform: translateY(-50%);
   cursor: pointer;
-  //background-image: url("images/loginImages/eye-solid.png");
+//background-image: url("images/loginImages/eye-solid.png");
 }
 
 .show-icon {
@@ -862,13 +817,13 @@ input.input100 {
 }
 
 .login100-form-btn {
-  /*display: flex;*/
+  display: flex;
   /*align-items: center;*/
   /*padding: 0 20px;*/
   /*background: #6675df;*/
-  width: 180px;
-  height: 40px;
-  /*justify-content: center;*/
+  width: 590px;
+  height: 50px;
+  justify-content: center;
   border-radius: 6px;
   border: 2px solid #FFF;
   background: rgba(255, 255, 255, 0.25);
@@ -878,6 +833,7 @@ input.input100 {
   line-height: 1.2;
   text-transform: uppercase;
   letter-spacing: 1px;
+  align-items: center;
 
   transition: all 0.4s;
   /*margin-right: 140px;*/
@@ -886,6 +842,7 @@ input.input100 {
 
 .login100-form-btn:hover {
   background: #333333;
+  color: #fff;
 }
 
 .eri {
@@ -943,4 +900,29 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
+.welcome-text {
+  color: #FFF;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  position: absolute;
+  top: 50px;
+  left: 184px;
+  width: 333px;
+  height: 100px;
+}
+.oneID {
+  width: 590px;
+  height: 101px;
+  border-radius: 20px;
+}
+.info-text {
+  width: 588px;
+  height: 212px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 </style>
+
