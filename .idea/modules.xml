@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/acru-frontend.iml" filepath="$PROJECT_DIR$/.idea/acru-frontend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/my-fairtech.iml" filepath="$PROJECT_DIR$/.idea/my-fairtech.iml" />
     </modules>
   </component>
 </project>
