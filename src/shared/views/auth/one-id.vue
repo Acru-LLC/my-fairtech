@@ -45,7 +45,7 @@
               </b-row>
               <b-row>
                 <div class="container-login100-form-btn">
-                  <a href='https://sso.egov.uz/sso/oauth/Authorization.do?response_type=one_code&client_id=fair_tech&redirect_uri=https://my.fairtech.uz/one-id/login&scope=fair_tech&state=eyJtZXRob2QiOiJJRFBXIn0=selfOne Id,left=0,top=0,width=1000,height=1000,toolbar=0,scrollbars=0,status=0' class="login100-form-btn btn">
+                  <a href='https://sso.egov.uz/sso/oauth/Authorization.do?response_type=one_code&client_id=fair_tech&redirect_uri=https://my.fairtech.uz/login&scope=fair_tech&state=eyJtZXRob2QiOiJJRFBXIn0=selfOne Id,left=0,top=0,width=1000,height=1000,toolbar=0,scrollbars=0,status=0' class="login100-form-btn btn">
                     {{ $t('system.login') }}
                   </a>
                 </div>
