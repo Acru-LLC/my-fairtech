@@ -175,6 +175,9 @@ const AuthService = {
         TokenService.removeCurrentProject();
 
         ApiService.unmount401Interceptor()
+    },
+    loginRequestToOneId({ code, state }) {
+        return ApiService.get(`/auth/oneid/redirectUri?code=${code}&state=${state}`);
     }
 }
 

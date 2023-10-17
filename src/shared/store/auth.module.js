@@ -1,5 +1,7 @@
 import {AuthService, AuthenticationError} from "@/shared/services/auth.service"
 import router from '@/router'
+import ApiService from "@/shared/services/api.service";
+import {TokenService} from "@/shared/services/storage.service";
 
 
 const state = {
@@ -58,6 +60,33 @@ const actions = {
                 commit('loginError', {errorCode: e.errorCode, errorMessage: e.message})
             }
 
+            return false
+        }
+    },
+    async loginOneId({commit}, data) {
+        commit('loginRequest');
+        try {
+            TokenService.saveToken(data.token)
+            TokenService.setUserAvatarUrl(data.uploadPath)
+            TokenService.saveRefreshToken(data.token);
+            TokenService.setUserInfo({
+                id: data.id,
+                username: data.username,
+                employeeId: data.employeeId,
+                settings: data.userSettings,
+                employeeFullName: data.employeeFirstName + ' ' + data.employeeLastName + ' ' + (data.employeeMiddleName ? data.employeeMiddleName : '')
+            })
+            TokenService.setUserId(data.id);
+            TokenService.setIsOuter(data.isOuter);
+            ApiService.setHeader();
+            commit('loginSuccess', data);
+            commit('ROOT_LOGIN_SUCCESS', data, {root: true});
+            await router.push('/');
+            return true
+        } catch (e) {
+            if (e instanceof AuthenticationError) {
+                commit('loginError', {errorCode: e.errorCode, errorMessage: e.message})
+            }
             return false
         }
     },
