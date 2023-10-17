@@ -34,6 +34,24 @@ export default [
         }
     },
     {
+        path: '/one-id/login',
+        name: 'OneID Login',
+        component: () => import('@/shared/views/auth/one-id'),
+        meta: {
+            public: true, // allow even if not logged in
+            onlyWhenLoggedOut: true
+        }
+    },
+    {
+        path: '/check',
+        name: 'Check',
+        component: () => import('@/shared/views/auth/CheckMurojaat'),
+        meta: {
+            public: true, // allow even if not logged in
+            onlyWhenLoggedOut: true
+        }
+    },
+    {
         path: '/register',
         name: 'Register',
         component: () => import('@/shared/views/auth/register'),
