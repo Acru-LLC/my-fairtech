@@ -43,15 +43,6 @@ export default [
         }
     },
     {
-        path: '/check',
-        name: 'Check',
-        component: () => import('@/shared/views/auth/CheckMurojaat'),
-        meta: {
-            public: true, // allow even if not logged in
-            onlyWhenLoggedOut: true
-        }
-    },
-    {
         path: '/register',
         name: 'Register',
         component: () => import('@/shared/views/auth/register'),
@@ -73,6 +64,15 @@ export default [
         path: '/pharm-sms/confirm-window/:id',
         name: 'PharmSmsConfirmWindow',
         component: () => import('@/modules/pharm/start/PharmSmsConfirmWindow'),
+        meta: {
+            public: true,
+            onlyWhenLoggedOut: true
+        }
+    },
+    {
+        path: '/pharm-check',
+        name: 'PharmCheck',
+        component: () => import('@/modules/pharm/start/Start'),
         meta: {
             public: true,
             onlyWhenLoggedOut: true
