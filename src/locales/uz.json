@@ -4112,5 +4112,17 @@
     "upload_btn": "+Fayl yuklash",
     "draft_btn": "Qoralama saqlash",
     "send_btn": "Yuborish"
+  },
+  "pharm_check_sms": {
+    "main_title": "O'zbekiston Respublikasi Raqobatni rivojlantirish va iste'molchilar huqularini himoya qilish qo'mitasi",
+    "require_text": "Shaxsiy kabinetingizdagi murojaat(lar)ni tekshirish uchun telefon raqamingizni toki JSH SHIRni kiriting",
+    "with_phone_number": "Telefon raqam orqali",
+    "with_pinfl": "JSH SHIR orqali",
+    "check_btn": "Tekshirish",
+    "full_name": "F I SH",
+    "murojaat_count": "Murojaat soni",
+    "last_submit_date": "Oxirgi murojaat yuborilgan sana",
+    "login_require_text": "Murojaatlar haqidagi to'liq ma'lumot olish uchun “Fair Tech” YaAT kiring",
+    "entry_personal_c": "Shaxsiy kabinetga kirish"
   }
 }
