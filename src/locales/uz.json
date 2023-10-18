@@ -4118,6 +4118,7 @@
     "require_text": "Shaxsiy kabinetingizdagi murojaat(lar)ni tekshirish uchun telefon raqamingizni toki JSH SHIRni kiriting",
     "with_phone_number": "Telefon raqam orqali",
     "with_pinfl": "JSH SHIR orqali",
+    "pinfl_placeholder": "JSH SHIR kiriting",
     "check_btn": "Tekshirish",
     "full_name": "F I SH",
     "murojaat_count": "Murojaat soni",
