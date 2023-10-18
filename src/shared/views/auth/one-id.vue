@@ -38,6 +38,7 @@
           <div class="box position-relative d-flex flex-column justify-content-center">
 
             <div class="m-auto">
+              <b-row class="main-txt">FAIR TECH</b-row>
               <b-row class="welcome-text">{{ $t('system.oneId.welcome_text') }}</b-row>
               <b-row class="bg-white p-3 oneID d-flex align-items-center mb-5">
                 <img src="../auth/images/loginImages/oneID.svg" alt="">
@@ -901,6 +902,18 @@ select:-webkit-autofill:focus {
 }
 
 .welcome-text {
+  color: #FFF;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  position: absolute;
+  top: 80px;
+  left: 184px;
+  width: 333px;
+  height: 100px;
+}
+.main-txt {
   color: #FFF;
   font-size: 30px;
   font-style: normal;
