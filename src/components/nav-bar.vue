@@ -97,7 +97,7 @@ export default {
     // },
     mainLogo() {
       TokenService.removeCurrentProject();
-      this.$router.push('/project-menu')
+      this.$router.push('/main')
     },
     toggleMenu() {
       this.$parent.toggleMenu(true);
@@ -448,7 +448,7 @@ export default {
                         </span>
           </div>
 
-          <router-link tag="a" to="/" class="logo logo-light">
+          <router-link tag="a" to="/main" class="logo logo-light">
             <span class="logo-sm">
                 <img src="@/shared/views/auth/images/mainPageImages/flags/logo.svg" alt height=60%/>
             </span>

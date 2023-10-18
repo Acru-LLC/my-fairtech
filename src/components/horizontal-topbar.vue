@@ -166,7 +166,7 @@ export default {
       <div class="d-flex">
         <!-- LOGO -->
         <div class="navbar-brand-box">
-          <router-link to="/" class="logo logo-dark">
+          <router-link to="/main" class="logo logo-dark">
             <span class="logo-sm">
               <img src="@/assets/images/logo.svg" alt height="22" />
             </span>
@@ -175,7 +175,7 @@ export default {
             </span>
           </router-link>
 
-          <router-link to="/" class="logo logo-light">
+          <router-link to="/main" class="logo logo-light">
             <span class="logo-sm">
               <img src="@/assets/images/logo-light.svg" alt height="22" />
             </span>
@@ -673,7 +673,7 @@ export default {
             >
               <i class="mdi mdi-arrow-right-circle me-1"></i>
                <span key="t-view-more"> {{ $t("navbar.dropdown.notification.button") }}</span>
-            
+
             </a>
           </div>
         </b-dropdown>
