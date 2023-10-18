@@ -34,6 +34,8 @@ export default {
       isActive1: false,
       isActive2: false,
       isActive3: false,
+      isActiveS1: false,
+      isActiveS2: false,
       selectedOption: '',
       file: '',
       buttonText: this.$t('product_dashboard_info.upload_btn'),
@@ -91,6 +93,12 @@ COMPUTED */
   /*
   METHODS */
   methods: {
+    firstDropdown() {
+      this.isActiveS1 = !this.isActiveS1
+    },
+    secondDropdown() {
+      this.isActiveS2 = !this.isActiveS2
+    },
     toggleDropdown1() {
       this.isActive1 = !this.isActive1;
     },
@@ -131,41 +139,64 @@ COMPUTED */
 <template>
   <div>
     <Layout >
-      <div class="mt-5">
+      <div class="mt-3">
         <b-row class="text-white p-1 col-3" style="background-color: #236257; border-radius: 2px">
           {{ $t('product_dashboard_info.register_title') }}
         </b-row>
-        <div class="mt-3 col-6">
+        <div class="mt-3 col-6" style="margin-bottom: 40px">
           <form class="d-flex">
             <fieldset>
               <legend>{{ $t('product_dashboard_info.type') }}</legend>
-              <div style="margin-left: 10px">
-                <input class="mr-1 cursor-pointer" type="checkbox" id="ariza" name="murojaat_turi" value="ariza">
-                <label for="ariza">{{ $t('product_dashboard_info.ariza') }}</label><br>
-                <input class="mr-1 cursor-pointer" type="checkbox" id="shikoyat" name="murojaat_turi" value="shikoyat">
-                <label for="shikoyat">{{ $t('product_dashboard_info.appeal') }}</label><br>
-                <input class="mr-1 cursor-pointer" type="checkbox" id="taklif" name="murojaat_turi" value="taklif">
-                <label for="taklif">{{ $t('product_dashboard_info.offer') }}</label>
+              <div>
+
+                <div class="dropdown-select font-size-15" @click="firstDropdown" :class="{ active: isActiveS1 }">
+                  <input type="text" class="textBox" id="firstDropdown" :placeholder="'Murojaat turini tanlash'" readonly
+                         :value="selectedOption">
+                  <div class="option-select">
+                    <div>{{ $t('product_dashboard_info.ariza') }}</div>
+                    <div>{{ $t('product_dashboard_info.appeal') }}</div>
+                    <div>{{ $t('product_dashboard_info.offer') }}</div>
+                  </div>
+                </div>
+
+<!--                <input class="mr-1 cursor-pointer" type="checkbox" id="ariza" name="murojaat_turi" value="ariza">-->
+<!--                <label for="ariza">{{ $t('product_dashboard_info.ariza') }}</label><br>-->
+<!--                <input class="mr-1 cursor-pointer" type="checkbox" id="shikoyat" name="murojaat_turi" value="shikoyat">-->
+<!--                <label for="shikoyat">{{ $t('product_dashboard_info.appeal') }}</label><br>-->
+<!--                <input class="mr-1 cursor-pointer" type="checkbox" id="taklif" name="murojaat_turi" value="taklif">-->
+<!--                <label for="taklif">{{ $t('product_dashboard_info.offer') }}</label>-->
               </div>
             </fieldset>
             <b-col cols="4"></b-col>
             <fieldset>
               <legend>{{ $t('product_dashboard_info.murojaat_view') }}</legend>
-              <div style="margin-left: 10px">
-                <input class="mr-1 cursor-pointer" type="checkbox" id="standart_murojaat" name="murojaat_korinishi"
-                       value="standart_murojaat">
-                <label for="standart_murojaat">{{ $t('product_dashboard_info.standart') }}</label><br>
-                <input class="mr-1 cursor-pointer" type="checkbox" id="qayta_korib_chiqish_uchun"
-                       name="murojaat_korinishi" value="qayta_korib_chiqish_uchun">
-                <label for="qayta_korib_chiqish_uchun">{{ $t('product_dashboard_info.review') }}</label><br>
-                <input class="mr-1 cursor-pointer" type="checkbox" id="other" name="murojaa_korinishi" value="other">
-                <label for="other">----</label>
+              <div>
+
+
+                <div class="dropdown-select font-size-15" @click="secondDropdown" :class="{ active: isActiveS2 }">
+                  <input type="text" class="textBox" id="secondDropdown" :placeholder="'Murojaat ko`rinishini tanlash'" readonly
+                         :value="selectedOption">
+                  <div class="option-select">
+                    <div>{{ $t('product_dashboard_info.standart') }}</div>
+                    <div>{{ $t('product_dashboard_info.review') }}</div>
+                  </div>
+                </div>
+
+
+<!--                <input class="mr-1 cursor-pointer" type="checkbox" id="standart_murojaat" name="murojaat_korinishi"-->
+<!--                       value="standart_murojaat">-->
+<!--                <label for="standart_murojaat">{{ $t('product_dashboard_info.standart') }}</label><br>-->
+<!--                <input class="mr-1 cursor-pointer" type="checkbox" id="qayta_korib_chiqish_uchun"-->
+<!--                       name="murojaat_korinishi" value="qayta_korib_chiqish_uchun">-->
+<!--                <label for="qayta_korib_chiqish_uchun">{{ $t('product_dashboard_info.review') }}</label><br>-->
+<!--                <input class="mr-1 cursor-pointer" type="checkbox" id="other" name="murojaa_korinishi" value="other">-->
+<!--                <label for="other">&#45;&#45;&#45;&#45;</label>-->
               </div>
             </fieldset>
           </form>
 
-        </div>
-        <div class="mt-3 mb-3 col-6 font-size-15">{{ $t('product_dashboard_info.address.title') }}</div>
+        </div >
+        <div class="mb-3 col-6 font-size-15">{{ $t('product_dashboard_info.address.title') }}</div>
         <b-row class="col">
           <div class="col">
             <label for="dropdown1">{{ $t('product_dashboard_info.address.region') }}</label>
@@ -299,7 +330,7 @@ COMPUTED */
               @click="getInfos"
               variant="outline-primary"
               id="contractorSearchButton"
-              class="btn mt-3 mb-3"
+              class="btn mb-3"
               style="padding: 2.5px 10px; font-size: 1.2rem; background-color: #225F55; width: 200px;"
           >
             <b-spinner v-if="loadingTableItems" type="border" small></b-spinner>
@@ -339,7 +370,7 @@ COMPUTED */
   border: 2px solid #427067;
   right: 20px;
   top: 10px;
-  z-index: 10000;
+  z-index: 100;
   border-top: 2px solid #fff;
   border-right: 2px solid #fff;
   transform: rotate(-45deg);
