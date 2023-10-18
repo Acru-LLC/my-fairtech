@@ -177,7 +177,7 @@ const AuthService = {
         ApiService.unmount401Interceptor()
     },
     loginRequestToOneId({ code, state }) {
-        return ApiService.get(`/auth/oneid/redirectUri?code=${code}&state=${state}`);
+        return ApiService.get(`/product-auth/auth/oneid/redirectUri?code=${code}&state=${state}`);
     }
 }
 
