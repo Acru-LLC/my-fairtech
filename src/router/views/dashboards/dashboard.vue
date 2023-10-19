@@ -581,6 +581,7 @@ COMPUTED */
   background-image: url("../../../assets/images/col-3-gray.svg");
   background-size: cover;
   background-repeat: no-repeat;
+  height: 230px;
 }
 
 body-card-text{
