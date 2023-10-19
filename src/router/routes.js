@@ -72,7 +72,7 @@ export default [
     {
         path: '/pharm-check',
         name: 'PharmCheck',
-        component: () => import('@/modules/pharm/start/Start'),
+        component: () => import('../shared/views/auth/PharmCheck'),
         meta: {
             public: true,
             onlyWhenLoggedOut: true
