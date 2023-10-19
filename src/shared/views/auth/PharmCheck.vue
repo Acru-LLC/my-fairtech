@@ -1,6 +1,7 @@
 <script>
 import {mapActions, mapMutations} from "vuex";
 import i18n from "@/i18n";
+import CheckService from "@/shared/services/checkService";
 
 export default {
   data() {
@@ -31,11 +32,17 @@ export default {
       lan: this.$i18n.locale,
       text: null,
       flag: null,
+      loading: false,
+      searchingModal: false,
       currentLocale: {},
       isTelefonActive: true,
       isJshshirActive: false,
       telefonInput: "",
       jshshirInput: "",
+      fish: '',
+      appealCount: '',
+      appealDate: '',
+      getUserDatas:{}
     }
   },
   computed: {
@@ -90,7 +97,35 @@ export default {
       this.isJshshirActive = type === 'pinfl';
     },
     sendRequest() {
-      // Handle the request sending logic here
+      this.loading = true;
+      let check = {
+        phoneNumber:this.telefonInput.slice(4),
+        pinfl:this.jshshirInput,
+        fish: this.fish,
+        appealCount: this.appealCount,
+        appealDate: this.appealDate
+      }
+      this.searchLoader = true;
+      return CheckService.pharmCheckOutside(check)
+          .then((result)=>{
+            this.getUserDatas = result.data;
+            this.phoneNumber = '';
+            this.pinfl = '';
+            this.fish = '';
+            this.appealCount = '';
+            this.appealDate = '';
+            this.searchLoader = false;
+            this.loading = false;
+            // console.log(result.data)
+          })
+          .catch((err) => {
+            // this.catchErr(err);
+          })
+          .finally(() => {
+            this.searchLoader = false;
+            this.searchingModal = false;
+            this.loading = false;
+          });
     },
   },
   mounted() {
@@ -166,7 +201,7 @@ export default {
           <button @click="showInput('pinfl')" class="active-class-style btn btn-success">{{$t('pharm_check_sms.with_pinfl')}}</button>
         </div>
         <div v-if="isTelefonActive" class="d-flex justify-content-center my-3">
-          <input class="form-control w-50" v-model="telefonInput" v-mask="'+998 ## ### ## ##'" :placeholder="'+998 -- --- -- --'"/>
+          <input class="form-control w-50" v-model="telefonInput" v-mask="'+998#########'" :placeholder="'+998 -- --- -- --'"/>
         </div>
 
         <div v-if="isJshshirActive" class="d-flex justify-content-center my-3">
@@ -174,6 +209,38 @@ export default {
         </div>
 
         <button @click="sendRequest" :disabled="isSendButtonDisabled" v-if="isJshshirActive || isTelefonActive" class="btn btn-success w-50 d-flex justify-content-center mx-auto" style="background-color: #226358">{{ $t('pharm_check_sms.check_btn') }}</button>
+      </div>
+      <div style="background-color: #EEF2FE" class="w-100 h-50 pt-3 pb-3">
+        <div class="bg-white w-100 h-100 d-flex justify-content-center p-3">
+          <b-row cols="12" class="w-50 text-center">
+            <b-col style="height: 0" class="text-success">
+              {{ $t('pharm_check_sms.full_name') }}
+            <b-form-text class="font-size-17 font-weight-bold" style="color: #226358">
+              {{getUserDatas.lastName ? getUserDatas.lastName.slice(0,1) : ''}}. {{getUserDatas.firstName ? getUserDatas.firstName.slice(0,1): ''}}. {{getUserDatas.middleName ? getUserDatas.middleName.slice(0,1) : ''}}
+            </b-form-text>
+            </b-col>
+            <b-col style="height: 0" class="text-success">
+              {{ $t('pharm_check_sms.murojaat_count') }}
+            <b-form-text class="font-size-17 font-weight-bold" style="color: #226358">
+              {{getUserDatas.count}} ta</b-form-text>
+            </b-col>
+            <b-col style="height: 0" class="text-success">
+              {{ $t('pharm_check_sms.last_submit_date') }}
+            <b-form-text class="font-size-17 font-weight-bold" style="color: #226358">
+              {{getUserDatas.date ? getUserDatas.date.slice(0,11).split('-').join('.') : ''}}
+            </b-form-text>
+            </b-col>
+            <b-row class="w-100 d-flex justify-content-center text-success font-size-14 mt-3" style="height: 0">{{$t('pharm_check_sms.login_require_text')}}</b-row>
+            <div class="cursor-pointer w-25 d-flex justify-content-between mx-auto" style="height: 50px; border-radius: 13px; border: 1px solid #226358">
+              <a href="/login" style="width: 50%; border-radius: 10px; background-color: #226358" class="font-size-20 d-flex align-items-center justify-content-center text-white">oneID</a>
+              <h3 style="width: 50%; color: #226358" class="d-flex justify-content-center font-weight-bold my-auto">LOGIN</h3>
+            </div>
+            <div class="d-flex justify-content-center w-100 text-success font-size-14" style="height: 0">
+              {{$t('pharm_check_sms.entry_personal_c')}}
+            </div>
+          </b-row>
+
+        </div>
       </div>
     </div>
   </div>
