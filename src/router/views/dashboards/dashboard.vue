@@ -206,9 +206,10 @@ COMPUTED */
       this.$router.push('/dashboard');
     },
     getUserInfo() {
-      crudAndListsService.getById(MAIN_API_URL_USER, this.userId)
+      crudAndListsService.getUserInformation()
           .then((res) => {
-            this.userInfos = res.data;
+            console.log(res.data);
+            // this.userInfos = res.data;
           })
           .catch(e => {
             this.userInfos = [];
@@ -348,9 +349,9 @@ COMPUTED */
         <div class="row">
           <div class="col-xl-5">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
-              <ol class="carousel-indicators">
-                <li data-target="#myCarousel" :data-slide-to="index" :class="{ active: index === 0 }" v-for="(slide, index) in slideCount()" :key="index"></li>
-              </ol>
+<!--              <ol class="carousel-indicators">-->
+<!--                <li data-target="#myCarousel" :data-slide-to="index" :class="{ active: index === 0 }" v-for="(slide, index) in slideCount()" :key="index"></li>-->
+<!--              </ol>-->
               <div class="carousel-inner">
                 <div class="carousel-item active">
                   <div class="card overflow-hidden">
@@ -369,73 +370,74 @@ COMPUTED */
                     <!--          </div>-->
                     <div class="card-body pt-0 col-part-1">
                       <div class="row">
-                        <div class="col-sm-12 ">
-                          <a href="#"><button type="button" class="btn btn-success mt-3 mb-3" style="background-color: #1DA78E; z-index: 2">{{ $t('dashboard.slide_bar.info_btn') }}</button></a>
-                          <h4 class="card-text text-uppercase">{{ $t('dashboard.slide_bar.ask_title') }}</h4>
+                        <div class="col-sm-12 py-5">
+<!--                          <a href="#"><button type="button" class="btn btn-success mt-3 mb-3" style="background-color: #1DA78E; z-index: 2">{{ $t('dashboard.slide_bar.info_btn') }}</button></a>-->
+                          <h4 class="body-card-text text-white text-uppercase mt-3">{{ $t('dashboard.slide_bar.ask_title') }}</h4>
                           <p class="card-text">{{ $t('dashboard.slide_bar.ask_info') }}</p>
-                          <a href="#"><button type="button" class="btn btn-success" style="background-color: #1DA78E">{{ $t('dashboard.slide_bar.detail_btn') }}</button></a>
+<!--                          <a href="#"><button type="button" class="btn btn-success" style="background-color: #1DA78E">{{ $t('dashboard.slide_bar.detail_btn') }}</button></a>-->
                         </div>
+<!--                        JSHSHIR-->
                       </div>
                     </div>
                     <!-- end card-body -->
                   </div>
                 </div>
-                <div class="carousel-item">
-                  <div class="card overflow-hidden">
-                    <!--          <div class="bg-soft bg-primary">-->
-                    <!--            <div class="row">-->
-                    <!--              <div class="col-7">-->
-                    <!--                <div class="text-primary p-3">-->
-                    <!--                  <h5 class="text-primary">Welcome Back !</h5>-->
-                    <!--                  <p>ANTIMONOPOLY COMMITTEE OF THE REPUBLIC OF UZBEKISTAN</p>-->
-                    <!--                </div>-->
-                    <!--              </div>-->
-                    <!--              <div class="col-5 align-self-end">-->
-                    <!--                <img src="@/assets/images/profile-5.png" alt class="img-fluid"/>-->
-                    <!--              </div>-->
-                    <!--            </div>-->
-                    <!--          </div>-->
-                    <div class="card-body pt-0 col-part-1">
-                      <div class="row">
-                        <div class="col-sm-12 ">
-                          <a href="#"><button type="button" class="btn btn-success mt-3 mb-3" style="background-color: #1DA78E; z-index: 2">{{ $t('dashboard.slide_bar.info_btn') }}</button></a>
-                          <h4 class="card-text text-uppercase">{{ $t('dashboard.slide_bar.ask_title') }}</h4>
-                          <p class="card-text">{{ $t('dashboard.slide_bar.ask_info') }}</p>
-                          <a href="#"><button type="button" class="btn btn-success" style="background-color: #1DA78E">{{ $t('dashboard.slide_bar.detail_btn') }}</button></a>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- end card-body -->
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="card overflow-hidden">
-                    <!--          <div class="bg-soft bg-primary">-->
-                    <!--            <div class="row">-->
-                    <!--              <div class="col-7">-->
-                    <!--                <div class="text-primary p-3">-->
-                    <!--                  <h5 class="text-primary">Welcome Back !</h5>-->
-                    <!--                  <p>ANTIMONOPOLY COMMITTEE OF THE REPUBLIC OF UZBEKISTAN</p>-->
-                    <!--                </div>-->
-                    <!--              </div>-->
-                    <!--              <div class="col-5 align-self-end">-->
-                    <!--                <img src="@/assets/images/profile-5.png" alt class="img-fluid"/>-->
-                    <!--              </div>-->
-                    <!--            </div>-->
-                    <!--          </div>-->
-                    <div class="card-body pt-0 col-part-1">
-                      <div class="row">
-                        <div class="col-sm-12 ">
-                          <a href="#"><button type="button" class="btn btn-success mt-3 mb-3" style="background-color: #1DA78E; z-index: 2">{{ $t('dashboard.slide_bar.info_btn') }}</button></a>
-                          <h4 class="card-text text-uppercase">{{ $t('dashboard.slide_bar.ask_title') }}</h4>
-                          <p class="card-text">{{ $t('dashboard.slide_bar.ask_info') }}</p>
-                          <a href="#"><button type="button" class="btn btn-success" style="background-color: #1DA78E">{{ $t('dashboard.slide_bar.detail_btn') }}</button></a>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- end card-body -->
-                  </div>
-                </div>
+<!--                <div class="carousel-item">-->
+<!--                  <div class="card overflow-hidden">-->
+<!--                    &lt;!&ndash;          <div class="bg-soft bg-primary">&ndash;&gt;-->
+<!--                    &lt;!&ndash;            <div class="row">&ndash;&gt;-->
+<!--                    &lt;!&ndash;              <div class="col-7">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                <div class="text-primary p-3">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                  <h5 class="text-primary">Welcome Back !</h5>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                  <p>ANTIMONOPOLY COMMITTEE OF THE REPUBLIC OF UZBEKISTAN</p>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;              </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;              <div class="col-5 align-self-end">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                <img src="@/assets/images/profile-5.png" alt class="img-fluid"/>&ndash;&gt;-->
+<!--                    &lt;!&ndash;              </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;          </div>&ndash;&gt;-->
+<!--                    <div class="card-body pt-0 col-part-1">-->
+<!--                      <div class="row">-->
+<!--                        <div class="col-sm-12 ">-->
+<!--                          <a href="#"><button type="button" class="btn btn-success mt-3 mb-3" style="background-color: #1DA78E; z-index: 2">{{ $t('dashboard.slide_bar.info_btn') }}</button></a>-->
+<!--                          <h4 class="card-text text-uppercase">{{ $t('dashboard.slide_bar.ask_title') }}</h4>-->
+<!--                          <p class="card-text">{{ $t('dashboard.slide_bar.ask_info') }}</p>-->
+<!--                          <a href="#"><button type="button" class="btn btn-success" style="background-color: #1DA78E">{{ $t('dashboard.slide_bar.detail_btn') }}</button></a>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; end card-body &ndash;&gt;-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="carousel-item">-->
+<!--                  <div class="card overflow-hidden">-->
+<!--                    &lt;!&ndash;          <div class="bg-soft bg-primary">&ndash;&gt;-->
+<!--                    &lt;!&ndash;            <div class="row">&ndash;&gt;-->
+<!--                    &lt;!&ndash;              <div class="col-7">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                <div class="text-primary p-3">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                  <h5 class="text-primary">Welcome Back !</h5>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                  <p>ANTIMONOPOLY COMMITTEE OF THE REPUBLIC OF UZBEKISTAN</p>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;              </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;              <div class="col-5 align-self-end">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                <img src="@/assets/images/profile-5.png" alt class="img-fluid"/>&ndash;&gt;-->
+<!--                    &lt;!&ndash;              </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;          </div>&ndash;&gt;-->
+<!--                    <div class="card-body pt-0 col-part-1">-->
+<!--                      <div class="row">-->
+<!--                        <div class="col-sm-12 ">-->
+<!--                          <a href="#"><button type="button" class="btn btn-success mt-3 mb-3" style="background-color: #1DA78E; z-index: 2">{{ $t('dashboard.slide_bar.info_btn') }}</button></a>-->
+<!--                          <h4 class="card-text text-uppercase">{{ $t('dashboard.slide_bar.ask_title') }}</h4>-->
+<!--                          <p class="card-text">{{ $t('dashboard.slide_bar.ask_info') }}</p>-->
+<!--                          <a href="#"><button type="button" class="btn btn-success" style="background-color: #1DA78E">{{ $t('dashboard.slide_bar.detail_btn') }}</button></a>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; end card-body &ndash;&gt;-->
+<!--                  </div>-->
+<!--                </div>-->
               </div>
             </div>
           </div>
@@ -553,7 +555,7 @@ COMPUTED */
             </b-col>
           </b-row>
         </div>
-        <div class="p-2 mt-3" style="border-top: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+        <div class="p-2 mt-3" style="display:none; border-top: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
           <b-row class="text-white p-1 col-3" style="background-color: #236257; border-radius: 2px">
             {{ $t('product_dashboard_info.for_customer_title') }}
           </b-row>
@@ -580,8 +582,15 @@ COMPUTED */
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+body-card-text{
+  color: #FFFFFF;
+  font-size: 20px;
+  z-index: 2;
+}
 .card-text{
   color: #FFFFFF;
+  font-size: 15px;
   z-index: 2;
 }
 .col-xl-7{

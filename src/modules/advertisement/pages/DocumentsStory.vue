@@ -1208,7 +1208,7 @@ export default {
           .finally(() => {
             setTimeout(()=>{
               this.loading = false;
-            },3500)
+            },1500)
           });
     }
     ,
@@ -2062,7 +2062,7 @@ export default {
           .finally(() => {
             setTimeout(()=>{
               this.loading = false;
-            },3500)
+            },1500)
           });
     }
     ,
@@ -2086,7 +2086,7 @@ export default {
   },
 
   mounted() {
-    // this.getPharmStatusCount();
+    this.getPharmStatusCount();
   },
 
   async created() {
@@ -2261,10 +2261,7 @@ export default {
                           <div>
                             <p class="font-weight-bold"
                                style="padding:3px 6px 2px 6px; background-color: #2b675b; color: white; font-size: 12px; border-radius: 5px; border:1px solid white; margin-bottom:0;">
-<!--                              <span v-if="countLabel.beingSeen || countLabel.process || countLabel.sendToCourt || countLabel.timeExtended">-->
-<!--                                {{ (countLabel.beingSeen + countLabel.process + countLabel.sendToCourt + countLabel.timeExtended).toLocaleString() }}</span>-->
-<!--                              <span v-else>0</span>-->
-                              <span>1</span>
+                              <span> {{ formatNumber(countLabel.process ? countLabel.process : 0) }}</span>
                             </p>
                           </div>
                         </div>
@@ -2283,6 +2280,25 @@ export default {
                                style="padding:3px 6px 2px 6px; background-color: #2b675b; color: white; font-size: 12px; border-radius: 5px; border:1px solid white; margin-bottom:0;">
                                <span>
                                  {{ formatNumber(countLabel.finished ? countLabel.finished : 0) }}
+                               </span>
+                            </p>
+                          </div>
+                        </div>
+
+                        <div @click="activeStatus = 'ALL'"
+                             class="d-flex justify-content-between align-items-center ml-3"
+                             style="cursor:pointer; width:340px; border: 1px solid #2b675b; padding: 4px 10px; border-radius: 5px;"
+                             :style="activeStatus=='ALL' ? `background-color: #2b675b; color: white`:`background-color: white; color: #2b675b`"
+                        >
+                          <div class="font-weight-bold">{{
+                              $t('pharm.chakanaData.allAppeals')
+                            }}
+                          </div>
+                          <div>
+                            <p class="font-weight-bold"
+                               style="padding:3px 6px 2px 6px; background-color: #2b675b; color: white; font-size: 12px; border-radius: 5px; border:1px solid white; margin-bottom:0;">
+                               <span>
+                                 {{ formatNumber((countLabel.process || countLabel.finished )? (countLabel.process + countLabel.finished) : 0) }}
                                </span>
                             </p>
                           </div>
@@ -2446,75 +2462,174 @@ export default {
                                 </div>
                                 <b-row class="mt-2">
                                   <b-col cols="12">
-                                    <b-row>
+                                    <b-row class="pb-2">
                                       <b-col cols="12" sm="3">
                                         <p class="mb-0" style="color:#839690;">
                                           {{ $t('pharm.chakanaData.fish') }} :</p>
-                                        <p class="mb-0"><b style="color:#2b6c58;">{{
+                                        <p class="mb-0"><b class="detailText">{{
                                             selectedAppealTrItem.consumerLastName
                                           }} {{ selectedAppealTrItem.consumerFirstName }}
                                           {{ selectedAppealTrItem.consumerMiddleName }}</b>
                                         </p>
+
+                                      </b-col>
+                                      <b-col cols="12" sm="3">
                                         <p class="mb-0" style="color:#839690;">
                                           {{ $t('pharm.chakanaData.jshshri') }}:</p>
-                                        <p class="mb-0"><b style="color:#2b6c58;">{{
+                                        <p class="mb-0"><b class="detailText">{{
                                             selectedAppealTrItem.consumerPinfl ? selectedAppealTrItem.consumerPinfl : $t('actions.empty')
+                                          }}</b></p>
+<!--                                        <p class="mb-0" style="color:#839690;">-->
+<!--                                          {{ $t('pharm.chakanaData.appealNumber') }}:</p>-->
+<!--                                        <p class="mb-0"><b style="color:#2b6c58;">{{-->
+<!--                                            selectedAppealTrItem.mnumber.slice(2)-->
+<!--                                          }}</b></p>-->
+                                      </b-col>
+                                      <b-col cols="12" sm="3">
+                                        <p class="mb-0" style="color:#839690;">
+                                          {{ $t('pharm.chakanaData.phoneNumber') }}:</p>
+                                        <p class="mb-0"><b class="detailText">+{{
+                                            selectedAppealTrItem.consumerPhone
+                                          }}</b></p>
+<!--                                        <p class="mb-0" style="color:#839690;">-->
+<!--                                          {{ $t('pharm.chakanaData.cardNumber') }}:</p>-->
+<!--                                        <p class="mb-0"><b style="color:#2b6c58;">{{-->
+<!--                                            selectedAppealTrItem.pharmacyTin-->
+<!--                                          }}</b></p>-->
+<!--                                        <p class="mb-0" style="color:#839690;">-->
+<!--                                          {{ $t('pharm.chakanaData.submitDate') }}:</p>-->
+<!--                                        <p class="mb-0"><b style="color:#2b6c58;">{{-->
+<!--                                            selectedAppealTrItem.createJson.slice(0, 10).split('-').join('.')-->
+<!--                                          }}</b></p>-->
+                                      </b-col>
+                                      <b-col cols="12" sm="3">
+                                        <p class="mb-0" style="color:#839690;">
+                                          {{ $t('column.address') }}:</p>
+                                        <p class="mb-0"><b class="detailText">{{
+                                            selectedAppealTrItem.consumerAddress
+                                          }}</b></p>
+
+                                      </b-col>
+                                    </b-row>
+                                  </b-col>
+
+                                </b-row>
+
+                              </div>
+                              <div style="border: 1px solid #2b6c58; padding:10px; background-color: white; margin-top: 10px;">
+                                <div style="background-color: #2b6c58; padding: 6px 10px; width: 220px;">
+                                  <div class="text-white font-weight-bold text-start">
+                                    {{ $t('pharm.chakanaData.pharmInfo') }}
+                                  </div>
+                                </div>
+                                <b-row class="mt-2">
+                                  <b-col cols="12">
+                                    <b-row class="pb-2">
+                                      <b-col cols="12" sm="3">
+                                        <p class="mb-0" style="color:#839690;">
+                                          {{ $t('pharm.chakanaData.pharmName') }}:</p>
+                                        <p class="mb-1"><b class="detailText">{{
+                                            selectedAppealTrItem.pharmacyName
+                                          }}</b></p>
+                                        <p class="mb-0" style="color:#839690;">
+                                          {{ $t('pharm.chakanaData.pharmStr') }}:</p>
+                                        <p class="mb-0"><b class="detailText">{{
+                                            selectedAppealTrItem.pharmacyTin
+                                          }}</b></p>
+                                      </b-col>
+                                      <b-col cols="12" sm="3">
+                                        <p class="mb-0" style="color:#839690;">
+                                          {{ $t('pharm.chakanaData.pharmBoss') }}:</p>
+                                        <p class="mb-1"><b class="detailText">{{
+                                            selectedAppealTrItem.medicationFounderName
+                                          }}</b></p>
+                                        <p class="mb-0" style="color:#839690;">
+                                          {{ $t('pharm.chakanaData.passNumber') }}:</p>
+                                        <p class="mb-0"><b class="detailText">{{
+                                            selectedAppealTrItem.medicationFounderPassport
                                           }}</b></p>
                                       </b-col>
                                       <b-col cols="12" sm="3">
                                         <p class="mb-0" style="color:#839690;">
                                           {{ $t('pharm.chakanaData.phoneNumber') }}:</p>
-                                        <p class="mb-0"><b style="color:#2b6c58;">+{{
-                                            selectedAppealTrItem.consumerPhone
+                                        <p class="mb-1"><b class="detailText">+998 {{
+                                            selectedAppealTrItem.medicationFounderPhone
                                           }}</b></p>
                                         <p class="mb-0" style="color:#839690;">
-                                          {{ $t('pharm.chakanaData.appealNumber') }}:</p>
-                                        <p class="mb-0"><b style="color:#2b6c58;">{{
-                                            selectedAppealTrItem.mnumber.slice(2)
+                                          {{ $t('pharm.chakanaData.pharmLoc') }}:</p>
+                                        <p class="mb-0"><b class="detailText">{{
+                                            selectedAppealTrItem.pharmacyRegionName
                                           }}</b></p>
                                       </b-col>
                                       <b-col cols="12" sm="3">
                                         <p class="mb-0" style="color:#839690;">
-                                          {{ $t('pharm.chakanaData.cardNumber') }}:</p>
-                                        <p class="mb-0"><b style="color:#2b6c58;">{{
-                                            selectedAppealTrItem.pharmacyTin
+                                          {{ $t('pharm.chakanaData.pharmLocInside') }}:</p>
+                                        <p class="mb-1"><b class="detailText">{{
+                                            selectedAppealTrItem.pharmacyDistrictName
                                           }}</b></p>
                                         <p class="mb-0" style="color:#839690;">
+                                          {{ $t('pharm.chakanaData.email') }}:</p>
+                                        <p class="mb-0"><b class="detailText">-</b></p>
+                                      </b-col>
+                                    </b-row>
+                                  </b-col>
+                                </b-row>
+
+                              </div>
+                              <div style="border: 1px solid #2b6c58; padding:10px; background-color: white; margin-top: 10px;">
+                                <div style="background-color: #2b6c58; padding: 6px 10px; width: 220px;">
+                                  <div class="text-white font-weight-bold text-start">
+                                    {{ $t('pharm.chakanaData.appealDesc') }}
+                                  </div>
+                                </div>
+                                <b-row class="mt-2">
+                                  <b-col cols="12">
+                                    <b-row>
+                                      <b-col cols="12" sm="3">
+                                        <p class="mb-0" style="color:#839690;">
+                                          {{ $t('pharm.chakanaData.cardNumber') }}:</p>
+                                        <p class="mb-0"><b class="detailText">{{
+                                            selectedAppealTrItem.pharmacyTin
+                                          }}</b></p>
+
+                                      </b-col>
+                                      <b-col cols="12" sm="3">
+                                        <p class="mb-0" style="color:#839690;">
                                           {{ $t('pharm.chakanaData.submitDate') }}:</p>
-                                        <p class="mb-0"><b style="color:#2b6c58;">{{
+                                        <p class="mb-0"><b class="detailText">{{
                                             selectedAppealTrItem.createJson.slice(0, 10).split('-').join('.')
                                           }}</b></p>
+<!--                                        <p class="mb-0" style="color:#839690;">-->
+<!--                                          {{ $t('pharm.chakanaData.appealDate') }}:</p>-->
+<!--                                        <p class="mb-0"><b-->
+<!--                                            style="color:#2b6c58;">{{-->
+<!--                                            selectedAppealTrItem.createJson.slice(0, 10).split('-').join('.')-->
+<!--                                          }}</b>-->
+<!--                                        </p>-->
+
                                       </b-col>
                                       <b-col cols="12" sm="3">
                                         <p class="mb-0" style="color:#839690;">
                                           {{ $t('pharm.chakanaData.submitAppealDate') }}:</p>
-                                        <p class="mb-0"><b style="color:#2b6c58;">{{
+                                        <p class="mb-0"><b class="detailText">{{
                                             selectedAppealTrItem.createJson.slice(0, 10).split('-').join('.')
                                           }}</b></p>
-                                        <p class="mb-0" style="color:#839690;">
-                                          {{ $t('pharm.chakanaData.appealPosition') }}:</p>
-                                        <p class="mb-0">
-                                          <b style="color:#2b6c58;"
-                                             v-if="selectedAppealTrItem.status == 'SEND_TO_REGION'">
-                                            {{ $t('pharm.chakanaData.sendToRegion') }}
-                                          </b>
-                                          <b style="color:#2b6c58;"
-                                             v-else-if="selectedAppealTrItem.status == 'CREATED'">
-                                            {{ $t('pharm.chakanaData.create') }}
-                                          </b>
-                                          <b style="color:#2b6c58;"
-                                             v-else-if="selectedAppealTrItem.status == 'TIME_EXTENDED'">
-                                            {{ $t('pharm.chakanaData.time_extended') }}
-                                          </b>
-                                          <b style="color:#2b6c58;"
-                                             v-else-if="selectedAppealTrItem.status == 'FINISHED'">
-                                            {{ $t('pharm.chakanaData.finished') }}
-                                          </b>
-                                          <b style="color:#2b6c58;" v-else>
-                                            {{ $t('pharm.chakanaData.prosecc') }}
-                                          </b>
 
-                                        </p>
+                                      </b-col>
+                                      <b-col cols="12" sm="3">
+                                        <p class="mb-0" style="color:#839690;">
+                                          {{ $t('pharm.chakanaData.pillLength') }}:</p>
+                                        <p class="mb-0"><b class="detailText">{{
+                                            selectedAppealTrItem.medications.length
+                                          }}</b></p>
+<!--                                        <p class="mb-0" style="color:#839690;">-->
+<!--                                          {{ $t('pharm.chakanaData.appealDate') }}:</p>-->
+<!--                                        <p class="mb-0"><b-->
+<!--                                            style="color:#2b6c58;">{{-->
+<!--                                            selectedAppealTrItem.createJson.slice(0, 10).split('-').join('.')-->
+<!--                                          }}</b>-->
+<!--                                        </p>-->
+
                                       </b-col>
                                     </b-row>
                                   </b-col>
@@ -2594,11 +2709,11 @@ export default {
                                       <b-col cols="3">
                                         <p class="mb-0" style="color:#839690;">
                                           {{ $t('pharm.chakanaData.allPrice') }}:</p>
-                                        <p class="mb-0"><b class="text-danger">
-                                          {{
-                                            formatNumber(selectedAppealTrItem.allExtraPrice ? selectedAppealTrItem.allExtraPrice.toFixed(2) : 0)
-                                          }}
-                                          so'm</b></p>
+                                        <p class="mb-0 mt-1" style="max-width: 180px; background-color:#872222; border-left: 5px solid #5c0707; border-bottom-right-radius: 6px;border-top-right-radius: 6px; padding: 5px 6px;">
+                                          <b class="text-white" style="font-size: 17px;">
+                                            {{
+                                              formatNumber(selectedAppealTrItem.allExtraPrice ? selectedAppealTrItem.allExtraPrice.toFixed(2) : 0)
+                                            }}</b></p>
                                         <b-button
                                             v-if="selectedAppealTrItem.medications.length > 2"
                                             @click="openTable = !openTable"
@@ -2626,104 +2741,93 @@ export default {
                               <div style="border: 1px solid #2b6c58; padding:10px; background-color: white; margin-top: 10px;">
                                 <div style="background-color: #2b6c58; padding: 6px 10px; width: 220px;">
                                   <div class="text-white font-weight-bold text-start">
-                                    {{ $t('pharm.chakanaData.pharmInfo') }}
-                                  </div>
-                                </div>
-                                <b-row class="mt-2">
-                                  <b-col cols="12">
-                                    <b-row>
-                                      <b-col cols="12" sm="3">
-                                        <p class="mb-0" style="color:#839690;">
-                                          {{ $t('pharm.chakanaData.pharmName') }}:</p>
-                                        <p class="mb-0"><b style="color:#2b6c58;">{{
-                                            selectedAppealTrItem.pharmacyName
-                                          }}</b></p>
-                                        <p class="mb-0" style="color:#839690;">
-                                          {{ $t('pharm.chakanaData.pharmStr') }}:</p>
-                                        <p class="mb-0"><b style="color:#2b6c58;">{{
-                                            selectedAppealTrItem.pharmacyTin
-                                          }}</b></p>
-                                      </b-col>
-                                      <b-col cols="12" sm="3">
-                                        <p class="mb-0" style="color:#839690;">
-                                          {{ $t('pharm.chakanaData.pharmBoss') }}:</p>
-                                        <p class="mb-0"><b style="color:#2b6c58;">{{
-                                            selectedAppealTrItem.medicationFounderName
-                                          }}</b></p>
-                                        <p class="mb-0" style="color:#839690;">
-                                          {{ $t('pharm.chakanaData.passNumber') }}:</p>
-                                        <p class="mb-0"><b style="color:#2b6c58;">{{
-                                            selectedAppealTrItem.medicationFounderPassport
-                                          }}</b></p>
-                                      </b-col>
-                                      <b-col cols="12" sm="3">
-                                        <p class="mb-0" style="color:#839690;">
-                                          {{ $t('pharm.chakanaData.phoneNumber') }}:</p>
-                                        <p class="mb-0"><b style="color:#2b6c58;">+998 {{
-                                            selectedAppealTrItem.medicationFounderPhone
-                                          }}</b></p>
-                                        <p class="mb-0" style="color:#839690;">
-                                          {{ $t('pharm.chakanaData.pharmLoc') }}:</p>
-                                        <p class="mb-0"><b style="color:#2b6c58;">{{
-                                            selectedAppealTrItem.pharmacyRegionName
-                                          }}</b></p>
-                                      </b-col>
-                                      <b-col cols="12" sm="3">
-                                        <p class="mb-0" style="color:#839690;">
-                                          {{ $t('pharm.chakanaData.pharmLocInside') }}:</p>
-                                        <p class="mb-0"><b style="color:#2b6c58;">{{
-                                            selectedAppealTrItem.pharmacyDistrictName
-                                          }}</b></p>
-                                        <p class="mb-0" style="color:#839690;">
-                                          {{ $t('pharm.chakanaData.email') }}:</p>
-                                        <p class="mb-0"><b style="color:#2b6c58;">-</b></p>
-                                      </b-col>
-                                    </b-row>
-                                  </b-col>
-                                </b-row>
-
-                              </div>
-                              <div style="border: 1px solid #2b6c58; padding:10px; background-color: white; margin-top: 10px;">
-                                <div style="background-color: #2b6c58; padding: 6px 10px; width: 220px;">
-                                  <div class="text-white font-weight-bold text-start">
                                     {{ $t('pharm.chakanaData.selectIjro') }}
                                   </div>
                                 </div>
                                 <b-row class="mt-2">
                                   <b-col cols="12">
-                                    <b-row>
+                                    <b-row class="pb-2">
                                       <b-col cols="12" sm="3">
                                         <p class="mb-0" style="color:#839690;">
-                                          {{ $t('pharm.chakanaData.masulArea') }}:</p>
-                                        <p class="mb-0"><b style="color:#2b6c58;">{{
-                                            selectedAppealTrItem.pharmacyRegionName
-                                          }}</b></p>
-                                      </b-col>
-                                      <b-col cols="12" sm="3">
-                                        <p class="mb-0" style="color:#839690;">
-                                          {{ $t('pharm.chakanaData.appealDate') }}:</p>
-                                        <p class="mb-0"><b
-                                            style="color:#2b6c58;">{{
-                                            selectedAppealTrItem.createJson.slice(0, 10).split('-').join('.')
-                                          }}</b>
-                                        </p>
-
-                                      </b-col>
-                                      <b-col cols="12" sm="3">
-                                        <p class="mb-0" style="color:#839690;">Мурожаат-1:</p>
-                                        <p class="mb-0"><b style="color:#2b6c58;">{{
+                                          {{ $t('pharm.chakanaData.appealNumber') }}:</p>
+                                        <p class="mb-1"><b class="detailText">{{
                                             selectedAppealTrItem.mnumber.slice(2)
                                           }}</b></p>
 
+                                        <p class="mb-0" style="color:#839690;">
+                                          {{ $t('pharm.chakanaData.submitDate') }}:</p>
+                                        <p class="mb-0"><b class="detailText">{{
+                                            selectedAppealTrItem.createJson.slice(0, 10).split('-').join('.')
+                                          }}</b></p>
+<!--                                        <p class="mb-0" style="color:#839690;">-->
+<!--                                          {{ $t('pharm.chakanaData.masulArea') }}:</p>-->
+<!--                                        <p class="mb-0"><b style="color:#2b6c58;">{{-->
+<!--                                            selectedAppealTrItem.pharmacyRegionName-->
+<!--                                          }}</b></p>-->
                                       </b-col>
                                       <b-col cols="12" sm="3">
                                         <p class="mb-0" style="color:#839690;">
-                                          {{ $t('pharm.chakanaData.appealDate') }}:</p>
-                                        <p class="mb-0"><b
-                                            style="color:#2b6c58;">{{
-                                            selectedAppealTrItem.createJson.slice(0, 10).split('-').join('.')
-                                          }}</b>
+                                          {{ $t('pharm.chakanaData.masulArea') }}:</p>
+                                        <p class="mb-1"><b class="detailText">{{
+                                            selectedAppealTrItem.belongDepartmentName
+                                          }}</b></p>
+
+                                        <p class="mb-0" style="color:#839690;">
+                                          {{ $t('pharm.chakanaData.ijrochi') }}:</p>
+                                        <p class="mb-0"><b class="detailText">{{
+                                            selectedAppealTrItem.innerEmployeeName ? selectedAppealTrItem.innerEmployeeName : '-'
+                                          }}</b></p>
+<!--                                        <p class="mb-0" style="color:#839690;">-->
+<!--                                          {{ $t('pharm.chakanaData.appealDate') }}:</p>-->
+<!--                                        <p class="mb-0"><b-->
+<!--                                            style="color:#2b6c58;">{{-->
+<!--                                            selectedAppealTrItem.createJson.slice(0, 10).split('-').join('.')-->
+<!--                                          }}</b>-->
+<!--                                        </p>-->
+
+                                      </b-col>
+                                      <b-col cols="12" sm="3">
+                                        <p class="mb-0" style="color:#839690;">
+                                          {{ $t('pharm.chakanaData.appealPosition') }}:</p>
+                                        <p class="mb-0" style="max-width: 220px; background-color:#5b8f85; border-left: 5px solid #25695c; border-bottom-right-radius: 6px;border-top-right-radius: 6px; padding: 6px 6px;">
+                                          <b class="text-white" style="font-size: 16px;"
+                                             v-if="selectedAppealTrItem.status == 'SEND_TO_REGION'">
+                                            {{ $t('pharm.chakanaData.sendToRegion') }}
+                                          </b>
+                                          <b class="text-white" style="font-size: 16px;"
+                                             v-else-if="selectedAppealTrItem.status == 'CREATED'">
+                                            {{ $t('pharm.chakanaData.create') }}
+                                          </b>
+                                          <b class="text-white" style="font-size: 16px;"
+                                             v-else-if="selectedAppealTrItem.status == 'TIME_EXTENDED'">
+                                            {{ $t('pharm.chakanaData.time_extended') }}
+                                          </b>
+                                          <b class="text-white" style="font-size: 16px;"
+                                             v-else-if="selectedAppealTrItem.status == 'FINISHED'">
+                                            {{ $t('pharm.chakanaData.finished') }}
+                                          </b>
+                                          <b class="text-white" style="font-size: 16px;" v-else>
+                                            {{ $t('pharm.chakanaData.prosecc') }}
+                                          </b>
                                         </p>
+
+<!--                                        <p class="mb-0" style="color:#839690;">Мурожаат-1:</p>-->
+<!--                                        <p class="mb-0"><b style="color:#2b6c58;">{{-->
+<!--                                            selectedAppealTrItem.mnumber.slice(2)-->
+<!--                                          }}</b></p>-->
+
+                                      </b-col>
+                                      <b-col cols="12" sm="3">
+                                        <p class="mb-0" style="color:#839690;">
+                                          {{ $t('pharm.chakanaData.appealResult') }}:</p>
+                                        <p class="mb-0"><b class="detailText">-</b></p>
+<!--                                        <p class="mb-0" style="color:#839690;">-->
+<!--                                          {{ $t('pharm.chakanaData.appealDate') }}:</p>-->
+<!--                                        <p class="mb-0"><b-->
+<!--                                            style="color:#2b6c58;">{{-->
+<!--                                            selectedAppealTrItem.createJson.slice(0, 10).split('-').join('.')-->
+<!--                                          }}</b>-->
+<!--                                        </p>-->
 
                                       </b-col>
                                     </b-row>
@@ -2874,6 +2978,10 @@ export default {
 .noClicking {
   pointer-events: none;
   background-color: #68a190;
+}
+.detailText{
+  color:#2b6c58;
+  font-size: 15px;
 }
 
 .listStyle {

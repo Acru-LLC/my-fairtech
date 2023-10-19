@@ -184,7 +184,7 @@ export default {
 }
 
 .effect:hover {
-    color: #556EE6;
+    color: white;
     margin-left: 6px;
 }
 
