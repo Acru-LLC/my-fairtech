@@ -668,7 +668,7 @@ export default {
         return ApiService.post(`application-dxa/receive?id=${application_id}&department_id=${department_id ? department_id : ''}`)
     },
     getPharmStatusCountDto() {
-        return ApiService.get(`/pharm/get/status-count`)
+        return ApiService.get(`pharm/status-count-outside`)
     },
     getPharmStatusCountDtoBig() {
         return ApiService.get(`/pharm-big/get/status-count`)

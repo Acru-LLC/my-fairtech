@@ -46,6 +46,9 @@ const crudAndListsService = {
             return ApiService.put(`${mainUrl}/update/`, payload);
         }
     },
+    getUserInformation(){
+        return ApiService.post(`/outer-cabinet/profile-data`)
+    },
     getById: async function (mainUrl, id, withLoader = false, mutationName, appendUrl = null) {
         if (appendUrl) {
             let res = await ApiService.get(`${mainUrl}/get/${appendUrl}/${id}`, withLoader);
