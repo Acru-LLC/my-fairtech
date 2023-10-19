@@ -2755,9 +2755,9 @@ export default {
                                           }}</b></p>
 
                                         <p class="mb-0" style="color:#839690;">
-                                          {{ $t('pharm.chakanaData.submitDate') }}:</p>
+                                          {{ $t('pharm.chakanaData.createList') }}:</p>
                                         <p class="mb-0"><b class="detailText">{{
-                                            selectedAppealTrItem.createJson.slice(0, 10).split('-').join('.')
+                                            selectedAppealTrItem.attachedEmployeeDate ? selectedAppealTrItem.attachedEmployeeDate.slice(0, 10).split('-').join('.') : ''
                                           }}</b></p>
 <!--                                        <p class="mb-0" style="color:#839690;">-->
 <!--                                          {{ $t('pharm.chakanaData.masulArea') }}:</p>-->

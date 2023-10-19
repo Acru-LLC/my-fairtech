@@ -2781,6 +2781,7 @@
       "appealNumber": "Murojaat raqami",
       "cardNumber": "Chek raqami",
       "submitDate": "Chek ro'yxatdan o'tgan sana",
+      "createList": "Ro'yxatga olingan sana",
       "submitAppealDate": "Murojaat yuborilgan sana",
       "pillLength": "Dori vositalari soni",
       "appealPosition": "Murojaat holati",
@@ -4087,6 +4088,8 @@
       "birth_region": "Область рождения",
       "birth_district": "Район рождения",
       "who_given": "Кем дано",
+      "livePlace": "Yashash manzili",
+      "birthArea": "Tug'ilgan joyi",
       "passport_data": "Серия паспорта (ID) и номер телефона",
       "passport_given_date": "Дата выдачи паспорта",
       "validity_period": "Срок годности"

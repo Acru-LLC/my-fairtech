@@ -5,7 +5,7 @@ import PageHeader from "@/components/page-header.vue";
 import {TokenService} from "@/shared/services/storage.service";
 import crudAndListsService from "@/shared/services/crud_and_list.service";
 import helperService from "@/shared/services/helper.service";
-import ProjectMenu from "@/shared/views/auth/MainProMenu.vue";
+// import ProjectMenu from "@/shared/views/auth/MainProMenu.vue";
 
 const MAIN_API_URL_USER = 'user'
 const MAIN_API_URL = 'report/dashboard'
@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       userId: TokenService.getUserId(),
-      userInfos: [],
+      userInfos: {},
       counts: [],
       searchValue: "",
       page: 1,
@@ -208,11 +208,10 @@ COMPUTED */
     getUserInfo() {
       crudAndListsService.getUserInformation()
           .then((res) => {
-            console.log(res.data);
-            // this.userInfos = res.data;
+            this.userInfos = res.data;
           })
           .catch(e => {
-            this.userInfos = [];
+            console.log(e)
           })
     },
 
@@ -505,52 +504,59 @@ COMPUTED */
           </b-row>
           <b-row class="mt-3">
             <b-col cols="2">
-              <img class="user-img" style="border: 2px solid #44766B; border-radius: 6px; padding-top: 10px" src="../images/user.png" alt="">
+              <img class="user-img" style="border: 2px solid #44766B; border-radius: 6px; padding-top: 10px"
+                   :src="`${userInfos.passportPhoto ? `data:image/png;base64, ${userInfos.passportPhoto}`: require('../images/user.png')}`"
+                   alt=""
+              >
             </b-col>
             <b-col cols="2">
               <div>
                 <p>{{ $t('product_dashboard_info.customer_infos.surname') }}</p>
-                <h6>ANIQLANMAGAN</h6>
+                <h6>{{userInfos.lastName}}</h6>
                 <p>{{ $t('product_dashboard_info.customer_infos.name') }}</p>
-                <h6>ANIQLANMAGAN</h6>
+                <h6>{{userInfos.firstName}}</h6>
                 <p>{{ $t('product_dashboard_info.customer_infos.middle_name') }}</p>
-                <h6>ANIQLANMAGAN</h6>
+                <h6>{{userInfos.middleName}}</h6>
               </div>
             </b-col>
             <b-col cols="2">
               <div>
                 <p>{{ $t('product_dashboard_info.customer_infos.birth_date') }}</p>
-                <h6>1995.05.05</h6>
+                <h6>{{userInfos.birthday}}</h6>
                 <p>{{ $t('product_dashboard_info.customer_infos.sex') }}</p>
-                <h6>ERKAK</h6>
+                <h6>{{ (userInfos.gd == 1) ? "ERKAK": (userInfos.gd == 2)? "AYOL" : ''}}</h6>
                 <p>{{ $t('product_dashboard_info.customer_infos.pnfl') }}</p>
-                <h6>1234567891011</h6>
+                <h6>{{userInfos.pinfl}}</h6>
               </div>
             </b-col>
             <b-col cols="2">
               <div>
-                <p>{{ $t('product_dashboard_info.customer_infos.birth_region') }}</p>
-                <h6>TOSHKENT VILOYATI</h6>
-                <p>{{ $t('product_dashboard_info.customer_infos.birth_district') }}</p>
-                <h6>Yangiyo`l tumani</h6>
+<!--                <p>{{ $t('product_dashboard_info.customer_infos.birth_region') }}</p>-->
+                <p>{{ $t('product_dashboard_info.customer_infos.birthArea') }}</p>
+                <h6>{{userInfos.birthPlace}}</h6>
                 <p>{{ $t('product_dashboard_info.customer_infos.who_given') }}</p>
-                <h6>TOSHKENT SHAHAR UCHTEPA TUMAN IIB</h6>
+                <h6>{{userInfos.passportGivenWho}}</h6>
+                <p>{{ $t('product_dashboard_info.customer_infos.livePlace') }}</p>
+                <h6>{{userInfos.perAdress}}</h6>
+<!--                <p>{{ $t('product_dashboard_info.customer_infos.birth_district') }}</p>-->
+<!--                <h6>{{userInfos.birthPlace}}</h6>-->
+
               </div>
             </b-col>
             <b-col cols="2">
               <div>
                 <p>{{ $t('product_dashboard_info.customer_infos.passport_data') }}</p>
-                <h6>AA 1234567</h6>
+                <h6>{{userInfos.passportSeries}} {{userInfos.passportNumber}}</h6>
                 <p>{{ $t('product_dashboard_info.customer_infos.passport_given_date') }}</p>
-                <h6>01.08.2012</h6>
+                <h6>{{userInfos.passportGivenDate}}</h6>
                 <p>{{ $t('product_dashboard_info.customer_infos.validity_period') }}</p>
-                <h6>31.07.2022</h6>
+                <h6>{{userInfos.passportEndDate}}</h6>
               </div>
             </b-col>
             <b-col cols="2">
               <div>
                 <p>{{ $t('product_dashboard_info.phone_number') }}</p>
-                <h6>998991234567</h6>
+                <h6>{{userInfos.phoneNumber}}</h6>
               </div>
             </b-col>
           </b-row>
