@@ -4120,6 +4120,10 @@
       "region": "Viloyat",
       "district": "Tuman"
     },
+    "stir": "STIR ni kiriting",
+    "murojaatchi": "Murojaatchi",
+    "yuridik_address": "Yuridik manzili",
+    "email": "Elektron pochta manzili",
     "murojaat_description": "Murojaat mazmuni",
     "murojaat_type": "Murojaatchi turi",
     "full_name": "Murojaatchi F I SH",

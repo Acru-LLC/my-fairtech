@@ -4116,6 +4116,10 @@
       "region": "Область",
       "district": "Район"
     },
+    "stir": "Введите ИНН",
+    "murojaatchi": "Заявитель",
+    "yuridik_address": "Юридический адрес",
+    "email": "Адрес электронной почты",
     "murojaat_description": "Описание обращения",
     "murojaat_type": "Тип заявителя",
     "full_name": "Ф.И.О заявителя",
