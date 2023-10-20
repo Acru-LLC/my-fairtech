@@ -43,6 +43,7 @@ export default {
       draftData: 'Your draft data',
       btnText: this.$t('product_dashboard_info.draft_btn'),
       loadingTableItems: false,
+      inputValue: '',
 
       // items: [
       //   {
@@ -161,6 +162,10 @@ COMPUTED */
       this.selectedOption2 = optionText;
       this.closeDropdown2();
     },
+    isItemDisabled(itemNumber) {
+      // Check if the item number is one of the last 4 items (2, 3, 4, or 5)
+      return itemNumber >= 2 && itemNumber <= 5;
+    },
   },
   mounted() {
 
@@ -230,6 +235,7 @@ COMPUTED */
             <div class="mt-2" style="width: 260px">
               <BaseInputWithValidation
                   rules="required"
+                  v-if="selectedOption === $t('product_dashboard_info.ariza')"
                   mask="##############"
                   label-on-top
                   style="color: #89A49D"
@@ -238,6 +244,18 @@ COMPUTED */
                   :placeholder = "'_ _ _ _ _ _ _ _ _ _ _ _ _ _'"
               >
               </BaseInputWithValidation>
+              <BaseInputWithValidation
+                  rules="required"
+                  v-if="selectedOption === $t('product_dashboard_info.appeal')"
+                  mask="#########"
+                  label-on-top
+                  style="color: #89A49D"
+                  class="required font-size-15 text-color"
+                  :label="$t('product_dashboard_info.stir')"
+                  :placeholder = "'_ _ _ _ _ _ _ _ _'"
+              >
+              </BaseInputWithValidation>
+
               <div class="mt-3 d-flex justify-content-between">
                 <BaseInputWithValidation
                     mask="######"
@@ -257,10 +275,41 @@ COMPUTED */
               </div>
             </div>
             <div class="mt-2">
-              <span class="font-size-15" style="color: #89A49D">{{$t('product_dashboard_info.full_name')}} <span class="text-danger">*</span></span>
-              <b-form-text class="font-size-17 font-weight-bold" style="color: #236257!important;">Aliev Ali Ali o`g`li</b-form-text>
-              <div class="mt-3 d-flex justify-content-between">
+              <span
+                  class="font-size-15"
+                  style="color: #89A49D"
+                  v-if="selectedOption === $t('product_dashboard_info.appeal')">
+                {{$t('product_dashboard_info.murojaatchi')}}
+                <span class="text-danger">*</span>
+              </span>
+              <span
+                  class="font-size-15"
+                  style="color: #89A49D"
+                  v-if="selectedOption === $t('product_dashboard_info.ariza')">
+                {{$t('product_dashboard_info.full_name')}}
+                <span class="text-danger">*</span>
+              </span>
+              <b-form-text v-if="selectedOption === $t('product_dashboard_info.ariza')" class="font-size-17 font-weight-bold" style="color: #236257!important;">Aliev Ali Ali o`g`li</b-form-text>
+              <b-form-text v-if="selectedOption === $t('product_dashboard_info.appeal')" class="font-size-17 font-weight-bold" style="color: #236257!important;">"UNNAMED" MCHJ</b-form-text>
+              <div v-if="selectedOption === $t('product_dashboard_info.ariza')" class="mt-3 d-flex justify-content-between">
               <b-form-group :label="$t('product_dashboard_info.address.title')" label-for="textarea" style="color: #89A49D">
+                <b-form-textarea
+                    id="textarea"
+                    rows="2"
+                    no-resize
+                    class="w-100 font-weight-bold"
+                    style="border: 1px solid #236257; width: 400px!important; color: #236257"
+                ></b-form-textarea>
+              </b-form-group>
+                <button type="button" class="mt-3 bg-white mx-2" style="border: none">
+                  <img src="../images/edit.svg" alt="">
+                </button>
+                <button type="button" class="mt-3 bg-white" style="border: none">
+                  <img src="../images/delete.svg" alt="">
+                </button>
+              </div>
+              <div v-if="selectedOption === $t('product_dashboard_info.appeal')" class="mt-3 d-flex justify-content-between">
+              <b-form-group :label="$t('product_dashboard_info.yuridik_address')" label-for="textarea" style="color: #89A49D">
                 <b-form-textarea
                     id="textarea"
                     rows="2"
@@ -292,10 +341,10 @@ COMPUTED */
                        :value="selectedOption2" style="color: #236257">
                 <div class="select-option" @click.stop="">
                   <div @click="selectOption2($t('product_dashboard_info.item1'))">{{ $t('product_dashboard_info.item1') }}</div>
-                  <div @click="selectOption2($t('product_dashboard_info.item2'))">{{ $t('product_dashboard_info.item2') }}</div>
-                  <div @click="selectOption2($t('product_dashboard_info.item3'))">{{ $t('product_dashboard_info.item3') }}</div>
-                  <div @click="selectOption2($t('product_dashboard_info.item4'))">{{ $t('product_dashboard_info.item4') }}</div>
-                  <div @click="selectOption2($t('product_dashboard_info.item5'))">{{ $t('product_dashboard_info.item5') }}</div>
+                  <div @click="selectOption2($t('product_dashboard_info.item2'))" :class="{ 'disabled-option': isItemDisabled(2) }">{{ $t('product_dashboard_info.item2') }}</div>
+                  <div @click="selectOption2($t('product_dashboard_info.item3'))" :class="{ 'disabled-option': isItemDisabled(3) }">{{ $t('product_dashboard_info.item3') }}</div>
+                  <div @click="selectOption2($t('product_dashboard_info.item4'))" :class="{ 'disabled-option': isItemDisabled(4) }">{{ $t('product_dashboard_info.item4') }}</div>
+                  <div @click="selectOption2($t('product_dashboard_info.item5'))" :class="{ 'disabled-option': isItemDisabled(5) }">{{ $t('product_dashboard_info.item5') }}</div>
                 </div>
               </div>
 <!--              <div class="d-flex justify-content-between w-50 mb-3">-->
@@ -658,5 +707,11 @@ COMPUTED */
   color: white;
   border-radius: 5px;
   width: 200px;
+}
+.disabled-option {
+  color: #ccc; /* Change the text color to a light gray for disabled options */
+  background-color: #f0f0f0; /* Change the background color to a light gray */
+  cursor: not-allowed; /* Change the cursor to indicate that the option is not clickable */
+  pointer-events: none; /* Prevent clicking on disabled options */
 }
 </style>
