@@ -479,7 +479,7 @@ iframe {
   /*flex-wrap: wrap;*/
   /*align-items: stretch;*/
   /*flex-direction: row-reverse;*/
-  background-image: url("images/loginImages/bgr_40.jpg");
+  background-image: url("images/loginImages/bgr_40.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
 
