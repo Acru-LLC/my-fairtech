@@ -37,6 +37,7 @@ export default {
       isActiveS1: false,
       isActiveS2: false,
       selectedOption: '',
+      selectedOption2: '',
       file: '',
       buttonText: this.$t('product_dashboard_info.upload_btn'),
       draftData: 'Your draft data',
@@ -124,7 +125,13 @@ COMPUTED */
       this.$toast.success('Draft saved!', {
         position: "top-right"
       });
-    }
+    },
+    selectOption(optionText) {
+      this.selectedOption = optionText;
+    },
+    selectOption2(optionText) {
+      this.selectedOption2 = optionText;
+    },
   },
   mounted() {
 
@@ -140,23 +147,47 @@ COMPUTED */
   <div>
     <Layout >
       <div class="mt-3">
-        <b-row class="text-white p-1 col-3" style="background-color: #236257; border-radius: 2px">
-          {{ $t('product_dashboard_info.register_title') }}
+        <b-row class="p-1 font-size-20 font-weight-bold col-2 mx-auto" style="color: #236257;">
+          {{ $t('product_dashboard_info.create_murojaat') }}
         </b-row>
-        <div class="mt-3 col-6" style="margin-bottom: 40px">
-          <form class="d-flex">
+        <div class="pt-2 p-3 mb-2" style="border: 1px solid #ccc">
+          <b-row class="text-white p-1 col-2 ml-0" style="background-color: #236257; border-radius: 2px">
+            {{ $t('product_dashboard_info.register_title') }}
+          </b-row>
+          <form class="d-flex justify-content-between ">
             <fieldset>
-              <legend>{{ $t('product_dashboard_info.type') }}</legend>
+              <p class="font-size-15 mt-2 mb-0" style="color: #89A49D">{{ $t('product_dashboard_info.type') }} <span class="text-danger">*</span></p>
               <div>
 
                 <div class="dropdown-select font-size-15" @click="firstDropdown" :class="{ active: isActiveS1 }">
-                  <input type="text" class="textBox" id="firstDropdown" :placeholder="'Murojaat turini tanlash'" readonly
-                         :value="selectedOption">
+                  <input type="text" class="textBox" id="firstDropdown" :placeholder='$t("product_dashboard_info.selectType")' readonly
+                         :value="selectedOption" style="color: #236257">
                   <div class="option-select">
-                    <div>{{ $t('product_dashboard_info.ariza') }}</div>
-                    <div>{{ $t('product_dashboard_info.appeal') }}</div>
-                    <div>{{ $t('product_dashboard_info.offer') }}</div>
+                    <div @click="selectOption($t('product_dashboard_info.ariza'))">
+                      {{ $t('product_dashboard_info.ariza') }}
+                    </div>
+                    <div @click="selectOption($t('product_dashboard_info.appeal'))">
+                      {{ $t('product_dashboard_info.appeal') }}
+                    </div>
+<!--                    <div>{{ $t('product_dashboard_info.offer') }}</div>-->
                   </div>
+                </div>
+                <div class="mt-3 d-flex justify-content-between">
+                <BaseInputWithValidation
+                    rules="required"
+                    mask="+#############"
+                    label-on-top
+                    class="required font-size-15"
+                    style="color: #89A49D"
+                    :label="$t('product_dashboard_info.phone_number')"
+                >
+                </BaseInputWithValidation>
+                  <button type="button" class="mt-3 bg-white" style="border: none">
+                    <img src="../images/edit.svg" alt="">
+                  </button>
+                  <button type="button" class="mt-3 bg-white" style="border: none">
+                    <img src="../images/delete.svg" alt="">
+                  </button>
                 </div>
 
 <!--                <input class="mr-1 cursor-pointer" type="checkbox" id="ariza" name="murojaat_turi" value="ariza">-->
@@ -167,176 +198,273 @@ COMPUTED */
 <!--                <label for="taklif">{{ $t('product_dashboard_info.offer') }}</label>-->
               </div>
             </fieldset>
-            <b-col cols="4"></b-col>
-            <fieldset>
-              <legend>{{ $t('product_dashboard_info.murojaat_view') }}</legend>
-              <div>
-
-
-                <div class="dropdown-select font-size-15" @click="secondDropdown" :class="{ active: isActiveS2 }">
-                  <input type="text" class="textBox" id="secondDropdown" :placeholder="'Murojaat ko`rinishini tanlash'" readonly
-                         :value="selectedOption">
-                  <div class="option-select">
-                    <div>{{ $t('product_dashboard_info.standart') }}</div>
-                    <div>{{ $t('product_dashboard_info.review') }}</div>
-                  </div>
-                </div>
-
-
-<!--                <input class="mr-1 cursor-pointer" type="checkbox" id="standart_murojaat" name="murojaat_korinishi"-->
-<!--                       value="standart_murojaat">-->
-<!--                <label for="standart_murojaat">{{ $t('product_dashboard_info.standart') }}</label><br>-->
-<!--                <input class="mr-1 cursor-pointer" type="checkbox" id="qayta_korib_chiqish_uchun"-->
-<!--                       name="murojaat_korinishi" value="qayta_korib_chiqish_uchun">-->
-<!--                <label for="qayta_korib_chiqish_uchun">{{ $t('product_dashboard_info.review') }}</label><br>-->
-<!--                <input class="mr-1 cursor-pointer" type="checkbox" id="other" name="murojaa_korinishi" value="other">-->
-<!--                <label for="other">&#45;&#45;&#45;&#45;</label>-->
+            <div class="mt-2" style="width: 260px">
+              <BaseInputWithValidation
+                  rules="required"
+                  mask="##############"
+                  label-on-top
+                  style="color: #89A49D"
+                  class="required font-size-15 text-color"
+                  :label="$t('pharm_check_sms.pinfl_placeholder')"
+                  :placeholder = "'_ _ _ _ _ _ _ _ _ _ _ _ _ _'"
+              >
+              </BaseInputWithValidation>
+              <div class="mt-3 d-flex justify-content-between">
+                <BaseInputWithValidation
+                    rules="required"
+                    mask="######"
+                    label-on-top
+                    style="color: #89A49D"
+                    class="required font-size-15 text-color"
+                    :label="$t('product_dashboard_info.post_address')"
+                    :placeholder="'_ _ _ _ _ _'"
+                >
+                </BaseInputWithValidation>
+                <button type="button" class="mt-3 bg-white" style="border: none">
+                  <img src="../images/edit.svg" alt="">
+                </button>
+                <button type="button" class="mt-3 bg-white" style="border: none">
+                  <img src="../images/delete.svg" alt="">
+                </button>
               </div>
-            </fieldset>
+            </div>
+            <div class="mt-2">
+              <span class="font-size-15" style="color: #89A49D">{{$t('product_dashboard_info.full_name')}} <span class="text-danger">*</span></span>
+              <b-form-text class="font-size-17 font-weight-bold" style="color: #236257!important;">Aliev Ali Ali o`g`li</b-form-text>
+              <div class="mt-3 d-flex justify-content-between">
+              <b-form-group :label="$t('product_dashboard_info.address.title')" label-for="textarea" style="color: #89A49D">
+                <b-form-textarea
+                    id="textarea"
+                    rows="2"
+                    no-resize
+                    class="w-100 font-weight-bold"
+                    style="border: 1px solid #236257; width: 400px!important; color: #236257"
+                ></b-form-textarea>
+              </b-form-group>
+                <button type="button" class="mt-3 bg-white mx-2" style="border: none">
+                  <img src="../images/edit.svg" alt="">
+                </button>
+                <button type="button" class="mt-3 bg-white" style="border: none">
+                  <img src="../images/delete.svg" alt="">
+                </button>
+              </div>
+            </div>
           </form>
-
         </div >
-        <div class="mb-3 col-6 font-size-15">{{ $t('product_dashboard_info.address.title') }}</div>
-        <b-row class="col">
-          <div class="col">
-            <label for="dropdown1">{{ $t('product_dashboard_info.address.region') }}</label>
-            <div class="dropdown-select font-size-15" @click="toggleDropdown1" :class="{ active: isActive1 }">
-              <input type="text" class="textBox" id="dropdown1" :placeholder="regionPlaceholder" readonly
-                     :value="selectedOption">
-              <div class="option-select">
-                <div>Andijon</div>
-                <div>Buxoro</div>
-                <div>Farg`ona</div>
-                <div>Jizzax</div>
-                <div>Xorazm</div>
-                <div>Namangan</div>
-                <div>Navoiy</div>
-                <div>Qashqadaryo</div>
-                <div>Qoraqalpog`iston Respublikasi</div>
-                <div>Samarqand</div>
-                <div>Sirdaryo</div>
-                <div>Surxondaryo</div>
-                <div>Toshkent.sh</div>
-                <div>Toshkent.vil</div>
+
+        <div class="mb-3 pt-2 p-3" style="border: 1px solid #cccccc">
+          <b-row class="text-white p-1 col-2 ml-0" style="background-color: #236257; border-radius: 2px">
+            {{ $t('product_dashboard_info.murojaat_description') }}
+          </b-row>
+          <fieldset>
+<!--            <p class="font-size-17 mt-2 mb-0">{{ $t('product_dashboard_info.murojaat_view') }}</p>-->
+            <div>
+              <div class="select-dropdown font-size-15 my-3" @click="secondDropdown" :class="{ active: isActiveS2 }">
+                <input type="text" class="boxText font-weight-bold" id="secondDropdown" :placeholder='$t("product_dashboard_info.murojaat_select")' readonly
+                       :value="selectedOption2" style="color: #236257">
+                <div class="select-option">
+                  <div @click="selectOption2($t('product_dashboard_info.item1'))">{{ $t('product_dashboard_info.item1') }}</div>
+                  <div @click="selectOption2($t('product_dashboard_info.item2'))">{{ $t('product_dashboard_info.item2') }}</div>
+                  <div @click="selectOption2($t('product_dashboard_info.item3'))">{{ $t('product_dashboard_info.item3') }}</div>
+                  <div @click="selectOption2($t('product_dashboard_info.item4'))">{{ $t('product_dashboard_info.item4') }}</div>
+                  <div @click="selectOption2($t('product_dashboard_info.item5'))">{{ $t('product_dashboard_info.item5') }}</div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="col">
-            <label for="dropdown2">{{ $t('product_dashboard_info.address.district') }}</label>
-            <div class="dropdown-select font-size-15" @click="toggleDropdown2" :class="{ active: isActive2 }">
-              <input type="text" class="textBox" id="dropdown2" :placeholder="districtPlaceholder" readonly
-                     :value="selectedOption">
-              <div class="option-select">
-                <div>Bektemir tumani</div>
-                <div>Mirobod tumani</div>
-                <div>Mirzo Ulug‘bek tumani</div>
-                <div>Sergeli tumani</div>
-                <div>Olmazor tumani</div>
-                <div>Uchtepa tumani</div>
-                <div>Shayxontohur tumani</div>
-                <div>Yashnobod tumani</div>
-                <div>Chilonzor tumani</div>
-                <div>Yunusobod tumani</div>
-                <div>Yakkasaroy tumani</div>
+              <div class="d-flex justify-content-between w-50 mb-3">
+                <div class="form-check">
+                              <input
+                                  class="mr-1 cursor-pointer form-check-input"
+                                  type="checkbox"
+                                  id="chakana">
+                              <label for="chakana" class="form-check-label font-size-17 ml-1" style="color: #236257">{{ $t('product_dashboard_info.chakana') }}</label>
+                  <span class="text-danger">*</span>
+                </div>
+                <div class="form-check">
+                              <input
+                                  class="mr-1 cursor-pointer form-check-input"
+                                  type="checkbox"
+                                  id="ulgurji">
+                              <label for="ulgurji" class="form-check-label font-size-17 ml-1" style="color: #236257">{{ $t('product_dashboard_info.ulgurji') }}</label>
+                  <span class="text-danger">*</span>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="col">
-            <label for="dropdown3">{{ $t('product_dashboard_info.murojaat_type') }}</label>
-            <div class="dropdown-select font-size-15" @click="toggleDropdown3" :class="{ active: isActive3 }">
-              <input type="text" class="textBox" id="dropdown3" :placeholder="typePlaceholder" readonly
-                     :value="selectedOption">
-              <div class="option-select">
-                <div>Toshkent</div>
-                <div>Toshkent</div>
-                <div>Toshkent</div>
-                <div>Toshkent</div>
-                <div>Toshkent</div>
-                <div>Toshkent</div>
-                <div>Toshkent</div>
-                <div>Toshkent</div>
-                <div>Toshkent</div>
+              <b-form-group :label="$t('product_dashboard_info.shortDescription')" label-for="textarea" style="color: #89A49D">
+                <b-form-textarea
+                    id="textarea"
+                    rows="7"
+                    no-resize
+                    class="w-100 font-weight-bold"
+                    style="border: 1px solid #236257; color: #236257"
+                ></b-form-textarea>
+              </b-form-group>
               </div>
+          </fieldset>
+          <b-row>
+            <div class="col">
+              <input type="file" ref="fileInput" @change="handleFileUpload" style="display: none"/>
+              <button class="btn btnUpload font-size-15" @click="triggerFileInput">{{ buttonText }}</button>
+              <span class="ml-2" v-if="file">{{ file.name }}</span>
             </div>
-          </div>
-        </b-row>
-        <b-row class="col my-4">
-          <div class="col">
-            <BaseInputWithValidation
-                rules="required"
-                mask="##############"
-                label-on-top
-                class="required font-size-15 text-color"
-                :label="$t('product_dashboard_info.full_name')"
+          </b-row>
+          <b-row class="mt-3">
+            <div class="col">
+              <button class="btn text-white font-size-15" style="width: 200px; background-color: #F39138" @click="saveDraft">{{ btnText }}</button>
+            </div>
+            <b-button
+                :disabled="!pinflBtn || loadingTableItems"
+                @click="getInfos"
+                variant="outline-primary"
+                id="contractorSearchButton"
+                class="btn mr-2 font-size-15"
+                style="padding: 7.5px 10px; background-color: #225F55; width: 200px;"
             >
-            </BaseInputWithValidation>
-          </div>
-          <div class="col">
-            <BaseInputWithValidation
-                rules="required"
-                mask="##############"
-                label-on-top
-                class="required font-size-15 text-color"
-                :label="$t('product_dashboard_info.phone_number')"
-            >
-            </BaseInputWithValidation>
-          </div>
-          <div class="col">
-            <BaseInputWithValidation
-                rules="required"
-                mask="##############"
-                label-on-top
-                class="required font-size-15 text-color"
-                :label="$t('product_dashboard_info.post_address')"
-            >
-            </BaseInputWithValidation>
-          </div>
-        </b-row>
-        <b-row class="col">
-          <div class="col">
-            <BaseInputWithValidation
-                rules="required"
-                mask="##############"
-                label-on-top
-                class="required font-size-15 text-color"
-                :label="$t('product_dashboard_info.street_address')"
-            >
-            </BaseInputWithValidation>
-          </div>
-        </b-row>
-        <b-row class="col my-4">
-          <div class="col">
-            <label for="textarea-no-resize">{{$t('product_dashboard_info.more_info')}}</label>
-            <b-form-textarea
-                id="textarea-no-resize"
-                rows="7"
-                no-resize
-            ></b-form-textarea>
-          </div>
-        </b-row>
-        <b-row class="col">
-          <div class="col">
-            <input type="file" ref="fileInput" @change="handleFileUpload" style="display: none"/>
-            <button class="btn btnUpload font-size-15" @click="triggerFileInput">{{ buttonText }}</button>
-            <span class="ml-2" v-if="file">{{ file.name }}</span>
-          </div>
-        </b-row>
-        <b-row class="col mt-3">
-          <div class="col">
-            <button class="btn text-white font-size-15" style="width: 200px; background-color: #F39138" @click="saveDraft">{{ btnText }}</button>
-          </div>
-          <b-button
-              :disabled="!pinflBtn || loadingTableItems"
-              @click="getInfos"
-              variant="outline-primary"
-              id="contractorSearchButton"
-              class="btn mb-3"
-              style="padding: 2.5px 10px; font-size: 1.2rem; background-color: #225F55; width: 200px;"
-          >
-            <b-spinner v-if="loadingTableItems" type="border" small></b-spinner>
-            <span class="text-white ml-2">{{ $t('product_dashboard_info.send_btn') }}</span>
-          </b-button>
-        </b-row>
+              <b-spinner v-if="loadingTableItems" type="border" small></b-spinner>
+              <span class="text-white ml-2">{{ $t('product_dashboard_info.send_btn') }}</span>
+            </b-button>
+          </b-row>
+        </div>
+<!--        <b-row class="col">-->
+<!--          <fieldset>-->
+<!--            <p class="font-size-17 mt-2 mb-0">{{ $t('product_dashboard_info.murojaat_view') }}</p>-->
+<!--            <div>-->
+
+
+<!--              <div class="dropdown-select font-size-15" @click="secondDropdown" :class="{ active: isActiveS2 }">-->
+<!--                <input type="text" class="textBox" id="secondDropdown" :placeholder="'Murojaat ko`rinishini tanlash'" readonly-->
+<!--                       :value="selectedOption">-->
+<!--                <div class="option-select">-->
+<!--                  <div>{{ $t('product_dashboard_info.standart') }}</div>-->
+<!--                  <div>{{ $t('product_dashboard_info.review') }}</div>-->
+<!--                </div>-->
+<!--              </div>-->
+
+<!--              &lt;!&ndash;                <input class="mr-1 cursor-pointer" type="checkbox" id="standart_murojaat" name="murojaat_korinishi"&ndash;&gt;-->
+<!--              &lt;!&ndash;                       value="standart_murojaat">&ndash;&gt;-->
+<!--              &lt;!&ndash;                <label for="standart_murojaat">{{ $t('product_dashboard_info.standart') }}</label><br>&ndash;&gt;-->
+<!--              &lt;!&ndash;                <input class="mr-1 cursor-pointer" type="checkbox" id="qayta_korib_chiqish_uchun"&ndash;&gt;-->
+<!--              &lt;!&ndash;                       name="murojaat_korinishi" value="qayta_korib_chiqish_uchun">&ndash;&gt;-->
+<!--              &lt;!&ndash;                <label for="qayta_korib_chiqish_uchun">{{ $t('product_dashboard_info.review') }}</label><br>&ndash;&gt;-->
+<!--              &lt;!&ndash;                <input class="mr-1 cursor-pointer" type="checkbox" id="other" name="murojaa_korinishi" value="other">&ndash;&gt;-->
+<!--              &lt;!&ndash;                <label for="other">&#45;&#45;&#45;&#45;</label>&ndash;&gt;-->
+<!--            </div>-->
+<!--          </fieldset>-->
+<!--          <div class="col">-->
+<!--            <label for="dropdown1">{{ $t('product_dashboard_info.address.region') }}</label>-->
+<!--            <div class="dropdown-select font-size-15" @click="toggleDropdown1" :class="{ active: isActive1 }">-->
+<!--              <input type="text" class="textBox" id="dropdown1" :placeholder="regionPlaceholder" readonly-->
+<!--                     :value="selectedOption">-->
+<!--              <div class="option-select">-->
+<!--                <div>Andijon</div>-->
+<!--                <div>Buxoro</div>-->
+<!--                <div>Farg`ona</div>-->
+<!--                <div>Jizzax</div>-->
+<!--                <div>Xorazm</div>-->
+<!--                <div>Namangan</div>-->
+<!--                <div>Navoiy</div>-->
+<!--                <div>Qashqadaryo</div>-->
+<!--                <div>Qoraqalpog`iston Respublikasi</div>-->
+<!--                <div>Samarqand</div>-->
+<!--                <div>Sirdaryo</div>-->
+<!--                <div>Surxondaryo</div>-->
+<!--                <div>Toshkent.sh</div>-->
+<!--                <div>Toshkent.vil</div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="col">-->
+<!--            <label for="dropdown2">{{ $t('product_dashboard_info.address.district') }}</label>-->
+<!--            <div class="dropdown-select font-size-15" @click="toggleDropdown2" :class="{ active: isActive2 }">-->
+<!--              <input type="text" class="textBox" id="dropdown2" :placeholder="districtPlaceholder" readonly-->
+<!--                     :value="selectedOption">-->
+<!--              <div class="option-select">-->
+<!--                <div>Bektemir tumani</div>-->
+<!--                <div>Mirobod tumani</div>-->
+<!--                <div>Mirzo Ulug‘bek tumani</div>-->
+<!--                <div>Sergeli tumani</div>-->
+<!--                <div>Olmazor tumani</div>-->
+<!--                <div>Uchtepa tumani</div>-->
+<!--                <div>Shayxontohur tumani</div>-->
+<!--                <div>Yashnobod tumani</div>-->
+<!--                <div>Chilonzor tumani</div>-->
+<!--                <div>Yunusobod tumani</div>-->
+<!--                <div>Yakkasaroy tumani</div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="col">-->
+<!--            <label for="dropdown3">{{ $t('product_dashboard_info.murojaat_type') }}</label>-->
+<!--            <div class="dropdown-select font-size-15" @click="toggleDropdown3" :class="{ active: isActive3 }">-->
+<!--              <input type="text" class="textBox" id="dropdown3" :placeholder="typePlaceholder" readonly-->
+<!--                     :value="selectedOption">-->
+<!--              <div class="option-select">-->
+<!--                <div>Toshkent</div>-->
+<!--                <div>Toshkent</div>-->
+<!--                <div>Toshkent</div>-->
+<!--                <div>Toshkent</div>-->
+<!--                <div>Toshkent</div>-->
+<!--                <div>Toshkent</div>-->
+<!--                <div>Toshkent</div>-->
+<!--                <div>Toshkent</div>-->
+<!--                <div>Toshkent</div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </b-row>-->
+<!--        <b-row class="col my-4">-->
+<!--          <div class="col">-->
+<!--            <BaseInputWithValidation-->
+<!--                rules="required"-->
+<!--                mask="##############"-->
+<!--                label-on-top-->
+<!--                class="required font-size-15 text-color"-->
+<!--                :label="$t('product_dashboard_info.full_name')"-->
+<!--            >-->
+<!--            </BaseInputWithValidation>-->
+<!--          </div>-->
+<!--          <div class="col">-->
+<!--            <BaseInputWithValidation-->
+<!--                rules="required"-->
+<!--                mask="##############"-->
+<!--                label-on-top-->
+<!--                class="required font-size-15 text-color"-->
+<!--                :label="$t('product_dashboard_info.phone_number')"-->
+<!--            >-->
+<!--            </BaseInputWithValidation>-->
+<!--          </div>-->
+<!--          <div class="col">-->
+<!--            <BaseInputWithValidation-->
+<!--                rules="required"-->
+<!--                mask="##############"-->
+<!--                label-on-top-->
+<!--                class="required font-size-15 text-color"-->
+<!--                :label="$t('product_dashboard_info.post_address')"-->
+<!--            >-->
+<!--            </BaseInputWithValidation>-->
+<!--          </div>-->
+<!--        </b-row>-->
+<!--        <b-row class="col">-->
+<!--          <div class="col">-->
+<!--            <BaseInputWithValidation-->
+<!--                rules="required"-->
+<!--                mask="##############"-->
+<!--                label-on-top-->
+<!--                class="required font-size-15 text-color"-->
+<!--                :label="$t('product_dashboard_info.street_address')"-->
+<!--            >-->
+<!--            </BaseInputWithValidation>-->
+<!--          </div>-->
+<!--        </b-row>-->
+<!--        <b-row class="col my-4">-->
+<!--          <div class="col">-->
+<!--            <label for="textarea-no-resize">{{$t('product_dashboard_info.more_info')}}</label>-->
+<!--            <b-form-textarea-->
+<!--                id="textarea-no-resize"-->
+<!--                rows="7"-->
+<!--                no-resize-->
+<!--            ></b-form-textarea>-->
+<!--          </div>-->
+<!--        </b-row>-->
+
         <b-row>
 
         </b-row>
@@ -354,15 +482,40 @@ COMPUTED */
 .dropdown-select {
   position: relative;
   height: 40px;
-  width: 500px;
+  width: 260px;
   border-radius: 4px;
   border: 1px solid #427067;
   color: #34665A;
-  z-index: 10000;
+  z-index: 100;
+//margin-left: 27px;
+}
+.select-dropdown {
+  position: relative;
+  height: 40px;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #427067;
+  color: #34665A;
+  z-index: 100;
 //margin-left: 27px;
 }
 
 .dropdown-select::before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #427067;
+  right: 20px;
+  top: 10px;
+  z-index: 100;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  transform: rotate(-45deg);
+  transition: 0.5s;
+  pointer-events: none;
+}
+.select-dropdown::before {
   content: "";
   position: absolute;
   width: 8px;
@@ -382,8 +535,26 @@ COMPUTED */
   top: 15px;
   transform: rotate(-225deg);
 }
+.select-dropdown.active::before {
+  top: 15px;
+  transform: rotate(-225deg);
+}
 
 .dropdown-select input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background-color: #fff;
+  border: none;
+  outline: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  padding: 12px 20px;
+  border-radius: 10px;
+}
+.select-dropdown input {
   position: absolute;
   top: 0;
   left: 0;
@@ -409,12 +580,30 @@ COMPUTED */
   display: none;
   border: 1px solid #427067;
 }
+.select-dropdown .select-option {
+  position: absolute;
+  top: 38px;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 30px 30px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  overflow: hidden;
+  display: none;
+  border: 1px solid #427067;
+}
 
 .dropdown-select.active .option-select {
   display: block;
 }
+.select-dropdown.active .select-option {
+  display: block;
+}
 
 .dropdown-select .option-select div {
+  padding: 6px 20px;
+  cursor: pointer;
+}
+.select-dropdown .select-option div {
   padding: 6px 20px;
   cursor: pointer;
 }
@@ -423,8 +612,16 @@ COMPUTED */
   background-color: #2B675B;
   color: #fff;
 }
+.select-dropdown .select-option div:hover {
+  background-color: #2B675B;
+  color: #fff;
+}
 
 .textBox::placeholder {
+  text-align: center;
+  color: #427067;
+}
+.boxText::placeholder {
   text-align: center;
   color: #427067;
 }
