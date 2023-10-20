@@ -96,18 +96,45 @@ COMPUTED */
   methods: {
     firstDropdown() {
       this.isActiveS1 = !this.isActiveS1
+      if (this.isActiveS1) {
+        // Add a click event listener to the document to close the dropdown when clicking outside
+        document.addEventListener('click', this.closeDropdownOnClickOutside);
+      } else {
+        // Remove the click event listener when the dropdown is closed
+        document.removeEventListener('click', this.closeDropdownOnClickOutside);
+      }
     },
     secondDropdown() {
       this.isActiveS2 = !this.isActiveS2
+      if (this.isActiveS2) {
+        // Add a click event listener to the document to close the dropdown when clicking outside
+        document.addEventListener('click', this.closeDropdownOnClickOutside2);
+      } else {
+        // Remove the click event listener when the dropdown is closed
+        document.removeEventListener('click', this.closeDropdownOnClickOutside2);
+      }
     },
-    toggleDropdown1() {
-      this.isActive1 = !this.isActive1;
+    closeDropdown() {
+      this.isActiveS1 = false;
+      document.removeEventListener('click', this.closeDropdownOnClickOutside);
     },
-    toggleDropdown2() {
-      this.isActive2 = !this.isActive2;
+    closeDropdown2() {
+      this.isActiveS2 = false;
+      document.removeEventListener('click', this.closeDropdownOnClickOutside2);
     },
-    toggleDropdown3() {
-      this.isActive3 = !this.isActive3;
+    closeDropdownOnClickOutside(event) {
+      // Check if the click event is outside the dropdown
+      const dropdown = this.$el.querySelector('.dropdown-select');
+      if (!dropdown.contains(event.target)) {
+        this.closeDropdown();
+      }
+    },
+    closeDropdownOnClickOutside2(event) {
+      // Check if the click event is outside the dropdown
+      const dropdown = this.$el.querySelector('.select-dropdown');
+      if (!dropdown.contains(event.target)) {
+        this.closeDropdown2();
+      }
     },
     triggerFileInput() {
       this.$refs.fileInput.click();
@@ -128,9 +155,11 @@ COMPUTED */
     },
     selectOption(optionText) {
       this.selectedOption = optionText;
+      this.closeDropdown();
     },
     selectOption2(optionText) {
       this.selectedOption2 = optionText;
+      this.closeDropdown2();
     },
   },
   mounted() {
@@ -162,7 +191,7 @@ COMPUTED */
                 <div class="dropdown-select font-size-15" @click="firstDropdown" :class="{ active: isActiveS1 }">
                   <input type="text" class="textBox" id="firstDropdown" :placeholder='$t("product_dashboard_info.selectType")' readonly
                          :value="selectedOption" style="color: #236257">
-                  <div class="option-select">
+                  <div class="option-select" @click.stop="">
                     <div @click="selectOption($t('product_dashboard_info.ariza'))">
                       {{ $t('product_dashboard_info.ariza') }}
                     </div>
@@ -211,11 +240,10 @@ COMPUTED */
               </BaseInputWithValidation>
               <div class="mt-3 d-flex justify-content-between">
                 <BaseInputWithValidation
-                    rules="required"
                     mask="######"
                     label-on-top
                     style="color: #89A49D"
-                    class="required font-size-15 text-color"
+                    class="font-size-15 text-color"
                     :label="$t('product_dashboard_info.post_address')"
                     :placeholder="'_ _ _ _ _ _'"
                 >
@@ -262,7 +290,7 @@ COMPUTED */
               <div class="select-dropdown font-size-15 my-3" @click="secondDropdown" :class="{ active: isActiveS2 }">
                 <input type="text" class="boxText font-weight-bold" id="secondDropdown" :placeholder='$t("product_dashboard_info.murojaat_select")' readonly
                        :value="selectedOption2" style="color: #236257">
-                <div class="select-option">
+                <div class="select-option" @click.stop="">
                   <div @click="selectOption2($t('product_dashboard_info.item1'))">{{ $t('product_dashboard_info.item1') }}</div>
                   <div @click="selectOption2($t('product_dashboard_info.item2'))">{{ $t('product_dashboard_info.item2') }}</div>
                   <div @click="selectOption2($t('product_dashboard_info.item3'))">{{ $t('product_dashboard_info.item3') }}</div>
@@ -270,28 +298,28 @@ COMPUTED */
                   <div @click="selectOption2($t('product_dashboard_info.item5'))">{{ $t('product_dashboard_info.item5') }}</div>
                 </div>
               </div>
-              <div class="d-flex justify-content-between w-50 mb-3">
-                <div class="form-check">
-                              <input
-                                  class="mr-1 cursor-pointer form-check-input"
-                                  type="checkbox"
-                                  id="chakana">
-                              <label for="chakana" class="form-check-label font-size-17 ml-1" style="color: #236257">{{ $t('product_dashboard_info.chakana') }}</label>
-                  <span class="text-danger">*</span>
-                </div>
-                <div class="form-check">
-                              <input
-                                  class="mr-1 cursor-pointer form-check-input"
-                                  type="checkbox"
-                                  id="ulgurji">
-                              <label for="ulgurji" class="form-check-label font-size-17 ml-1" style="color: #236257">{{ $t('product_dashboard_info.ulgurji') }}</label>
-                  <span class="text-danger">*</span>
-                </div>
-              </div>
+<!--              <div class="d-flex justify-content-between w-50 mb-3">-->
+<!--                <div class="form-check">-->
+<!--                              <input-->
+<!--                                  class="mr-1 cursor-pointer form-check-input"-->
+<!--                                  type="checkbox"-->
+<!--                                  id="chakana">-->
+<!--                              <label for="chakana" class="form-check-label font-size-17 ml-1" style="color: #236257">{{ $t('product_dashboard_info.chakana') }}</label>-->
+<!--                  <span class="text-danger">*</span>-->
+<!--                </div>-->
+<!--                <div class="form-check">-->
+<!--                              <input-->
+<!--                                  class="mr-1 cursor-pointer form-check-input"-->
+<!--                                  type="checkbox"-->
+<!--                                  id="ulgurji">-->
+<!--                              <label for="ulgurji" class="form-check-label font-size-17 ml-1" style="color: #236257">{{ $t('product_dashboard_info.ulgurji') }}</label>-->
+<!--                  <span class="text-danger">*</span>-->
+<!--                </div>-->
+<!--              </div>-->
               <b-form-group :label="$t('product_dashboard_info.shortDescription')" label-for="textarea" style="color: #89A49D">
                 <b-form-textarea
                     id="textarea"
-                    rows="7"
+                    rows="9"
                     no-resize
                     class="w-100 font-weight-bold"
                     style="border: 1px solid #236257; color: #236257"
