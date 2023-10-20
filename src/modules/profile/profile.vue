@@ -52,7 +52,7 @@
                 <img
                     v-else
                     class="rounded-circle bg-light image"
-                    :src="`${userAvatarUrlFromStorage ? publicPath+userAvatarUrlFromStorage : require('../../assets/images/users/default-avatar.png')}`"
+                    :src="`${userInfos.passportPhoto ? `data:image/png;base64, ${userInfos.passportPhoto}`: require('../../assets/images/users/default-avatar.png')}`"
                 />
                 <div class="overlay">
                   <div
@@ -71,7 +71,7 @@
                 </div>
               </div>
               <div class="user-full-name mt-4">
-                <p class="text">{{ item.fullName }}</p>
+                <p class="text">{{ userInfos.lastName }} {{ userInfos.firstName }} {{ userInfos.middleName }}</p>
                 <b-button @click="openChangePasswordModal" class="btn-default btn-circle"
                           size="sm"><i class="fa fa-key"></i>
                 </b-button>
@@ -84,30 +84,34 @@
                   <tbody>
                   <tr>
                     <th scope="row" width="20%">{{ $t('profile.fio') }}</th>
-                    <td>{{ item.fullName }}</td>
+                    <td>{{ userInfos.lastName }} {{ userInfos.firstName }} {{ userInfos.middleName }}</td>
                   </tr>
                   <tr>
                     <th scope="row">{{ $t('column.birthdate') }}</th>
                     <td>
                       <b-row>
                         <b-col lg="6" md="6" sm="12" xl="4">
-                          <template v-if="editAccountInfo">
+<!--                          <template v-if="editAccountInfo">-->
 
-                            <!--                            <b-form-input size="sm" v-mask="myDateMask"-->
-                            <!--                                          :state="globalRegexDateOfBirth.test(itemCopy.employee.dateOfBirth)"-->
-                            <!--                                          v-model="itemCopy.employee.dateOfBirth"-->
-                            <!--                            ></b-form-input>-->
+<!--                            &lt;!&ndash;                            <b-form-input size="sm" v-mask="myDateMask"&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                          :state="globalRegexDateOfBirth.test(itemCopy.employee.dateOfBirth)"&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                          v-model="itemCopy.employee.dateOfBirth"&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            ></b-form-input>&ndash;&gt;-->
 
-                            <BaseDatePickerWithValidation
-                                custom-styles="grid-template-columns: 100%"
-                                v-model="itemCopy.employee.dateOfBirth"
-                                lang="ru"
-                            ></BaseDatePickerWithValidation>
+<!--                            <BaseDatePickerWithValidation-->
+<!--                                custom-styles="grid-template-columns: 100%"-->
+<!--                                v-model="itemCopy.employee.dateOfBirth"-->
+<!--                                lang="ru"-->
+<!--                            ></BaseDatePickerWithValidation>-->
+<!--                          </template>-->
+
+<!--                          <template v-else>-->
+<!--                            {{ item.employee.dateOfBirth }}-->
+<!--                          </template>-->
+                          <template>
+                            {{ userInfos.birthday }}
                           </template>
 
-                          <template v-else>
-                            {{ item.employee.dateOfBirth }}
-                          </template>
                         </b-col>
                       </b-row>
                     </td>
@@ -117,20 +121,23 @@
                     <td>
                       <b-row>
                         <b-col lg="6" md="6" sm="12" xl="4">
-                          <template v-if="editAccountInfo">
+<!--                          <template v-if="editAccountInfo">-->
 
-                            <b-form-input :disabled="loadingButton"
-                                          :state="globalRegexInn.test(itemCopy.employee.inn)"
-                                          size="sm"
-                                          v-mask="'##############'"
-                                          v-model="itemCopy.employee.inn"
-                            >
-                            </b-form-input>
+<!--                            <b-form-input :disabled="loadingButton"-->
+<!--                                          :state="globalRegexInn.test(itemCopy.employee.inn)"-->
+<!--                                          size="sm"-->
+<!--                                          v-mask="'##############'"-->
+<!--                                          v-model="itemCopy.employee.inn"-->
+<!--                            >-->
+<!--                            </b-form-input>-->
 
 
-                          </template>
-                          <template v-else>
-                            {{ item.employee.inn }}
+<!--                          </template>-->
+<!--                          <template v-else>-->
+<!--                            {{ item.employee.inn }}-->
+<!--                          </template>-->
+                          <template>
+                            <p> </p>
                           </template>
 
                         </b-col>
@@ -143,26 +150,29 @@
                     <td>
                       <b-row>
                         <b-col lg="6" md="6" sm="12" xl="4">
-                          <template v-if="editAccountInfo">
-                            <b-form-input :disabled="loadingButton"
-                                          size="sm"
-                                          v-mask="'##############'"
-                                          v-model="itemCopy.employee.pinfl"
-                            >
-                            </b-form-input>
-                          </template>
+<!--                          <template v-if="editAccountInfo">-->
+<!--                            <b-form-input :disabled="loadingButton"-->
+<!--                                          size="sm"-->
+<!--                                          v-mask="'##############'"-->
+<!--                                          v-model="itemCopy.employee.pinfl"-->
+<!--                            >-->
+<!--                            </b-form-input>-->
+<!--                          </template>-->
 
-                          <template v-else>
-                            {{ item.employee.pinfl }}
-                          </template>
+<!--                          <template v-else>-->
+<!--                            {{ item.employee.pinfl }}-->
+<!--                          </template>-->
 
+                          <template>
+                            {{ userInfos.pinfl }}
+                          </template>
                         </b-col>
                       </b-row>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">{{ $t('profile.title') }}</th>
-                    <td>{{ item.userName }}</td>
+                    <td>{{ userInfos.username }}</td>
                   </tr>
                   <tr>
                     <th scope="row">{{ $t('profile.email') }}</th>
@@ -170,23 +180,26 @@
                       <b-row>
                         <b-col cols="12"
                                sm="6">
-                          <template v-if="editAccountInfo">
-                            <BaseInputWithValidation
-                                :rules="{email: true}"
-                                custom-styles="grid-template-columns: 0% 65%"
-                                placeholder="meningEmail@gmail.com"
-                                v-model="itemCopy.mail"
-                            />
-                            <!--                            <b-input-group append="@gmail.com" size="sm">-->
-                            <!--                              <b-form-input :disabled="loadingButton"-->
-                            <!--                                            v-model="itemCopy.email"-->
-                            <!--                              >-->
-                            <!--                              </b-form-input>-->
-                            <!--                            </b-input-group>-->
-                          </template>
+<!--                          <template v-if="editAccountInfo">-->
+<!--                            <BaseInputWithValidation-->
+<!--                                :rules="{email: true}"-->
+<!--                                custom-styles="grid-template-columns: 0% 65%"-->
+<!--                                placeholder="meningEmail@gmail.com"-->
+<!--                                v-model="itemCopy.mail"-->
+<!--                            />-->
+<!--                            &lt;!&ndash;                            <b-input-group append="@gmail.com" size="sm">&ndash;&gt;-->
+<!--                            &lt;!&ndash;                              <b-form-input :disabled="loadingButton"&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                            v-model="itemCopy.email"&ndash;&gt;-->
+<!--                            &lt;!&ndash;                              >&ndash;&gt;-->
+<!--                            &lt;!&ndash;                              </b-form-input>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            </b-input-group>&ndash;&gt;-->
+<!--                          </template>-->
 
-                          <template v-else>
-                            {{ item.mail }}
+<!--                          <template v-else>-->
+<!--                            {{ item.mail }}-->
+<!--                          </template>-->
+                          <template>
+                            {{ userInfos.mail }}
                           </template>
 
                         </b-col>
@@ -197,32 +210,37 @@
                     <th scope="row">{{ $t('profile.phonenumber') }}</th>
                     <td>
                       <b-row>
-                        <template v-if="editAccountInfo">
-                          <b-col
-                              sm="12"
-                              md="6"
-                          >
-                            <BaseInputWithValidation
-                                not-required
-                                custom-styles="grid-template-columns: 0% 65%"
-                                v-model="itemCopy.phoneNumber"
-                                mask="+998#########"
-                                placeholder="+998#########"
-                            />
-                          </b-col>
+<!--                        <template v-if="editAccountInfo">-->
+<!--                          <b-col-->
+<!--                              sm="12"-->
+<!--                              md="6"-->
+<!--                          >-->
+<!--                            <BaseInputWithValidation-->
+<!--                                not-required-->
+<!--                                custom-styles="grid-template-columns: 0% 65%"-->
+<!--                                v-model="itemCopy.phoneNumber"-->
+<!--                                mask="+998#########"-->
+<!--                                placeholder="+998#########"-->
+<!--                            />-->
+<!--                          </b-col>-->
 
-                          <!--                            <b-form-input :disabled="loadingButton" size="sm"-->
-                          <!--                                          v-mask="'## ### ## ##'"-->
-                          <!--                                          v-model="itemCopy.phoneNumber"-->
-                          <!--                            >-->
-                          <!--                            </b-form-input>-->
+<!--                          &lt;!&ndash;                            <b-form-input :disabled="loadingButton" size="sm"&ndash;&gt;-->
+<!--                          &lt;!&ndash;                                          v-mask="'## ### ## ##'"&ndash;&gt;-->
+<!--                          &lt;!&ndash;                                          v-model="itemCopy.phoneNumber"&ndash;&gt;-->
+<!--                          &lt;!&ndash;                            >&ndash;&gt;-->
+<!--                          &lt;!&ndash;                            </b-form-input>&ndash;&gt;-->
 
-                        </template>
+<!--                        </template>-->
 
-                        <template v-else>
-                          {{ item.phoneNumber }}
-                          <!--                            {{ getCorrectPhoneNumber(item.phoneNumber) }}-->
-                        </template>
+<!--                        <template v-else>-->
+<!--                          {{ item.phoneNumber }}-->
+<!--                          &lt;!&ndash;                            {{ getCorrectPhoneNumber(item.phoneNumber) }}&ndash;&gt;-->
+<!--                        </template>-->
+                        <b-col sm="12">
+                          <template>
+                            {{ userInfos.phoneNumber }}
+                          </template>
+                        </b-col>
                       </b-row>
 
                     </td>
@@ -485,11 +503,13 @@ import {mapState} from "vuex";
 import appConfig from "@/app.config";
 import {TokenService} from "@/shared/services/storage.service"
 import messengerService from "@/shared/services/messengerService";
+import crudAndListsService from "@/shared/services/crud_and_list.service";
 
 export default {
   name: "Profile",
   data() {
     return {
+      userInfos:{},
       publicPath: process.env.BASE_URL,
       localUserAvatarUrl: null,
       userAvatarLoading: false,
@@ -749,6 +769,15 @@ export default {
     openChangePasswordModal() {
       this.changePasswordModal = true;
     },
+    getUserInfos() {
+      crudAndListsService.getUserInformation()
+          .then((res) => {
+            this.userInfos = res.data;
+          })
+          .catch(e => {
+            console.log(e)
+          })
+    },
     async getUserInfo() {
       await AccountService.getUserInfo().then((response) => {
         this.item = response.data;
@@ -775,7 +804,8 @@ export default {
   async created() {
     // await this.setLoadingContent(true);
     // await this.searchUserByString();
-    await this.getUserInfo();
+    // await this.getUserInfo();
+    await this.getUserInfos();
     await this.setLoadingContent(false);
   },
   computed: {

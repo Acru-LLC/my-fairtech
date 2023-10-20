@@ -16,6 +16,7 @@ const MAIN_API_URL_INVENTORY_REPORT = '/report/general-inventory-reports'
 export default {
   data() {
     return {
+      userInfos:{},
       employeePhoto: TokenService.getUserAvatarUrl(),
       dropdownActive: false,
       notificationList: [],
@@ -54,7 +55,9 @@ export default {
   },
 
   components: {simplebar},
-
+  async created() {
+    await this.getUserInfos();
+  },
   computed: {
     ...mapState({notificationsCount: 'count'}),
     userInfo() {
@@ -82,6 +85,15 @@ export default {
     ...mapMutations({
       setLocale: "SET_LOCALE"
     }),
+    getUserInfos() {
+      crudAndListsService.getUserInformation()
+          .then((res) => {
+            this.userInfos = res.data;
+          })
+          .catch(e => {
+            console.log(e)
+          })
+    },
     //   toggleDropdown() {
     //   const dropdown = document.querySelector(".language-select");
     //   dropdown.classList.toggle("active");
@@ -890,12 +902,12 @@ export default {
           <template v-slot:button-content>
             <img
                 class="rounded-circle header-profile-user mr-2"
-                :src="`${employeePhoto ? `data:image/png;base64, ${employeePhoto}`: require('../shared/views/auth/images/mainPageImages/flags/user.png')}`"
+                :src="`${userInfos.passportPhoto ? `data:image/png;base64, ${userInfos.passportPhoto}`: require('../shared/views/auth/images/mainPageImages/flags/user.png')}`"
                 alt=""
             />
             <span class="d-non  e d-xl-inline-block ms-1">
                             {{
-                userInfo.username
+                userInfos.username
               }}
                         </span>
             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
