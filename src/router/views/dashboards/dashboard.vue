@@ -448,7 +448,7 @@ COMPUTED */
               </div>
               <div class="col-md-3"></div>
               <div class="col-md-4">
-                <h5 class="font-size-16" style="color: #ABABAD">{{ $t('dashboard.results.done_task') }}</h5>
+                <h5 class="font-size-16" style="color: #ABABAD">{{ $t('dashboard.results.date') }}</h5>
               </div>
             </div>
             <div class="row">
@@ -474,22 +474,22 @@ COMPUTED */
             </div>
             <div class="row">
               <div class="col-md-3 d-flex ">
+                <span class="btn btn-info"><i class="fa fa-check"></i></span>
+                <div class="ml-2 d-flex justify-content-around flex-column">
+                  <span class="font-size-16" style="color: #85DFC2">{{ $t('dashboard.results.status.2') }}</span>
+                  <span class="font-size-20" style="color: #1DA78E">400 {{ $t('dashboard.results.ta') }}</span>
+                </div>
+              </div>
+              <div class="col-md-3 d-flex ">
                 <span class="btn btn-danger"><i class="fa fa-arrow-down"></i></span>
                 <div class="ml-2 d-flex justify-content-around flex-column">
                   <span class="font-size-16" style="color: #EBA77C">{{ $t('dashboard.results.status.1') }}</span>
                   <span class="font-size-20" style="color: #E06A1F">144 {{ $t('dashboard.results.ta') }}</span>
                 </div>
               </div>
-              <div class="col-md-3 d-flex ">
-                <span class="btn btn-info"><i class="fa fa-arrow-up"></i></span>
-                <div class="ml-2 d-flex justify-content-around flex-column">
-                  <span class="font-size-16" style="color: #85DFC2">{{ $t('dashboard.results.status.2') }}</span>
-                  <span class="font-size-20" style="color: #1DA78E">400 {{ $t('dashboard.results.ta') }}</span>
-                </div>
-              </div>
               <div class="col-md-2"></div>
               <div class="col-md-3 d-flex ">
-                <span class="btn btn-warning"><i class="fa fa-exclamation"></i></span>
+                <span class="btn btn-warning"><i class="fa fa-hourglass-end"></i></span>
                 <div class="ml-2 d-flex justify-content-around flex-column">
                   <span class="font-size-16" style="color: #E7DD57">{{ $t('dashboard.results.status.3') }}</span>
                   <span class="font-size-20" style="color: #CCBF07">400 {{ $t('dashboard.results.ta') }}</span>
