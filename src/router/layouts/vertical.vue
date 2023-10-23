@@ -186,7 +186,7 @@ export default {
     }
     .effect {
       &:hover {
-        color: #fff!important;
+        color: #2C665A!important;
       }
     }
   }
