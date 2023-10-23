@@ -66,7 +66,9 @@
                 <a href="#" class="svg-footer2 ml-2">@rqbot</a>
                 <div class="text-footer-right">
                   <img src="../auth/images/loginImages/tutorial.svg" alt="">
-                  <a href="#"></a><span class="svg-footer3 cursor-pointer"> {{ $t('system.tutorial') }}</span>
+
+                  <a v-if="checkLocale" href="https://fairtech.uz/my.fairtech.uz/instruction/%D0%A2%D0%B0%D1%88%D2%9B%D0%B8_%D1%84%D0%BE%D0%B9%D0%B4%D0%B0%D0%BB%D0%B0%D0%BD%D1%83%D0%B2%D1%87%D0%B8%D0%BB%D0%B0%D1%80_%D1%83%D1%87%D1%83%D0%BD_%D2%9B%D1%9E%D0%BB%D0%BB%D0%B0%D0%BD%D0%BC%D0%B0_%D0%9A%D0%B8%D1%80%D0%B8%D0%BB%D0%BB_hyfymufngipfzilhhindggcnttslftylmdpqatruwdfhoxidwxkpmiftcqwwmrtwhdxbtawintdikmpxkspvurzdvyjgjeztnawn1698044334964.pdf" target="_blank"><span class="svg-footer3 cursor-pointer"> {{ $t('system.tutorial') }}</span></a>
+                  <a v-else href="https://fairtech.uz/my.fairtech.uz/instruction/%D0%A2%D0%B0%D1%88%D2%9B%D0%B8_%D1%84%D0%BE%D0%B9%D0%B4%D0%B0%D0%BB%D0%B0%D0%BD%D1%83%D0%B2%D1%87%D0%B8%D0%BB%D0%B0%D1%80_%D1%83%D1%87%D1%83%D0%BD_%D2%9B%D1%9E%D0%BB%D0%BB%D0%B0%D0%BD%D0%BC%D0%B0_%D0%9B%D0%BE%D1%82%D0%B8%D0%BD_hvginiatpzbhvzxfvdgzihioarvqwkacrsrcmuxoyrmhubsytekuweilrtdcnwtytkkhmjdrekxdpsvffvnstzitwwsjykltcmwn1698044432180.pdf" target="_blank"><span class="svg-footer3 cursor-pointer"> {{ $t('system.tutorial') }}</span></a>
                 </div>
               </div>
 
@@ -130,6 +132,11 @@ export default {
       flag: null,
       currentLocale: {},
     };
+  },
+  computed:{
+  checkLocale(){
+    return (localStorage.getItem('locale') == 'uzCyrillic') ? true : false;
+  },
   },
   methods: {
     ...mapMutations({

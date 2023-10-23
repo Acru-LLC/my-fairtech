@@ -503,8 +503,8 @@ COMPUTED */
             {{ $t('product_dashboard_info.customer_ifo_title') }}
           </b-row>
           <b-row class="mt-3">
-            <b-col cols="2">
-              <img class="user-img" style="border: 2px solid #44766B; border-radius: 6px; padding-top: 10px"
+            <b-col cols="2" style="text-align: center">
+              <img class="user-img"
                    :src="`${userInfos.passportPhoto ? `data:image/png;base64, ${userInfos.passportPhoto}`: require('../images/user.png')}`"
                    alt=""
               >
@@ -703,8 +703,8 @@ body-card-text{
 }
 
 .user-img{
-  width: 120px;
-  height: 150px;
+  width: 160px;
+  height: 180px;
 }
 .txt-btn a{
 //width: 71px;

@@ -815,6 +815,9 @@ export default {
   },
 
   methods: {
+    generateNow() {
+      this.$refs.formGenererateNow.generatePdf();
+    },
     generate() {
       this.$refs.formGenererate.generatePdf();
     },
@@ -923,7 +926,8 @@ export default {
             .getByIdApplicationInfo(id, true)
             .then((rs) => {
               this.proj = rs.data;
-              this.isFormModal = true
+              this.selectedAppealTrItem = rs.data;
+              this.isFormModal = true;
               //
               // this.pdfMedicationData = []
               // require('jspdf-autotable');
@@ -2709,7 +2713,7 @@ export default {
                                       <b-col cols="3">
                                         <p class="mb-0" style="color:#839690;">
                                           {{ $t('pharm.chakanaData.allPrice') }}:</p>
-                                        <p class="mb-0 mt-1" style="max-width: 180px; background-color:#872222; border-left: 5px solid #5c0707; border-bottom-right-radius: 6px;border-top-right-radius: 6px; padding: 5px 6px;">
+                                        <p class="mb-0 mt-1" style="max-width: 230px; background-color:#872222; border-left: 5px solid #5c0707; border-bottom-right-radius: 6px;border-top-right-radius: 6px; padding: 5px 6px;">
                                           <b class="text-white" style="font-size: 17px;">
                                             {{
                                               formatNumber(selectedAppealTrItem.allExtraPrice ? selectedAppealTrItem.allExtraPrice.toFixed(2) : 0)
@@ -2789,7 +2793,7 @@ export default {
                                       <b-col cols="12" sm="3">
                                         <p class="mb-0" style="color:#839690;">
                                           {{ $t('pharm.chakanaData.appealPosition') }}:</p>
-                                        <p class="mb-0" style="max-width: 220px; background-color:#5b8f85; border-left: 5px solid #25695c; border-bottom-right-radius: 6px;border-top-right-radius: 6px; padding: 6px 6px;">
+                                        <p class="mb-0" style="max-width: 240px; background-color:#5b8f85; border-left: 5px solid #25695c; border-bottom-right-radius: 6px;border-top-right-radius: 6px; padding: 6px 6px;">
                                           <b class="text-white" style="font-size: 16px;"
                                              v-if="selectedAppealTrItem.status == 'SEND_TO_REGION'">
                                             {{ $t('pharm.chakanaData.sendToRegion') }}
@@ -2873,40 +2877,18 @@ export default {
                                         <td>30.09.2023</td>
                                         <td>murojaat-31635.pdf</td>
                                         <td>
-                                                                    <span>
-                                                                      <i class="mdi mdi-eye-outline mr-2"
-                                                                         style="font-size: 15px; font-weight: bold;"></i>
-                                                                      <i class="fa fa-download"
-                                                                         style="font-size: 15px; font-weight: bold;"></i>
-                                                                    </span>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td>2</td>
-                                        <td>Ijro hujjatlar</td>
-                                        <td>30.09.2023</td>
-                                        <td>murojaat_4444.pdf</td>
-                                        <td>
-                                                                    <span>
-                                                                      <i class="mdi mdi-eye-outline mr-2"
-                                                                         style="font-size: 15px; font-weight: bold;"></i>
-                                                                      <i class="fa fa-download"
-                                                                         style="font-size: 15px; font-weight: bold;"></i>
-                                                                    </span>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td>3</td>
-                                        <td>Iste'molchi hujjatlari</td>
-                                        <td>30.09.2023</td>
-                                        <td>murojaat.pdf</td>
-                                        <td>
-                                                                    <span>
-                                                                      <i class="mdi mdi-eye-outline mr-2"
-                                                                         style="font-size: 15px; font-weight: bold;"></i>
-                                                                      <i class="fa fa-download"
-                                                                         style="font-size: 15px; font-weight: bold;"></i>
-                                                                    </span>
+                                          <span>
+                                            <i class="mdi mdi-eye-outline mr-3" @click="generatePDF(selectedAppealTrItem.id)"
+                                               style="font-size: 15px; font-weight: bold;"></i>
+                                            <i class="fa fa-download" @click="generateNow()"
+                                               style="font-size: 15px; font-weight: bold;"></i>
+                                          </span>
+                                          <span class="d-none">
+                                         <forma
+                                             ref="formGenererateNow"
+                                             :resDate="selectedAppealTrItem"
+                                         ></forma>
+                                      </span>
                                         </td>
                                       </tr>
                                       </tbody>
