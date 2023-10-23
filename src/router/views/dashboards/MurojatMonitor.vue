@@ -4,6 +4,7 @@ import i18n from "@/i18n";
 import {TokenService} from "@/shared/services/storage.service";
 import ProjectMenu from "@/shared/views/auth/MainProMenu.vue";
 import Toast from "vue-toastification";
+import crudAndListsService from "@/shared/services/crud_and_list.service";
 
 // const MAIN_API_URL = 'report/dashboard'
 
@@ -18,7 +19,7 @@ export default {
   data() {
     return {
       userId: TokenService.getUserId(),
-      userInfos: [],
+      userInfos: {},
       counts: [],
       searchValue: "",
       page: 1,
@@ -36,7 +37,7 @@ export default {
       isActive3: false,
       isActiveS1: false,
       isActiveS2: false,
-      selectedOption: '',
+      selectedOption: this.$t('product_dashboard_info.ariza'),
       selectedOption2: '',
       file: '',
       buttonText: this.$t('product_dashboard_info.upload_btn'),
@@ -166,6 +167,16 @@ COMPUTED */
       // Check if the item number is one of the last 4 items (2, 3, 4, or 5)
       return itemNumber >= 2 && itemNumber <= 5;
     },
+    getUserInfo() {
+      crudAndListsService.getUserInformation()
+          .then((res) => {
+            this.userInfos = res.data;
+            console.log(res)
+          })
+          .catch(e => {
+            console.log(e)
+          })
+    },
   },
   mounted() {
 
@@ -209,11 +220,11 @@ COMPUTED */
                 <div class="mt-3 d-flex justify-content-between">
                 <BaseInputWithValidation
                     rules="required"
-                    mask="+#############"
                     label-on-top
                     class="required font-size-15"
                     style="color: #89A49D"
                     :label="$t('product_dashboard_info.phone_number')"
+                    v-model="userInfos.phoneNumber"
                 >
                 </BaseInputWithValidation>
                   <button type="button" class="mt-3 bg-white" style="border: none">
@@ -238,6 +249,7 @@ COMPUTED */
                   v-if="selectedOption === $t('product_dashboard_info.ariza')"
                   mask="##############"
                   label-on-top
+                  v-model="userInfos.pinfl"
                   style="color: #89A49D"
                   class="required font-size-15 text-color"
                   :label="$t('pharm_check_sms.pinfl_placeholder')"
@@ -249,6 +261,7 @@ COMPUTED */
                   v-if="selectedOption === $t('product_dashboard_info.appeal')"
                   mask="#########"
                   label-on-top
+                  v-model="userInfos.inn"
                   style="color: #89A49D"
                   class="required font-size-15 text-color"
                   :label="$t('product_dashboard_info.stir')"
@@ -289,8 +302,8 @@ COMPUTED */
                 {{$t('product_dashboard_info.full_name')}}
                 <span class="text-danger">*</span>
               </span>
-              <b-form-text v-if="selectedOption === $t('product_dashboard_info.ariza')" class="font-size-17 font-weight-bold" style="color: #236257!important;">Aliev Ali Ali o`g`li</b-form-text>
-              <b-form-text v-if="selectedOption === $t('product_dashboard_info.appeal')" class="font-size-17 font-weight-bold" style="color: #236257!important;">"UNNAMED" MCHJ</b-form-text>
+              <b-form-text v-if="selectedOption === $t('product_dashboard_info.ariza')" class="font-size-17 font-weight-bold" style="color: #236257!important;">{{userInfos.lastName}} {{userInfos.firstName}} {{userInfos.middleName}}</b-form-text>
+              <b-form-text v-if="selectedOption === $t('product_dashboard_info.appeal')" class="font-size-17 font-weight-bold" style="color: #236257!important;">---</b-form-text>
               <div v-if="selectedOption === $t('product_dashboard_info.ariza')" class="mt-3 d-flex justify-content-between">
               <b-form-group :label="$t('product_dashboard_info.address.title')" label-for="textarea" style="color: #89A49D">
                 <b-form-textarea
@@ -311,6 +324,7 @@ COMPUTED */
               <div v-if="selectedOption === $t('product_dashboard_info.appeal')" class="mt-3 d-flex justify-content-between">
               <b-form-group :label="$t('product_dashboard_info.yuridik_address')" label-for="textarea" style="color: #89A49D">
                 <b-form-textarea
+                    :value="userInfos.birthPlace + userInfos.perAdress"
                     id="textarea"
                     rows="2"
                     no-resize
@@ -388,7 +402,7 @@ COMPUTED */
               <button class="btn text-white font-size-15" style="width: 200px; background-color: #F39138" @click="saveDraft">{{ btnText }}</button>
             </div>
             <b-button
-                :disabled="!pinflBtn || loadingTableItems"
+                :disabled="!userInfos.pinfl && !userInfos.phoneNumber || loadingTableItems"
                 @click="getInfos"
                 variant="outline-primary"
                 id="contractorSearchButton"
