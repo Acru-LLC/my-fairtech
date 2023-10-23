@@ -179,7 +179,7 @@ COMPUTED */
     },
   },
   mounted() {
-
+    this.getUserInfo()
   },
 
   created() {
