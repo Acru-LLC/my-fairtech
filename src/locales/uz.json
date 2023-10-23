@@ -3745,13 +3745,14 @@
       "detail_btn": "Batafsil..."
     },
     "results": {
-      "done_task": "Qilingan ishlar",
-      "saw_task": "Ko`rib chiqilgan ishlar soni",
+      "done_task": "Iste'molchi murojaatlari",
+      "saw_task": "Yuborilgan murojaatlar soni",
       "total": "Jami",
+      "date": "Sana",
       "ta": "ta",
       "status": {
-        "1": "Qoniqarsiz",
-        "2": "Qoniqarli",
+        "1": "Qaytarildi",
+        "2": "Ko`rib chiqildi",
         "3": "Ko`rib chiqilmoqda"
       }
     },
