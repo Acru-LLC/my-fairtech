@@ -1,5 +1,5 @@
 <script>
-import Layout from "@/router/layouts/main";
+import Layout from "@/router/layouts/main.vue";
 import i18n from "@/i18n";
 import {TokenService} from "@/shared/services/storage.service";
 import ProjectMenu from "@/shared/views/auth/MainProMenu.vue";
@@ -228,10 +228,10 @@ COMPUTED */
                 >
                 </BaseInputWithValidation>
                   <button type="button" class="mt-3 bg-white" style="border: none">
-                    <img src="../images/edit.svg" alt="">
+                    <img src="../../../router/views/images/edit.svg" alt="">
                   </button>
                   <button type="button" class="mt-3 bg-white" style="border: none">
-                    <img src="../images/delete.svg" alt="">
+                    <img src="../../../router/views/images/delete.svg" alt="">
                   </button>
                 </div>
 
@@ -280,10 +280,10 @@ COMPUTED */
                 >
                 </BaseInputWithValidation>
                 <button type="button" class="mt-3 bg-white" style="border: none">
-                  <img src="../images/edit.svg" alt="">
+                  <img src="../../../router/views/images/edit.svg" alt="">
                 </button>
                 <button type="button" class="mt-3 bg-white" style="border: none">
-                  <img src="../images/delete.svg" alt="">
+                  <img src="../../../router/views/images/delete.svg" alt="">
                 </button>
               </div>
             </div>
@@ -308,6 +308,7 @@ COMPUTED */
               <b-form-group :label="$t('product_dashboard_info.address.title')" label-for="textarea" style="color: #89A49D">
                 <b-form-textarea
                     id="textarea"
+                    :value="userInfos.birthPlace + ' '+ userInfos.perAdress"
                     rows="2"
                     no-resize
                     class="w-100 font-weight-bold"
@@ -315,16 +316,15 @@ COMPUTED */
                 ></b-form-textarea>
               </b-form-group>
                 <button type="button" class="mt-3 bg-white mx-2" style="border: none">
-                  <img src="../images/edit.svg" alt="">
+                  <img src="../../../router/views/images/edit.svg" alt="">
                 </button>
                 <button type="button" class="mt-3 bg-white" style="border: none">
-                  <img src="../images/delete.svg" alt="">
+                  <img src="../../../router/views/images/delete.svg" alt="">
                 </button>
               </div>
               <div v-if="selectedOption === $t('product_dashboard_info.appeal')" class="mt-3 d-flex justify-content-between">
               <b-form-group :label="$t('product_dashboard_info.yuridik_address')" label-for="textarea" style="color: #89A49D">
                 <b-form-textarea
-                    :value="userInfos.birthPlace + userInfos.perAdress"
                     id="textarea"
                     rows="2"
                     no-resize
@@ -333,10 +333,10 @@ COMPUTED */
                 ></b-form-textarea>
               </b-form-group>
                 <button type="button" class="mt-3 bg-white mx-2" style="border: none">
-                  <img src="../images/edit.svg" alt="">
+                  <img src="../../../router/views/images/edit.svg" alt="">
                 </button>
                 <button type="button" class="mt-3 bg-white" style="border: none">
-                  <img src="../images/delete.svg" alt="">
+                  <img src="../../../router/views/images/delete.svg" alt="">
                 </button>
               </div>
             </div>

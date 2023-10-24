@@ -4,7 +4,7 @@ export default [
     {
         name: "MurojaatCreate",
         path: "/murojaat-create",
-        component: () => import("../../router/views/dashboards/MurojatMonitor"),
+        component: () => import("./modules/MurojatMonitor.vue"),
     },
     {
         name: "MurojaatDraft",
