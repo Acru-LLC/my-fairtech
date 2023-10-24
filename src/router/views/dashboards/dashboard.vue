@@ -20,6 +20,7 @@ export default {
   },
   data() {
     return {
+      appealCount: {},
       userId: TokenService.getUserId(),
       userInfos: {},
       counts: [],
@@ -225,6 +226,15 @@ COMPUTED */
             console.log(e)
           })
     },
+    fetchAppealCount() {
+      crudAndListsService.getAppealCount()
+          .then((res) => {
+            this.appealCount = res.data; // Assuming the API returns the count as a property in the response
+          })
+          .catch (e => {
+            console.log(e)
+          })
+    },
 
     clearValue() {
       this.$set(this.barChart, "series", []);
@@ -266,46 +276,7 @@ COMPUTED */
       //     regionNames
       // );
     },
-    getCountsByRegionFromServer() {
-      helperService.getCountsByRegion()
-          .then((res) => {
-            this.countsByRegion = res.data.responseData;
-            this.setResponse(res.data.responseData)
-          })
-          .catch(e => {
-            this.counts = [];
-          })
-    },
-    getCountsFromServer() {
-      helperService.getCounts()
-          .then((res) => {
-            this.counts = res.data;
-          })
-          .catch(e => {
-            this.counts = [];
-          })
-    },
-    getPassports() {
-      this.$router.push({
-        name: 'AdvertisementPassportInfoAvtoyulFalse',
-        params: {}
-      })
-    },
-    getPassportsAvtoyul() {
-      this.$router.push({
-        name: 'AdvertisementPassportInfoAvtoyulTrue',
-      })
-    },
-    getNotifications() {
-      this.$router.push({
-        name: 'IncomeNotifications',
-      })
-    },
-    getReports() {
-      this.$router.push({
-        name: 'IncomeInventoryReports',
-      })
-    },
+
     startCarousel() {
       setInterval(() => {
         this.nextSlide();
@@ -351,16 +322,16 @@ COMPUTED */
                                           num == 9 ? this.$t('month.october') :
                                               num == 10 ? this.$t('month.november') :
                                                   num == 11 ? this.$t('month.december') : 'no date'
-    }
+    },
   },
   mounted() {
+    this.fetchAppealCount();
     this.startCarousel();
   },
 
   created() {
-    this.getUserInfo()
-    this.getCountsFromServer()
-    this.getCountsByRegionFromServer()
+    this.getUserInfo();
+    // this.fetchAppealCount();
   },
 }
 </script>
@@ -482,7 +453,7 @@ COMPUTED */
               </div>
               <div class="col-md-3"></div>
               <div class="col-md-4">
-                <h5 class="font-size-22" style="color: #2C665A">{{ getCurrentDate }}</h5>
+                <h5 class="font-size-22" style="color: #2C665A">1-{{ getCurrentDate }}</h5>
               </div>
             </div>
             <div class="row">
@@ -490,11 +461,11 @@ COMPUTED */
                 <h3 class="result-text">{{ $t('dashboard.results.total') }}</h3>
               </div>
               <div class="col-md-3">
-                <h3 class="result-text">1 {{ $t('dashboard.results.ta') }}</h3>
+                <h3 class="result-text">{{appealCount.all}} {{ $t('dashboard.results.ta') }}</h3>
               </div>
               <div class="col-md-2"></div>
               <div class="col-md-3">
-                <h3 class="result-text">0 {{ $t('dashboard.results.ta') }}</h3>
+                <h3 class="result-text">{{appealCount.thisMonth}} {{ $t('dashboard.results.ta') }}</h3>
               </div>
             </div>
             <div class="row">
@@ -502,14 +473,14 @@ COMPUTED */
                 <span class="btn btn-info"><i class="fa fa-check"></i></span>
                 <div class="ml-2 d-flex justify-content-around flex-column">
                   <span class="font-size-16" style="color: #85DFC2">{{ $t('dashboard.results.status.2') }}</span>
-                  <span class="font-size-20" style="color: #1DA78E">0 {{ $t('dashboard.results.ta') }}</span>
+                  <span class="font-size-20" style="color: #1DA78E">{{appealCount.finished}} {{ $t('dashboard.results.ta') }}</span>
                 </div>
               </div>
               <div class="col-md-3 d-flex ">
                 <span class="btn btn-danger"><i class="fa fa-arrow-down"></i></span>
                 <div class="ml-2 d-flex justify-content-around flex-column">
                   <span class="font-size-16" style="color: #EBA77C">{{ $t('dashboard.results.status.1') }}</span>
-                  <span class="font-size-20" style="color: #E06A1F">0 {{ $t('dashboard.results.ta') }}</span>
+                  <span class="font-size-20" style="color: #E06A1F">{{appealCount.returned}}  {{ $t('dashboard.results.ta') }}</span>
                 </div>
               </div>
               <div class="col-md-2"></div>
@@ -517,7 +488,7 @@ COMPUTED */
                 <span class="btn btn-warning"><i class="fa fa-hourglass-end"></i></span>
                 <div class="ml-2 d-flex justify-content-around flex-column">
                   <span class="font-size-16" style="color: #E7DD57">{{ $t('dashboard.results.status.3') }}</span>
-                  <span class="font-size-20" style="color: #CCBF07">1 {{ $t('dashboard.results.ta') }}</span>
+                  <span class="font-size-20" style="color: #CCBF07">{{appealCount.process}} {{ $t('dashboard.results.ta') }}</span>
                 </div>
               </div>
             </div>

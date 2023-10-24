@@ -52,6 +52,9 @@ const crudAndListsService = {
     sendAppeal(params){
       return ApiService.post('/outer-cabinet/send-appeal', params);
     },
+    getAppealCount(){
+        return ApiService.get('/outer-cabinet/appeal-count')
+    },
     getById: async function (mainUrl, id, withLoader = false, mutationName, appendUrl = null) {
         if (appendUrl) {
             let res = await ApiService.get(`${mainUrl}/get/${appendUrl}/${id}`, withLoader);
