@@ -165,6 +165,17 @@ export default {
   /*
 COMPUTED */
   computed: {
+    getCurrentDate() {
+      const now = new Date();
+      // console.log(new Date())
+      // console.log(now)
+      // const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      // return now.toLocaleDateString(undefined, options);
+      var day = now.getDate()
+      var month = now.getMonth()
+      var year = now.getFullYear()
+      return day + ' ' + this.monthName(month) + ' ' + year
+    },
     // current_project() {
     //     return JSON.parse(localStorage.getItem('current_project')) ? JSON.parse(localStorage.getItem('current_project')) : null
     // },
@@ -327,6 +338,20 @@ COMPUTED */
           indicator.classList.remove('active');
         }
       })},
+    monthName(num) {
+      return num == 0 ? this.$t('month.january') :
+          num == 1 ? this.$t('month.february') :
+              num == 2 ? this.$t('month.march') :
+                  num == 3 ? this.$t('month.april') :
+                      num == 4 ? this.$t('month.may') :
+                          num == 5 ? this.$t('month.june') :
+                              num == 6 ? this.$t('month.july') :
+                                  num == 7 ? this.$t('month.august') :
+                                      num == 8 ? this.$t('month.september') :
+                                          num == 9 ? this.$t('month.october') :
+                                              num == 10 ? this.$t('month.november') :
+                                                  num == 11 ? this.$t('month.december') : 'no date'
+    }
   },
   mounted() {
     this.startCarousel();
@@ -457,7 +482,7 @@ COMPUTED */
               </div>
               <div class="col-md-3"></div>
               <div class="col-md-4">
-                <h5 class="font-size-22" style="color: #2C665A">(1-21) iyun 2023y</h5>
+                <h5 class="font-size-22" style="color: #2C665A">{{ getCurrentDate }}</h5>
               </div>
             </div>
             <div class="row">
@@ -465,11 +490,11 @@ COMPUTED */
                 <h3 class="result-text">{{ $t('dashboard.results.total') }}</h3>
               </div>
               <div class="col-md-3">
-                <h3 class="result-text">3004 {{ $t('dashboard.results.ta') }}</h3>
+                <h3 class="result-text">1 {{ $t('dashboard.results.ta') }}</h3>
               </div>
               <div class="col-md-2"></div>
               <div class="col-md-3">
-                <h3 class="result-text">845 {{ $t('dashboard.results.ta') }}</h3>
+                <h3 class="result-text">0 {{ $t('dashboard.results.ta') }}</h3>
               </div>
             </div>
             <div class="row">
@@ -477,14 +502,14 @@ COMPUTED */
                 <span class="btn btn-info"><i class="fa fa-check"></i></span>
                 <div class="ml-2 d-flex justify-content-around flex-column">
                   <span class="font-size-16" style="color: #85DFC2">{{ $t('dashboard.results.status.2') }}</span>
-                  <span class="font-size-20" style="color: #1DA78E">400 {{ $t('dashboard.results.ta') }}</span>
+                  <span class="font-size-20" style="color: #1DA78E">0 {{ $t('dashboard.results.ta') }}</span>
                 </div>
               </div>
               <div class="col-md-3 d-flex ">
                 <span class="btn btn-danger"><i class="fa fa-arrow-down"></i></span>
                 <div class="ml-2 d-flex justify-content-around flex-column">
                   <span class="font-size-16" style="color: #EBA77C">{{ $t('dashboard.results.status.1') }}</span>
-                  <span class="font-size-20" style="color: #E06A1F">144 {{ $t('dashboard.results.ta') }}</span>
+                  <span class="font-size-20" style="color: #E06A1F">0 {{ $t('dashboard.results.ta') }}</span>
                 </div>
               </div>
               <div class="col-md-2"></div>
@@ -492,7 +517,7 @@ COMPUTED */
                 <span class="btn btn-warning"><i class="fa fa-hourglass-end"></i></span>
                 <div class="ml-2 d-flex justify-content-around flex-column">
                   <span class="font-size-16" style="color: #E7DD57">{{ $t('dashboard.results.status.3') }}</span>
-                  <span class="font-size-20" style="color: #CCBF07">400 {{ $t('dashboard.results.ta') }}</span>
+                  <span class="font-size-20" style="color: #CCBF07">1 {{ $t('dashboard.results.ta') }}</span>
                 </div>
               </div>
             </div>
