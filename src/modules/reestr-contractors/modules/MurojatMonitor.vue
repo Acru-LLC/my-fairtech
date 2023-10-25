@@ -19,7 +19,9 @@ export default {
   data() {
     return {
       userId: TokenService.getUserId(),
+      appealList: [],
       userInfos: {},
+      zipeKod:'',
       counts: [],
       searchValue: "",
       page: 1,
@@ -45,6 +47,23 @@ export default {
       btnText: this.$t('product_dashboard_info.draft_btn'),
       loadingTableItems: false,
       inputValue: '',
+      formData: {
+        applier_type: '',
+        applier_jshshir: null,
+        applier_fullname: '',
+        applier_zipcode: null,
+        applier_address: '',
+        appeal_type: '',
+        appeal_subtype: '',
+        appeal_description: '',
+        org_tin: null,
+        org_name: '',
+        org_phone: '',
+        org_email: '',
+        org_address: '',
+        appeal_file: '',
+      },
+      appeal_description: '',
 
       // items: [
       //   {
@@ -165,7 +184,7 @@ COMPUTED */
     },
     isItemDisabled(itemNumber) {
       // Check if the item number is one of the last 4 items (2, 3, 4, or 5)
-      return itemNumber >= 2 && itemNumber <= 5;
+      return itemNumber >= 2 && itemNumber <= 6;
     },
     getUserInfo() {
       crudAndListsService.getUserInformation()
@@ -177,6 +196,54 @@ COMPUTED */
             console.log(e)
           })
     },
+    sendAppeal(){
+      this.loading = true;
+      let formData = {
+        applier_type: this.selectedOption,
+        applier_jshshir: this.userInfos.pinfl,
+        applier_fullname: this.userInfos.lastName + this.userInfos.firstName + this.userInfos.middleName,
+        applier_zipcode: this.zipeKod,
+        applier_phone: this.userInfos.phoneNumber.slice(4),
+        applier_address: this.userInfos.birthPlace + this.userInfos.perAdress,
+        appeal_type: this.selectedOption2,
+        appeal_description:this.appeal_description,
+      }
+      this.searchResultsLoader =true;
+
+      crudAndListsService.sendAppeal(formData)
+          .then((res) => {
+            this.appealList = res.data;
+            this.selectedOption = '',
+            this.zipeKod = '',
+            this.selectedOption2 = '',
+            this.appeal_description = '',
+            this.searchResultsLoader = false;
+            this.loading = false;
+
+          })
+          .catch((err) => {
+            // this.catchErr(err);
+          })
+          .finally(() => {
+            this.searchResultsLoader = false;
+            this.searchingModal = false;
+            this.loading = false;
+          });
+    },
+    handleFileChange(event) {
+      this.formData.appeal_file = event.target.files[0];
+      this.submitFile();
+    },
+    // async submitAppealForm() {
+    //   try {
+    //     const response = await crudAndListsService.sendAppeal(this.formData);
+    //     // Handle the response as needed
+    //     console.log('Response:', response.data);
+    //   } catch (error) {
+    //     // Handle errors
+    //     console.error('Error:', error);
+    //   }
+    // },
   },
   mounted() {
     this.getUserInfo()
@@ -211,7 +278,7 @@ COMPUTED */
                     <div @click="selectOption($t('product_dashboard_info.ariza'))">
                       {{ $t('product_dashboard_info.ariza') }}
                     </div>
-                    <div @click="selectOption($t('product_dashboard_info.appeal'))">
+                    <div @click="selectOption($t('product_dashboard_info.appeal'))" :class="{ 'disabled-option': isItemDisabled(6) }">
                       {{ $t('product_dashboard_info.appeal') }}
                     </div>
 <!--                    <div>{{ $t('product_dashboard_info.offer') }}</div>-->
@@ -221,6 +288,7 @@ COMPUTED */
                 <BaseInputWithValidation
                     rules="required"
                     label-on-top
+                    mask="+998#########"
                     class="required font-size-15"
                     style="color: #89A49D"
                     :label="$t('product_dashboard_info.phone_number')"
@@ -274,6 +342,7 @@ COMPUTED */
                     mask="######"
                     label-on-top
                     style="color: #89A49D"
+                    v-model="zipeKod"
                     class="font-size-15 text-color"
                     :label="$t('product_dashboard_info.post_address')"
                     :placeholder="'_ _ _ _ _ _'"
@@ -383,6 +452,7 @@ COMPUTED */
                 <b-form-textarea
                     id="textarea"
                     rows="9"
+                    v-model="appeal_description"
                     no-resize
                     class="w-100 font-weight-bold"
                     style="border: 1px solid #236257; color: #236257"
@@ -392,9 +462,9 @@ COMPUTED */
           </fieldset>
           <b-row>
             <div class="col">
-              <input type="file" ref="fileInput" @change="handleFileUpload" style="display: none"/>
+              <input type="file" ref="fileInput" @change="handleFileChange" style="display: none"/>
               <button class="btn btnUpload font-size-15" @click="triggerFileInput">{{ buttonText }}</button>
-              <span class="ml-2" v-if="file">{{ file.name }}</span>
+              <span class="ml-2" v-if="formData.appeal_file">{{ formData.appeal_file.name }}</span>
             </div>
           </b-row>
           <b-row class="mt-3">
@@ -402,8 +472,7 @@ COMPUTED */
               <button class="btn text-white font-size-15" style="width: 200px; background-color: #F39138" @click="saveDraft">{{ btnText }}</button>
             </div>
             <b-button
-                :disabled="!userInfos.pinfl && !userInfos.phoneNumber || loadingTableItems"
-                @click="getInfos"
+                @click="sendAppeal"
                 variant="outline-primary"
                 id="contractorSearchButton"
                 class="btn mr-2 font-size-15"
