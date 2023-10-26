@@ -472,6 +472,7 @@ COMPUTED */
               <button class="btn text-white font-size-15" style="width: 200px; background-color: #F39138" @click="saveDraft">{{ btnText }}</button>
             </div>
             <b-button
+                :disabled="!userInfos.pinfl || !userInfos.phoneNumber || !selectedOption2 || !appeal_description || loadingTableItems"
                 @click="sendAppeal"
                 variant="outline-primary"
                 id="contractorSearchButton"
