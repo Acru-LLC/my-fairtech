@@ -131,6 +131,7 @@
     "GATHERED": "Jamlangan"
   },
   "error": {
+    "test_mode": "Tizim test rejimida ishlamoqda",
     "passport_error": "Passport seriasini kiritish majburiy va uzunligi 2 ta bo'lishi kerak",
     "name_error": "Bu maydon bo‘sh bo‘lishi mumkin emas",
     "netToken": "Sizda kalit yo‘q",

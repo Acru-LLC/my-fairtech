@@ -429,6 +429,32 @@ export default {
   font-family: "NoirPro-Regular", sans-serif;
   font-size: 12px;
 }
+.live-icon{
+  width: 14px;
+  height: 14px;
+  background-color: #ff435b;
+  border-radius: 50%;
+//position: absolute;
+  right: 0;
+  top: 0;
+}
+.live-effect{
+  width: 100%;
+  height: 100%;
+  background-color: #ff435b;
+  border-radius: 50%;
+  animation: live 2s linear infinite;
+}
+@keyframes live {
+  from{
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  to{
+    transform: scale(2);
+    opacity: 0.1;
+  }
+}
 
 </style>
 <template>
@@ -486,6 +512,12 @@ export default {
       <div class="header-text mt-2" id="afterTitleText" hidden>
         <div class="header-main-text"><a href="#"><span>{{ $t('system.title') }}</span></a></div>
         <div class="header-sub-text"><span>{{ $t('system.sub_title') }}</span></div>
+      </div>
+      <div class="d-flex align-items-center ml-3" style="top: 10px">
+        <div class="live-icon mr-3">
+          <div class="live-effect"></div>
+        </div>
+        <span class="font-size-17 font-weight-bold text-danger">{{$t('error.test_mode')}}</span>
       </div>
       <div class="inputs">
         <!--                <i class="fa fa-search"></i>-->
