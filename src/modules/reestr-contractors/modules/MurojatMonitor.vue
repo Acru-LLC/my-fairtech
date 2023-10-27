@@ -18,6 +18,8 @@ export default {
   },
   data() {
     return {
+      images: [],
+      uploadFiles:false,
       userId: TokenService.getUserId(),
       appealList: [],
       userInfos: {},
@@ -61,7 +63,7 @@ export default {
         org_phone: '',
         org_email: '',
         org_address: '',
-        appeal_file: '',
+        appeal_file: [],
       },
       appeal_description: '',
 
@@ -111,7 +113,6 @@ COMPUTED */
       };
     }
   },
-
   /*
   METHODS */
   methods: {
@@ -190,7 +191,7 @@ COMPUTED */
       crudAndListsService.getUserInformation()
           .then((res) => {
             this.userInfos = res.data;
-            console.log(res)
+            // console.log(res)
           })
           .catch(e => {
             console.log(e)
@@ -230,10 +231,34 @@ COMPUTED */
             this.loading = false;
           });
     },
+
     handleFileChange(event) {
-      this.formData.appeal_file = event.target.files[0];
-      this.submitFile();
+      let files = event.target.files || event.dataTransfer.files;
+      if (!files.length) return;
+      this.createImage(files);
+      // console.log(event.target.files);
+      // this.formData.appeal_file = event.target.files[0].name;
+      // this.submitFile();
+
     },
+    createImage(files) {
+      let vm = this;
+      for (let index = 0; index < files.length; index++) {
+        console.log(files)
+        this.formData.appeal_file.push(files[index].name)
+        console.log(this.formData.appeal_file);
+        // let reader = new FileReader();
+        // reader.onload = function(event) {
+        //   const fileName = event.target.result;
+        //   vm.formData.appeal_file.push(fileName);
+          // console.log(event);
+        }
+        // reader.readAsDataURL(files[index]);
+      // }
+    },
+    removeImage(index) {
+      this.formData.appeal_file.splice(index, 1)
+    }
     // async submitAppealForm() {
     //   try {
     //     const response = await crudAndListsService.sendAppeal(this.formData);
@@ -247,10 +272,6 @@ COMPUTED */
   },
   mounted() {
     this.getUserInfo()
-  },
-
-  created() {
-
   },
 }
 </script>
@@ -460,13 +481,68 @@ COMPUTED */
               </b-form-group>
               </div>
           </fieldset>
+
           <b-row>
-            <div class="col">
-              <input type="file" ref="fileInput" @change="handleFileChange" style="display: none"/>
-              <button class="btn btnUpload font-size-15" @click="triggerFileInput">{{ buttonText }}</button>
-              <span class="ml-2" v-if="formData.appeal_file">{{ formData.appeal_file.name }}</span>
+            <div class="col-12 d-flex align-items-center">
+<!--              <input type="file" ref="fileInput" @change="handleFileChange" style="display: none"/>-->
+              <button class="btn font-size-15" style="background-color: #7a9690; color: white; width:200px;" @click="uploadFiles = true;">{{ buttonText }}</button>
+              <span class="ml-2" v-if="formData.appeal_file">
+                  <span v-for="(vm,i) in formData.appeal_file" :key="i">
+                <i v-if="(vm.split('.').slice(1))[0] == 'pdf'" class="mdi mdi-file-pdf-box" style="color: darkred; font-size: 30px"></i>
+                     <i v-else-if="(vm.split('.').slice(1))[0] == 'docx'" class="mdi mdi-microsoft-word" style="color: #2B7CD3; font-size: 30px"></i>
+                     <i v-else-if="(vm.split('.').slice(1))[0] == 'xls'|| (vm.split('.').slice(1))[0] == 'xlsx'" class="mdi mdi-microsoft-excel" style="color: darkgreen; font-size: 30px"></i>
+                     <i v-else class="mdi mdi-file" style="color: orange; font-size: 30px"></i><span v-if="i != (formData.appeal_file.length-1)">,</span>
+                    </span>
+              </span>
             </div>
+
+            <b-modal centered v-model="uploadFiles" size="lg" :title="$t('actions.upload_file')">
+             <div class="row d-flex">
+               <div class="col-5" style="text-align: center;">
+                 <div>
+                   <input multiple type="file" class="btnUploadFrame" @change="handleFileChange" />
+                   <div class="btnUpload">
+                     <div class="mb-3 pt-3"><img width="130" src="../../../assets/file.png" alt=""></div>
+                     <div>{{$t('uploadFiles')}}</div>
+                   </div>
+                 </div>
+<!--                 <button class="btn btnUpload font-size-15" @click="triggerFileInput">{{ buttonText }}</button>-->
+<!--                 <input type="file" ref="fileInput" multiple="multiple" name="fileselect[]" @change="handleFileChange" style="display: none"/>-->
+<!--                 <button class="btn btnUpload font-size-15" @click="triggerFileInput">{{ buttonText }}</button>-->
+<!--&lt;!&ndash;                 <span class="ml-2" v-if="formData.appeal_file">{{ formData.appeal_file.name }}</span>&ndash;&gt; onFileChange-->
+               </div>
+               <div class="col-7" style="height: 240px; overflow-y: auto;">
+                 <div v-if="formData.appeal_file.length">
+                   <div v-for="(item, index) in formData.appeal_file" :key="index" class="uploadedFileList">
+                    <div class="d-flex justify-content-between align-items-center">
+                     <div class="d-flex align-items-center">
+                       <div>
+                         <i v-if="(item.split('.').slice(1))[0] == 'pdf'" class="mdi mdi-file-pdf-box text-danger font-size-24"></i>
+                         <i v-else-if="(item.split('.').slice(1))[0] == 'docx'" class="mdi mdi-microsoft-word font-size-24" style="color: #2B7CD3"></i>
+                         <i v-else-if="(item.split('.').slice(1))[0] == 'xls'|| (item.split('.').slice(1))[0] == 'xlsx'" class="mdi mdi-microsoft-excel font-size-24" style="color: darkgreen"></i>
+                         <i v-else class="mdi mdi-file font-size-24" style="color: orange"></i>
+                       </div>
+                       <div>
+                         {{ item }}
+                       </div>
+                     </div>
+                      <div>
+                        <button style="background-color: transparent; color: darkred; border:none; padding-right: 5px;" @click="removeImage(index)">X</button>
+                      </div>
+                    </div>
+                   </div>
+                 </div>
+                 <div v-else class="text-center pt-5">{{$t('notSelectFile')}}</div>
+               </div>
+             </div>
+              <template v-slot:modal-footer>
+                <b-button style="background-color: #2b675b; color: white;" @click="uploadFiles = false;">
+                    {{ $t("rais.send") }}
+                </b-button>
+              </template>
+            </b-modal>
           </b-row>
+
           <b-row class="mt-3">
             <div class="col">
               <button class="btn text-white font-size-15" style="width: 200px; background-color: #F39138" @click="saveDraft">{{ btnText }}</button>
@@ -640,6 +716,27 @@ COMPUTED */
 </template>
 
 <style scoped lang="css">
+#filedrag
+{
+  /*display: none;*/
+  font-weight: bold;
+  text-align: center;
+  padding: 1em 0;
+  margin: 1em 0;
+  color: #555;
+  border: 2px dashed #555;
+  border-radius: 7px;
+  cursor: default;
+}
+
+#filedrag.hover
+{
+  color: #f00;
+  border-color: #f00;
+  border-style: solid;
+  box-shadow: inset 0 3px 4px #888;
+}
+
 .dropdown-select {
   position: relative;
   height: 40px;
@@ -786,11 +883,35 @@ COMPUTED */
   text-align: center;
   color: #427067;
 }
-.btnUpload {
-  background-color: #7A9690;
-  color: white;
+.btnUploadFrame{
+  width: 80%;
+  height: 220px;
+  //border: 1px dashed grey !important;
+  background-color:white;
   border-radius: 5px;
-  width: 200px;
+  color: black;
+  opacity: 0;
+  position: relative;
+  z-index: 1;
+}
+.btnUpload {
+  width: 80%;
+  height: 220px;
+  margin: 0 auto;
+  display: block;
+  border:1px dashed grey;
+  color: black;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.uploadedFileList{
+  border:1px solid grey;
+  border-radius: 5px;
+  padding:2px 5px;
+  margin-bottom: 5px;
 }
 .disabled-option {
   color: #ccc; /* Change the text color to a light gray for disabled options */

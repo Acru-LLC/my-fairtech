@@ -78,7 +78,7 @@ export default {
       //         if (res.data) {
       integratsiyaService.getContractorInfoByInnForCreate(this.inn, true)
           .then(res => {
-            console.log(res)
+            // console.log(res)
             // this.editingItem = Object.assi\gn({}, res.data)
           })
           .catch(e => {

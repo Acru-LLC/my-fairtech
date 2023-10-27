@@ -588,7 +588,7 @@ export default {
   async created() {
     await helperService.testTelegramBotApi(18, 5)
         .then(res => {
-          console.log(res)
+          // console.log(res)
         })
         .catch(e => {
           console.log(e)
