@@ -513,12 +513,6 @@ export default {
         <div class="header-main-text"><a href="#"><span>{{ $t('system.title') }}</span></a></div>
         <div class="header-sub-text"><span>{{ $t('system.sub_title') }}</span></div>
       </div>
-      <div class="d-flex align-items-center ml-3" style="top: 10px">
-        <div class="live-icon mr-3">
-          <div class="live-effect"></div>
-        </div>
-        <span class="font-size-17 font-weight-bold text-danger">{{$t('error.test_mode')}}</span>
-      </div>
       <div class="inputs">
         <!--                <i class="fa fa-search"></i>-->
         <!--                <label>-->
@@ -533,6 +527,12 @@ export default {
         <!--                        <i class="bx bx-video"></i>-->
         <!--                    </button>-->
         <!--                </router-link>-->
+        <div class="d-flex align-items-center mr-3" style="top: 10px">
+          <div class="live-icon mr-3">
+            <div class="live-effect"></div>
+          </div>
+          <span class="font-size-17 font-weight-bold text-danger">{{$t('error.test_mode')}}</span>
+        </div>
         <b-dropdown variant="white" right toggle-class="header-item" class="language-bar">
           <template v-slot:button-content>
             {{ text }}
