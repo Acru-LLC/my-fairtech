@@ -24,6 +24,8 @@ export default {
       appealList: [],
       userInfos: {},
       zipeKod:'',
+      appeal_file:[],
+      // appeal_file_list:[],
       counts: [],
       searchValue: "",
       page: 1,
@@ -63,7 +65,6 @@ export default {
         org_phone: '',
         org_email: '',
         org_address: '',
-        appeal_file: [],
       },
       appeal_description: '',
 
@@ -111,7 +112,10 @@ COMPUTED */
         search: this.searchValue,
         status: this.selectedAppStatus,
       };
-    }
+    },
+    computedObserver () {
+      return this.$refs.observer
+    },
   },
   /*
   METHODS */
@@ -197,30 +201,72 @@ COMPUTED */
             console.log(e)
           })
     },
+
+    // handleFileChange(event) {
+      // let files = event.target.files || event.dataTransfer.files;
+      // if (!files.length) return;
+      // this.createFiles(files);
+      // this.appeal_file.push(files);
+
+      // console.log(this.appeal_file[0]);
+      // console.log(Object.values(this.appeal_file));
+      // console.log(event.target);
+      // this.formData.appeal_file = event.target.files[0].name;
+      // this.submitFile();
+
+    // },
+
+    // createFiles(files) {
+      // for (let index = 0; index < files.length; index++) {
+        // console.log(files)
+        // this.appeal_file.push(files[index]);
+
+        // this.appeal_file_list.push(files[index].name);
+        // console.log(this.appeal_file);
+
+        // console.log(this.appeal_file);
+        // let reader = new FileReader();
+        // reader.onload = function(event) {
+        //   const fileName = event.target.result;
+        //   vm.formData.appeal_file.push(fileName);
+          // console.log(event);
+        // }
+        // reader.readAsDataURL(files[index]);
+      // }
+    // },
+
     sendAppeal(){
       this.loading = true;
-      let formData = {
-        applier_type: this.selectedOption,
-        applier_jshshir: this.userInfos.pinfl,
-        applier_fullname: this.userInfos.lastName + this.userInfos.firstName + this.userInfos.middleName,
-        applier_zipcode: this.zipeKod,
-        applier_phone: this.userInfos.phoneNumber.slice(4),
-        applier_address: this.userInfos.birthPlace + this.userInfos.perAdress,
-        appeal_type: this.selectedOption2,
-        appeal_description:this.appeal_description,
-      }
+      // console.log(this.appeal_file);
+      let bodyFormData = new FormData();
+
+      bodyFormData.append("applier_type", this.selectedOption);
+      bodyFormData.append("applier_jshshir", this.userInfos.pinfl);
+      bodyFormData.append("applier_fullname", this.userInfos.lastName + this.userInfos.firstName + this.userInfos.middleName);
+      bodyFormData.append("applier_zipcode", this.zipeKod);
+      bodyFormData.append("applier_phone", this.userInfos.phoneNumber.slice(4));
+      bodyFormData.append("applier_address", this.userInfos.birthPlace + this.userInfos.perAdress);
+      bodyFormData.append("appeal_type", this.selectedOption2);
+      bodyFormData.append("appeal_description", this.appeal_description);
+      this.appeal_file.forEach(f => { bodyFormData.append("appeal_file", f.file ) })
+
+
       this.searchResultsLoader =true;
 
-      crudAndListsService.sendAppeal(formData)
+      crudAndListsService.sendAppeal(bodyFormData)
           .then((res) => {
-            this.appealList = res.data;
+            console.log(res.status);
+            // location.reload();
+
+            // this.appealList = res.data;
             this.selectedOption = '',
             this.zipeKod = '',
             this.selectedOption2 = '',
             this.appeal_description = '',
+
+
             this.searchResultsLoader = false;
             this.loading = false;
-
           })
           .catch((err) => {
             // this.catchErr(err);
@@ -232,33 +278,11 @@ COMPUTED */
           });
     },
 
-    handleFileChange(event) {
-      let files = event.target.files || event.dataTransfer.files;
-      if (!files.length) return;
-      this.createImage(files);
-      // console.log(event.target.files);
-      // this.formData.appeal_file = event.target.files[0].name;
-      // this.submitFile();
 
-    },
-    createImage(files) {
-      let vm = this;
-      for (let index = 0; index < files.length; index++) {
-        console.log(files)
-        this.formData.appeal_file.push(files[index].name)
-        console.log(this.formData.appeal_file);
-        // let reader = new FileReader();
-        // reader.onload = function(event) {
-        //   const fileName = event.target.result;
-        //   vm.formData.appeal_file.push(fileName);
-          // console.log(event);
-        }
-        // reader.readAsDataURL(files[index]);
-      // }
-    },
-    removeImage(index) {
-      this.formData.appeal_file.splice(index, 1)
-    }
+    // removeImage(index) {
+    //   this.appeal_file.splice(index, 1)
+    //   this.appeal_file_list.splice(index, 1)
+    // }
     // async submitAppealForm() {
     //   try {
     //     const response = await crudAndListsService.sendAppeal(this.formData);
@@ -482,67 +506,79 @@ COMPUTED */
               </div>
           </fieldset>
 
-          <b-row>
-            <div class="col-12 d-flex align-items-center">
-<!--              <input type="file" ref="fileInput" @change="handleFileChange" style="display: none"/>-->
-              <button class="btn font-size-15" style="background-color: #7a9690; color: white; width:200px;" @click="uploadFiles = true;">{{ buttonText }}</button>
-              <span class="ml-2" v-if="formData.appeal_file">
-                  <span v-for="(vm,i) in formData.appeal_file" :key="i">
-                <i v-if="(vm.split('.').slice(1))[0] == 'pdf'" class="mdi mdi-file-pdf-box" style="color: darkred; font-size: 30px"></i>
-                     <i v-else-if="(vm.split('.').slice(1))[0] == 'docx'" class="mdi mdi-microsoft-word" style="color: #2B7CD3; font-size: 30px"></i>
-                     <i v-else-if="(vm.split('.').slice(1))[0] == 'xls'|| (vm.split('.').slice(1))[0] == 'xlsx'" class="mdi mdi-microsoft-excel" style="color: darkgreen; font-size: 30px"></i>
-                     <i v-else class="mdi mdi-file" style="color: orange; font-size: 30px"></i><span v-if="i != (formData.appeal_file.length-1)">,</span>
-                    </span>
-              </span>
-            </div>
 
-            <b-modal centered v-model="uploadFiles" size="lg" :title="$t('actions.upload_file')">
-             <div class="row d-flex">
-               <div class="col-5" style="text-align: center;">
-                 <div>
-                   <input multiple type="file" class="btnUploadFrame" @change="handleFileChange" />
-                   <div class="btnUpload">
-                     <div class="mb-3 pt-3"><img width="130" src="../../../assets/file.png" alt=""></div>
-                     <div>{{$t('uploadFiles')}}</div>
-                   </div>
-                 </div>
-<!--                 <button class="btn btnUpload font-size-15" @click="triggerFileInput">{{ buttonText }}</button>-->
-<!--                 <input type="file" ref="fileInput" multiple="multiple" name="fileselect[]" @change="handleFileChange" style="display: none"/>-->
-<!--                 <button class="btn btnUpload font-size-15" @click="triggerFileInput">{{ buttonText }}</button>-->
-<!--&lt;!&ndash;                 <span class="ml-2" v-if="formData.appeal_file">{{ formData.appeal_file.name }}</span>&ndash;&gt; onFileChange-->
-               </div>
-               <div class="col-7" style="height: 240px; overflow-y: auto;">
-                 <div v-if="formData.appeal_file.length">
-                   <div v-for="(item, index) in formData.appeal_file" :key="index" class="uploadedFileList">
-                    <div class="d-flex justify-content-between align-items-center">
-                     <div class="d-flex align-items-center">
-                       <div>
-                         <i v-if="(item.split('.').slice(1))[0] == 'pdf'" class="mdi mdi-file-pdf-box text-danger font-size-24"></i>
-                         <i v-else-if="(item.split('.').slice(1))[0] == 'docx'" class="mdi mdi-microsoft-word font-size-24" style="color: #2B7CD3"></i>
-                         <i v-else-if="(item.split('.').slice(1))[0] == 'xls'|| (item.split('.').slice(1))[0] == 'xlsx'" class="mdi mdi-microsoft-excel font-size-24" style="color: darkgreen"></i>
-                         <i v-else class="mdi mdi-file font-size-24" style="color: orange"></i>
-                       </div>
-                       <div>
-                         {{ item }}
-                       </div>
-                     </div>
-                      <div>
-                        <button style="background-color: transparent; color: darkred; border:none; padding-right: 5px;" @click="removeImage(index)">X</button>
-                      </div>
-                    </div>
-                   </div>
-                 </div>
-                 <div v-else class="text-center pt-5">{{$t('notSelectFile')}}</div>
-               </div>
-             </div>
-              <template v-slot:modal-footer>
-                <b-button style="background-color: #2b675b; color: white;" @click="uploadFiles = false;">
-                    {{ $t("rais.send") }}
-                </b-button>
-              </template>
-            </b-modal>
+          <b-row class="py-3">
+          <b-col cols="12">
+            <BaseFileUploaderWithValidation
+                label-on-top
+                v-model="appeal_file"
+                data-vv-name="file"
+                data-vv-as="file"
+                :multiple="false"
+                :max-files="100"
+                :maxFilesize="100"
+                :label="$t('actions.upload_file')"
+            ></BaseFileUploaderWithValidation>
+          </b-col>
+<!--            <div class="col-12 d-flex align-items-center">-->
+<!--&lt;!&ndash;              <input type="file" ref="fileInput" @change="handleFileChange" style="display: none"/>&ndash;&gt;-->
+<!--              <button class="btn font-size-15" style="background-color: #7a9690; color: white; width:200px;" @click="uploadFiles = true;">{{ buttonText }}</button>-->
+<!--              <span class="ml-2" v-if="appeal_file_list.length">-->
+<!--                  <span v-for="(vm,i) in appeal_file_list" :key="i">-->
+<!--                <i v-if="(vm.split('.').slice(1))[0] == 'pdf'" class="mdi mdi-file-pdf-box" style="color: darkred; font-size: 30px"></i>-->
+<!--                     <i v-else-if="(vm.split('.').slice(1))[0] == 'docx'" class="mdi mdi-microsoft-word" style="color: #2B7CD3; font-size: 30px"></i>-->
+<!--                     <i v-else-if="(vm.split('.').slice(1))[0] == 'xls'|| (vm.split('.').slice(1))[0] == 'xlsx'" class="mdi mdi-microsoft-excel" style="color: darkgreen; font-size: 30px"></i>-->
+<!--                     <i v-else class="mdi mdi-file" style="color: orange; font-size: 30px"></i><span v-if="i != (appeal_file.length-1)">,</span>-->
+<!--                    </span>-->
+<!--              </span>-->
+<!--            </div>-->
+
+<!--            <b-modal centered v-model="uploadFiles" size="lg" :title="$t('actions.upload_file')">-->
+<!--             <div class="row d-flex">-->
+<!--               <div class="col-5" style="text-align: center;">-->
+<!--                 <div>-->
+<!--                   <input multiple type="file" class="btnUploadFrame" @change="handleFileChange" />-->
+<!--                   <div class="btnUpload">-->
+<!--                     <div class="mb-3 pt-3"><img width="130" src="../../../assets/file.png" alt=""></div>-->
+<!--                     <div>{{$t('uploadFiles')}}</div>-->
+<!--                   </div>-->
+<!--                 </div>-->
+<!--&lt;!&ndash;                 <button class="btn btnUpload font-size-15" @click="triggerFileInput">{{ buttonText }}</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                 <input type="file" ref="fileInput" multiple="multiple" name="fileselect[]" @change="handleFileChange" style="display: none"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                 <button class="btn btnUpload font-size-15" @click="triggerFileInput">{{ buttonText }}</button>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                 <span class="ml-2" v-if="appeal_file">{{ appeal_file.name }}</span>&ndash;&gt; onFileChange&ndash;&gt;-->
+<!--               </div>-->
+<!--               <div class="col-7" style="height: 240px; overflow-y: auto;">-->
+<!--                 <div v-if="appeal_file_list.length">-->
+<!--                   <div v-for="(item, index) in appeal_file_list" :key="index" class="uploadedFileList">-->
+<!--                    <div class="d-flex justify-content-between align-items-center">-->
+<!--                     <div class="d-flex align-items-center">-->
+<!--                       <div>-->
+<!--                         <i v-if="(item.split('.').slice(1))[0] == 'pdf'" class="mdi mdi-file-pdf-box font-size-24" style="color: darkred"></i>-->
+<!--                         <i v-else-if="(item.split('.').slice(1))[0] == 'docx'" class="mdi mdi-microsoft-word font-size-24" style="color: #2B7CD3"></i>-->
+<!--                         <i v-else-if="(item.split('.').slice(1))[0] == 'xls'|| (item.split('.').slice(1))[0] == 'xlsx'" class="mdi mdi-microsoft-excel font-size-24" style="color: darkgreen"></i>-->
+<!--                         <i v-else class="mdi mdi-file font-size-24" style="color: orange"></i>-->
+<!--                       </div>-->
+<!--                       <div>-->
+<!--                         {{ item }}-->
+<!--                       </div>-->
+<!--                     </div>-->
+<!--                      <div>-->
+<!--                        <button style="background-color: transparent; color: darkred; border:none; padding-right: 5px;" @click="removeImage(index)">X</button>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                   </div>-->
+<!--                 </div>-->
+<!--                 <div v-else class="text-center pt-5">{{$t('notSelectFile')}}</div>-->
+<!--               </div>-->
+<!--             </div>-->
+<!--              <template v-slot:modal-footer>-->
+<!--                <b-button style="background-color: #2b675b; color: white;" @click="uploadFiles = false;">-->
+<!--                    {{ $t("rais.send") }}-->
+<!--                </b-button>-->
+<!--              </template>-->
+<!--            </b-modal>-->
           </b-row>
-
           <b-row class="mt-3">
             <div class="col">
               <button class="btn text-white font-size-15" style="width: 200px; background-color: #F39138" @click="saveDraft">{{ btnText }}</button>

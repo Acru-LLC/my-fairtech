@@ -49,8 +49,21 @@ const crudAndListsService = {
     getUserInformation(){
         return ApiService.post(`/outer-cabinet/profile-data`)
     },
-    sendAppeal(params){
-      return ApiService.post(`/outer-cabinet/send-appeal?applier_type=${params.applier_type}&applier_jshshir=${params.applier_jshshir}&applier_fullname=${params.applier_fullname}&applier_zipcode=${params.applier_zipcode}&applier_phone=${params.applier_phone}&applier_address=${params.applier_address}&appeal_type=${params.appeal_type}&appeal_description=${params.appeal_description}`);
+    async sendAppeal(bodyFormData){
+        console.log(bodyFormData);
+        const requestData = {
+            method: 'post',
+            url: '/outer-cabinet/send-appeal',
+            data: bodyFormData,
+            headers: {'Content-Type': 'multipart/form-data'}
+        };
+        try {
+            const response = await ApiService.customRequest(requestData);
+            return response.data;
+        } catch (error) {
+            return error.response.data
+        }
+      // return ApiService.post(`/outer-cabinet/send-appeal?applier_type=${params.applier_type}&applier_jshshir=${params.applier_jshshir}&applier_fullname=${params.applier_fullname}&applier_zipcode=${params.applier_zipcode}&applier_phone=${params.applier_phone}&applier_address=${params.applier_address}&appeal_type=${params.appeal_type}&appeal_description=${params.appeal_description}&appeal_file=${params.appeal_file}`);
     },
     getAppealCount(){
         return ApiService.get('/outer-cabinet/appeal-count')
