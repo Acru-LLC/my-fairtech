@@ -424,7 +424,7 @@ export default {
         licshet: this.licshet
       }, true)
           .then(res => {
-            console.log(res)
+            // console.log(res)
             this.resInformation_Date = res.data
             // if (res.data.code == 200) {
             //   this.$toast(res.data.message, {type: 'success'});

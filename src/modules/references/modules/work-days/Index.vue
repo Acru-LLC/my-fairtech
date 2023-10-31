@@ -258,7 +258,7 @@ export default {
       // GET STATUSES
       await crudAndListService.searchList(REF_NAME, this.var_default_search_payload)
           .then(res => {
-            console.log(res)
+            // console.log(res)
             this.tableItems = res.data.list
             this.totalItems = res.data.list.length
           })

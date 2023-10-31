@@ -598,7 +598,7 @@ export default {
 
       integratsiyaService.getSuvXojaligiInfo(true)
           .then(res => {
-            console.log(res)
+            // console.log(res)
             this.tableItems = res.data.items;
             this.totalItems = res.data.items.length;
             this.loadingTableItems = false

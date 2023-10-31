@@ -78,6 +78,8 @@
     "selected_divide_info": "Tanlangan bo‘limning ma’lumotlari"
   },
   "successDocSigned": "Hujjat imzolandi!",
+  "uploadFiles": "Hujjatlarni yuklash",
+  "notSelectFile": "Fayl tanlanmagan",
   "qrcodeNotFound": "Hujjatga QR-kod imzo qo'yilmagan",
   "docConfirm": "Hujjat hali kelishilmagan, hujjatni imzolaysizmi? ",
   "dateSign": "Imzolangan sana",
