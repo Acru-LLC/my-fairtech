@@ -2,6 +2,7 @@
 import {mapActions, mapMutations} from "vuex";
 import i18n from "@/i18n";
 import CheckService from "@/shared/services/checkService";
+import crud_and_listService from "@/shared/services/crud_and_list.service";
 
 export default {
   data() {
@@ -119,7 +120,7 @@ export default {
             // console.log(result.data)
           })
           .catch((err) => {
-            // this.catchErr(err);
+              // this.catchErr(err);
           })
           .finally(() => {
             this.searchLoader = false;
@@ -127,11 +128,24 @@ export default {
             this.loading = false;
           });
     },
+    getConfirmPharmacyList(){
+      let id = this.$route.params.id;
+      crud_and_listService.getConfirmPharmacy(id)
+          .then((res)=>{
+            this.getUserDatas = res.data;
+            console.log(res)
+          })
+          .catch((err)=>{
+            console.log(err);
+          })
+    }
   },
   mounted() {
+    this.getConfirmPharmacyList();
     this.value = this.languages.find((x) => x.language === i18n.locale);
     this.text = this.value.title;
     this.flag = this.value.flag;
+    // console.log(this.$route.params.id)
   },
 }
 </script>
@@ -192,8 +206,8 @@ export default {
       </div>
       <b-row class="border w-100 col-12 mx-auto">
         <div class="col">
-          <h4 class="font-weight-bold mt-5" style="color: #2C665A">Hurmatli sizga *** sanada sms xabar yuborilgan!</h4>
-          <h4 class="font-weight-bold mt-3" style="color: #2C665A">" ***** sms-text*****"</h4>
+          <h4 class="font-weight-bold mt-5" style="color: #2C665A">Hurmatli {{ getUserDatas.medicationFounderName ? getUserDatas.medicationFounderName :'tadbirkor' }} sizga {{ getUserDatas.consumerSendSmsDate ? getUserDatas.consumerSendSmsDate.slice(0, 10) : '' }} sanada quyidagi sms xabar yuborilgan!</h4>
+          <h4 class="font-weight-bold mt-3" style="color: #2C665A; width: 80%;"><i>{{ getUserDatas.consumerSendSmsMessage }}</i></h4>
           <h4 class="font-weight-bold position-absolute w-75" style="color: #2C665A; bottom: 70px; line-height: 23px">Qo'shimcha ma'lumot olish uchun o'z hududingizdagi Raqobat qo'mitasining hududiy bo'limi bilan bog'lanishingizni so'raymiz</h4>
         </div>
         <div class="col">
@@ -204,7 +218,7 @@ export default {
               style="padding: 7.5px 10px; background-color: #225F55; width: 200px"
           >
             <b-spinner v-if="loadingTableItems" type="border" small></b-spinner>
-            <span class="text-white ml-2">{{ $t('product_dashboard_info.send_btn') }}</span>
+            <span class="text-white ml-2">{{ $t('pharm.templates_download') }}</span>
           </b-button>
           <div class="form w-100" style="margin-top: 100px">
             <b-col>

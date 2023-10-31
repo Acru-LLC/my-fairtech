@@ -236,8 +236,6 @@ COMPUTED */
     // },
 
     sendAppeal(){
-      this.loading = true;
-      // console.log(this.appeal_file);
       let bodyFormData = new FormData();
 
       bodyFormData.append("applier_type", this.selectedOption);
@@ -251,31 +249,24 @@ COMPUTED */
       this.appeal_file.forEach(f => { bodyFormData.append("appeal_file", f.file ) })
 
 
-      this.searchResultsLoader =true;
-
       crudAndListsService.sendAppeal(bodyFormData)
           .then((res) => {
-            console.log(res.status);
             // location.reload();
+            // this.selectedOption = '',.
+            // this.getUserInfo();
 
-            // this.appealList = res.data;
-            this.selectedOption = '',
             this.zipeKod = '',
             this.selectedOption2 = '',
             this.appeal_description = '',
+            this.appeal_file = [];
 
-
-            this.searchResultsLoader = false;
-            this.loading = false;
+            // this.$refs.appealFileUpload.removeAllFiles();
+            this.$refs.appealFileUpload.removeAll();
+            this.$toast(this.$t('messages.send_successfully'), {type: 'success'});
           })
           .catch((err) => {
-            // this.catchErr(err);
+            console.log(err)
           })
-          .finally(() => {
-            this.searchResultsLoader = false;
-            this.searchingModal = false;
-            this.loading = false;
-          });
     },
 
 
@@ -510,11 +501,13 @@ COMPUTED */
           <b-row class="py-3">
           <b-col cols="12">
             <BaseFileUploaderWithValidation
+                ref="appealFileUpload"
+                class="required"
                 label-on-top
                 v-model="appeal_file"
                 data-vv-name="file"
                 data-vv-as="file"
-                :multiple="false"
+                :multiple="true"
                 :max-files="100"
                 :maxFilesize="100"
                 :label="$t('actions.upload_file')"
@@ -584,7 +577,7 @@ COMPUTED */
               <button class="btn text-white font-size-15" style="width: 200px; background-color: #F39138" @click="saveDraft">{{ btnText }}</button>
             </div>
             <b-button
-                :disabled="!userInfos.pinfl || !userInfos.phoneNumber || !selectedOption2 || !appeal_description || loadingTableItems"
+                :disabled="!userInfos.pinfl || !userInfos.phoneNumber || !selectedOption2 || !appeal_description || loadingTableItems || !appeal_file.length"
                 @click="sendAppeal"
                 variant="outline-primary"
                 id="contractorSearchButton"

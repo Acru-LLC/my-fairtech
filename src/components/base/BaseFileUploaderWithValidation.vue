@@ -6,7 +6,7 @@
         v-bind="$attrs"
         v-on="$listeners"
         :id="`base-dropzone-${label}`"
-        ref="dropzone"
+        ref="appealFileUpload"
         class="base-form-component__main-form-element base-dropzone"
         :options="options"
         @vdropzone-file-added="uploadDone"
@@ -67,7 +67,7 @@ export default {
     mimes: {
       default: null,
       type: String,
-    },
+    }
   },
   data() {
     return {
@@ -125,7 +125,11 @@ export default {
           }
       )
       this.$emit('input', this.uploaded);
+    },
+    removeAll(){
+      this.$refs.appealFileUpload.removeAllFiles();
     }
+
   },
   computed: {
     baseWrapperClass(){

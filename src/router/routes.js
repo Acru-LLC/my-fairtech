@@ -79,7 +79,7 @@ export default [
         }
     },
     {
-        path: '/pharmacy-check',
+        path: '/pharmacy-check/:id',
         name: 'PharmacyCheckDoc',
         component: () => import('../shared/views/auth/PharmacyCheckDoc'),
         meta: {

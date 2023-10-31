@@ -50,7 +50,7 @@ const crudAndListsService = {
         return ApiService.post(`/outer-cabinet/profile-data`)
     },
     async sendAppeal(bodyFormData){
-        console.log(bodyFormData);
+        // console.log(bodyFormData);
         const requestData = {
             method: 'post',
             url: '/outer-cabinet/send-appeal',
@@ -67,6 +67,9 @@ const crudAndListsService = {
     },
     getAppealCount(){
         return ApiService.get('/outer-cabinet/appeal-count')
+    },
+    getConfirmPharmacy(id){
+        return ApiService.post(`/pharm/confirm-pharmacy?mNumber=${id}`)
     },
     getById: async function (mainUrl, id, withLoader = false, mutationName, appendUrl = null) {
         if (appendUrl) {
