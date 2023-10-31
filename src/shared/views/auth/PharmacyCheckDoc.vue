@@ -185,14 +185,102 @@ export default {
         </div>
       </div>
     </div>
-    <div class="col-12 mt-4">
+    <div class="col-12 mt-4 p-3">
       <div class="text-center">
         <h4 class="d-inline-block mb-4" style="color: #226358;">
           {{ $t('pharm_check_sms.main_title') }}</h4>
       </div>
-      <div class="border w-100 ">
-        <h1>Sizga *** sanada sms xabar yuborilgan</h1>
-      </div>
+      <b-row class="border w-100 col-12 mx-auto">
+        <div class="col">
+          <h4 class="font-weight-bold mt-5" style="color: #2C665A">Hurmatli sizga *** sanada sms xabar yuborilgan!</h4>
+          <h4 class="font-weight-bold mt-3" style="color: #2C665A">" ***** sms-text*****"</h4>
+          <h4 class="font-weight-bold position-absolute w-75" style="color: #2C665A; bottom: 70px; line-height: 23px">Qo'shimcha ma'lumot olish uchun o'z hududingizdagi Raqobat qo'mitasining hududiy bo'limi bilan bog'lanishingizni so'raymiz</h4>
+        </div>
+        <div class="col">
+          <b-button
+              variant="outline-primary"
+              id="contractorSearchButton"
+              class="btn font-size-15 float-right mt-3"
+              style="padding: 7.5px 10px; background-color: #225F55; width: 200px"
+          >
+            <b-spinner v-if="loadingTableItems" type="border" small></b-spinner>
+            <span class="text-white ml-2">{{ $t('product_dashboard_info.send_btn') }}</span>
+          </b-button>
+          <div class="form w-100" style="margin-top: 100px">
+            <b-col>
+              <h2 class="d-flex justify-content-end"><b>“Bio pharma” MChJ</b></h2>
+              <i class="d-flex justify-content-end">Toshkent shahri, Mirobod tumani,</i>
+              <i class="d-flex justify-content-end">Yangi Qo‘yliq ko‘chasi, 1-A-uy.</i>
+
+            </b-col>
+            <b-row cols="12" class="mt-2">
+              <p style="text-indent: 50px; font-size: 14px; margin-bottom: 0">
+                O‘zbekiston Respublikasi Prezidentining 2022-yil 26-oktabrdagi “Aholini sifatli dori vositalari va tibbiy buyumlar bilan ta’minlash yuzasidan qo‘shimcha chora-tadbirlar to‘g‘risida”gi PQ-411-son qaroriga muvofiq, <b>2023-yil 1-maydan boshlab,</b> jismoniy shaxslar tomonidan sotib olingan dori vositalari uchun dorixonalar tomonidan taqdim etiladigan xarid cheki soliq organlarining maxsus mobil ilovasida ro‘yxatdan o‘tkazilganda dori vositalarining <b>chakana referent narxlariga nisbatan qo‘yilgan ustamalar yuqori deb topilgan taqdirda,</b> O‘zbekiston Respublikasi Raqobatni rivojlantirish va iste’molchilar huquqlarini himoya qilish qo‘mitasi (keyingi matnlarda – Qo‘mita deb yuritiladi) va uning hududiy organlari tomonidan o‘tkazilgan tekshirish yakuniga ko‘ra ma’muriy bayonnoma rasmiylashtirish orqali huquqbuzardan belgilangan tartibda <b>jarima undirish</b> belgilangan.
+              </p>
+            </b-row>
+            <b-row cols="12">
+              <p style="text-indent: 50px; font-size: 14px; margin-bottom: 0">
+                O‘zbekiston Respublikasi Prezidentining 2016-yil 31-oktyabrdagi 2647-PQ-son qaroriga muvofiq chetdan olib kelinadigan, shuningdek, mamlakatimiz ishlab chiqaruvchilaridan sotib olinadigan dori-darmon vositalari va tibbiyot buyumlarini ulgurji va chakana sotish ularni yetkazib berishda ishtirok etuvchi vositachilar sonidan qatʼi nazar, ulgurji savdo uchun sotib olingan qiymatidan <b>15 foizdan,</b> chakana savdo uchun ulgurji narxidan <b>20 foizdan</b> ortiq bo‘lmagan miqdorlarda belgilanadigan <b>cheklangan savdo ustamalari qo‘llaniladi.</b>
+              </p>
+            </b-row>
+            <b-row cols="12">
+              <p style="text-indent: 50px; font-size: 14px; margin-bottom: 0">
+                2023-yil __-aprelda Qo‘mitaning axborot tizimiga fuqaro ____________ning murojaati kelib tushgan. Murojaatda “_________” dorixonasi tomonidan unga “____________” dori vositasi xarid qilganida <b>chakana referent narxlariga nisbatan qo‘yilgan ustamalar yuqori</b> ya’ni belgilangan chakana narxi <b>____ so‘m</b> o‘rniga <b>_____ so‘mdan</b> sotilganligi aniqlandi.
+              </p>
+            </b-row>
+            <b-row cols="12">
+              <p style="text-indent: 50px; font-size: 14px; margin-bottom: 0">
+                O‘zbekiston Respublikasi Vazirlar Mahkamasining 2003-yil 13-fevraldagi 75-son qaroriga muvofiq, narxlarni asossiz ravishda oshirish savdo qoidalarini buzish sifatida e’tirof etilgan.
+              </p>
+            </b-row>
+            <b-row cols="12">
+              <p style="text-indent: 50px; font-size: 14px; margin-bottom: 0">
+                O‘zbekiston Respublikasining Ma’muriy javobgarlik to‘g‘risidagi Kodeksining:
+              </p>
+            </b-row>
+            <b-row cols="12">
+              <p style="text-indent: 50px; font-size: 14px; margin-bottom: 0">
+                164-moddasiga muvofiq, savdo qoidalarini buzish uchun javobgarlik belgilangan;
+              </p>
+            </b-row>
+            <b-row cols="12">
+              <p style="text-indent: 50px; font-size: 14px; margin-bottom: 0">
+                271-moddasining 11-bandiga muvofiq, mazkur kodekksning 164-moddasi birinchi-uchinchi qismlarida nazarda tutilgan huquqbuzarlikni birinchi marta sodir etgan tadbirkorlik sub’ektining mansabdor shaxslari yoki xodimlari yoxud tadbirkorlik faoliyati bilan shug‘ullanuvchi fuqarolar yo‘l qo‘yilgan buzilishlarni huquqbuzarlik aniqlangan paytdan e’tiboran o‘ttiz kunlik muddatda ixtiyoriy ravishda bartaraf etgan va (yoki) yetkazilgan moddiy zararning o‘rnini qoplagan bo‘lsa, ma’muriy huquqbuzarlik to‘g‘risidagi ishlarni yuritishni boshlash mumkin emas, boshlangan ish esa tugatilishi lozim
+              </p>
+            </b-row>
+            <b-row cols="12">
+              <p style="text-indent: 50px; font-size: 14px; margin-bottom: 0">
+                Yuqoridagilarga asosan mazkur huquqbuzarlikni belgilangan muddatda ixtiyoriy ravishda bartaraf etib, holat yuzasidan tegishli tushuntirishni imkon qadar qisqa muddatda Qo‘mitaga <b>taqdim etishingiz so‘raladi.</b>
+              </p>
+            </b-row>
+            <b-row cols="12">
+              <p style="text-indent: 50px; font-size: 14px; margin-bottom: 0">
+                Ilova ____ varaqda.
+              </p>
+            </b-row>
+            <b-row cols="12" class="my-3">
+              <p style="text-indent: 100px; font-size: 14px; margin-bottom: 0">
+                <b>Boshqarma
+                boshlig‘i oʻrinbosari</b>
+              </p>
+              <p style="text-indent: 300px; font-size: 14px; margin-bottom: 0">
+                <b>S. Sadikov</b>
+              </p>
+            </b-row>
+            <b-row cols="12">
+              <i style="text-indent: 50px; font-size: 14px; margin-bottom: 0">
+                Ijrochi: J.Qodirov
+              </i>
+            </b-row>
+            <b-row cols="12">
+              <i style="text-indent: 50px; font-size: 14px; margin-bottom: 0">
+                Tel.:71-207-47-00
+              </i>
+            </b-row>
+
+          </div>
+        </div>
+      </b-row>
     </div>
   </div>
 </template>
