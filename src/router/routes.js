@@ -78,4 +78,13 @@ export default [
             onlyWhenLoggedOut: true
         }
     },
+    {
+        path: '/pharmacy-check',
+        name: 'PharmacyCheckDoc',
+        component: () => import('../shared/views/auth/PharmacyCheckDoc'),
+        meta: {
+            public: true,
+            onlyWhenLoggedOut: true
+        }
+    },
 ]
