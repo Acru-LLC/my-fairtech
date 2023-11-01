@@ -58,6 +58,18 @@ export default {
       let year = now.getFullYear()
       return day + ' ' + this.monthName(month) + ' ' + year
     },
+    getPharmacyRefPrice(){
+      return this.getUserDatas.medications.reduce((x, y) => x + y.referentPrice, 0)
+    },
+    getPharmacyAllPrice(){
+      return this.getUserDatas.medications.reduce((x, y) => x + y.paymentPrice, 0)
+    },
+    getPharmacyMonthDate() {
+      let month = (this.getUserDatas.createJson.substring(4, 5)) > 10 ? (Number(this.getUserDatas.createJson.substring(3, 5)))-1 : (Number(this.getUserDatas.createJson.substring(4, 5)))-1
+      return  this.monthLatName(month)
+    },
+
+
     isSendButtonDisabled() {
       if (this.isTelefonActive) {
         return !this.telefonInput.trim();
@@ -72,6 +84,21 @@ export default {
     ...mapMutations({
       setLocale: "SET_LOCALE"
     }),
+    monthLatName(number) {
+      return number === 0 ? 'yanvar' :
+          number === 1 ? 'fevral' :
+              number === 2 ? 'mart' :
+                  number === 3 ? 'aprel' :
+                      number === 4 ? 'may' :
+                          number === 5 ? 'iyun' :
+                              number === 6 ? 'iyul' :
+                                  number === 7 ? 'avgust' :
+                                      number === 8 ? 'sentabr' :
+                                          number === 9 ? 'oktabr' :
+                                              number === 10 ? 'noyabr' :
+                                                  number === 11 ? 'dekabr' : 'no date'
+    },
+
     monthName(num) {
       return num === 0 ? this.$t('month.january') :
           num === 1 ? this.$t('month.february') :
@@ -206,13 +233,13 @@ export default {
       </div>
       <b-row class="border w-100 col-12 mx-auto">
         <div class="col">
-          <h4 class="font-weight-bold mt-5" style="color: #2C665A">Hurmatli {{ getUserDatas.medicationFounderName ? getUserDatas.medicationFounderName :'tadbirkor' }} sizga {{ getUserDatas.consumerSendSmsDate ? getUserDatas.consumerSendSmsDate.slice(0, 10) : '' }} sanada quyidagi sms xabar yuborilgan!</h4>
-          <h4 class="font-weight-bold mt-3" style="color: #2C665A; width: 80%;"><i>{{ getUserDatas.consumerSendSmsMessage }}</i></h4>
-          <h4 class="font-weight-bold position-absolute w-75" style="color: #2C665A; bottom: 70px; line-height: 23px">Qo'shimcha ma'lumot olish uchun o'z hududingizdagi Raqobat qo'mitasining hududiy bo'limi bilan bog'lanishingizni so'raymiz</h4>
+          <p class="font-size-20 mt-5" style="color: #2C665A">Hurmatli {{ getUserDatas.medicationFounderName ? getUserDatas.medicationFounderName :'tadbirkor' }} sizga <b>{{ getUserDatas.consumerSendSmsDate ? getUserDatas.consumerSendSmsDate.slice(0, 10) : '' }}</b> sanada quyidagi sms xabar yuborilgan!</p>
+          <p class="font-size-20 font-size-10 mt-3" style="color: #2C665A; width: 80%;"><b><i>{{ getUserDatas.consumerSendSmsMessage }}</i></b></p>
+          <p class="font-size-20 position-absolute w-75" style="color: #2C665A; bottom: 0px; line-height: 23px">{{$t('pharmacyBottomText')}}</p>
         </div>
         <div class="col">
           <b-button
-              variant="outline-primary"
+              disabled
               id="contractorSearchButton"
               class="btn font-size-15 float-right mt-3"
               style="padding: 7.5px 10px; background-color: #225F55; width: 200px"
@@ -222,9 +249,10 @@ export default {
           </b-button>
           <div class="form w-100" style="margin-top: 100px">
             <b-col>
-              <h2 class="d-flex justify-content-end"><b>“Bio pharma” MChJ</b></h2>
-              <i class="d-flex justify-content-end">Toshkent shahri, Mirobod tumani,</i>
-              <i class="d-flex justify-content-end">Yangi Qo‘yliq ko‘chasi, 1-A-uy.</i>
+              <h3 class="d-flex justify-content-end"><b>“{{ getUserDatas.pharmacyName ? getUserDatas.pharmacyName : '' }}”</b></h3>
+              <i class="d-flex justify-content-end">{{ getUserDatas.pharmacyRegionName ? getUserDatas.pharmacyRegionName : '' }}, {{ getUserDatas.pharmacyDistrictName ? getUserDatas.pharmacyDistrictName : '' }},</i>
+              <i class="d-flex justify-content-end">{{ getUserDatas.pharmacyAddress ? getUserDatas.pharmacyAddress : '' }}</i>
+              <br>
 
             </b-col>
             <b-row cols="12" class="mt-2">
@@ -239,7 +267,12 @@ export default {
             </b-row>
             <b-row cols="12">
               <p style="text-indent: 50px; font-size: 14px; margin-bottom: 0">
-                2023-yil __-aprelda Qo‘mitaning axborot tizimiga fuqaro ____________ning murojaati kelib tushgan. Murojaatda “_________” dorixonasi tomonidan unga “____________” dori vositasi xarid qilganida <b>chakana referent narxlariga nisbatan qo‘yilgan ustamalar yuqori</b> ya’ni belgilangan chakana narxi <b>____ so‘m</b> o‘rniga <b>_____ so‘mdan</b> sotilganligi aniqlandi.
+                {{ getUserDatas.createJson ? getUserDatas.createJson.substring(6, 10)  : '' }}-yil {{getUserDatas.createJson ? getUserDatas.createJson.substring(0, 2)  : '' }}-{{ getUserDatas.createJson ? getPharmacyMonthDate  : '' }}da Qo‘mitaning axborot tizimiga fuqaro  {{ (getUserDatas.consumerFirstName ? getUserDatas.consumerFirstName : '')
+              + '' + (getUserDatas.consumerLastName ? getUserDatas.consumerLastName : '') + '' + (getUserDatas.consumerMiddleName ? getUserDatas.consumerMiddleName : '') }}ning murojaati kelib tushgan. Murojaatda “{{ getUserDatas.pharmacyName ? getUserDatas.pharmacyName : '' }}” dorixonasi tomonidan unga
+                “<span v-for="(vm,index) in getUserDatas.medications" :key="index">
+                <span>{{vm.name}}</span><span v-if="index != getUserDatas.medications.length-1">,</span>
+              </span>” dori vositasi xarid qilganida <b>chakana referent narxlariga nisbatan qo‘yilgan ustamalar yuqori</b> ya’ni belgilangan chakana narxi <b>
+                <span>{{ formatNumber(getPharmacyRefPrice) }}</span> so‘m</b> o‘rniga <b>{{ formatNumber(getPharmacyAllPrice) }} so‘mdan</b> sotilganligi aniqlandi.
               </p>
             </b-row>
             <b-row cols="12">
@@ -273,22 +306,22 @@ export default {
               </p>
             </b-row>
             <b-row cols="12" class="my-3">
-              <p style="text-indent: 100px; font-size: 14px; margin-bottom: 0">
+              <p style="text-indent: 50px; font-size: 14px; margin-bottom: 0">
                 <b>Boshqarma
                 boshlig‘i oʻrinbosari</b>
               </p>
-              <p style="text-indent: 300px; font-size: 14px; margin-bottom: 0">
-                <b>S. Sadikov</b>
+              <p style="text-indent: 350px; font-size: 14px; margin-bottom: 0">
+                <b>___________</b>
               </p>
             </b-row>
             <b-row cols="12">
               <i style="text-indent: 50px; font-size: 14px; margin-bottom: 0">
-                Ijrochi: J.Qodirov
+                Ijrochi: {{ getUserDatas.innerEmployeeName ? getUserDatas.innerEmployeeName : '' }}
               </i>
             </b-row>
             <b-row cols="12">
               <i style="text-indent: 50px; font-size: 14px; margin-bottom: 0">
-                Tel.:71-207-47-00
+                Tel.: ______
               </i>
             </b-row>
 
