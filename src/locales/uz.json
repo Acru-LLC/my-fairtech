@@ -4142,7 +4142,7 @@
   },
   "pharm_check_sms": {
     "main_title": "O'zbekiston Respublikasi Raqobatni rivojlantirish va iste'molchilar huqularini himoya qilish qo'mitasi",
-    "require_text": "Shaxsiy kabinetingizdagi murojaat(lar)ni tekshirish uchun telefon raqamingizni yoki JSH SHIRni kiriting",
+    "require_text": "Shaxsiy kabinetingizdagi murojaat(lar)ni tekshirish uchun telefon raqamingizni va JSH SHIRni kiriting",
     "with_phone_number": "Telefon raqam orqali",
     "with_pinfl": "JSH SHIR orqali",
     "pinfl_placeholder": "JSH SHIR kiriting",
