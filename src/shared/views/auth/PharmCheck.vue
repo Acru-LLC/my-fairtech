@@ -36,7 +36,7 @@ export default {
       searchingModal: false,
       currentLocale: {},
       isTelefonActive: true,
-      isJshshirActive: false,
+      isJshshirActive: true,
       telefonInput: "",
       jshshirInput: "",
       fish: '',
@@ -200,15 +200,12 @@ export default {
           <button @click="showInput('phoneNumber')" class="active-class-style btn btn-success">{{$t('pharm_check_sms.with_phone_number')}}</button>
           <button @click="showInput('pinfl')" class="active-class-style btn btn-success">{{$t('pharm_check_sms.with_pinfl')}}</button>
         </div>
-        <div v-if="isTelefonActive" class="d-flex justify-content-center my-3">
-          <input class="form-control w-50" v-model="telefonInput" v-mask="'+998#########'" :placeholder="'+998 -- --- -- --'"/>
+        <div class="d-flex justify-content-between my-3">
+          <input class="form-control" style="width: 48%!important;" v-model="telefonInput" v-mask="'+998#########'" :placeholder="'+998 -- --- -- --'"/>
+          <input class="form-control" style="width: 48%!important;" v-model="jshshirInput" v-mask="'##############'" :placeholder="$t('pharm_check_sms.pinfl_placeholder')"/>
         </div>
 
-        <div v-if="isJshshirActive" class="d-flex justify-content-center my-3">
-          <input class="form-control w-50" v-model="jshshirInput" v-mask="'##############'" :placeholder="$t('pharm_check_sms.pinfl_placeholder')"/>
-        </div>
-
-        <button @click="sendRequest" :disabled="isSendButtonDisabled" v-if="isJshshirActive || isTelefonActive" class="btn btn-success w-50 d-flex justify-content-center mx-auto" style="background-color: #226358">{{ $t('pharm_check_sms.check_btn') }}</button>
+        <button @click="sendRequest" :disabled="isSendButtonDisabled || !telefonInput || !jshshirInput" v-if="isJshshirActive || isTelefonActive" class="btn btn-success w-50 d-flex justify-content-center mx-auto" style="background-color: #226358">{{ $t('pharm_check_sms.check_btn') }}</button>
       </div>
       <div style="background-color: #EEF2FE" class="w-100 h-50 pt-3 pb-3">
         <div class="bg-white w-100 h-100 d-flex justify-content-center p-3">
