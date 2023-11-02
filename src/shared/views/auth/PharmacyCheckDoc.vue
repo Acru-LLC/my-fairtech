@@ -3,6 +3,7 @@ import {mapActions, mapMutations} from "vuex";
 import i18n from "@/i18n";
 import CheckService from "@/shared/services/checkService";
 import crud_and_listService from "@/shared/services/crud_and_list.service";
+import crudAndListsService from "@/shared/services/crud_and_list.service";
 
 export default {
   data() {
@@ -43,7 +44,8 @@ export default {
       fish: '',
       appealCount: '',
       appealDate: '',
-      getUserDatas:{}
+      getUserDatas:{},
+      id: null,
     }
   },
   computed: {
@@ -160,12 +162,29 @@ export default {
       crud_and_listService.getConfirmPharmacy(id)
           .then((res)=>{
             this.getUserDatas = res.data;
-            console.log(res)
+            // console.log(res)
           })
           .catch((err)=>{
             console.log(err);
           })
-    }
+    },
+    downloadFile(id) {
+      crud_and_listService
+          .getPharmacyFile(id)
+          .then((res) => {
+            const url = window.URL.createObjectURL(new Blob([res.data]));
+            const fileLink = document.createElement("a");
+            fileLink.href = url;
+            const filename = `file.docx`;
+            fileLink.setAttribute('download', filename);
+            document.body.appendChild(fileLink);
+            fileLink.click();
+            fileLink.remove();
+          })
+          .catch(e => {
+            console.log(e)
+          })
+    },
   },
   mounted() {
     this.getConfirmPharmacyList();
@@ -239,12 +258,11 @@ export default {
         </div>
         <div class="col">
           <b-button
-              disabled
+              @click="downloadFile(getUserDatas.id)"
               id="contractorSearchButton"
               class="btn font-size-15 float-right mt-3"
               style="padding: 7.5px 10px; background-color: #225F55; width: 200px"
           >
-            <b-spinner v-if="loadingTableItems" type="border" small></b-spinner>
             <span class="text-white ml-2">{{ $t('pharm.templates_download') }}</span>
           </b-button>
           <div class="form w-100" style="margin-top: 100px">
