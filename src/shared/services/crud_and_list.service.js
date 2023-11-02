@@ -1,5 +1,6 @@
 import ApiService from "@/shared/services/api.service";
 import store from "@/state/store";
+import id from "vue2-datepicker/locale/es/id";
 /*
  * {{ mainUrl }}
  * MUST BE SENT TO THESE FUNCTIONS*/
@@ -67,6 +68,9 @@ const crudAndListsService = {
     },
     getAppealCount(){
         return ApiService.get('/outer-cabinet/appeal-count')
+    },
+    getPharmacyFile(id){
+        return ApiService.getFile(`pharm/doer/get/docx/file/${id}`)
     },
     getConfirmPharmacy(id){
         return ApiService.post(`/pharm/confirm-pharmacy?mNumber=${id}`)
