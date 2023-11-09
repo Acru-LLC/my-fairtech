@@ -413,7 +413,7 @@ COMPUTED */
               <b-form-group :label="$t('product_dashboard_info.address.title')" label-for="textarea" style="color: #89A49D">
                 <b-form-textarea
                     id="textarea"
-                    :value="userInfos.birthPlace + ' '+ userInfos.perAdress"
+                    :value="userInfos.perAdress"
                     rows="2"
                     no-resize
                     class="w-100 font-weight-bold"
