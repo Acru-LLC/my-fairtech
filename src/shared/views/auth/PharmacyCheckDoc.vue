@@ -196,9 +196,8 @@ export default {
 }
 </script>
 <template>
-  <div class="row m-0">
+  <div class="row m-0 wrapper-page">
     <div class="header">
-      <div class="d-flex align-items-center w-25">
         <svg class="svg-logo ml-2" width="70" height="70" viewBox="0 0 70 70" fill="none"
              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
           <rect width="70" height="70" fill="url(#pattern0)"/>
@@ -211,11 +210,11 @@ export default {
           </defs>
         </svg>
         <div class="header-text">
-          <div class="header-main-text"><a href="#"><span>{{ $t('system.title') }}</span></a></div>
+          <div class="header-main-text"><span>{{ $t('system.title') }}</span></div>
           <div class="header-sub-text"><span>{{ $t('system.sub_title') }}</span></div>
         </div>
-      </div>
-      <div class="d-flex align-items-center">
+
+      <div class="d-flex align-items-center position-absolute" style="right: 30px">
         <b-dropdown variant="white" right toggle-class="header-item" class="language-bar d-flex">
           <template v-slot:button-content>
             {{ text }}
@@ -240,8 +239,7 @@ export default {
           <span></span>
           <span></span>
           <span></span>
-          <a href="#"
-             class="date-text">{{ getCurrentDate }}</a>
+          <p href="#" class="date-text">{{ getCurrentDate }}</p>
         </div>
       </div>
     </div>
@@ -254,7 +252,7 @@ export default {
         <div class="col">
           <p class="font-size-20 mt-5" style="color: #2C665A">Hurmatli {{ getUserDatas.medicationFounderName ? getUserDatas.medicationFounderName :'tadbirkor' }} sizga <b>{{ getUserDatas.consumerSendSmsDate ? getUserDatas.consumerSendSmsDate.slice(0, 10) : '' }}</b> sanada quyidagi sms xabar yuborilgan!</p>
           <p class="font-size-20 font-size-10 mt-3" style="color: #2C665A; width: 80%;"><b><i>{{ getUserDatas.consumerSendSmsMessage }}</i></b></p>
-          <p class="font-size-20 position-absolute w-75" style="color: #2C665A; bottom: 0px; line-height: 23px">{{$t('pharmacyBottomText')}}</p>
+          <p class="font-size-20 position-absolute w-75 required-txt" style="color: #2C665A; bottom: 0; line-height: 23px">{{$t('pharmacyBottomText')}}</p>
         </div>
         <div class="col">
           <b-button
@@ -357,14 +355,14 @@ export default {
   display: flex;
   align-items: center;
   box-shadow: 0 8px 8px 5px rgba(41, 105, 93, 0.20);
-  justify-content: space-between;
+  //justify-content: space-between;
 }
 
 .header-text {
   margin-left: 1%;
 }
 
-.header-main-text a {
+.header-main-text span {
   color: #2C665A;
   font-family: "NoirPro-Regular", sans-serif;
   font-size: 38px;
@@ -522,5 +520,64 @@ export default {
   color: white !important;
   font-size: 17px;
   width: 48%;
+}
+
+@media (min-width: 0) and (max-width: 474px) {
+  .wrapper-page{
+    width: 100%;
+  }
+  .header{
+    height: 70px;
+    width: 100%;
+    padding: 10px;
+    justify-content: normal!important;
+  }
+  .svg-logo{
+    margin-left: 0!important;
+    height: 65px;
+  }
+  .header-main-text span{
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 5px;
+  }
+  .header-sub-text span{
+    font-size: 12px;
+  }
+  .header-sub-text{
+    width: 145px;
+  }
+  .date-label{
+    width: 105px;
+    margin-left: 0;
+  }
+  .date-text{
+    font-size: 12px;
+  }
+  .required-txt{
+    display: contents;
+  }
+}
+
+
+@media (min-width: 475px) and (max-width: 776px) {
+  .header{
+    width: 100%;
+    background-color: #236257;
+  }
+}
+
+@media (min-width: 777px) and (max-width: 989px) {
+  .header{
+    width: 100%;
+    background-color: #236257;
+  }
+}
+
+@media (min-width: 990px) and (max-width: 1200px) {
+  .header{
+    width: 100%;
+    background-color: #236257;
+  }
 }
 </style>
