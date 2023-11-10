@@ -250,9 +250,9 @@ export default {
       </div>
       <b-row class="border w-100 col-12 mx-auto">
         <div class="col">
-          <p class="font-size-20 mt-5" style="color: #2C665A">Hurmatli {{ getUserDatas.medicationFounderName ? getUserDatas.medicationFounderName :'tadbirkor' }} sizga <b>{{ getUserDatas.consumerSendSmsDate ? getUserDatas.consumerSendSmsDate.slice(0, 10) : '' }}</b> sanada quyidagi sms xabar yuborilgan!</p>
-          <p class="font-size-20 font-size-10 mt-3 user-data" style="color: #2C665A; width: 80%;"><b><i>{{ getUserDatas.consumerSendSmsMessage }}</i></b></p>
-          <p class="font-size-20 position-absolute w-75 required-txt" style="color: #2C665A; bottom: 0; line-height: 23px">{{$t('pharmacyBottomText')}}</p>
+          <p class="font-size-20 txt mt-5" style="color: #2C665A">Hurmatli {{ getUserDatas.medicationFounderName ? getUserDatas.medicationFounderName :'tadbirkor' }} sizga <b>{{ getUserDatas.consumerSendSmsDate ? getUserDatas.consumerSendSmsDate.slice(0, 10) : '' }}</b> sanada quyidagi sms xabar yuborilgan!</p>
+          <p class="font-size-20 txt font-size-10 mt-3 user-data" style="color: #2C665A; width: 80%;"><b><i>{{ getUserDatas.consumerSendSmsMessage }}</i></b></p>
+          <p class="font-size-20 txt position-absolute w-75 required-txt" style="color: #2C665A; bottom: 0; line-height: 23px">{{$t('pharmacyBottomText')}}</p>
         </div>
         <div class="col">
           <b-button
@@ -562,7 +562,7 @@ export default {
     position: absolute;
     right: 0;
   }
-  .font-size-20{
+  .txt{
     font-size: 14px!important;
   }
   .user-data{
