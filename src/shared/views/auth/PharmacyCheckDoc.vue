@@ -263,7 +263,7 @@ export default {
           >
             <span class="text-white ml-2">{{ $t('pharm.templates_download') }}</span>
           </b-button>
-          <div class="form w-100" style="margin-top: 100px">
+          <div class="w-100" style="margin-top: 100px">
             <b-col>
               <h3 class="d-flex justify-content-end"><b>{{ getUserDatas.pharmacyName ? getUserDatas.pharmacyName : '' }}</b></h3>
               <i class="d-flex justify-content-end">{{ getUserDatas.pharmacyRegionName ? getUserDatas.pharmacyRegionName : '' }}, {{ getUserDatas.pharmacyDistrictName ? getUserDatas.pharmacyDistrictName : '' }},</i>
