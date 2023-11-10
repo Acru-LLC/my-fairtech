@@ -215,7 +215,7 @@ export default {
         </div>
 
       <div class="d-flex align-items-center position-absolute" style="right: 30px">
-        <b-dropdown variant="white" right toggle-class="header-item" class="language-bar d-flex">
+        <b-dropdown variant="white" right dropleft toggle-class="header-item" class="language-bar d-flex">
           <template v-slot:button-content>
             {{ text }}
             <!--                    <span class="flag-icon flag-icon-uz" id="selectSpan"-->
@@ -250,9 +250,9 @@ export default {
       </div>
       <b-row class="border w-100 col-12 mx-auto">
         <div class="col">
-          <p class="font-size-20 mt-5" style="color: #2C665A">Hurmatli {{ getUserDatas.medicationFounderName ? getUserDatas.medicationFounderName :'tadbirkor' }} sizga <b>{{ getUserDatas.consumerSendSmsDate ? getUserDatas.consumerSendSmsDate.slice(0, 10) : '' }}</b> sanada quyidagi sms xabar yuborilgan!</p>
-          <p class="font-size-20 font-size-10 mt-3" style="color: #2C665A; width: 80%;"><b><i>{{ getUserDatas.consumerSendSmsMessage }}</i></b></p>
-          <p class="font-size-20 position-absolute w-75 required-txt" style="color: #2C665A; bottom: 0; line-height: 23px">{{$t('pharmacyBottomText')}}</p>
+          <p class="font-size-14 mt-5" style="color: #2C665A">Hurmatli {{ getUserDatas.medicationFounderName ? getUserDatas.medicationFounderName :'tadbirkor' }} sizga <b>{{ getUserDatas.consumerSendSmsDate ? getUserDatas.consumerSendSmsDate.slice(0, 10) : '' }}</b> sanada quyidagi sms xabar yuborilgan!</p>
+          <p class="font-size-14 font-size-10 mt-3 user-data" style="color: #2C665A; width: 80%;"><b><i>{{ getUserDatas.consumerSendSmsMessage }}</i></b></p>
+          <p class="font-size-14 position-absolute w-75 required-txt" style="color: #2C665A; bottom: 0; line-height: 23px">{{$t('pharmacyBottomText')}}</p>
         </div>
         <div class="col">
           <b-button
@@ -265,7 +265,7 @@ export default {
           </b-button>
           <div class="form w-100" style="margin-top: 100px">
             <b-col>
-              <h3 class="d-flex justify-content-end"><b>“{{ getUserDatas.pharmacyName ? getUserDatas.pharmacyName : '' }}”</b></h3>
+              <h3 class="d-flex justify-content-end"><b>{{ getUserDatas.pharmacyName ? getUserDatas.pharmacyName : '' }}</b></h3>
               <i class="d-flex justify-content-end">{{ getUserDatas.pharmacyRegionName ? getUserDatas.pharmacyRegionName : '' }}, {{ getUserDatas.pharmacyDistrictName ? getUserDatas.pharmacyDistrictName : '' }},</i>
               <i class="d-flex justify-content-end">{{ getUserDatas.pharmacyAddress ? getUserDatas.pharmacyAddress : '' }}</i>
               <br>
@@ -326,7 +326,7 @@ export default {
                 <b>Boshqarma
                 boshlig‘i oʻrinbosari</b>
               </p>
-              <p style="text-indent: 350px; font-size: 14px; margin-bottom: 0">
+              <p style="text-indent: 350px; font-size: 14px; margin-bottom: 0" class="director-part">
                 <b>___________</b>
               </p>
             </b-row>
@@ -374,7 +374,10 @@ export default {
   font-family: "NoirPro-Regular", sans-serif;
   font-size: 12px;
 }
-
+.dropdown-menu{
+  min-width: 0!important;
+  left: -25px!important;
+}
 .language-bar {
   background-color: #E1E8E7;
   border-radius: 50%;
@@ -544,18 +547,27 @@ export default {
   .header-sub-text span{
     font-size: 12px;
   }
-  .header-sub-text{
-    width: 145px;
-  }
   .date-label{
-    width: 105px;
-    margin-left: 0;
+    //width: 105px;
+    //margin-left: 0;
+    display: none;
   }
   .date-text{
     font-size: 12px;
   }
   .required-txt{
     display: contents;
+  }
+  .director-part{
+    position: absolute;
+    right: 0;
+  }
+  .user-data{
+     min-width: fit-content;
+  }
+  .dropdown-menu{
+    min-width: 0!important;
+    left: -25px!important;
   }
 }
 
