@@ -1,7 +1,7 @@
 import main_menu from "@/modules/management/menuItems";
 import documents_menu from "@/modules/advertisement/menuItems";
 import murojaat_menu from "@/modules/reestr-contractors/menuItems";
-import other_services from "@/modules/letter/menuItems";
+import interactive_services from "@/modules/integration/menuItems";
 import settings_menu from "@/modules/chat/menuItems";
 
 function copy(o) {
@@ -13,7 +13,7 @@ export default [
   ...main_menu,
   ...documents_menu,
   ...murojaat_menu,
-  ...other_services,
+  ...interactive_services,
   ...settings_menu
   // {
   //   id: "ProjectLessons1",
