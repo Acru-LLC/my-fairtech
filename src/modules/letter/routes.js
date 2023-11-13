@@ -2,6 +2,6 @@ export default [
     {
         name: "OtherServices",
         path: "/services",
-        component: () => import('@/router/views/dashboards/default')
+        component: () => import('@/modules/letter/interactive-services/Main')
     }
 ]
