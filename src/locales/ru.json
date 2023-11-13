@@ -4149,5 +4149,10 @@
     "last_submit_date": "Дата последнего обращения",
     "login_require_text": "Для получения полной информации о приложениях посетите Fair Tech",
     "entry_personal_c": "Доступ в личный кабинет"
+  },
+  "interactive_services": {
+    "check_appeal": {
+      "title": "Murojaatni tekshirish"
+    }
   }
 }

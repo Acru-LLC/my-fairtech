@@ -4179,5 +4179,10 @@
     "last_submit_date": "Охирги мурожаат юборилган сана",
     "login_require_text": "Мурожаатлар ҳақидаги тўлиқ маълумот олиш учун “Fair Tech” ЯАТ киринг",
     "entry_personal_c": "Шахсий кабинетга кириш"
+  },
+  "interactive_services": {
+    "check_appeal": {
+      "title": "Murojaatni tekshirish"
+    }
   }
 }
