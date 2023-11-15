@@ -1,417 +1,54 @@
 <template>
-  <!-- ADVERTISERS SERVICE CARD -->
-  <section id="advertisers" class="advertisers-service-sec pt-5 pb-5">
-
+  <!-- ADVERTISERS SERVICE CARD  :class="{ 'box-style': integration.isDone, 'noClick': !integration.isDone }"
+  :class="{ 'disable-img': !integration.isDone }"-->
+  <section id="advertisers" class="advertisers-service-sec pt-4 pb-5">
     <div v-if="!toRouterLoader">
-      <b-row class="pl-5 pr-5">
-        <b-col>
+      <b-row class="px-4 rais-page-respons">
+        <b-col cols="12" sm="6" md="4" lg="3" xl="2" class="frame-hover" v-for="(integration, index) in listPro"
+               :key="index">
+          <div :id="!integration.perm ? index + 'tooltip-button-variant' : ''"
+               :class="{ 'box-style': integration.isDone, 'box-style': integration.perm, 'box-notAccess-style': !integration.perm, 'noClick': !integration.isDone }"
+               @click="integration.perm ? toRouter(integration.routerName) : ''" class="box-style">
+            <div>
+              <img :class="integration.image == 'davlat_active.svg' ? 'img-content2' :
+                                integration.image == 'moliyaDis.png' ? 'img-content14' :
+                                    integration.image == 'veterenariyaDis.png' ? 'img-content24' :
+                                        integration.image == 'qurilishDis.png' ? 'img-content9' :
+                                            integration.image == 'hududgaztaminot.png' ? 'img-content9' :
+                                                integration.image == 'iivDis.png' ? 'img-content24' :
+                                                    integration.image == 'kadastr.png' ? 'img-content9' : 'img-content-full'"
+                   :src="require(`@/assets/integration/${integration.image}`)" :height="integration.height">
+            </div>
+            <p class="box-title-style" :class="(integration.id == 12) ? 'pt-0 px-0': 'py-3 px-4'">
+              {{ integration.name }}
+            </p>
+<!--            <button v-if="integration.perm" class="card-button">{{ $t("actions.details") }}</button>-->
+<!--            <button v-else class="card-notAccess-button">{{ $t("error.netAccess") }}</button>-->
+          </div>
 
-          <div class="service-card"
-               @click="toRouter('IntegrationKommunalInfoIndex')"
-               v-if="$can('view', 'integration-kommunal')"
-          >
-            <div class="arrow-up-success">
-              <span class="itinerary-number"> </span>
-            </div>
-            <div class="icon-wrapper">
-              <img :src="require('@/assets/integration/kommunal.svg')" height="50"/>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.kommunal_info.title') }}</h3>
-          </div>
         </b-col>
-        <b-col>
-          <div class="service-card"
-               @click="toRouter('IntegrationDavlatActiveInfoIndex')"
-               v-if="$can('view', 'integration-davlat-active')"
-          >
-            <div class="arrow-up-success">
-              <span class="itinerary-number"> </span>
+        <!--                <b-col cols="12">-->
+        <!--                    <div><button @click="$router.push('/integration/kommunal')">test</button></div>-->
+        <!--                </b-col>-->
+        <!-- <b-col v-for="(integration, index) in listPro" :key="index" cols="3">
+            <div :id="!integration.perm ? index + 'tooltip-button-variant' : ''"
+                :class="integration.perm ? 'service-card' : 'service-card-disable'"
+                @click="integration.perm ? toRouter(integration.routerName) : ''">
+                <div :class="integration.isDone ? 'arrow-up-success' : 'arrow-up'">
+                    <span class="itinerary-number"> </span>
+                </div>
+                <div class="icon-wrapper">
+                    <img :src="integration.image" :height="integration.height" />
+                </div>
+                <h3 class="mt-3 text-center">
+                    {{ integration.name }}</h3>
+                <b-tooltip :target="index + 'tooltip-button-variant'" variant="danger">
+                    {{ $t('error.netAccess') }}
+                </b-tooltip>
             </div>
-            <div class="icon-wrapper">
-              <img :src="require('@/assets/integration/davlat_active.svg')"/>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.davlat_active_info.title') }}</h3>
-          </div>
-        </b-col>
-        <b-col>
-          <div class="service-card"
-               @click="toRouter('IntegrationOsimlikInfoIndex')"
-               v-if="$can('view', 'integration-osimlik')"
-          >
-            <div class="arrow-up-success">
-              <span class="itinerary-number"> </span>
-            </div>
-            <div class="icon-wrapper">
-              <img :src="require('@/assets/integration/osimlik.svg')" height="50"/>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.osimlik_info.title') }}</h3>
-          </div>
-        </b-col>
-
-        <b-col>
-          <div class="service-card"
-               @click="toRouter('IntegrationTehnikInfoIndex')"
-               v-if="$can('view', 'integration-tehnik')"
-          >
-            <div class="arrow-up">
-              <span class="itinerary-number"></span>
-            </div>
-            <div class="icon-wrapper">
-              <i class="mdi mdi-database" style="font-size: 2.5rem;"></i>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.tehnik_info.title') }}</h3>
-          </div>
-        </b-col>
-        <b-col>
-          <div class="service-card"
-               @click="toRouter('IntegrationInvestitsiyaTashqiSavdoInfoIndex')"
-               v-if="$can('view', 'integration-investitsiya-tashqiSavdo')"
-          >
-            <div class="arrow-up">
-              <span class="itinerary-number"></span>
-            </div>
-            <div class="icon-wrapper">
-              <i class="mdi mdi-database" style="font-size: 2.5rem;"></i>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.investitsiya_tashqiSavdo_info.title') }}</h3>
-          </div>
-        </b-col>
-
-      </b-row>
-
-      <b-row class="pl-5 pr-5 pt-3">
-        <b-col>
-          <div class="service-card"
-               @click="toRouter('IntegrationElektrInfoIndex')"
-               v-if="$can('view', 'integration-elektr-infos')"
-          >
-            <div class="arrow-up-success">
-              <span class="itinerary-number"> </span>
-            </div>
-            <div class="icon-wrapper">
-              <img :src="require('@/assets/integration/elektr.png')" height="50"/>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.elektr_info.title') }}</h3>
-          </div>
-        </b-col>
-        <b-col>
-          <div class="service-card"
-               @click="toRouter('IntegrationSuvTaminotInfoIndex')"
-               v-if="$can('view', 'integration-suv-taminot')"
-          >
-            <div class="arrow-up-success">
-              <span class="itinerary-number"></span>
-            </div>
-            <div class="icon-wrapper">
-              <img :src="require('@/assets/integration/ozsuvtaminot.png')" height="50"/>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.suv_taminot_info.title') }}</h3>
-          </div>
-        </b-col>
-        <b-col>
-          <div class="service-card"
-               @click="toRouter('IntegrationQurilishInfoIndex')"
-               v-if="$can('view', 'integration-qurilish')"
-          >
-            <div class="arrow-up">
-              <span class="itinerary-number"></span>
-            </div>
-            <div class="icon-wrapper">
-              <img :src="require('@/assets/integration/qurilish.png')" height="70"/>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.qurilish_info.title') }}</h3>
-          </div>
-        </b-col>
-        <b-col>
-          <div class="service-card"
-               @click="toRouter('IntegrationKadastrSoliqInfo')"
-               v-if="$can('view', 'integration-kadastr-soliq')"
-          >
-            <div class="arrow-up-success">
-              <span class="itinerary-number"> </span>
-            </div>
-            <div class="icon-wrapper">
-              <img :src="require('@/assets/integration/kadastr.png')" height="75"/>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.kadastr_soliq_info.title') }}</h3>
-          </div>
-        </b-col>
-        <b-col>
-          <div class="service-card"
-               @click="toRouter('IntegrationFarmasevtikaInfoIndex')"
-               v-if="$can('view', 'integration-farmasevtika')"
-          >
-            <div class="arrow-up-success">
-              <span class="itinerary-number"> </span>
-            </div>
-            <div class="icon-wrapper">
-              <img :src="require('@/assets/integration/farmasevtika.png')" height="50"/>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.farmasevtika_info.title') }}</h3>
-          </div>
-        </b-col>
-      </b-row>
-
-      <b-row class="pl-5 pr-5 pt-3">
-        <b-col>
-          <div class="service-card"
-               @click="toRouter('IntegrationHududgazInfoIndex')"
-               v-if="$can('view', 'integration-hudud-gaz')"
-          >
-            <div class="arrow-up-success">
-              <span class="itinerary-number"> </span>
-            </div>
-            <div class="icon-wrapper">
-              <img :src="require('@/assets/integration/hududgaztaminot.png')" height="80"/>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.hududgaz_info.title') }}</h3>
-          </div>
-        </b-col>
-        <b-col>
-          <div class="service-card"
-               @click="toRouter('IntegrationAdliyaInfoIndex')"
-               v-if="$can('view', 'integration-adliya')"
-          >
-            <div class="arrow-up">
-              <span class="itinerary-number"></span>
-            </div>
-            <div class="icon-wrapper">
-              <img :src="require('@/assets/integration/adliya.png')" height="40"/>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.adliya_info.title') }}</h3>
-          </div>
-        </b-col>
-        <b-col>
-          <div class="service-card"
-               @click="toRouter('IntegrationEkologiyaInfoIndex')"
-               v-if="$can('view', 'integration-ekologiya')"
-          >
-            <div class="arrow-up-success">
-              <span class="itinerary-number"> </span>
-            </div>
-            <div class="icon-wrapper">
-              <img :src="require('@/assets/integration/ekologiya.png')" height="50"/>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.ekologiya_info.title') }}</h3>
-          </div>
-        </b-col>
-
-        <b-col>
-          <div class="service-card"
-               @click="toRouter('IntegrationMoliyaInfoIndex')"
-               v-if="$can('view', 'integration-moliya')"
-          >
-            <div class="arrow-up">
-              <span class="itinerary-number"></span>
-            </div>
-            <div class="icon-wrapper">
-              <img :src="require('@/assets/integration/moliya.png')" height="40"/>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.moliya_info.title') }}</h3>
-          </div>
-        </b-col>
-        <b-col>
-          <div class="service-card"
-               @click="toRouter('IntegrationSugurtaMoliyaInfoIndex')"
-               v-if="$can('view', 'integration-sugurta-moliya')"
-          >
-            <div class="arrow-up">
-              <span class="itinerary-number"></span>
-            </div>
-            <div class="icon-wrapper">
-              <img :src="require('@/assets/integration/sugurta.png')" height="50"/>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.sugurta_moliya_info.title') }}</h3>
-          </div>
-        </b-col>
-      </b-row>
-
-      <b-row class="pl-5 pr-5  pt-3">
-        <b-col>
-          <div class="service-card"
-               @click="toRouter('IntegrationAxborotResursDUKInfoIndex')"
-               v-if="$can('view', 'integration-axborot-resurs-duk')"
-          >
-            <div class="arrow-up">
-              <span class="itinerary-number"></span>
-            </div>
-            <div class="icon-wrapper">
-              <i class="mdi mdi-database" style="font-size: 2.5rem;"></i>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.axborot_resurs_duk_info.title') }}</h3>
-          </div>
-        </b-col>
-        <b-col>
-          <div class="service-card"
-               @click="toRouter('IntegrationSuvXojaligiInfoIndex')"
-               v-if="$can('view', 'integration-suv-xojaligi')"
-          >
-            <div class="arrow-up-success">
-              <span class="itinerary-number"> </span>
-            </div>
-            <div class="icon-wrapper">
-              <img :src="require('@/assets/integration/suv_xojaligi.png')" height="50"/>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.suv_xojaligi_info.title') }}</h3>
-          </div>
-        </b-col>
-        <b-col>
-          <div class="service-card"
-               @click="toRouter('IntegrationQishloqXojaligiInfoIndex')"
-               v-if="$can('view', 'integration-qishloq-xojaligi')"
-          >
-            <div class="arrow-up">
-              <span class="itinerary-number"></span>
-            </div>
-            <div class="icon-wrapper">
-              <img :src="require('@/assets/integration/qishloq_xojaligi.png')" height="50"/>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.qishloq_xojaligi_info.title') }}</h3>
-          </div>
-        </b-col>
-        <b-col>
-          <div class="service-card"
-               @click="toRouter('IntegrationTransportInfoIndex')"
-               v-if="$can('view', 'integration-transport')"
-          >
-            <div class="arrow-up">
-              <span class="itinerary-number"></span>
-            </div>
-            <div class="icon-wrapper">
-              <img :src="require('@/assets/integration/transport.png')" height="50"/>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.transport_info.title') }}</h3>
-          </div>
-        </b-col>
-        <b-col>
-          <div class="service-card"
-               @click="toRouter('IntegrationVeterinariyaChorvachilikInfoIndex')"
-               v-if="$can('view', 'integration-veterinariya-chorvachilik')"
-          >
-            <div class="arrow-up">
-              <span class="itinerary-number"></span>
-            </div>
-            <div class="icon-wrapper">
-              <img :src="require('@/assets/integration/veterenariya.png')" height="55"/>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.veterinariya_chorvachilik_info.title') }}</h3>
-          </div>
-        </b-col>
-      </b-row>
-
-      <b-row class="pl-5 pr-5 pt-3">
-        <b-col>
-          <div class="service-card"
-               @click="toRouter('IntegrationIqtisodiyTaraqqiyotInfo')"
-               v-if="$can('view', 'integration-iqtisodiy-taraqqiyot-infos')"
-          >
-            <div class="arrow-up-success">
-              <span class="itinerary-number"> </span>
-            </div>
-            <div class="icon-wrapper">
-              <img :src="require('@/assets/integration/iqtisodiy_taraqqiyot.png')" height="50"/>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.iqtisodiy_taraqqiyot_info.title') }}</h3>
-          </div>
-        </b-col>
-<!--        <b-col>-->
-<!--          <div class="service-card"-->
-<!--               @click="toRouter('IntegrationTovarXomashyoInfoIndex')"-->
-<!--               v-if="$can('view', 'integration-tovar-xomashyo')"-->
-<!--          >-->
-<!--            <div class="arrow-up">-->
-<!--              <span class="itinerary-number"></span>-->
-<!--            </div>-->
-<!--            <div class="icon-wrapper">-->
-<!--              <i class="mdi mdi-database" style="font-size: 2.5rem;"></i>-->
-<!--            </div>-->
-<!--            <h3 class="mt-3">{{ $t('submodules.integration.tovar_xomashyo_info.title') }}</h3>-->
-<!--          </div>-->
-<!--        </b-col>-->
-          <b-col>
-              <div class="service-card"
-                   @click="toRouter('IntegrationYoshlarInfoIndex')"
-                   v-if="$can('view', 'integration-yoshlar')"
-              >
-                  <div class="arrow-up-success">
-                      <span class="itinerary-number"> </span>
-                  </div>
-                  <div class="icon-wrapper">
-                      <img :src="require('@/assets/integration/yoshlar.png')" height="50"/>
-                  </div>
-                  <h3 class="mt-3">{{ $t('submodules.integration.yoshlar_info.title') }}</h3>
-              </div>
-          </b-col>
-        <b-col>
-          <div class="service-card"
-               v-if="$can('view', 'integration-soliq-qomita')"
-               @click="toRouter('IntegrationSoliqQomitaInfoIndex')"
-          >
-            <div class="arrow-up-success">
-              <span class="itinerary-number"> </span>
-            </div>
-            <div class="icon-wrapper">
-              <img :src="require('@/assets/integration/soliq.png')" height="50"/>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.soliqQomita_info.title') }}</h3>
-          </div>
-        </b-col>
-        <b-col>
-          <div class="service-card"
-               v-if="$can('view', 'integration-iiv')"
-               @click="toRouter('IntegrationIIVInfoIndex')"
-          >
-            <div class="arrow-up">
-              <span class="itinerary-number"> </span>
-            </div>
-            <div class="icon-wrapper">
-              <img :src="require('@/assets/integration/iiv.png')" height="60"/>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.iiv_info.title') }}</h3>
-          </div>
-        </b-col>
-        <b-col>
-          <div class="service-card"
-               v-if="$can('view', 'integration-ssv')"
-               @click="toRouter('IntegrationSSVInfoIndex')"
-          >
-            <div class="arrow-up-success">
-              <span class="itinerary-number"> </span>
-            </div>
-            <div class="icon-wrapper">
-              <img :src="require('@/assets/integration/ssv.png')" height="50"/>
-            </div>
-            <h3 class="mt-3">{{ $t('submodules.integration.ssv_info.title') }}</h3>
-          </div>
-        </b-col>
-      </b-row>
-
-      <b-row class="pl-5 pr-5 pt-3">
-<!--        <b-col>-->
-<!--          <div class="service-card"-->
-<!--               @click="toRouter('IntegrationYoshlarInfoIndex')"-->
-<!--               v-if="$can('view', 'integration-yoshlar')"-->
-<!--          >-->
-<!--            <div class="arrow-up-success">-->
-<!--              <span class="itinerary-number"> </span>-->
-<!--            </div>-->
-<!--            <div class="icon-wrapper">-->
-<!--              <img :src="require('@/assets/integration/yoshlar.png')" height="50"/>-->
-<!--            </div>-->
-<!--            <h3 class="mt-3">{{ $t('submodules.integration.yoshlar_info.title') }}</h3>-->
-<!--          </div>-->
-<!--        </b-col>-->
-        <b-col>
-        </b-col>
-        <b-col>
-        </b-col>
-        <b-col>
-        </b-col>
-        <b-col>
-        </b-col>
+        </b-col> -->
       </b-row>
     </div>
-
 
     <div class="text-center" v-else-if="toRouterLoader">
       <b-spinner style="width: 3rem; height: 3rem; margin-top: 100px"></b-spinner>
@@ -421,12 +58,323 @@
 </template>
 
 <script>
-import {ability} from "@/shared/store/ability";
 
 export default {
   data() {
     return {
-      toRouterLoader: false
+      toRouterLoader: false,
+      listPro: [
+        {
+          id: 1,
+          routerName: 'CheckAppeal',
+          perm: this.$can('view', 'integration-ssv'),
+          image: 'appeal.svg',
+          name: this.$t('interactive_services.check_appeal.title'),
+          isDone: true
+        }
+        // {
+        //   id: 1,
+        //   perm: this.$can('view', 'integration-kommunal'),
+        //   routerName: 'IntegrationKommunalInfoIndex',
+        //   name: this.$t('submodules.integration.kommunal_info.title'),
+        //   image: 'kommunal.svg',
+        //   height: 50,
+        //   isDone: true,
+        // },
+        // {
+        //   id: 2,
+        //   perm: this.$can('view', 'integration-davlat-active'),
+        //   routerName: 'IntegrationDavlatInfoIndex',
+        //   name: this.$t('submodules.integration.davlat_active_info.title'),
+        //   image: 'davlat_active.svg',
+        //   height: 15,
+        //   isDone: true
+        // },
+        // {
+        //   id: 3,
+        //   perm: this.$can('view', 'integration-osimlik'),
+        //   routerName: 'IntegrationOsimlikInfoIndex',
+        //   name: this.$t('submodules.integration.osimlik_info.title'),
+        //   image: 'osimlik.svg',
+        //   height: 50,
+        //   isDone: true
+        // },
+        // {
+        //   id: 4,
+        //   perm: this.$can('view', 'integration-tehnik'),
+        //   routerName: 'IntegrationTehnikInfo1Index',
+        //   name: this.$t('submodules.integration.tehnik_info.title'),
+        //   image: 'gerb.png',
+        //   height: 50,
+        //   isDone: true
+        // },
+        // {
+        //   id: 5,
+        //   routerName: 'IntegrationElektrInfoIndex',
+        //   perm: this.$can('view', 'integration-elektr-infos'),
+        //   name: this.$t('submodules.integration.elektr_info.title'),
+        //   image: 'elektr.png',
+        //   height: 50,
+        //   isDone: true
+        // },
+        // {
+        //   id: 6,
+        //   routerName: 'IntegrationSuvTaminotInfoIndex',
+        //   perm: this.$can('view', 'integration-suv-taminot'),
+        //   image: 'ozsuvtaminot.png',
+        //   name: this.$t('submodules.integration.suv_taminot_info.title'),
+        //   height: 50,
+        //   isDone: true
+        // },
+        // {
+        //   id: 7,
+        //   routerName: 'IntegrationKadastrSoliqInfo',
+        //   perm: this.$can('view', 'integration-kadastr-soliq'),
+        //   image: 'kadastr.png',
+        //   name: this.$t('submodules.integration.kadastr_soliq_info.title'),
+        //   height: 80,
+        //   isDone: true
+        // },
+        // {
+        //   id: 8,
+        //   routerName: 'IntegrationFarmasevtikaInfoIndex',
+        //   perm: this.$can('view', 'integration-farmasevtika'),
+        //   image: 'farmasevtika.png',
+        //   name: this.$t('submodules.integration.farmasevtika_info.title'),
+        //   height: 50,
+        //   isDone: true
+        // },
+        // {
+        //   id: 9,
+        //   routerName: 'IntegrationHududgazInfoIndex',
+        //   perm: this.$can('view', 'integration-hudud-gaz'),
+        //   image: 'hududgaztaminot.png',
+        //   name: this.$t('submodules.integration.hududgaz_info.title'),
+        //   height: 75,
+        //   isDone: true
+        // },
+        // {
+        //   id: 10,
+        //   routerName: 'IntegrationEkologiyaInfoIndex',
+        //   perm: this.$can('view', 'integration-ekologiya'),
+        //   image: 'ekologiya.png',
+        //   name: this.$t('submodules.integration.ekologiya_info.title'),
+        //   height: 50,
+        //   isDone: true
+        // },
+        // {
+        //   id: 11,
+        //   routerName: 'IntegrationSuvXojaligiInfoIndex',
+        //   perm: this.$can('view', 'integration-suv-xojaligi'),
+        //   image: 'suv_xojaligi.png',
+        //   name: this.$t('submodules.integration.suv_xojaligi_info.title'),
+        //   height: 50,
+        //   isDone: true
+        // },
+        // {
+        //   id: 12,
+        //   routerName: 'IntegrationIqtisodiyTaraqqiyotInfo',
+        //   perm: this.$can('view', 'integration-iqtisodiy-taraqqiyot-infos'),
+        //   image: 'gerb.png',
+        //   name: this.$t('submodules.integration.iqtisodiy_taraqqiyot_info.title'),
+        //   height: 50,
+        //   isDone: true
+        // },
+        // {
+        //   id: 13,
+        //   routerName: 'IntegrationYoshlarInfoIndex',
+        //   perm: this.$can('view', 'integration-yoshlar'),
+        //   image: 'yoshlar.png',
+        //   name: this.$t('submodules.integration.yoshlar_info.title'),
+        //   height: 50,
+        //   isDone: true
+        // },
+        // {
+        //   id: 14,
+        //   routerName: 'IntegrationSoliqQomitaInfoIndex',
+        //   perm: this.$can('view', 'integration-soliq-qomita'),
+        //   image: 'soliq.png',
+        //   name: this.$t('submodules.integration.soliqQomita_info.title'),
+        //   height: 55,
+        //   isDone: true
+        // },
+        // {
+        //   id: 15,
+        //   routerName: 'IntegrationSSVInfoIndex',
+        //   perm: this.$can('view', 'integration-ssv'),
+        //   image: 'ssv.png',
+        //   name: this.$t('submodules.integration.ssv_info.title'),
+        //   height: 50,
+        //   isDone: true
+        // },
+        // {
+        //   id: 16,
+        //   routerName: 'IntegrationBojxonaInfo1Index',
+        //   perm: this.$can('view', 'integration-bojxona'),
+        //   image: 'bojxona.png',
+        //   name: this.$t('submodules.integration.bojxona_info.title'),
+        //   height: 50,
+        //   isDone: true
+        // },
+        // {
+        //   id: 17,
+        //   routerName: 'IntegrationAgrosanoatInfo1Index',
+        //   perm: this.$can('view', 'integration-agrobirja'),
+        //   image: 'agrosanoat.png',
+        //   name: this.$t('submodules.integration.agrosanoat_info.menu_title'),
+        //   height: 50,
+        //   isDone: true
+        // },
+        // {
+        //   id: 18,
+        //   routerName: 'IntegrationPersonallashtirishInfoIndex',
+        //   perm: this.$can('view', 'integration-personallashtirish'),
+        //   image: 'gerb.png',
+        //   name: this.$t('submodules.integration.personallashtirish.menu_title'),
+        //   height: 50,
+        //   isDone: true
+        // },
+        // // {
+        // //     id: 19,
+        // //     routerName: 'IntegrationEAuctionInfoIndex',
+        // //     perm: this.$can('view', 'e-auction-info'),
+        // //     image: 'gerb.png',
+        // //     name: this.$t('submodules.integration.e_auction_info.title'),
+        // //     height: 50,
+        // //     isDone: true
+        // // },
+        // {
+        //   id: 19,
+        //   routerName: 'IntegrationStatisticsInfoIndex',
+        //   perm: this.$can('view', 'statistics'),
+        //   image: 'gerb.png',
+        //   name: this.$t('submodules.integration.statistics_info.menu_title'),
+        //   height: 50,
+        //   isDone: true
+        // },
+        // // {
+        // //     id: 21,
+        // //     routerName: 'IntegrationCustomsProductImportIndex',
+        // //     perm: this.$can('view', 'dbq-import-product-infos'),
+        // //     image: 'gerb.png',
+        // //     name: this.$t('submodules.integration.customs_product.title'),
+        // //     height: 50,
+        // //     isDone: true
+        // // },
+        // {
+        //   id: 20,
+        //   routerName: 'IntegrationPriceStockRealizationIndex',
+        //   perm: this.$can('view', 'dbq-import-product-infos'),
+        //   image: 'gerb.png',
+        //   name: this.$t('submodules.integration.price_stock.menu_title'),
+        //   height: 50,
+        //   isDone: true
+        // },
+        // {
+        //   id: 21,
+        //   routerName: 'IntegrationInvestitsiyaTashqiSavdoInfo',
+        //   perm: this.$can('view', 'integration-investitsiya-tashqiSavdo'),
+        //   name: this.$t('submodules.integration.investitsiya_tashqiSavdo_info.title'),
+        //   image: 'gerb.png',
+        //   height: 50,
+        //   isDone: true
+        // },
+        // {
+        //   id: 22,
+        //   routerName: 'IntegrationMoliyaInfoIndex',
+        //   perm: this.$can('view', 'integration-moliya'),
+        //   image: 'moliya.png',
+        //   name: this.$t('submodules.integration.moliya_info.title'),
+        //   height: 50,
+        //   isDone: true
+        // },
+        // {
+        //   id: 23,
+        //   routerName: 'IntegrationDigitalGovernmentInfoIndex',
+        //   perm: this.$can('view', 'integration-digital-government'),
+        //   // perm: this.$can('view', 'integration-moliya'),
+        //   name: this.$t('submodules.integration.digitalGovernment.title'),
+        //   image: 'gerb.png',
+        //   height: 50,
+        //   isDone: true
+        // },
+        // {
+        //   id: 24,
+        //   routerName: 'IntegrationQurilishInfoIndex',
+        //   perm: this.$can('view', 'integration-qurilish'),
+        //   image: 'qurilishDis.png',
+        //   name: this.$t('submodules.integration.qurilish_info.title'),
+        //   height: 65,
+        //   isDone: false
+        // },
+        // {
+        //   id: 25,
+        //   routerName: 'IntegrationAdliyaInfoIndex',
+        //   perm: this.$can('view', 'integration-adliya'),
+        //   image: 'adliyaDis.png',
+        //   name: this.$t('submodules.integration.adliya_info.title'),
+        //   height: 55,
+        //   isDone: false
+        // },
+        //
+        // // {
+        // //     id: 23,
+        // //     routerName: 'IntegrationSugurtaMoliyaInfoIndex',
+        // //     perm: this.$can('view', 'integration-sugurta-moliya'),
+        // //     image: 'sugurtaDis.png',
+        // //     name: this.$t('submodules.integration.sugurta_moliya_info.title'),
+        // //     height: 50,
+        // //     isDone: false
+        // // },
+        //
+        // {
+        //   id: 26,
+        //   routerName: 'IntegrationAxborotResursDUKInfoIndex',
+        //   perm: this.$can('view', 'integration-axborot-resurs-duk'),
+        //   image: 'gerbDis.png',
+        //   name: this.$t('submodules.integration.axborot_resurs_duk_info.title'),
+        //   height: 50,
+        //   isDone: false
+        // },
+        // {
+        //   id: 27,
+        //   routerName: 'IntegrationQishloqXojaligiInfoIndex',
+        //   perm: this.$can('view', 'integration-qishloq-xojaligi'),
+        //   image: 'qishloq_xojaligiDis.png',
+        //   name: this.$t('submodules.integration.qishloq_xojaligi_info.title'),
+        //   height: 50,
+        //   isDone: false
+        // },
+        // {
+        //   id: 28,
+        //   routerName: 'IntegrationTransportInfoIndex',
+        //   perm: this.$can('view', 'integration-transport'),
+        //   image: 'transportDis.png',
+        //   name: this.$t('submodules.integration.transport_info.title'),
+        //   height: 45,
+        //   isDone: false
+        // },
+        // {
+        //   id: 29,
+        //   routerName: 'IntegrationVeterinariyaChorvachilikInfoIndex',
+        //   perm: this.$can('view', 'integration-veterinariya-chorvachilik'),
+        //   image: 'veterenariyaDis.png',
+        //   name: this.$t('submodules.integration.veterinariya_chorvachilik_info.title'),
+        //   height: 60,
+        //   isDone: false
+        // },
+        // {
+        //   id: 30,
+        //   routerName: 'IntegrationIIVInfoIndex',
+        //   perm: this.$can('view', 'integration-iiv'),
+        //   image: 'iivDis.png',
+        //   name: this.$t('submodules.integration.iiv_info.title'),
+        //   height: 55,
+        //   isDone: false
+        // },
+
+
+      ]
     }
   },
   methods: {
@@ -442,166 +390,268 @@ export default {
 
     }
   },
+  created() {
+    this.listPro1 = this.listPro.filter((e) => e.perm == true)
+    this.listPro2 = this.listPro.filter((e) => e.perm == false)
+    this.listPro = this.listPro1.concat(this.listPro2)
+  },
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 /* ADVERTISERS SERVICE CARD */
-body {
-  font-family: "Roboto", sans-serif !important;
-}
-
-.advertisers-service-sec {
-  min-height: 800px !important;
-  background-size: cover;
-  background-attachment: fixed;
-  margin: 0;
+* {
   padding: 0;
-  width: 100% !important;
-  border-radius: 10px;
-  /*background: #317ABEFF;*/
-  /*background-image: url("../../../../../assets/1.jpg");*/
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.advertisers-service-sec span {
-  color: rgb(255, 23, 131);
+.rais-page-respons {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
 }
 
-.advertisers-service-sec .col {
-  padding: 0 1em 1em 1em;
+.body-title-style {
+  width: 100%;
+  margin: 18px auto 0;
+  padding: 20px;
+  background: linear-gradient(to top, #2c675b, #029984);
   text-align: center;
+  border-radius: 5px;
 }
 
-.advertisers-service-sec .service-card {
+.body-title-style-text {
+  width: 80%;
+  font-size: 23px;
+  color: white;
+  text-align: center;
+  margin: 0 auto;
+}
+
+::v-deep .wizard-progress-with-circle {
+  display: none !important;
+}
+
+::v-deep .vue-form-wizard .wizard-nav-pills>li {
+  background-color: transparent;
+}
+
+::v-deep .wizard-icon-circle {
+  display: none;
+}
+
+/*::v-deep .vue-form-wizard .wizard-nav-pills>li>a,
+.vue-form-wizard .wizard-nav-pills>li>a,
+.vue-form-wizard .wizard-nav-pills>li>.stepTitle:nth-child(3) {
+  padding-left: 36px !important;
+  padding-right: 0 !important;
+}*/
+
+::v-deep .vue-form-wizard .wizard-nav-pills>li>a,
+.vue-form-wizard .wizard-nav-pills>li>a,
+.vue-form-wizard .wizard-nav-pills>li>.stepTitle {
   width: 100%;
-  height: 100%;
-  padding: 1em 0.5em;
-  /*border-radius: 25px;*/
-  /*box-shadow: 0 0 35px rgba(0, 0, 0, 0.12);*/
+  padding: 12px;
+  font-size: 17px;
+  display: flex;
+  margin: 0px;
+  justify-content: center;
+  border: thin solid #cbe6e1e4;
+  background-color: white;
+  color: #86a59f;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(2, 153, 133, 0.533);
+  text-align: center;
   cursor: pointer;
-  transition: 0.5s;
-  position: relative;
-  z-index: 2;
-  overflow: hidden;
-  background: #6FA2D2 !important;
-  /*background: #223F4A;*/
-  background: rgba(255, 255, 255, 0.3);
-  border: 1px solid #f5f5f5;
-  border-radius: 15px;
-  -webkit-box-shadow: 0px 0px 10px 0px #f5f5f5;
-  box-shadow: 0px 0px 10px 0px #f5f5f5;
-  transform: scale(0.9, 0.9);
+
 
 }
 
-.advertisers-service-sec .service-card::after {
-  content: "";
+::v-deep .vue-form-wizard .wizard-nav-pills>li.active>a,
+.vue-form-wizard .wizard-nav-pills>li.active>a:focus,
+.vue-form-wizard .wizard-nav-pills>li>.stepTitle .active {
   width: 100%;
-  height: 100%;
-  background: linear-gradient(#023e77, rgb(255, 255, 255));
+  padding: 12px;
+  font-size: 17px;
+  display: flex;
+  margin: 0px;
+  justify-content: center;
+  border-bottom: 6px solid #029984;
+  background-color: white;
+  font-weight: bold;
+  text-align: center;
+  cursor:pointer;
+
+}
+
+::v-deep .custom-control-input:checked~.custom-control-label::before {
+  background-color: #029984;
+  border-color: #029984;
+}
+
+::v-deep .btn-primary {
+  background-color: #029984 !important;
+  border-color: #029984 !important;
+  color: white !important;
+}
+
+::v-deep .btn-secondary {
+  color: white;
+  background-color: #aaa8a8;
+  border-color: #aaa8a8;
+}
+
+
+.frame-hover {
+  min-width: 460px;
+  padding: 60px 20px 20px;
+  margin: 5px 0 10px 0;
+  border-width: 10px;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: transparent;
+  transition: all 0.4s ease;
+}
+
+.box-style {
+  width: 100%;
+  height: 260px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #029984;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+
+  .box-title-style {
+    padding: 20px;
+    font-size: 21px;
+    font-weight: 700;
+    color: #029984;
+    text-align: center;
+    transition: all 0.4s ease;
+  }
+}
+
+.img-content-full{
   position: absolute;
-  right: 0%;
-  bottom: -97%;
-  z-index: -4;
-  transition: all 0.7s cubic-bezier(0.77, -0.04, 0, 0.99);
+  top: 15px;
+  left: 42%;
 }
 
-.advertisers-service-sec h3 {
-  font-size: 14px;
-  font-weight: 900;
-  color: #1f194c;
-  margin-bottom: -5px;
-  z-index: 3;
+.frame-hover:hover {
+  border-width: 10px;
+  border-style: solid;
+  border-color: #029984;
 }
 
-.advertisers-service-sec p {
-  color: #575a7b;
-  font-size: 15px;
-  line-height: 1.6;
-  letter-spacing: 0.03em;
-  z-index: 3;
+.frame-hover:hover .box-style {
+  border: 3px solid #029984;
+  box-shadow: 0 0 13px #029984
 }
 
-.advertisers-service-sec .icon-wrapper {
-  background-color: #2c7bfe;
-  position: relative;
-  margin: auto;
-  font-size: 30px;
-  height: 2.5em;
-  width: 2.5em;
-  color: #ffffff;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  transition: 0.5s;
-  z-index: 3;
+.frame-hover:hover .box-title-style {
+  color: #2c675b;
+
 }
 
-.advertisers-service-sec .service-card:hover:after {
-  background: linear-gradient(#ffffff, rgb(49, 122, 190));
-  top: 0%;
+.activeBox {
+  border-width: 10px;
+  border-style: solid;
+  border-color: #029984;
 }
 
-.service-card .icon-wrapper {
-  background-color: #ffffff;
-  color: rgb(49, 122, 190);
+.activeText {
+  color: #2c675b !important;
 }
 
-.advertisers-service-sec .service-card:hover .icon-wrapper {
-  color: #FF1783FF;
+.activeShadow {
+  border: 3px solid #029984;
+  box-shadow: 0 0 13px #029984
 }
 
-.advertisers-service-sec .service-card:hover h3 {
-  color: #ffffff;
+
+.dNone {
+  display: none;
 }
 
-.advertisers-service-sec .service-card:hover p {
-  color: #f0f0f0;
+
+@media screen and (min-width:1981px) {
+  .rais-page-respons {
+    max-width: 1600px;
+  }
 }
 
-/* ADVERTISERS SERVICE CARD ENDED */
-
-.arrow-up {
-  border-left: 50px solid transparent;
-  border-right: 0px solid transparent;
-  border-top: 50px solid red;
-  color: #fff;
-  position: absolute;
-  top: 0;
-  right: 0;
+@media screen and (max-width:1980px) {
+  .rais-page-respons {
+    max-width: 1500px;
+    padding: 0 20px;
+  }
 }
 
-.arrow-up-success {
-  border-left: 50px solid transparent;
-  border-right: 0px solid transparent;
-  border-top: 50px solid #00963F;
-  color: #fff;
-  position: absolute;
-  top: 0;
-  right: 0;
+@media screen and (max-width:1365px) {
+
+  ::v-deep .vue-form-wizard .wizard-nav-pills>li>a,
+  .vue-form-wizard .wizard-nav-pills>li>a,
+  .vue-form-wizard .wizard-nav-pills>li>.stepTitle {
+    width: 320px;
+  }
+
+  ::v-deep .vue-form-wizard .wizard-nav-pills>li.active>a,
+  .vue-form-wizard .wizard-nav-pills>li.active>a:focus,
+  .vue-form-wizard .wizard-nav-pills>li>.stepTitle {
+    width: 320px;
+  }
+
+  .box-style {
+    height: 190px;
+  }
+
+  .box-style .box-title-style {
+    font-size: 22px;
+  }
 }
 
-.itinerary-number {
-  position: absolute;
-  bottom: 20px;
-  right: -1px;
-  font-size: 14px;
-  font-weight: 700;
-  color: #fff !important;
-  /* Safari */
-  -webkit-transform: rotate(45deg);
+@media screen and (max-width:1066px) {
+  .box-style {
+    height: 180px;
+  }
 
-  /* Firefox */
-  -moz-transform: rotate(-45deg);
+  .box-style .box-title-style {
+    font-size: 20px;
+  }
+}
 
-  /* IE */
-  -ms-transform: rotate(-135deg);
+@media screen and (max-width:991px) {
+  .box-style {
+    height: 170px;
+  }
 
-  /* Opera */
-  -o-transform: rotate(-135deg);
+  .rais-page-respons {
+    max-width: 1000px;
+    padding: 0 15px;
+  }
 
-  float: left;
+  .body-title-style {
+    width: 100%;
+    font-size: 20px;
+    padding: 0 10px;
 
+  }
+}
+
+@media screen and (max-width:425px) {
+  .box-style {
+    width: 100%;
+    height: 150px;
+
+    .box-title-style {
+      font-size: 20px;
+      padding: 10px;
+    }
+  }
 }
 </style>
 
