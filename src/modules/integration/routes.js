@@ -34,17 +34,28 @@ import IntegrationMenuCards from "@/modules/integration/modules/menu-card/routes
 import iivInfo from "@/modules/integration/modules/iiv/routes";
 import yoshlarInfo from "@/modules/integration/modules/yoshlar/routes";
 import ssvInfo from "@/modules/integration/modules/ssv/routes";
+import checkAppeal from "@/modules/integration/modules/check-appeal/routes";
 
 export default [
   {
-    name: "Integration",
-    path: "/integration",
-    component: () => import('@/router/views/dashboards/default'),
+    name: "InteractiveServices",
+    path: "/services",
+    component: () => import('@/modules/integration/Index'),
     meta: {
       bcLinkText: i18n.t("submodules.integration.title"),
       bcTo: {name: "Integration"},
     },
     children: [
+        {
+            name: 'IntegrationMenuIndex',
+            path: '',
+            component: () => import('@/modules/integration/modules/menu-card/menu'),
+            meta: {
+                bcTo: {name: "IntegrationMenuIndex"},
+                authRequired: true,
+            },
+        },
+        ...checkAppeal,
         ...eAuctionInfo,
         ...openDataRoutes,
         ...customsProduct,
