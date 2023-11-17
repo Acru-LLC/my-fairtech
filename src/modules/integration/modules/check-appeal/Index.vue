@@ -2,6 +2,7 @@
 import {mapActions, mapMutations} from "vuex";
 import i18n from "@/i18n";
 import CheckService from "@/shared/services/checkService";
+import Toast from "vue-toastification";
 
 export default {
   data() {
@@ -70,9 +71,16 @@ export default {
             this.appealDate = '';
             this.searchLoader = false;
             this.loading = false;
+            if (result == !null){
+              this.$toast.success(this.$t('submodules.integration.statistics_info.download_success'));
+            }
+            else{
+              this.$toast.error(this.$t('submodules.integration.statistics_info.download_error'));
+            }
             // console.log(result.data)
           })
           .catch((err) => {
+            this.$toast.error('Error');
             // this.catchErr(err);
           })
           .finally(() => {
@@ -93,7 +101,7 @@ export default {
   <div class="row m-0">
     <div class="col-12 mt-4">
       <div class="text-center">
-        <h4 class="font-weight-bold d-inline-block mb-4" style="color: #226358; width: 530px">
+        <h4 class="font-weight-bold d-inline-block mb-4" style="color: #226358;">
           {{ $t('pharm_check_sms.main_title') }}</h4>
       </div>
       <div class="d-flex justify-content-center">
@@ -119,7 +127,7 @@ export default {
             <b-col style="height: 0" class="text-success">
               {{ $t('pharm_check_sms.full_name') }}
               <b-form-text class="font-size-17 font-weight-bold" style="color: #226358">
-                {{getUserDatas.lastName ? getUserDatas.lastName.slice(0,1) : ''}}. {{getUserDatas.firstName ? getUserDatas.firstName.slice(0,1): ''}}. {{getUserDatas.middleName ? getUserDatas.middleName.slice(0,1) : ''}}
+                {{getUserDatas.lastName ? getUserDatas.lastName : ''}}. {{getUserDatas.firstName ? getUserDatas.firstName: ''}}. {{getUserDatas.middleName ? getUserDatas.middleName : ''}}
               </b-form-text>
             </b-col>
             <b-col style="height: 0" class="text-success">
@@ -133,14 +141,14 @@ export default {
                 {{getUserDatas.date ? getUserDatas.date.slice(0,11).split('-').join('.') : ''}}
               </b-form-text>
             </b-col>
-            <b-row class="w-100 d-flex justify-content-center text-success font-size-14 mt-3" style="height: 0">{{$t('pharm_check_sms.login_require_text')}}</b-row>
-            <div class="cursor-pointer w-25 d-flex justify-content-between mx-auto" style="height: 50px; border-radius: 13px; border: 1px solid #226358">
-              <a href="/login" style="width: 50%; border-radius: 10px; background-color: #226358" class="font-size-20 d-flex align-items-center justify-content-center text-white">oneID</a>
-              <h3 style="width: 50%; color: #226358" class="d-flex justify-content-center font-weight-bold my-auto">LOGIN</h3>
-            </div>
-            <div class="d-flex justify-content-center w-100 text-success font-size-14" style="height: 0">
-              {{$t('pharm_check_sms.entry_personal_c')}}
-            </div>
+<!--            <b-row class="w-100 d-flex justify-content-center text-success font-size-14 mt-3" style="height: 0">{{$t('pharm_check_sms.login_require_text')}}</b-row>-->
+<!--            <div class="cursor-pointer w-25 d-flex justify-content-between mx-auto" style="height: 50px; border-radius: 13px; border: 1px solid #226358">-->
+<!--              <a href="/login" style="width: 50%; border-radius: 10px; background-color: #226358" class="font-size-20 d-flex align-items-center justify-content-center text-white">oneID</a>-->
+<!--              <h3 style="width: 50%; color: #226358" class="d-flex justify-content-center font-weight-bold my-auto">LOGIN</h3>-->
+<!--            </div>-->
+<!--            <div class="d-flex justify-content-center w-100 text-success font-size-14" style="height: 0">-->
+<!--              {{$t('pharm_check_sms.entry_personal_c')}}-->
+<!--            </div>-->
           </b-row>
 
         </div>
