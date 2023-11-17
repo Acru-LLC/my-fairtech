@@ -242,7 +242,15 @@ COMPUTED */
       bodyFormData.append("applier_jshshir", this.userInfos.pinfl);
       bodyFormData.append("applier_fullname", this.userInfos.lastName + this.userInfos.firstName + this.userInfos.middleName);
       bodyFormData.append("applier_zipcode", this.zipeKod);
-      bodyFormData.append("applier_phone", this.userInfos.phoneNumber.slice(4));
+      if (this.userInfos.phoneNumber.slice(0,1) == "+"){
+        bodyFormData.append("applier_phone", this.userInfos.phoneNumber.slice(4));
+      }
+      else if (this.userInfos.phoneNumber.length==12){
+        bodyFormData.append("applier_phone", this.userInfos.phoneNumber.slice(3));
+      }
+      else{
+        bodyFormData.append("applier_phone", this.userInfos.phoneNumber);
+      }
       bodyFormData.append("applier_address", this.userInfos.birthPlace + this.userInfos.perAdress);
       bodyFormData.append("appeal_type", this.selectedOption2);
       bodyFormData.append("appeal_description", this.appeal_description);
