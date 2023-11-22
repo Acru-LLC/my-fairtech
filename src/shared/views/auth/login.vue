@@ -209,7 +209,7 @@ export default {
         <div class="text-footer">
           <p class="title-footer">{{ $t('system.tex_support') }}</p>
           <img src="../auth/images/loginImages/phone.svg" alt="">
-          <p class="svg-footer1 ml-2">+ 99871 1234567</p>
+          <p class="svg-footer1 ml-2">71-207-48-00 (1159)</p>
 
           <div class="text-footer2">
             <img src="../auth/images/loginImages/message.svg" alt="">
@@ -417,7 +417,7 @@ iframe {
 
 .svg-footer1 {
   display: inline-block;
-  width: 115px;
+  //width: 115px;
   height: 19px;
   flex-direction: column;
   justify-content: center;
