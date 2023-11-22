@@ -3,7 +3,10 @@
   :class="{ 'disable-img': !integration.isDone }"-->
   <section id="advertisers" class="advertisers-service-sec pt-4 pb-5">
     <div v-if="!toRouterLoader">
-      <b-row class="px-4 rais-page-respons">
+      <b-row class="p-1 font-size-20 font-weight-bold col-2 mx-auto" style="color: #236257;">
+        {{ $t('product_dashboard_info.menu_items.other_services') }}
+      </b-row>
+      <b-row class="rais-page-respons my-2">
         <b-col cols="12" sm="6" md="4" lg="3" xl="2" class="frame-hover" v-for="(integration, index) in listPro"
                :key="index">
           <div :id="!integration.perm ? index + 'tooltip-button-variant' : ''"
@@ -127,7 +130,7 @@ export default {
 .rais-page-respons {
   width: 100%;
   max-width: 1140px;
-  margin: 0 auto;
+  //margin: 0 auto;
 }
 
 .body-title-style {
@@ -222,7 +225,7 @@ export default {
 
 
 .frame-hover {
-  min-width: 460px;
+  min-width: 400px;
   padding: 60px 20px 20px;
   margin: 5px 0 10px 0;
   border-width: 10px;
@@ -234,7 +237,7 @@ export default {
 
 .box-style {
   width: 100%;
-  height: 260px;
+  height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -305,7 +308,7 @@ export default {
 @media screen and (max-width:1980px) {
   .rais-page-respons {
     max-width: 1500px;
-    padding: 0 20px;
+    //padding: 0 20px;
   }
 }
 
