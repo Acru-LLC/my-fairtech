@@ -17,7 +17,8 @@ export default {
       fish: '',
       appealCount: '',
       appealDate: '',
-      getUserDatas:{}
+      getUserDatas:{},
+      modalVisible: false,
     }
   },
   computed: {
@@ -73,9 +74,11 @@ export default {
             this.loading = false;
             if (result == !null){
               this.$toast.success(this.$t('submodules.integration.statistics_info.download_success'));
+              this.modalVisible = true;
             }
             else{
               this.$toast.error(this.$t('submodules.integration.statistics_info.download_error'));
+              this.modalVisible = true;
             }
             // console.log(result.data)
           })
@@ -119,11 +122,12 @@ export default {
           <input class="form-control" style="width: 48%!important;" v-model="jshshirInput" v-mask="'##############'" :placeholder="$t('pharm_check_sms.pinfl_placeholder')"/>
         </div>
 
-        <button @click="sendRequest" :disabled="isSendButtonDisabled || !telefonInput || !jshshirInput" v-if="isJshshirActive || isTelefonActive" class="btn btn-success w-50 d-flex justify-content-center mx-auto" style="background-color: #226358">{{ $t('pharm_check_sms.check_btn') }}</button>
+        <button @click="sendRequest" :disabled="!telefonInput.trim() && !jshshirInput.trim()" v-if="isJshshirActive || isTelefonActive" class="btn btn-success w-50 d-flex justify-content-center mx-auto" style="background-color: #226358">{{ $t('pharm_check_sms.check_btn') }}</button>
       </div>
-      <div style="background-color: #EEF2FE" class="w-100 h-50 pt-3 pb-3">
+      <b-modal id="modal-lg" size="lg" v-model="modalVisible" centered v-centered hide-footer>
+      <div class="w-100 h-50 pt-3 pb-3">
         <div class="bg-white w-100 h-100 d-flex justify-content-center p-3">
-          <b-row cols="12" class="w-50 text-center">
+          <b-row cols="12" class="text-center">
             <b-col style="height: 0" class="text-success">
               {{ $t('pharm_check_sms.full_name') }}
               <b-form-text class="font-size-17 font-weight-bold" style="color: #226358">
@@ -153,6 +157,7 @@ export default {
 
         </div>
       </div>
+      </b-modal>
     </div>
   </div>
 </template>
@@ -254,7 +259,12 @@ export default {
   z-index: 2;
 }
 
-
+.modal-dialog{
+  max-height: 150px!important;
+}
+.modal-content{
+  height: 200px;
+}
 .date-label {
   width: 156px;
   height: 40px;
