@@ -259,7 +259,7 @@ export default {
 .img-content-full{
   position: absolute;
   top: 15px;
-  left: 42%;
+  left: 40%;
 }
 
 .frame-hover:hover {
