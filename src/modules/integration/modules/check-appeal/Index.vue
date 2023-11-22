@@ -72,7 +72,14 @@ export default {
             this.appealDate = '';
             this.searchLoader = false;
             this.loading = false;
-            if (result == !null){
+            if (
+                result.data &&
+                (result.data.count !== null ||
+                    result.data.date !== null ||
+                    result.data.firstName !== null ||
+                    result.data.lastName !== null ||
+                    result.data.middleName !== null)
+            ){
               this.$toast.success(this.$t('submodules.integration.statistics_info.download_success'));
               this.modalVisible = true;
             }
@@ -131,7 +138,7 @@ export default {
             <b-col style="height: 0" class="text-success">
               {{ $t('pharm_check_sms.full_name') }}
               <b-form-text class="font-size-17 font-weight-bold" style="color: #226358">
-                {{getUserDatas.lastName ? getUserDatas.lastName : ''}}. {{getUserDatas.firstName ? getUserDatas.firstName: ''}}. {{getUserDatas.middleName ? getUserDatas.middleName : ''}}
+                {{getUserDatas.lastName ? getUserDatas.lastName.slice(0, 1) : ''}}. {{getUserDatas.firstName ? getUserDatas.firstName.slice(0, 1) : ''}}. {{getUserDatas.middleName ? getUserDatas.middleName.slice(0, 1) : ''}}
               </b-form-text>
             </b-col>
             <b-col style="height: 0" class="text-success">
