@@ -4142,7 +4142,7 @@
     "send_btn": "Yuborish"
   },
   "pharm_check_sms": {
-    "main_title": "Raqobatni rivojlantirish va iste'molchilar huqularini himoya qilish qo'mitasi",
+    "main_title": "Raqobatni rivojlantirish va iste'molchilar huquqlarini himoya qilish qo'mitasi",
     "require_text": "Shaxsiy kabinetingizdagi murojaat(lar)ni tekshirish uchun telefon raqamingizni yoki JSH SHIRni kiriting",
     "with_phone_number": "Telefon raqam orqali",
     "with_pinfl": "JSH SHIR orqali",
