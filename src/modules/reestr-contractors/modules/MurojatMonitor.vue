@@ -242,11 +242,14 @@ COMPUTED */
       bodyFormData.append("applier_jshshir", this.userInfos.pinfl);
       bodyFormData.append("applier_fullname", this.userInfos.lastName + this.userInfos.firstName + this.userInfos.middleName);
       bodyFormData.append("applier_zipcode", this.zipeKod);
-      if (this.userInfos.phoneNumber.slice(0,1) == "+"){
+      if (this.userInfos.phoneNumber.startsWith("+")){
         bodyFormData.append("applier_phone", this.userInfos.phoneNumber.slice(4));
       }
-      else if (this.userInfos.phoneNumber.length==12){
+      else if (this.userInfos.phoneNumber.length===12){
         bodyFormData.append("applier_phone", this.userInfos.phoneNumber.slice(3));
+      }
+      else if (this.userInfos.phoneNumber.startsWith("+998")){
+        bodyFormData.append("applier_phone", this.userInfos.phoneNumber.slice(4));
       }
       else{
         bodyFormData.append("applier_phone", this.userInfos.phoneNumber);
@@ -332,7 +335,6 @@ COMPUTED */
                 <BaseInputWithValidation
                     rules="required"
                     label-on-top
-                    mask="+998#########"
                     class="required font-size-15"
                     style="color: #89A49D"
                     :label="$t('product_dashboard_info.phone_number')"
