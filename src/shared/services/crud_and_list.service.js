@@ -50,6 +50,14 @@ const crudAndListsService = {
     getUserInformation(){
         return ApiService.post(`/outer-cabinet/profile-data`)
     },
+    getAppealType( searchData){
+        return ApiService.post(`/appeal_types/list-search?keyword=`, searchData.params.params)
+    },
+    getListDocType: function (type = '', keyword = '', payload) {
+        let myPayload = Object.assign({}, payload)
+        myPayload.page -= 1
+        return ApiService.post(`pharm_document/list-search?keyword=${keyword ? keyword : ''}&type=${type ? type : ''}`, myPayload)
+    },
     async sendAppeal(bodyFormData){
         // console.log(bodyFormData);
         const requestData = {
