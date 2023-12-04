@@ -18,12 +18,25 @@ export default {
   },
   data() {
     return {
+      searchingModal: false,
+      createItem: {
+        files: [],
+        documentTypeIds: [],
+      },
+      fileAdd: [], // Placeholder for response data
+      types: [
+        { id: 1, nameLt: 'Default Option 1' },
+        { id: 2, nameLt: 'Default Option 2' },
+        { id: 3, nameLt: 'Default Option 3' },
+      ],
+      documentTypeIds: [],
       images: [],
       uploadFiles:false,
       userId: TokenService.getUserId(),
       appealList: [],
       userInfos: {},
       zipeKod:'',
+      keyword: 'my-fairtech-appeal',
       appeal_file:[],
       // appeal_file_list:[],
       counts: [],
@@ -43,6 +56,8 @@ export default {
       isActive3: false,
       isActiveS1: false,
       isActiveS2: false,
+      sender: 'web',
+      selectedId: '',
       selectedOption: this.$t('product_dashboard_info.ariza'),
       selectedOption2: '',
       file: '',
@@ -97,20 +112,11 @@ COMPUTED */
     params() {
       return {
         params: {
-          // itemsPerPage: this.limit,
-          // page: this.page - 1,
-          groupBy: [],
-          groupDesc: [],
-          itemsPerPage: 1,
-          keyword: "",
-          multiSort: true,
-          mustSort: false,
-          page: 0,
-          sortBy: [],
-          sortDesc: [],
+          itemsPerPage: this.limit,
+          page: this.page - 1,
         },
         search: this.searchValue,
-        status: this.selectedAppStatus,
+        // status: this.activeStatus,
       };
     },
     computedObserver () {
@@ -120,6 +126,17 @@ COMPUTED */
   /*
   METHODS */
   methods: {
+    openModal() {
+      this.searchingModal = true;
+    },
+    addSingleFile() {
+      // Placeholder method for adding a single file
+      console.log('Add Single File');
+    },
+    saveFiles() {
+      // Placeholder method for saving files
+      console.log('Save Files');
+    },
     firstDropdown() {
       this.isActiveS1 = !this.isActiveS1
       if (this.isActiveS1) {
@@ -201,6 +218,29 @@ COMPUTED */
             console.log(e)
           })
     },
+    getAppealType() {
+      crudAndListsService.getAppealType( {params: this.params})
+          .then((res) => {
+            // console.log(this.appealList)
+            this.appealList = res.data.list;
+            // console.log(res)
+          })
+          .catch(e => {
+            console.log(e)
+          })
+    },
+    async getTypes() {
+      this.var_default_search_payload.itemsPerPage = 500
+      await crudAndListsService.getListDocType('PRODUCT', this.documentTypeIds, this.var_default_search_payload)
+          .then(res => {
+            this.types = res.data.list
+            // console.log(this.types)
+          })
+          .catch(e => {
+            console.log(e)
+          })
+    },
+
 
     // handleFileChange(event) {
       // let files = event.target.files || event.dataTransfer.files;
@@ -240,8 +280,9 @@ COMPUTED */
 
       bodyFormData.append("applier_type", this.selectedOption);
       bodyFormData.append("applier_jshshir", this.userInfos.pinfl);
-      bodyFormData.append("applier_fullname", this.userInfos.lastName + this.userInfos.firstName + this.userInfos.middleName);
+      bodyFormData.append("applier_fullname", this.userInfos.lastName + " " + this.userInfos.firstName + " " + this.userInfos.middleName);
       bodyFormData.append("applier_zipcode", this.zipeKod);
+      bodyFormData.append("sender", this.sender)
       if (this.userInfos.phoneNumber.startsWith("+")){
         bodyFormData.append("applier_phone", this.userInfos.phoneNumber.slice(4));
       }
@@ -255,9 +296,11 @@ COMPUTED */
         bodyFormData.append("applier_phone", this.userInfos.phoneNumber);
       }
       bodyFormData.append("applier_address", this.userInfos.birthPlace + this.userInfos.perAdress);
-      bodyFormData.append("appeal_type", this.selectedOption2);
+      bodyFormData.append("appealType_id", this.selectedId);
+      bodyFormData.append("documentTypeIds", this.documentTypeIds)
       bodyFormData.append("appeal_description", this.appeal_description);
       this.appeal_file.forEach(f => { bodyFormData.append("appeal_file", f.file ) })
+      this.$toast.success(this.$t('messages.send_successfully'), {position: "top-right"});
 
 
       crudAndListsService.sendAppeal(bodyFormData)
@@ -266,14 +309,16 @@ COMPUTED */
             // this.selectedOption = '',.
             // this.getUserInfo();
 
+            this.sender = ''
             this.zipeKod = '',
-            this.selectedOption2 = '',
+            this.selectedId = '',
+            this.documentTypeIds = '',
             this.appeal_description = '',
             this.appeal_file = [];
 
             // this.$refs.appealFileUpload.removeAllFiles();
             this.$refs.appealFileUpload.removeAll();
-            this.$toast(this.$t('messages.send_successfully'), {type: 'success'});
+            this.$toast.success(this.$t('messages.send_successfully'), {position: "top-right"});
           })
           .catch((err) => {
             console.log(err)
@@ -298,6 +343,8 @@ COMPUTED */
   },
   mounted() {
     this.getUserInfo()
+    this.getAppealType()
+    this.getTypes()
   },
 }
 </script>
@@ -465,16 +512,48 @@ COMPUTED */
           <fieldset>
 <!--            <p class="font-size-17 mt-2 mb-0">{{ $t('product_dashboard_info.murojaat_view') }}</p>-->
             <div>
-              <div class="select-dropdown font-size-15 my-3" @click="secondDropdown" :class="{ active: isActiveS2 }">
-                <input type="text" class="boxText font-weight-bold" id="secondDropdown" :placeholder='$t("product_dashboard_info.murojaat_select")' readonly
-                       :value="selectedOption2" style="color: #236257">
-                <div class="select-option" @click.stop="">
-                  <div @click="selectOption2($t('product_dashboard_info.item1'))">{{ $t('product_dashboard_info.item1') }}</div>
-                  <div @click="selectOption2($t('product_dashboard_info.item2'))" :class="{ 'disabled-option': isItemDisabled(2) }">{{ $t('product_dashboard_info.item2') }}</div>
-                  <div @click="selectOption2($t('product_dashboard_info.item3'))" :class="{ 'disabled-option': isItemDisabled(3) }">{{ $t('product_dashboard_info.item3') }}</div>
-                  <div @click="selectOption2($t('product_dashboard_info.item4'))" :class="{ 'disabled-option': isItemDisabled(4) }">{{ $t('product_dashboard_info.item4') }}</div>
-                  <div @click="selectOption2($t('product_dashboard_info.item5'))" :class="{ 'disabled-option': isItemDisabled(5) }">{{ $t('product_dashboard_info.item5') }}</div>
-                </div>
+
+<!--                     murojaat select  -->
+<!--              <div class="select-dropdown font-size-15 my-3" @click="secondDropdown" :class="{ active: isActiveS2 }">-->
+<!--                <input type="text" class="boxText font-weight-bold" id="secondDropdown" :placeholder='$t("product_dashboard_info.murojaat_select")' readonly-->
+<!--                       :value="selectedOption2" style="color: #236257" >-->
+<!--                <div class="select-option" v-for="item in appealList" :key="item.id">-->
+<!--                  <div @click="selectOption2(item.nameUz)">-->
+<!--                    {{-->
+<!--                    getName({-->
+<!--                    nameRu: item.nameRu,-->
+<!--                    nameLt: item.nameLt,-->
+<!--                    nameUz: item.nameUz,-->
+<!--                    })-->
+<!--                    }}-->
+<!--                  </div>-->
+<!--&lt;!&ndash;                  <div @click="selectOption2($t('product_dashboard_info.item1'))">{{ $t('product_dashboard_info.item1') }}</div>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div @click="selectOption2($t('product_dashboard_info.item2'))" :class="{ 'disabled-option': isItemDisabled(2) }">{{ $t('product_dashboard_info.item2') }}</div>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div @click="selectOption2($t('product_dashboard_info.item3'))" :class="{ 'disabled-option': isItemDisabled(3) }">{{ $t('product_dashboard_info.item3') }}</div>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div @click="selectOption2($t('product_dashboard_info.item4'))" :class="{ 'disabled-option': isItemDisabled(4) }">{{ $t('product_dashboard_info.item4') }}</div>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div @click="selectOption2($t('product_dashboard_info.item5'))" :class="{ 'disabled-option': isItemDisabled(5) }">{{ $t('product_dashboard_info.item5') }}</div>&ndash;&gt;-->
+<!--                </div>-->
+<!--              </div>-->
+
+              <div class="my-3">
+              <BaseSelectWithValidation
+                  rules="required"
+                  v-model="selectedId"
+                  value-field="id"
+                  label-on-top
+              >
+                <b-form-select-option class="text-center" value="" disabled>{{$t('product_dashboard_info.murojaat_select')}}</b-form-select-option>
+                <b-form-select-option v-for="(item, index) in appealList" :key="index"
+                                      :value="item.id">{{
+                    getName({
+                      nameRu: item.nameRu,
+                      nameLt: item.nameLt,
+                      nameUz: item.nameUz,
+                      nameEn: item.nameEn,
+                    })
+                  }}
+                </b-form-select-option>
+              </BaseSelectWithValidation>
               </div>
 <!--              <div class="d-flex justify-content-between w-50 mb-3">-->
 <!--                <div class="form-check">-->
@@ -509,20 +588,93 @@ COMPUTED */
 
 
           <b-row class="py-3">
-          <b-col cols="12">
-            <BaseFileUploaderWithValidation
-                ref="appealFileUpload"
-                class="required"
-                label-on-top
-                v-model="appeal_file"
-                data-vv-name="file"
-                data-vv-as="file"
-                :multiple="true"
-                :max-files="100"
-                :maxFilesize="100"
-                :label="$t('actions.upload_file')"
-            ></BaseFileUploaderWithValidation>
-          </b-col>
+<!--          <b-col cols="12">-->
+<!--            <BaseFileUploaderWithValidation-->
+<!--                ref="appealFileUpload"-->
+<!--                class="required"-->
+<!--                label-on-top-->
+<!--                v-model="appeal_file"-->
+<!--                data-vv-name="file"-->
+<!--                data-vv-as="file"-->
+<!--                :multiple="true"-->
+<!--                :max-files="100"-->
+<!--                :maxFilesize="100"-->
+<!--                :label="$t('actions.upload_file')"-->
+<!--            ></BaseFileUploaderWithValidation>-->
+<!--          </b-col>-->
+
+
+
+            <b-col>
+            <div>
+              <b-col cols="12">
+                <b-row>
+                  <!-- File uploader -->
+                  <b-col cols="12" md="6" class="px-3">
+                    <BaseFileUploaderWithValidation
+                        rules="required"
+                        class="required"
+                        ref="fileInput"
+                        label-on-top
+                        v-model="appeal_file"
+                        data-vv-name="file"
+                        data-vv-as="file"
+                        :multiple="false"
+                        :max-files="1"
+                        :maxFilesize="100"
+                        :label="$t('actions.upload_file')"
+                    ></BaseFileUploaderWithValidation>
+                  </b-col>
+
+                  <!-- Select with default options -->
+                  <b-col cols="12" md="6" class="px-3">
+                    <BaseSelectWithValidation
+                        v-model="documentTypeIds"
+                        :label="$t('pharm.chakanaData.typeWork')"
+                        value-field="id"
+                        label-on-top
+                    >
+                      <!-- Default options -->
+                      <b-form-select-option v-for="(type, index) in types" :key="index" :value="type.id">
+                        {{ type.nameLt }}
+                      </b-form-select-option>
+
+                      <!-- Options from response (fileAdd) -->
+                      <b-form-select-option v-for="(item, index) in fileAdd" :key="index" :value="item.id">
+                        {{
+                          getName({
+                            nameLt: item.nameLt,
+                            nameRu: item.nameRu,
+                            nameUz: item.nameUz,
+                            nameEn: item.nameEn,
+                          })
+                        }}
+                      </b-form-select-option>
+                    </BaseSelectWithValidation>
+                  </b-col>
+                </b-row>
+              </b-col>
+
+              <!-- Action buttons -->
+<!--              <div style="margin-top: 10px;">-->
+<!--                <b-button-->
+<!--                    style="background-color: orange; color: white; padding: 5px 25px; border: none; margin-right: 15px; font-size: 16px;"-->
+<!--                    @click="addSingleFile"-->
+<!--                >-->
+<!--                  <span v-if="fileAdd.length > 0">{{ $t("actions.add") }}</span>-->
+<!--                  <span v-else>{{ $t("actions.download") }}</span>-->
+<!--                </b-button>-->
+
+<!--                <b-button-->
+<!--                    style="background-color: #2b675b; color: white; padding: 5px 25px; border: none; font-size: 16px;"-->
+<!--                    :disabled="createItem.documentTypeIds.length === 0"-->
+<!--                    @click="saveFiles"-->
+<!--                >-->
+<!--                  {{ $t("actions.save") }}-->
+<!--                </b-button>-->
+<!--              </div>-->
+            </div>
+            </b-col>
 <!--            <div class="col-12 d-flex align-items-center">-->
 <!--&lt;!&ndash;              <input type="file" ref="fileInput" @change="handleFileChange" style="display: none"/>&ndash;&gt;-->
 <!--              <button class="btn font-size-15" style="background-color: #7a9690; color: white; width:200px;" @click="uploadFiles = true;">{{ buttonText }}</button>-->
@@ -587,7 +739,7 @@ COMPUTED */
               <button class="btn text-white font-size-15" style="width: 200px; background-color: #F39138" @click="saveDraft">{{ btnText }}</button>
             </div>
             <b-button
-                :disabled="!userInfos.pinfl || !userInfos.phoneNumber || !selectedOption2 || !appeal_description || loadingTableItems || !appeal_file.length"
+                :disabled="!userInfos.pinfl || !userInfos.phoneNumber  || !appeal_description || loadingTableItems || !appeal_file.length"
                 @click="sendAppeal"
                 variant="outline-primary"
                 id="contractorSearchButton"
