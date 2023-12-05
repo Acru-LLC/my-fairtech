@@ -365,7 +365,7 @@ COMPUTED */
               <p class="font-size-15 mt-2 mb-0" style="color: #89A49D">{{ $t('product_dashboard_info.type') }} <span class="text-danger">*</span></p>
               <div>
 
-                <div class="dropdown-select font-size-15" @click="firstDropdown" :class="{ active: isActiveS1 }">
+                <div class="dropdown-select font-size-15"  :class="{ active: isActiveS1 }">    <!-- @click="firstDropdown"   -->
                   <input type="text" class="textBox" id="firstDropdown" :placeholder='$t("product_dashboard_info.selectType")' readonly
                          :value="selectedOption" style="color: #236257">
                   <div class="option-select" @click.stop="">
