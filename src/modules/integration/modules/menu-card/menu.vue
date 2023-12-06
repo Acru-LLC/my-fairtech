@@ -1,121 +1,130 @@
 <template>
   <!-- ADVERTISERS SERVICE CARD  :class="{ 'box-style': integration.isDone, 'noClick': !integration.isDone }"
   :class="{ 'disable-img': !integration.isDone }"-->
-  <section id="advertisers" class="advertisers-service-sec pt-4 pb-5">
-    <div v-if="!toRouterLoader">
-      <b-row class="p-1 font-size-20 font-weight-bold col-2 mx-auto" style="color: #236257;">
-        {{ $t('product_dashboard_info.menu_items.other_services') }}
-      </b-row>
-      <b-row class="rais-page-respons my-2">
-        <b-col cols="12" sm="6" md="4" lg="3" xl="2" class="frame-hover" v-for="(integration, index) in listPro"
-               :key="index">
-          <div :id="!integration.perm ? index + 'tooltip-button-variant' : ''"
-               :class="{ 'box-style': integration.isDone, 'box-style': integration.perm, 'box-notAccess-style': !integration.perm, 'noClick': !integration.isDone }"
-               @click="toRouter(integration.routerName)" class="box-style">
-            <div>
-              <img :class="integration.image == 'davlat_active.svg' ? 'img-content2' :
-                                integration.image == 'moliyaDis.png' ? 'img-content14' :
-                                    integration.image == 'veterenariyaDis.png' ? 'img-content24' :
-                                        integration.image == 'qurilishDis.png' ? 'img-content9' :
-                                            integration.image == 'hududgaztaminot.png' ? 'img-content9' :
-                                                integration.image == 'iivDis.png' ? 'img-content24' :
-                                                    integration.image == 'kadastr.png' ? 'img-content9' : 'img-content-full'"
-                   :src="require(`@/assets/integration/${integration.image}`)" :height="integration.height">
-            </div>
-            <p class="box-title-style" :class="(integration.id == 12) ? 'pt-0 px-0': 'py-3 px-4'">
-              {{ integration.name }}
-            </p>
-<!--            <button v-if="integration.perm" class="card-button">{{ $t("actions.details") }}</button>-->
-<!--            <button v-else class="card-notAccess-button">{{ $t("error.netAccess") }}</button>-->
-          </div>
+    <section id="advertisers" class="advertisers-service-sec pt-4 pb-5">
+        <div v-if="!toRouterLoader">
+            <b-row class="p-1 font-size-20 font-weight-bold col-2 mx-auto" style="color: #236257;">
+                {{ $t('product_dashboard_info.menu_items.other_services') }}
+            </b-row>
+            <b-row class="rais-page-respons my-2">
+                <b-col cols="12" sm="6" md="4" lg="3" xl="2" class="frame-hover" v-for="(integration, index) in listPro"
+                       :key="index">
+                    <div :id="!integration.perm ? index + 'tooltip-button-variant' : ''"
+                         :class="{ 'box-style': integration.isDone, 'box-style': integration.perm, 'box-notAccess-style': !integration.perm, 'noClick': !integration.isDone }"
+                         @click="toRouter(integration.routerName)" class="box-style">
+                        <div>
+                            <img :class="'img-content-full'"
+                                 :src="require(`@/assets/integration/${integration.image}`)"
+                                 :height="integration.height">
+                        </div>
 
-        </b-col>
-        <!--                <b-col cols="12">-->
-        <!--                    <div><button @click="$router.push('/integration/kommunal')">test</button></div>-->
-        <!--                </b-col>-->
-        <!-- <b-col v-for="(integration, index) in listPro" :key="index" cols="3">
-            <div :id="!integration.perm ? index + 'tooltip-button-variant' : ''"
-                :class="integration.perm ? 'service-card' : 'service-card-disable'"
-                @click="integration.perm ? toRouter(integration.routerName) : ''">
-                <div :class="integration.isDone ? 'arrow-up-success' : 'arrow-up'">
-                    <span class="itinerary-number"> </span>
-                </div>
-                <div class="icon-wrapper">
-                    <img :src="integration.image" :height="integration.height" />
-                </div>
-                <h3 class="mt-3 text-center">
-                    {{ integration.name }}</h3>
-                <b-tooltip :target="index + 'tooltip-button-variant'" variant="danger">
-                    {{ $t('error.netAccess') }}
-                </b-tooltip>
-            </div>
-        </b-col> -->
-      </b-row>
-    </div>
 
-    <div class="text-center" v-else-if="toRouterLoader">
-      <b-spinner style="width: 3rem; height: 3rem; margin-top: 100px"></b-spinner>
-    </div>
-  </section>
+                        <span class="box-title-style" :class="(integration.id == 12) ? 'pt-0 px-0': 'py-3 px-4'">
+                            <span style="color: #1b7a6d;"
+                                  v-show="integration.routerName == 'InfosProduct'">Product Info</span>
+                            <hr style="border: 1px solid #029984; margin-left: 20px; margin-right: 20px" v-show="integration.routerName == 'InfosProduct'">
+                            {{ integration.name }}
+                        </span>
+                        <!--            <button v-if="integration.perm" class="card-button">{{ $t("actions.details") }}</button>-->
+                        <!--            <button v-else class="card-notAccess-button">{{ $t("error.netAccess") }}</button>-->
+                    </div>
+
+                </b-col>
+                <!--                <b-col cols="12">-->
+                <!--                    <div><button @click="$router.push('/integration/kommunal')">test</button></div>-->
+                <!--                </b-col>-->
+                <!-- <b-col v-for="(integration, index) in listPro" :key="index" cols="3">
+                    <div :id="!integration.perm ? index + 'tooltip-button-variant' : ''"
+                        :class="integration.perm ? 'service-card' : 'service-card-disable'"
+                        @click="integration.perm ? toRouter(integration.routerName) : ''">
+                        <div :class="integration.isDone ? 'arrow-up-success' : 'arrow-up'">
+                            <span class="itinerary-number"> </span>
+                        </div>
+                        <div class="icon-wrapper">
+                            <img :src="integration.image" :height="integration.height" />
+                        </div>
+                        <h3 class="mt-3 text-center">
+                            {{ integration.name }}</h3>
+                        <b-tooltip :target="index + 'tooltip-button-variant'" variant="danger">
+                            {{ $t('error.netAccess') }}
+                        </b-tooltip>
+                    </div>
+                </b-col> -->
+            </b-row>
+        </div>
+
+        <div class="text-center" v-else-if="toRouterLoader">
+            <b-spinner style="width: 3rem; height: 3rem; margin-top: 100px"></b-spinner>
+        </div>
+    </section>
   <!-- ADVERTISERS SERVICE CARD ENDED -->
 </template>
 
 <script>
 
 export default {
-  data() {
-    return {
-      toRouterLoader: false,
-      listPro: [
-        {
-          id: 1,
-          routerName: 'CheckAppeal',
-          perm: this.$can('view', 'integration-ssv'),
-          image: 'appeal.svg',
-          name: this.$t('interactive_services.check_appeal.title'),
-          isDone: true
+    data() {
+        return {
+            toRouterLoader: false,
+            listPro: [
+                {
+                    id: 1,
+                    routerName: 'CheckAppeal',
+                    perm: '',
+                    image: 'appeal.svg',
+                    name: this.$t('interactive_services.check_appeal.title'),
+                    isDone: true
+                },
+                {
+                    id: 1,
+                    routerName: 'InfosProduct',
+                    perm: '',
+                    image: 'status.svg',
+                    name: this.$t('system.product_info.info'),
+                    isDone: true
+                }
+
+                // {
+                //   id: 1,
+                //   perm: this.$can('view', 'integration-kommunal'),
+                //   routerName: 'IntegrationKommunalInfoIndex',
+                //   name: this.$t('submodules.integration.kommunal_info.title'),
+                //   image: 'kommunal.svg',
+                //   height: 50,
+                //   isDone: true,
+                // },
+                // {
+                //   id: 2,
+                //   perm: this.$can('view', 'integration-davlat-active'),
+                //   routerName: 'IntegrationDavlatInfoIndex',
+                //   name: this.$t('submodules.integration.davlat_active_info.title'),
+                //   image: 'davlat_active.svg',
+                //   height: 15,
+                //   isDone: true
+                // },
+
+
+            ]
         }
-        // {
-        //   id: 1,
-        //   perm: this.$can('view', 'integration-kommunal'),
-        //   routerName: 'IntegrationKommunalInfoIndex',
-        //   name: this.$t('submodules.integration.kommunal_info.title'),
-        //   image: 'kommunal.svg',
-        //   height: 50,
-        //   isDone: true,
-        // },
-        // {
-        //   id: 2,
-        //   perm: this.$can('view', 'integration-davlat-active'),
-        //   routerName: 'IntegrationDavlatInfoIndex',
-        //   name: this.$t('submodules.integration.davlat_active_info.title'),
-        //   image: 'davlat_active.svg',
-        //   height: 15,
-        //   isDone: true
-        // },
+    },
+    methods: {
+        toRouter(link) {
+            this.toRouterLoader = true
+            setTimeout(() => {
+                this.toRouterLoader = false
+                this.$router.push({
+                    name: link,
+                })
+            }, 500);
 
 
-      ]
-    }
-  },
-  methods: {
-    toRouter(link) {
-      this.toRouterLoader = true
-      setTimeout(() => {
-        this.toRouterLoader = false
-        this.$router.push({
-          name: link,
-        })
-      }, 500);
-
-
-    }
-  },
-  created() {
-    this.listPro1 = this.listPro.filter((e) => e.perm == true)
-    this.listPro2 = this.listPro.filter((e) => e.perm == false)
-    this.listPro = this.listPro1.concat(this.listPro2)
-  },
+        }
+    },
+    created() {
+        this.listPro1 = this.listPro.filter((e) => e.perm == true)
+        this.listPro2 = this.listPro.filter((e) => e.perm == false)
+        this.listPro = this.listPro1.concat(this.listPro2)
+    },
 }
 </script>
 
@@ -154,7 +163,7 @@ export default {
   display: none !important;
 }
 
-::v-deep .vue-form-wizard .wizard-nav-pills>li {
+::v-deep .vue-form-wizard .wizard-nav-pills > li {
   background-color: transparent;
 }
 
@@ -169,9 +178,9 @@ export default {
   padding-right: 0 !important;
 }*/
 
-::v-deep .vue-form-wizard .wizard-nav-pills>li>a,
-.vue-form-wizard .wizard-nav-pills>li>a,
-.vue-form-wizard .wizard-nav-pills>li>.stepTitle {
+::v-deep .vue-form-wizard .wizard-nav-pills > li > a,
+.vue-form-wizard .wizard-nav-pills > li > a,
+.vue-form-wizard .wizard-nav-pills > li > .stepTitle {
   width: 100%;
   padding: 12px;
   font-size: 17px;
@@ -189,9 +198,9 @@ export default {
 
 }
 
-::v-deep .vue-form-wizard .wizard-nav-pills>li.active>a,
-.vue-form-wizard .wizard-nav-pills>li.active>a:focus,
-.vue-form-wizard .wizard-nav-pills>li>.stepTitle .active {
+::v-deep .vue-form-wizard .wizard-nav-pills > li.active > a,
+.vue-form-wizard .wizard-nav-pills > li.active > a:focus,
+.vue-form-wizard .wizard-nav-pills > li > .stepTitle .active {
   width: 100%;
   padding: 12px;
   font-size: 17px;
@@ -202,11 +211,11 @@ export default {
   background-color: white;
   font-weight: bold;
   text-align: center;
-  cursor:pointer;
+  cursor: pointer;
 
 }
 
-::v-deep .custom-control-input:checked~.custom-control-label::before {
+::v-deep .custom-control-input:checked ~ .custom-control-label::before {
   background-color: #029984;
   border-color: #029984;
 }
@@ -256,7 +265,7 @@ export default {
   }
 }
 
-.img-content-full{
+.img-content-full {
   position: absolute;
   top: 15px;
   left: 40%;
@@ -299,30 +308,30 @@ export default {
 }
 
 
-@media screen and (min-width:1981px) {
+@media screen and (min-width: 1981px) {
   .rais-page-respons {
     max-width: 1600px;
   }
 }
 
-@media screen and (max-width:1980px) {
+@media screen and (max-width: 1980px) {
   .rais-page-respons {
     max-width: 1500px;
     //padding: 0 20px;
   }
 }
 
-@media screen and (max-width:1365px) {
+@media screen and (max-width: 1365px) {
 
-  ::v-deep .vue-form-wizard .wizard-nav-pills>li>a,
-  .vue-form-wizard .wizard-nav-pills>li>a,
-  .vue-form-wizard .wizard-nav-pills>li>.stepTitle {
+  ::v-deep .vue-form-wizard .wizard-nav-pills > li > a,
+  .vue-form-wizard .wizard-nav-pills > li > a,
+  .vue-form-wizard .wizard-nav-pills > li > .stepTitle {
     width: 320px;
   }
 
-  ::v-deep .vue-form-wizard .wizard-nav-pills>li.active>a,
-  .vue-form-wizard .wizard-nav-pills>li.active>a:focus,
-  .vue-form-wizard .wizard-nav-pills>li>.stepTitle {
+  ::v-deep .vue-form-wizard .wizard-nav-pills > li.active > a,
+  .vue-form-wizard .wizard-nav-pills > li.active > a:focus,
+  .vue-form-wizard .wizard-nav-pills > li > .stepTitle {
     width: 320px;
   }
 
@@ -335,7 +344,7 @@ export default {
   }
 }
 
-@media screen and (max-width:1066px) {
+@media screen and (max-width: 1066px) {
   .box-style {
     height: 180px;
   }
@@ -345,7 +354,7 @@ export default {
   }
 }
 
-@media screen and (max-width:991px) {
+@media screen and (max-width: 991px) {
   .box-style {
     height: 170px;
   }
@@ -363,7 +372,7 @@ export default {
   }
 }
 
-@media screen and (max-width:425px) {
+@media screen and (max-width: 425px) {
   .box-style {
     width: 100%;
     height: 150px;

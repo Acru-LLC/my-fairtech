@@ -3435,7 +3435,22 @@
       "product_control_info": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos et inventore itaque mollitia nihil omnis quaerat rem sequi! Architecto dolorem eum eveniet impedit modi mollitia possimus repellendus sapiente sunt ut.",
       "product_history": "NARXLAR TARIXI",
       "product_history_info": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos et inventore itaque mollitia nihil omnis quaerat rem sequi! Architecto dolorem eum eveniet impedit modi mollitia possimus repellendus sapiente sunt ut.",
-      "login_btn": "TIZIMGA KIRISH"
+      "login_btn": "TIZIMGA KIRISH",
+      "infos": "Mahsulot haqidagi ma'lumotlar",
+      "info": "Tovar to'g'risidagi ma'lumot",
+      "tif_tn": "TIF TN kod bo'yicha",
+      "Shtrix": "Shtrix kod bo'yicha",
+      "MXIK": "MXIK kod bo'yicha",
+      "tif_tn_code": "TIF TN kod",
+      "Shtrix_code": "Shtrix kod",
+      "MXIK_code": "MXIK kod",
+      "search": "Ma'lumotlarni qidirish",
+      "name": "Maxsulot nomi",
+      "brand": "Brand nomi",
+      "group": "Guruh",
+      "class": "Sinf",
+      "pozition": "Pozitsiya",
+      "subpozition": "Subpozitsiya"
     },
     "integrations": {
       "integrations_name": "INTEGRATSIYA",

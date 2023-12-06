@@ -3455,7 +3455,22 @@
       "product_control_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
       "product_history": "НАРХЛАР ТАРИХИ",
       "product_history_info": "Лорем ипсум долор сит амет, cонсеcтетур адиписиcинг элит. Эос эт инвенторе итақуе моллитиа ниҳил омнис қуаэрат рем сеқуи! Арчитеcто долорем эум эвениет импедит моди моллитиа поссимус репеллендус сапиенте сунт ут.",
-      "login_btn": "ТИЗИМГА КИРИШ"
+      "login_btn": "ТИЗИМГА КИРИШ",
+      "infos": "Mahsulot haqidagi ma'lumotlar",
+      "info": "Tovar to'g'risidagi ma'lumot",
+      "tif_tn": "TIF TN kod bo'yicha",
+      "Shtrix": "Shtrix kod bo'yicha",
+      "MXIK": "MXIK kod bo'yicha",
+      "tif_tn_code": "TIF TN kod",
+      "Shtrix_code": "Shtrix kod",
+      "MXIK_code": "MXIK kod",
+      "search": "Ma'lumotlarni qidirish",
+      "name": "Maxsulot nomi",
+      "brand": "Brand nomi",
+      "group": "Guruh",
+      "class": "Sinf",
+      "pozition": "Pozitsiya",
+      "subpozition": "Subpozitsiya"
     },
     "integrations": {
       "integrations_name": "ИНТEГРАЦИЯ",
