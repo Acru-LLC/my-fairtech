@@ -20,12 +20,13 @@
 
 
                         <span class="box-title-style" :class="(integration.id == 12) ? 'pt-0 px-0': 'py-3 px-4'">
-                            <span style="color: #1b7a6d;"
-                                  v-show="integration.routerName == 'InfosProduct'">Product Info</span>
-                            <hr style="border: 1px solid #029984; margin-left: 20px; margin-right: 20px" v-show="integration.routerName == 'InfosProduct'">
+                            <span style="color: #349184; font-size: 22px"
+                                  v-show="integration.routerName == 'InfosProduct'" >Product Info</span>
+                            <hr class="mt-1 mb-1" style="border: 1px solid #029984; margin-left: 35px; margin-right: 35px"
+                                v-show="integration.routerName == 'InfosProduct'">
                             {{ integration.name }}
                         </span>
-                        <!--            <button v-if="integration.perm" class="card-button">{{ $t("actions.details") }}</button>-->
+                        <!--            <button     v-if="integration.perm" class="card-button">{{ $t("actions.details") }}</button>-->
                         <!--            <button v-else class="card-notAccess-button">{{ $t("error.netAccess") }}</button>-->
                     </div>
 
@@ -257,7 +258,7 @@ export default {
 
   .box-title-style {
     padding: 20px;
-    font-size: 21px;
+    font-size: 20px;
     font-weight: 700;
     color: #029984;
     text-align: center;
