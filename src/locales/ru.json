@@ -3444,7 +3444,11 @@
       "group": "Guruh",
       "class": "Sinf",
       "pozition": "Pozitsiya",
-      "subpozition": "Subpozitsiya"
+      "subpozition": "Subpozitsiya",
+      "alll": "Mahsulot haqida batafsil ma'lumot",
+      "all": "Batafsil ma'lumot",
+      "xarakteristika": "Tovar xarakteristikasi",
+      "mxik_name": "MXIK nomi"
     },
     "integrations": {
       "integrations_name": "INTEGRATSIYA",
