@@ -3448,7 +3448,9 @@
       "alll": "Mahsulot haqida batafsil ma'lumot",
       "all": "Batafsil ma'lumot",
       "xarakteristika": "Tovar xarakteristikasi",
-      "mxik_name": "MXIK nomi"
+      "mxik_name": "MXIK nomi",
+      "xarakteristika_xizmat": "Ish(xizmat) xarakteristikasi",
+      "packages": "Biriktirilgan o'lchov birliklari"
     },
     "integrations": {
       "integrations_name": "INTEGRATSIYA",
