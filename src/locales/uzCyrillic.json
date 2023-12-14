@@ -3476,7 +3476,11 @@
       "xarakteristika": "Tovar xarakteristikasi",
       "mxik_name": "MXIK nomi",
       "xarakteristika_xizmat": "Ish(xizmat) xarakteristikasi",
-      "packages": "Biriktirilgan o'lchov birliklari"
+      "packages": "Biriktirilgan o'lchov birliklari",
+      "maxsulot1": "Товар",
+      "maxsulot2": "Махсулот",
+      "xizmat1": "Иш",
+      "xizmat2": "Хизматлар"
     },
     "integrations": {
       "integrations_name": "ИНТEГРАЦИЯ",

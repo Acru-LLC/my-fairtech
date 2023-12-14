@@ -18,16 +18,16 @@
                                  :height="integration.height">
                         </div>
 
-
-                        <span class="box-title-style" :class="(integration.id == 12) ? 'pt-0 px-0': 'py-3 px-4'">
-                            <span style="color: #349184; font-size: 22px"
-                                  v-show="integration.routerName == 'ServicesProduct'" >Product Info</span>
-                            <hr class="mt-1 mb-1" style="border: 1px solid #029984; margin-left: 35px; margin-right: 35px"
-                                v-show="integration.routerName == 'ServicesProduct'">
-                            {{ integration.name }}
+                        <span v-if="integration.routerName == 'ServiceMaxsulot'" class="box-title-style"
+                              :class="(integration.id == 12) ? 'pt-0 px-0': 'py-3 px-4'">
+                            {{ integration.name }} <br>
+                            ( {{ $t('system.product_info.maxsulot2') }} )
                         </span>
-                        <!--            <button     v-if="integration.perm" class="card-button">{{ $t("actions.details") }}</button>-->
-                        <!--            <button v-else class="card-notAccess-button">{{ $t("error.netAccess") }}</button>-->
+                        <span v-if="integration.routerName == 'ServiceXizmat'" class="box-title-style"
+                              :class="(integration.id == 12) ? 'pt-0 px-0': 'py-3 px-4'">
+                            {{ integration.name }} <br>
+                          ( {{ $t('system.product_info.xizmat2') }} )
+                        </span>
                     </div>
 
                 </b-col>
@@ -70,18 +70,18 @@ export default {
             listPro: [
                 {
                     id: 1,
-                    routerName: 'CheckAppeal',
+                    routerName: 'ServiceMaxsulot',
                     perm: '',
-                    image: 'appeal.svg',
-                    name: this.$t('interactive_services.check_appeal.title'),
+                    image: 'status.svg',
+                    name: this.$t('system.product_info.maxsulot1'),
                     isDone: true
                 },
                 {
                     id: 2,
-                    routerName: 'ServicesProduct',
+                    routerName: 'ServiceXizmat',
                     perm: '',
                     image: 'status.svg',
-                    name: this.$t('system.product_info.info'),
+                    name: this.$t('system.product_info.xizmat1'),
                     isDone: true
                 }
 

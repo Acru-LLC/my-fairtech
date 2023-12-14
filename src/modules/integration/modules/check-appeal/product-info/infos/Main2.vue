@@ -4,47 +4,11 @@
             <div style="border:1px solid #2b675b; padding:15px; border-radius: 7px">
                 <b-container fluid="100%">
                     <b-row>
-                        <b-col cols="3">
-                            <BaseSelectWithValidation
-                                    v-model="selected"
-                                    :label="$t('submodules.integration.personallashtirish.search_button')"
-                                    value-field="id"
-                                    label-on-top
-                            >
-                                <b-form-select-option v-for="(item, index) in optionsTable" :key="index"
-                                                      :value="item.value"> {{
-                                    item.text
-                                    }}
-                                </b-form-select-option>
-                            </BaseSelectWithValidation>
-                        </b-col>
                         <b-col cols="2">
                             <ValidationObserver
                                     ref="observer"
                                     v-slot="{}"
                             >
-                                <BaseInputWithValidation
-                                        v-if="selected == 'TIF_TN'"
-                                        class="required"
-                                        rules="required"
-                                        v-model="TIF_TN"
-                                        @keyup.enter="findInfosBy"
-                                        :label="$t('system.product_info.tif_tn_code')"
-                                        label-on-top
-                                >
-                                </BaseInputWithValidation>
-
-                                <BaseInputWithValidation
-                                        v-if="selected == 'SHTRIX'"
-                                        class="required"
-                                        rules="required"
-                                        v-model="SHTRIX"
-                                        @keyup.enter="findInfosBy"
-                                        :label="$t('system.product_info.Shtrix_code')"
-                                        label-on-top
-                                >
-                                </BaseInputWithValidation>
-
                                 <BaseInputWithValidation
                                         v-if="selected == 'MXIK'"
                                         class="required"
@@ -86,15 +50,7 @@
             </div>
         </b-card>
         <b-card>
-            <div v-if="selected == 'TIF_TN'">
-                <span style="background: #2b675b" class="p-1 text-white">
-            {{ $t('submodules.integration.farmasevtika_info.response') }}
-                </span>
-                <div style="border:1px solid #2b675b; padding:15px; border-radius: 7px">
-                    <TIF_TN :resTableItems="tableItems1"></TIF_TN>
-                </div>
-            </div>
-            <div v-if="selected == 'SHTRIX' || selected == 'MXIK'">
+            <div>
                 <span style="background: #2b675b" class="p-1 text-white">
             {{ $t('submodules.integration.farmasevtika_info.response') }}
                 </span>
@@ -109,25 +65,19 @@
 <script>
 
 import i18n from "@/i18n";
-import BaseSelectWithValidation from "@/components/base/BaseSelectWithValidation.vue";
 import integratsiyaService from "../../Service";
-import TIF_TN from "../tif-tn_shtrix_mxik/Index.vue";
 import SHTRIX_MXIK from "../tif-tn_shtrix_mxik/SHTRIX_MXIK.vue";
 
 export default {
     components: {
-        BaseSelectWithValidation,
-        TIF_TN,
         SHTRIX_MXIK
     },
     data() {
         return {
             optionsTable: [
-                {value: 'TIF_TN', text: i18n.t("system.product_info.tif_tn")},
-                {value: 'SHTRIX', text: i18n.t("system.product_info.Shtrix")},
                 {value: 'MXIK', text: i18n.t("system.product_info.MXIK")}
             ],
-            selected: null,
+            selected: 'MXIK',
             TIF_TN: '',
             SHTRIX: '',
             MXIK: '',
@@ -150,20 +100,7 @@ export default {
                     this.loadingTableItems = true
                     integratsiyaService.getInfosByCode(this.selected, this.TIF_TN, this.SHTRIX, this.MXIK, true)
                         .then(res => {
-                            if (this.selected == 'TIF_TN') {
-                                for (let i = 0; i < res.data.data.length; i++) {
-                                    for (let j = 0; j < res.data.data[i].goods.length; j++) {
-                                        res.data.data[i].goods[j].made_in_country = res.data.data[i].departure_recipient_countryName
-                                        res.data.data[i].goods[j].receiver_name = res.data.data[i].receiver_name
-
-                                        this.tableItems1.push(res.data.data[i].goods[j])
-                                    }
-
-                                }
-                            } else {
-                                this.tableItems2 = res.data.data
-                            }
-
+                            this.tableItems2 = res.data.data
                             this.$toast(res.data.message, {type: 'success'});
                             this.loadingTableItems = false
                         })
