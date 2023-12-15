@@ -50,12 +50,13 @@
             </div>
         </b-card>
         <b-card>
-            <div>
+            <div v-show="resSuccess">
                 <span style="background: #2b675b" class="p-1 text-white">
             {{ $t('submodules.integration.farmasevtika_info.response') }}
                 </span>
                 <div style="border:1px solid #2b675b; padding:15px; border-radius: 7px">
-                    <SHTRIX_MXIK :resTableItems="tableItems2"></SHTRIX_MXIK>
+                    <span v-if="tableItems2.mxik_code == null">{{ $t("messages.data_not_found_0") }}</span>
+                    <SHTRIX_MXIK v-else :resTableItems="tableItems2"></SHTRIX_MXIK>
                 </div>
             </div>
         </b-card>
@@ -83,7 +84,8 @@ export default {
             MXIK: '',
             loadingTableItems: false,
             tableItems1: [],
-            tableItems2: {}
+            tableItems2: {},
+            resSuccess: null,
         }
     },
     computed: {
@@ -94,7 +96,7 @@ export default {
     methods: {
         findInfosBy() {
             this.tableItems = null
-
+            this.resSuccess = null
             this.computedObserver.validate().then(valid => {
                 if (valid) {
                     this.loadingTableItems = true
@@ -103,6 +105,7 @@ export default {
                             this.tableItems2 = res.data.data
                             this.$toast(res.data.message, {type: 'success'});
                             this.loadingTableItems = false
+                            this.resSuccess = res.data.success
                         })
                         .catch(e => {
                             this.loadingTableItems = false

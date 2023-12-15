@@ -85,13 +85,16 @@
                 </b-container>
             </div>
         </b-card>
-        <b-card>
+        <b-card v-show="resSuccess">
+
             <div v-if="selected == 'TIF_TN'">
                 <span style="background: #2b675b" class="p-1 text-white">
             {{ $t('submodules.integration.farmasevtika_info.response') }}
                 </span>
                 <div style="border:1px solid #2b675b; padding:15px; border-radius: 7px">
-                    <TIF_TN :resTableItems="tableItems1"></TIF_TN>
+                    <span v-if="tableItems2.mxik_code == null">{{ $t("messages.data_not_found_0") }}</span>
+                    <TIF_TN v-else :resTableItems="tableItems1"></TIF_TN>
+
                 </div>
             </div>
             <div v-if="selected == 'SHTRIX' || selected == 'MXIK'">
@@ -99,7 +102,8 @@
             {{ $t('submodules.integration.farmasevtika_info.response') }}
                 </span>
                 <div style="border:1px solid #2b675b; padding:15px; border-radius: 7px">
-                    <SHTRIX_MXIK :resTableItems="tableItems2"></SHTRIX_MXIK>
+                    <span v-if="tableItems2.mxik_code == null">{{ $t("messages.data_not_found_0") }}</span>
+                    <SHTRIX_MXIK v-else :resTableItems="tableItems2"></SHTRIX_MXIK>
                 </div>
             </div>
         </b-card>
@@ -120,6 +124,26 @@ export default {
         TIF_TN,
         SHTRIX_MXIK
     },
+    watch: {
+        selected: {
+            async handler() {
+                this.resSuccess = null
+                if (this.selected == 'TIF_TN') {
+                    this.tableItems2 = {}
+                    this.SHTRIX = ''
+                    this.MXIK = ''
+                } else if (this.selected == 'SHTRIX') {
+                    this.tableItems1 = []
+                    this.TIF_TN = ''
+                    this.MXIK = ''
+                } else if (this.selected == 'MXIK') {
+                    this.tableItems1 = []
+                    this.TIF_TN = ''
+                    this.SHTRIX = ''
+                }
+            }
+        }
+    },
     data() {
         return {
             optionsTable: [
@@ -132,6 +156,7 @@ export default {
             SHTRIX: '',
             MXIK: '',
             loadingTableItems: false,
+            resSuccess: null,
             tableItems1: [],
             tableItems2: {}
         }
@@ -144,7 +169,7 @@ export default {
     methods: {
         findInfosBy() {
             this.tableItems = null
-
+            this.resSuccess = null
             this.computedObserver.validate().then(valid => {
                 if (valid) {
                     this.loadingTableItems = true
@@ -163,7 +188,7 @@ export default {
                             } else {
                                 this.tableItems2 = res.data.data
                             }
-
+                            this.resSuccess = res.data.success
                             this.$toast(res.data.message, {type: 'success'});
                             this.loadingTableItems = false
                         })

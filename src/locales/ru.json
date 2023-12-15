@@ -372,6 +372,7 @@
     "create_project": "Создать проект",
     "oked_or_skp_is_required": "Выбор ОКЭД или СКП является обязательным.",
     "data_not_found": "Данные не найдены",
+    "data_not_found_0": "Tanlangan maxsulot \"Milliy tasnif\" da ro'yhatdan o'tmagan",
     "product_added": "Товар добавлен",
     "delete_title": "Вы уверены?",
     "send_title": "Вы хотите отправить?",

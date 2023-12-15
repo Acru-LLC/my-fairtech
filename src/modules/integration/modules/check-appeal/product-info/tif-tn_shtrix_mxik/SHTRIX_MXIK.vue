@@ -14,7 +14,7 @@
                 <div class="pl-5 pr-5 pt-2">
                     <b-row class="mt-4">
                         <b-col cols="5">
-                            <span v-if="resTableItems.mxik_code.substring(0,3) < 99"
+                            <span v-if="resTableItems.mxik_code && resTableItems.mxik_code.substring(0,3) < 99"
                                   style="opacity: 0.7; color: #2b675b">{{ $t('system.product_info.name') }}</span>
                             <span v-else style="opacity: 0.7; color: #2b675b">{{
                                     $t('system.product_info.mxik_name')
@@ -34,7 +34,7 @@
                         </b-col>
                     </b-row>
                     <!--                    resTableItems.mxik_code.substring(0,3) < 99-->
-                    <b-row class="mt-4" v-if="resTableItems.mxik_code.substring(0,3) < 99">
+                    <b-row class="mt-4" v-if="resTableItems.mxik_code && resTableItems.mxik_code.substring(0,3) < 99">
                         <b-col cols="5">
                             <span style="opacity: 0.7; color: #2b675b">{{ $t('system.product_info.brand') }}</span> <br>
                             <span style="color: #2b675b; font-weight: lighter; font-size: 14px"> {{
@@ -114,7 +114,7 @@
                 <!--                   </span>-->
                 <!--                </div>-->
                 <div style="padding:15px; padding-top: 35px" class="text-center">
-                   <span v-if="resTableItems.mxik_code.substring(0,3) < 99" style="font-size: 1.3rem!important; line-height: 2rem!important;">
+                   <span v-if="resTableItems.mxik_code && resTableItems.mxik_code.substring(0,3) < 99" style="font-size: 1.3rem!important; line-height: 2rem!important;">
                         {{
                            $t('system.product_info.xarakteristika')
                        }}
@@ -145,7 +145,7 @@
                         </b-col>
                     </b-row>
                 </div>
-                <div v-show="resTableItems.mxik_code.substring(0,3) < 99"
+                <div v-show="resTableItems.mxik_code && resTableItems.mxik_code.substring(0,3) < 99"
                      style="border:1px solid #2b675b; padding:15px; border-radius: 7px" class="mt-2">
                     <b-row>
                         <b-col cols="5"><b>{{ $t('system.product_info.name') }}</b></b-col>
@@ -156,7 +156,7 @@
                         </b-col>
                     </b-row>
                 </div>
-                <div v-show="resTableItems.mxik_code.substring(0,3) < 99"
+                <div v-show="resTableItems.mxik_code && resTableItems.mxik_code.substring(0,3) < 99"
                      style="border:1px solid #2b675b; padding:15px; border-radius: 7px" class="mt-2">
                     <b-row>
                         <b-col cols="5"><b>{{ $t('system.product_info.Shtrix_code') }}</b></b-col>
@@ -169,7 +169,7 @@
                 </div>
 
                 <div style="padding:15px; padding-top: 35px" class="text-center"
-                     v-show="resTableItems.mxik_code.substring(0,3) < 99">
+                     v-show="resTableItems.mxik_code && resTableItems.mxik_code.substring(0,3) < 99">
                    <span style="font-size: 1.3rem!important; line-height: 2rem!important;">
                        {{
                            $t('system.product_info.alll')
@@ -177,7 +177,7 @@
                    </span>
                 </div>
 
-                <div v-show="resTableItems.mxik_code.substring(0,3) < 99"
+                <div v-show="resTableItems.mxik_code && resTableItems.mxik_code.substring(0,3) < 99"
                      style="border:1px solid #2b675b; padding:15px; border-radius: 7px; max-height:300px; !important; overflow:auto;"
                      class="mt-3">
                     <div
