@@ -3,7 +3,8 @@
   :class="{ 'disable-img': !integration.isDone }"-->
     <section id="advertisers" class="advertisers-service-sec pt-4 pb-5">
         <div v-if="!toRouterLoader">
-            <b-row class="p-1 font-size-20 font-weight-bold col-2 mx-auto" style="color: #236257;">
+            <b-row class="p-1 font-size-20 font-weight-bold col-3 mx-auto"
+                   style="color: #236257; font-size: 1.625rem !important;">
                 {{ $t('product_dashboard_info.menu_items.other_services') }}
             </b-row>
             <b-row class="rais-page-respons my-2">
@@ -21,12 +22,12 @@
                         <span v-if="integration.routerName == 'ServiceMaxsulot'" class="box-title-style"
                               :class="(integration.id == 12) ? 'pt-0 px-0': 'py-3 px-4'">
                             {{ integration.name }} <br>
-                            ( {{ $t('system.product_info.maxsulot2') }} )
+                            ({{ $t('system.product_info.maxsulot2') }})
                         </span>
                         <span v-if="integration.routerName == 'ServiceXizmat'" class="box-title-style"
                               :class="(integration.id == 12) ? 'pt-0 px-0': 'py-3 px-4'">
                             {{ integration.name }} <br>
-                          ( {{ $t('system.product_info.xizmat2') }} )
+                          ({{ $t('system.product_info.xizmat2') }})
                         </span>
                     </div>
 

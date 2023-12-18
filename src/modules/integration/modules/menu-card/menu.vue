@@ -3,7 +3,7 @@
   :class="{ 'disable-img': !integration.isDone }"-->
     <section id="advertisers" class="advertisers-service-sec pt-4 pb-5">
         <div v-if="!toRouterLoader">
-            <b-row class="p-1 font-size-20 font-weight-bold col-2 mx-auto" style="color: #236257;">
+            <b-row class="p-1 font-size-20 font-weight-bold col-3 mx-auto" style="color: #236257; font-size: 1.625rem !important;" >
                 {{ $t('product_dashboard_info.menu_items.other_services') }}
             </b-row>
             <b-row class="rais-page-respons my-2">
@@ -21,8 +21,9 @@
 
                         <span class="box-title-style" :class="(integration.id == 12) ? 'pt-0 px-0': 'py-3 px-4'">
                             <span style="color: #349184; font-size: 22px"
-                                  v-show="integration.routerName == 'ServicesProduct'" >Product Info</span>
-                            <hr class="mt-1 mb-1" style="border: 1px solid #029984; margin-left: 35px; margin-right: 35px"
+                                  v-show="integration.routerName == 'ServicesProduct'">Product Info</span>
+                            <hr class="mt-1 mb-1"
+                                style="border: 1px solid #029984; margin-left: 35px; margin-right: 35px"
                                 v-show="integration.routerName == 'ServicesProduct'">
                             {{ integration.name }}
                         </span>
