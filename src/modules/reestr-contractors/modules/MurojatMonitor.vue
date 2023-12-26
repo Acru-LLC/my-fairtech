@@ -56,7 +56,7 @@ export default {
       isActive3: false,
       isActiveS1: false,
       isActiveS2: false,
-      sender: 'web',
+      sender: "web",
       selectedId: '',
       selectedOption: this.$t('product_dashboard_info.ariza'),
       selectedOption2: '',
@@ -636,7 +636,14 @@ COMPUTED */
                     >
                       <!-- Default options -->
                       <b-form-select-option v-for="(type, index) in types" :key="index" :value="type.id">
-                        {{ type.nameLt }}
+                        {{
+                          getName({
+                            nameLt: type.nameLt,
+                            nameRu: type.nameRu,
+                            nameUz: type.nameUz,
+                            nameEn: type.nameEn,
+                          })
+                        }}
                       </b-form-select-option>
 
                       <!-- Options from response (fileAdd) -->
