@@ -317,9 +317,9 @@ COMPUTED */
       bodyFormData.append("applier_zipcode", this.zipeKod);
       bodyFormData.append("sender", this.sender)
       bodyFormData.append("stir", this.stir)
-      bodyFormData.append("nameSubject", this.nameSubject)
+      bodyFormData.append("subjectName", this.nameSubject)
       bodyFormData.append("addressSubject", this.addressSubject)
-      bodyFormData.append("offerta", this.offerta)
+      bodyFormData.append("checkbox", this.offerta)
       if (this.userInfos.phoneNumber.startsWith("+")){
         bodyFormData.append("applier_phone", this.userInfos.phoneNumber.slice(4));
       }
