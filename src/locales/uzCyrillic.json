@@ -4133,7 +4133,11 @@
       "murojaat_create": "Мурожаат яратиш",
       "drafts": "Қораламалар",
       "other_services": "Интерактив хизматлар",
-      "settings": "Созламалар"
+      "settings": "Созламалар",
+      "marketplace_stir": "Савдо тармоқлари СТИРи",
+      "marketplace_name": "Савдо тармоқлари номи",
+      "marketplace_address": "Савдо тармоқлари манзили",
+      "oferta": "Ҳуқуқбузарлик тўғрисида хабар учун мукофотдан воз кечаман"
     },
     "region_placeholder": "Вилоятни танланг",
     "district_placeholder": "Туманни танланг",

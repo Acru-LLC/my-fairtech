@@ -4103,7 +4103,11 @@
       "murojaat_create": "Создать обращени",
       "drafts": "Черновики",
       "other_services": "Интерактивные услуги",
-      "settings": "Настройки"
+      "settings": "Настройки",
+      "marketplace_stir": "Торговые сети ИНН",
+      "marketplace_name": "Название торговой сети",
+      "marketplace_address": "Адрес торговой сети",
+      "oferta": "Я отказываюсь от награды за сообщение о нарушении"
     },
     "region_placeholder": "Выберите регион",
     "district_placeholder": "Выберите район",

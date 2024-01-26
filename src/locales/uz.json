@@ -4107,7 +4107,11 @@
       "murojaat_create": "Murojaat yaratish",
       "drafts": "Qoralamalar",
       "other_services": "Interaktiv xizmatlar",
-      "settings": "Sozlamalar"
+      "settings": "Sozlamalar",
+      "marketplace_stir": "Savdo tarmoqlari STIRi",
+      "marketplace_name": "Savdo tarmoqlari nomi",
+      "marketplace_address": "Savdo tarmoqlari manzili",
+      "oferta": "Huquqbuzarlik to'g'risida xabar uchun mukofotdan voz kechaman"
     },
     "region_placeholder": "Viloyatni tanlang",
     "district_placeholder": "Tumanni tanlang",
