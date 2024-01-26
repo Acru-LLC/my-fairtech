@@ -1078,6 +1078,7 @@ COMPUTED */
 }
 
 .dropdown-select::before {
+  display: none;
   content: "";
   position: absolute;
   width: 8px;
