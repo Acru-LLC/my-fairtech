@@ -5,6 +5,8 @@ import {TokenService} from "@/shared/services/storage.service";
 import ProjectMenu from "@/shared/views/auth/MainProMenu.vue";
 import Toast from "vue-toastification";
 import crudAndListsService from "@/shared/services/crud_and_list.service";
+import BaseInputWithValidation from "@/components/base/BaseInputWithValidation.vue";
+import integratsiyaService from "@/shared/services/integratsiya.service";
 
 // const MAIN_API_URL = 'report/dashboard'
 
@@ -13,11 +15,18 @@ import crudAndListsService from "@/shared/services/crud_and_list.service";
  */
 export default {
   components: {
+    BaseInputWithValidation,
     Layout
 
   },
   data() {
     return {
+      addressSubject: null,
+      nameSubject: null,
+      offerta: false,
+      soliqItems: null,
+      loadingStirItems: false,
+      stir: null,
       searchingModal: false,
       createItem: {
         files: [],
@@ -126,6 +135,30 @@ COMPUTED */
   /*
   METHODS */
   methods: {
+    findContractorByInn() {
+      this.soliqItems = null
+      this.loadingStirItems = true
+      if (this.stir) {
+        this.loadingStirItems = true
+        integratsiyaService.getSoliqQomitasiInfoByInn("" + this.stir + "", true)
+            .then(res => {
+              this.nameSubject = res.data.fullName
+              this.nameHeadSubject = res.data.director
+              this.addressSubject = res.data.address
+              this.$toast(this.$t('submodules.integration.statistics_info.download_success'), {type: 'success'});
+              this.loadingStirItems = false
+            })
+            .catch(e => {
+              this.loadingStirItems = false
+              // this.computedObserver.setErrors({ INN: [this.$t('validator.inn_exist')] });
+            })
+      } else {
+        this.loadingStirItems = false
+        this.$toast(this.$t('validator.inn'), {type: 'error'});
+        this.$toast(this.$t('messages.fill_required_fields'), {type: 'error'});
+      }
+
+    },
     openModal() {
       this.searchingModal = true;
     },
@@ -283,6 +316,10 @@ COMPUTED */
       bodyFormData.append("applier_fullname", this.userInfos.lastName + " " + this.userInfos.firstName + " " + this.userInfos.middleName);
       bodyFormData.append("applier_zipcode", this.zipeKod);
       bodyFormData.append("sender", this.sender)
+      bodyFormData.append("stir", this.stir)
+      bodyFormData.append("nameSubject", this.nameSubject)
+      bodyFormData.append("addressSubject", this.addressSubject)
+      bodyFormData.append("offerta", this.offerta)
       if (this.userInfos.phoneNumber.startsWith("+")){
         bodyFormData.append("applier_phone", this.userInfos.phoneNumber.slice(4));
       }
@@ -309,6 +346,10 @@ COMPUTED */
             // this.selectedOption = '',.
             // this.getUserInfo();
 
+            this.stir = '',
+            this.nameSubject = '',
+            this.addressSubject = '',
+            this.offerta = '',
             this.sender = ''
             this.zipeKod = '',
             this.selectedId = '',
@@ -554,6 +595,80 @@ COMPUTED */
                   }}
                 </b-form-select-option>
               </BaseSelectWithValidation>
+
+                <b-row class="mt-3" v-if="selectedId == 2">
+                  <b-col>
+                    <BaseInputWithValidation
+                        rules="required"
+                        class="required"
+                        v-model="stir"
+                        @keyup.enter="findContractorByInn"
+                        v-mask="'#########'"
+                        :label="$t('pharm.chakanaData.pharmStr')"
+                        label-on-top
+                    >
+                    </BaseInputWithValidation>
+                  </b-col>
+
+                  <b-col>
+                    <BaseInputWithValidation
+                        rules="required"
+                        class="required"
+                        :label="$t('pharm.chakanaData.pharmName')"
+                        label-on-top
+                        v-model="nameSubject"
+                    >
+                    </BaseInputWithValidation>
+                  </b-col>
+
+                  <b-col>
+                    <BaseInputWithValidation
+                        rules="required"
+                        class="required"
+                        :label="$t('pharm.pharmacyAddress')"
+                        label-on-top
+                        v-model="addressSubject"
+                    >
+                    </BaseInputWithValidation>
+                  </b-col>
+                </b-row>
+
+                <b-row class="mt-3" v-if="selectedId == 3 || selectedId == 4 || selectedId == 5 || selectedId == 6">
+                  <b-col>
+                    <BaseInputWithValidation
+                        rules="required"
+                        class="required"
+                        v-model="stir"
+                        @keyup.enter="findContractorByInn"
+                        v-mask="'#########'"
+                        :label="$t('product_dashboard_info.menu_items.marketplace_stir')"
+                        label-on-top
+                    >
+                    </BaseInputWithValidation>
+                  </b-col>
+
+                  <b-col>
+                    <BaseInputWithValidation
+                        rules="required"
+                        class="required"
+                        :label="$t('product_dashboard_info.menu_items.marketplace_name')"
+                        label-on-top
+                        v-model="nameSubject"
+                    >
+                    </BaseInputWithValidation>
+                  </b-col>
+
+                  <b-col>
+                    <BaseInputWithValidation
+                        rules="required"
+                        class="required"
+                        :label="$t('product_dashboard_info.menu_items.marketplace_address')"
+                        label-on-top
+                        v-model="addressSubject"
+                    >
+                    </BaseInputWithValidation>
+                  </b-col>
+                </b-row>
               </div>
 <!--              <div class="d-flex justify-content-between w-50 mb-3">-->
 <!--                <div class="form-check">-->
@@ -658,7 +773,13 @@ COMPUTED */
                         }}
                       </b-form-select-option>
                     </BaseSelectWithValidation>
+                    <b-col class="mt-3 p-0">
+                      <b-form-checkbox v-model="offerta">
+                        <span>{{ $t("product_dashboard_info.menu_items.oferta") }}</span>
+                      </b-form-checkbox>
+                    </b-col>
                   </b-col>
+
                 </b-row>
               </b-col>
 
@@ -746,7 +867,7 @@ COMPUTED */
               <button class="btn text-white font-size-15" style="width: 200px; background-color: #F39138" @click="saveDraft">{{ btnText }}</button>
             </div>
             <b-button
-                :disabled="!userInfos.pinfl || !userInfos.phoneNumber  || !appeal_description || loadingTableItems || !appeal_file.length"
+                :disabled="!userInfos.pinfl || !userInfos.phoneNumber  || !appeal_description || loadingTableItems || !appeal_file.length || !stir || !nameSubject || !addressSubject || !offerta"
                 @click="sendAppeal"
                 variant="outline-primary"
                 id="contractorSearchButton"
@@ -1116,5 +1237,10 @@ COMPUTED */
   background-color: #f0f0f0; /* Change the background color to a light gray */
   cursor: not-allowed; /* Change the cursor to indicate that the option is not clickable */
   pointer-events: none; /* Prevent clicking on disabled options */
+}
+::v-deep .custom-control-input:checked ~ .custom-control-label::before {
+  color: #fff;
+  border-color: #2B675B;
+  background-color: #2B675B;
 }
 </style>
