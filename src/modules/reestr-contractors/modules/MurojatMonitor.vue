@@ -332,7 +332,7 @@ COMPUTED */
       else{
         bodyFormData.append("applier_phone", this.userInfos.phoneNumber);
       }
-      bodyFormData.append("applier_address", this.userInfos.birthPlace + this.userInfos.perAdress);
+      bodyFormData.append("applier_address", this.userInfos.perAdress);
       bodyFormData.append("appealType_id", this.selectedId);
       bodyFormData.append("documentTypeIds", this.documentTypeIds)
       bodyFormData.append("appeal_description", this.appeal_description);
