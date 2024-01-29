@@ -19,6 +19,16 @@ export default {
     Layout
 
   },
+  watch: {
+    'stir':{
+      handler(vm){
+        if(vm.length == 9){
+          // console.log(vm);
+          this.findContractorByInn(vm)
+        }
+      }
+    }
+  },
   data() {
     return {
       addressSubject: null,
@@ -602,8 +612,7 @@ COMPUTED */
                         rules="required"
                         class="required"
                         v-model="stir"
-                        @keyup.enter="findContractorByInn"
-                        v-mask="'#########'"
+                          v-mask="'#########'"
                         :label="$t('pharm.chakanaData.pharmStr')"
                         label-on-top
                     >
