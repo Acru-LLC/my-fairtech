@@ -6,7 +6,7 @@
         :ref="veeName"
     >
         <template v-slot:default="validationContext">
-            <div class="base-multiselect-wrapper base-form-component" :class="formLabel !== '__none' ? 'base-form-component-grid-template-columns-25-75' : 'base-form-component-grid-template-columns-100'">
+                <div class="base-multiselect-wrapper base-form-component" :class="formLabel !== '__none' ? 'base-form-component-grid-template-columns-25-75' : 'base-form-component-grid-template-columns-100'">
                 <!-- LABEL -->
                 <label v-if="formLabel !== '__none'" for="base-form-component__label">{{ formLabel }}</label>
 

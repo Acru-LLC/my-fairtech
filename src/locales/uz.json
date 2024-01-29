@@ -4188,5 +4188,28 @@
     "check_appeal": {
       "title": "Murojaatlar holatini online kuzatish"
     }
+  },
+  "prices": {
+    "menu": "Maxsulot narxlarni kiritish"
+  },
+  "fair_price": {
+    "title": "FAIR PRICE",
+    "not_added_sections": "Hozircha maxsulot (tovar)lar qo‘shilmagan",
+    "added_button": "Qo‘shish belgili tugmachaga bosib maxsulot (tovar)lar qo‘shishingiz mumkin\n",
+    "not_added_sections_users": "Hozircha foydalanuvchilar qo‘shilmagan",
+    "added_button_users": "Qo‘shish belgili tugmachaga bosib foydalanuvchilar qo‘shishingiz mumkin",
+    "created_divide": "Maxsulot (tovar)lar yaratish",
+    "selected_divide_info": "Tanlangan maxsulot (tovar)ning ma’lumotlari",
+    "price_users": "FAIR PRICE foydalanuvchilar",
+    "p_s_r": "Pasport seriya va raqami",
+    "references": {
+      "title": "References",
+      "products": "Maxsulot (tovar)lar",
+      "type_of_shopping": "Savdo obyektlari turi",
+      "priceMarkets": "Savdo obyektlari",
+      "toifa": "Bozorning toifasi\n(dehqon, qurilish va boshqa turdagi)",
+      "minimum_narx": "Minimal narx",
+      "maximum_narx": "Maksimal narx"
+    }
   }
 }
