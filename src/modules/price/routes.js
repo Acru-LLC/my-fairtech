@@ -19,7 +19,15 @@ export default [
                 meta: {
                     authRequired: true,
                 }
-            }
+            },
+            {
+                name: 'priceEnterCostHypermarket',
+                path: '/price/enter-cost-hypermarket',
+                component: () => import('@/modules/price/menu/IndexHypermarket.vue'),
+                meta: {
+                    authRequired: true,
+                }
+            },
         ]
     }
 ]

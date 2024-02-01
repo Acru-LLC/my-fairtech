@@ -11,4 +11,12 @@ export default [
         parentId: "priceEnterCostMenuId",
         hasPerm: () => ability.can('view', 'price-enter-cost')
     },
+    {
+        id: "priceId",
+        label: i18n.t('prices.menu'),
+        // icon: "bx mdi mdi-file-document-multiple",
+        link: {name: "priceEnterCostHypermarket"},
+        parentId: "priceEnterCostMenuId",
+        hasPerm: () => ability.can('view', 'price-enter-cost-hypermarket')
+    },
 ];
