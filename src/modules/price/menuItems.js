@@ -9,6 +9,6 @@ export default [
         // icon: "bx mdi mdi-file-document-multiple",
         link: {name: "priceEnterCost"},
         parentId: "priceEnterCostMenuId",
-        // hasPerm: () => ability.can('view', 'price-enter-cost')
+        hasPerm: () => ability.can('view', 'price-enter-cost')
     },
 ];
