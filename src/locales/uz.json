@@ -4209,7 +4209,8 @@
       "priceMarkets": "Savdo obyektlari",
       "toifa": "Bozorning toifasi\n(dehqon, qurilish va boshqa turdagi)",
       "minimum_narx": "Minimal narx",
-      "maximum_narx": "Maksimal narx"
+      "maximum_narx": "Maksimal narx",
+      "xaridorgir_narx": "Xaridorgir narx"
     }
   }
 }
