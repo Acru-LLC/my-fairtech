@@ -99,7 +99,7 @@
                       </b-form-select-option>
                     </BaseSelectWithValidation>
                   </b-col>
-                  <b-col cols="12" md="3" class="px-3" >
+                  <b-col cols="12" md="3" class="px-3">
                     <BaseDatePickerWithValidation
                         :disabled="true"
                         required
@@ -334,6 +334,7 @@ export default {
       await crudAndListsService.searchListWithKeyword(this.$can('view', 'price-enter-cost') ? "price_product" : "price_product/outer", this.var_default_search_payload)
           .then(res => {
             this.price_product = res.data.children
+            this.editingItem.marketId = res.data.marketId
           })
           .catch(e => {
             console.log(e)
@@ -397,6 +398,7 @@ table {
   border: 1px solid #2b675b;
 
 }
+
 ::v-deep .base-form-component__date-picker {
   border: 1px solid #2b675b;
   border-radius: 5px;

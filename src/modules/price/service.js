@@ -23,7 +23,7 @@ export default {
     },
     saveData(data) {
         console.log(data)
-        return ApiService.post(`/price_sum/create?maxPrice=${data.maxPrice}&minPrice=${data.minPrice}&date=${data.date}&productId=${data.productId}&marketId=${data.marketId}&code=web`)
+        return ApiService.post(`/price_sum/create?maxPrice=${data.maxPrice}&minPrice=${data.minPrice}&middleSum=${data.middleSum}&date=${data.date}&productId=${data.productId}&marketId=${data.marketId}&code=web`)
     },
 }
 
