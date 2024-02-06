@@ -101,7 +101,6 @@
                   </b-col>
                   <b-col cols="12" md="3" class="px-3">
                     <BaseDatePickerWithValidation
-                        :disabled="true"
                         required
                         v-model="editingItem.date"
                         format="DD-MM-YYYY"
@@ -117,45 +116,30 @@
                         v-model="editingItem.minPrice"
                         :label="$t('fair_price.references.minimum_narx')"
                         :placeholder="$t('fair_price.references.minimum_narx')"
-                        type="number"
                         class="required"
                         rules="required"
                         label-on-top
                     />
-                    <div class="d-flex justify-content-between">
-                      <p>{{ getNumberFormat(editingItem.minPrice) }}
-                      </p>
-                    </div>
                   </b-col>
                   <b-col cols="12" md="3" class="px-3">
                     <BaseInputWithValidation
                         v-model="editingItem.maxPrice"
                         :label="$t('fair_price.references.maximum_narx')"
                         :placeholder="$t('fair_price.references.maximum_narx')"
-                        type="number"
                         class="required"
                         rules="required"
                         label-on-top
                     />
-                    <div class="d-flex justify-content-between">
-                      <p>{{ getNumberFormat(editingItem.maxPrice) }}
-                      </p>
-                    </div>
                   </b-col>
                   <b-col cols="12" md="3" class="px-3" style="width: 100%">
                     <BaseInputWithValidation
                         v-model="editingItem.middleSum"
                         :label="$t('fair_price.references.xaridorgir_narx')"
                         :placeholder="$t('fair_price.references.xaridorgir_narx')"
-                        type="number"
                         class="required"
                         rules="required"
                         label-on-top
                     />
-                    <div class="d-flex justify-content-between">
-                      <p>{{ getNumberFormat(editingItem.middleSum) }}
-                      </p>
-                    </div>
                   </b-col>
                   <b-col cols="12" md="3" class="mt-3">
                     <b-overlay
@@ -209,7 +193,6 @@ import Service from '../service'
 import BaseSelectWithValidation from "@/components/base/BaseSelectWithValidation.vue";
 
 const MAIN_API_URL = 'contractor-advertising-construction'
-const i18n = require("@/i18n");
 export default {
   page: {
     title: "Passport info",
@@ -234,31 +217,69 @@ export default {
       async handler() {
         await this.getprice_market();
       }
-    }
-  },
-  computed: {
-    computedObserver() {
-      return this.$refs.observer
-    }
+    },
+    'editingItem.maxPrice': {
+      async handler(newValue) {
+        if (this.editingItem.maxPrice) {
+          const result = newValue.replace(/\D/g, "")
+              .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+          this.editingItem.maxPrice = result
+        }
+      }
+    },
+    'editingItem.minPrice': {
+      async handler(newValue) {
+        if (this.editingItem.minPrice) {
+          const result = newValue.replace(/\D/g, "")
+              .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+          this.editingItem.minPrice = result
+        }
+      }
+    },
+    'editingItem.middleSum': {
+      async handler(newValue) {
+        if (this.editingItem.middleSum) {
+          const result = newValue.replace(/\D/g, "")
+              .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+          this.editingItem.middleSum = result
+        }
+      }
+    },
   },
   async created() {
     await this.getEmpty();
     await this.getprice_market_type();
     await this.getprice_product();
   },
+  computed: {
+    computedObserver() {
+      return this.$refs.observer
+    }
+  },
   methods: {
     saveData() {
       this.loader = true;
-      Service.saveData(this.editingItem)
-          .then(async () => {
-            await this.successSaved();
-            this.computedObserver.reset()
-            this.editingItem = Object.assign({}, {});
-            this.price_market_typeId = null
-          })
-          .finally(() => {
-            this.loader = false;
-          });
+      this.computedObserver.validate().then(valid => {
+        if (valid) {
+          this.editingItem.maxPrice = this.editingItem.maxPrice.replaceAll(' ', '')
+          this.editingItem.middleSum = this.editingItem.middleSum.replaceAll(' ', '')
+          this.editingItem.minPrice = this.editingItem.minPrice.replaceAll(' ', '')
+          Service.saveData(this.editingItem)
+              .then(async () => {
+                await this.successSaved();
+                this.computedObserver.reset()
+                this.editingItem = Object.assign({}, {});
+                this.price_market_typeId = null
+              })
+              .finally(() => {
+                this.loader = false;
+              });
+        } else {
+          this.loader = false;
+          this.$toast(this.$t('messages.fill_required_fields'), {type: 'error'});
+        }
+      })
+
 
     },
     normalizer(node) {
@@ -342,6 +363,7 @@ export default {
     },
   },
 }
+const i18n = require("@/i18n");
 </script>
 
 <style scoped lang="scss">
