@@ -509,6 +509,6 @@ export default {
 // #style-2::-webkit-scrollbar-thumb {
 //   border-radius: 10px;
 //   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
-//   background-color: #556ee6;
+//   background-color: #2b6c58;
 // }
 </style>

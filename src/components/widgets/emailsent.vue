@@ -62,7 +62,7 @@ export default {
             "Dec",
           ],
         },
-        colors: ["#556ee6", "#f1b44c", "#34c38f"],
+        colors: ["#2b6c58", "#f1b44c", "#34c38f"],
         legend: {
           position: "bottom",
         },

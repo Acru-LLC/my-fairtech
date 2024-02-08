@@ -1192,7 +1192,7 @@ export default {
   border-radius: 50px;
   border: 3px solid white;
   cursor: pointer;
-  /* background: #556ee6; */
+  /* background: #2b6c58; */
 }
 
 ::v-deep.avatar-container {

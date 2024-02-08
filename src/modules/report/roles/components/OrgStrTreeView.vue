@@ -232,7 +232,7 @@ export default {
 }
 
 .building-icon {
-  color: #556ee6;
+  color: #2b6c58;
   font-size: 1.5rem;
   cursor: pointer;
 

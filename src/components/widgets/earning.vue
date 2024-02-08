@@ -39,7 +39,7 @@ export default {
             },
           },
         },
-        colors: ["#556ee6"],
+        colors: ["#2b6c58"],
         fill: {
           type: "gradient",
           gradient: {

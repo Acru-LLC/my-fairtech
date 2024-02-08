@@ -168,7 +168,7 @@ export default {
     -ms-transform: rotateX(90deg);
     transition: 0.01ms;
     opacity: 0.9;
-    color: #556EE6;
+    color: #2b6c58;
     height: 0;
 }
 

@@ -3,9 +3,9 @@ import {ability} from '@/shared/store/ability'
 
 export default [
     {
-        name: "Pharm",
-        path: "/pharm",
-        redirect: "/pharm",
+        name: "Price",
+        path: "/price",
+        redirect: "/price",
         component: () => import('@/router/views/dashboards/default'),
         meta: {
             bcLinkText: i18n.t("submodules.application_before_commission.title"),
@@ -20,14 +20,14 @@ export default [
                     authRequired: true,
                 }
             },
-            {
-                name: 'priceEnterCostHypermarket',
-                path: '/price/enter-cost-hypermarket',
-                component: () => import('@/modules/price/menu/IndexHypermarket.vue'),
-                meta: {
-                    authRequired: true,
-                }
-            },
+            // {
+            //     name: 'priceEnterCostHypermarket',
+            //     path: '/price/enter-cost-hypermarket',
+            //     component: () => import('@/modules/price/menu/IndexHypermarket.vue'),
+            //     meta: {
+            //         authRequired: true,
+            //     }
+            // },
         ]
     }
 ]

@@ -344,7 +344,7 @@
     "select_employee": "Ходим танланг",
     "export_import_type": "Импорт/Маҳаллий",
     "product_type": "Махсулот тури",
-    "excel_file_upload": "Excel fayl yuklash",
+    "excel_file_upload": "Эхсел файл юклаш",
     "information_completed": "Маълумот тўлдирилди"
   },
   "chat": {
@@ -4220,6 +4220,14 @@
   },
   "fair_price": {
     "title": "ФАИР ПРИСE",
+    "main_menu": "Махсулот нархлари",
+    "enter_cost": "Нарх киритиш",
+    "add_product": "Махсулот қўшиш",
+    "info": "Савдо объекти маълумотлари",
+    "info_product": "Махсулот маълумотлари",
+    "type_product": "Махсулот тури",
+    "min": "Энг паст нарх",
+    "max": "Энг қиммат нарх",
     "not_added_sections": "Ҳозирча махсулот (товар)лар қўшилмаган",
     "added_button": "Қўшиш белгили тугмачага босиб махсулот (товар)лар қўшишингиз мумкин",
     "not_added_sections_users": "Ҳозирча фойдаланувчилар қўшилмаган",

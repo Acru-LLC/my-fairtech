@@ -4,7 +4,7 @@ export default {
   data() {
     return {
       colors: [
-        "#556ee6",
+        "#2b6c58",
         "#34c38f",
         "#50a5f1",
         "#f1b44c",

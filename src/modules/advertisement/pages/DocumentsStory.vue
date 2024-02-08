@@ -333,11 +333,11 @@ export default {
         // },
         // ACCEPTED: {
         //     label: this.$t('pharm.CREATED'),
-        //     color: '#556EE6',
+        //     color: '#2b6c58',
         //     style: {
-        //         border: '1px solid #556EE6',
+        //         border: '1px solid #2b6c58',
         //         'margin-right': '1px',
-        //         color: '#556EE6',
+        //         color: '#2b6c58',
         //     },
         // },
       },

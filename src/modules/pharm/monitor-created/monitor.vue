@@ -72,7 +72,7 @@ export default {
                 },
                 // SENT: {
                 //     label: this.$t('submodules.reports.report_sended'),
-                //     color: '#556EE6',
+                //     color: '#2b6c58',
                 // },
                 CANCELLED: {
                     label: this.$t('docs_r.CANCELED'),
@@ -92,7 +92,7 @@ export default {
                 // },
                 // COMMISSION_SENT: {
                 //     label: this.$t('submodules.commission.doc_status.commission_sent'),
-                //     color: '#556EE6',
+                //     color: '#2b6c58',
                 // },
                 // COMMISSION_SIGNED: {
                 //     label: this.$t('submodules.commission.doc_status.commission_signed'),
@@ -173,11 +173,11 @@ export default {
                 },
                 // NOT_BELONG: {
                 //     label: this.$t('submodules.dxa.not_belong'),
-                //     color: '#556EE6',
+                //     color: '#2b6c58',
                 //     style: {
-                //         border: '1px solid #556EE6',
+                //         border: '1px solid #2b6c58',
                 //         'margin-right': '1px',
-                //         color: '#556EE6',
+                //         color: '#2b6c58',
                 //     },
                 // },
                 // FOR_NOT_COMPLETED_DXA: {
@@ -299,11 +299,11 @@ export default {
                 },
                 ACCEPTED: {
                     label: this.$t('messages.accepted_message'),
-                    color: '#556EE6',
+                    color: '#2b6c58',
                     style: {
-                        border: '1px solid #556EE6',
+                        border: '1px solid #2b6c58',
                         'margin-right': '1px',
-                        color: '#556EE6',
+                        color: '#2b6c58',
                     },
                 },
             },

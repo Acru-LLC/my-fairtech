@@ -98,6 +98,6 @@ export default {
   box-shadow: 5px 5px 5px #eee;
   border-radius: 50px;
   border: 3px solid white;
-  /* background: #556ee6; */
+  /* background: #2b6c58; */
 }
 </style>

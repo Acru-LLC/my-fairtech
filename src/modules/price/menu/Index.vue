@@ -1,177 +1,181 @@
 <template>
   <div>
-    <b-card class="p-3">
+    <div class="col-md-12 text-center">
+      <div class="h3 mt-4 d-inline-block" style="color: #2b675b; font-weight: 500">{{ $t('fair_price.enter_cost') }}</div>
+    </div>
+    <b-card>
       <b-container fluid="100%">
-        <b-row>
-          <b-col cols="12">
-            <ValidationObserver
-                ref="observer"
-                v-slot="{}"
-            >
-              <div style="border:1px solid #2b675b; padding:15px; margin-top:10px;">
-                <b-row>
-                  <b-col cols="12" md="3" class="px-3 py-0">
-
-                    <!--                                            <Treeselect-->
-                    <!--                                                    style="color: #2b675b"-->
-                    <!--                                                    :multiple="true"-->
-                    <!--                                                    :normalizer="nrm"-->
-                    <!--                                                    :class="submitted && !productId.length ? 'tr_select_red' : 'tr_select'"-->
-                    <!--                                                    :key="'id'"-->
-                    <!--                                                    :options="price_product"-->
-                    <!--                                                    :placeholder="''"-->
-                    <!--                                                    v-model="editingItem.productId"-->
-                    <!--                                                    :clearable="true"-->
-                    <!--                                                    :searchable="true"-->
-                    <!--                                            />-->
-                    <!--                                        <BaseTreeselectWithValidation-->
-                    <!--                                            ref="parentDepVeeName"-->
-                    <!--                                            v-model="departmentId"-->
-                    <!--                                            :default-expand-level="1"-->
-                    <!--                                            :normalizer="normalizer"-->
-                    <!--                                            :options="departments ? [departments] : []"-->
-                    <!--                                            :placeholder="$t('column.department')"-->
-                    <!--                                            :show-count="true"-->
-                    <!--                                            form-label="__none"-->
-                    <!--                                            name="parentDepVeeName"-->
-                    <!--                                            not-required-->
-                    <!--                                            @close="treeClosed('parentDepVeeName')"-->
-                    <!--                                        />-->
-                    <div style="width: 100%">
-                      {{ $t('fair_price.references.products') }}
-                      <BaseTreeselectWithValidation
-                          :searchable="true"
-                          :clearable="true"
-                          open-direction="bottom"
-                          vee-name="parentDepVeeName"
+        <ValidationObserver
+            ref="observer"
+            v-slot="{}"
+        >
+          <b-row>
+            <b-col cols="3" v-if="!$can('view', 'price-enter-cost')">
+              <b-card
+                  style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px; margin-top:10px;">
+                <div>
+                  <b-row>
+                    <b-col class="px-3 py-0">
+                      <div
+                          style="font-size: 16px;  background: #2b675b; color: white; padding: 5px; width: 100%; margin-bottom: 12px; border-radius: 2px; font-weight: bold">
+                        {{ $t('fair_price.info') }}
+                      </div>
+                    </b-col>
+                  </b-row>
+                  <b-row>
+                    <b-col cols="12" class="px-3">
+                      <BaseSelectWithValidation
                           rules="required"
                           class="required"
-                          :placeholder="$t('fair_price.references.products')"
-                          ref="parentDep"
-                          only-form-element
-                          form-label="__none"
-                          v-model="editingItem.productId"
-                          :options="price_product"
-                          :default-expand-level="1"
-                          :normalizer="normalizer"
-                          name="parentDep"
-                          custom-styles=""
-                          @close="treeClosed('parentDepVeeName')"
-                      ></BaseTreeselectWithValidation>
-                    </div>
-                  </b-col>
-                  <b-col v-if="$can('view', 'price-enter-cost')" cols="12" md="3" class="px-3">
-                    <BaseSelectWithValidation
-                        rules="required"
-                        class="required"
-                        v-model="price_market_typeId"
-                        :label="$t('fair_price.references.type_of_shopping')"
-                        value-field="type"
-                        label-on-top
-                    >
-                      <b-form-select-option v-for="(item, index) in price_market_type"
-                                            :key="index"
-                                            :value="item.type">{{
-                          getName({
-                            nameRu: item.nameRu,
-                            nameLt: item.nameLt,
-                            nameUz: item.nameUz,
-                            nameEn: item.nameEn,
-                          })
-                        }}
-                      </b-form-select-option>
-                    </BaseSelectWithValidation>
-                  </b-col>
-                  <b-col v-if="$can('view', 'price-enter-cost')" cols="12" md="3" class="px-3">
-                    <BaseSelectWithValidation
-                        rules="required"
-                        class="required"
-                        v-model="editingItem.marketId"
-                        :label="$t('fair_price.references.priceMarkets')"
-                        value-field="id"
-                        label-on-top
-                    >
-                      <b-form-select-option v-for="(item, index) in price_market"
-                                            :key="index"
-                                            :value="item.id">{{
-                          item.marketName
-                        }}
-                      </b-form-select-option>
-                    </BaseSelectWithValidation>
-                  </b-col>
-                  <b-col cols="12" md="3" class="px-3">
-                    <BaseDatePickerWithValidation
-                        required
-                        v-model="editingItem.date"
-                        format="DD-MM-YYYY"
-                        :label="$t('column.created_date')"
-                        custom-styles="grid-template-columns: 0% 100% 0%"
-                        label-on-top
-                    ></BaseDatePickerWithValidation>
-                  </b-col>
-                </b-row>
-                <b-row class="mt-3">
-                  <b-col cols="12" md="3" class="px-3">
-                    <BaseInputWithValidation
-                        v-model="editingItem.minPrice"
-                        :label="$t('fair_price.references.minimum_narx')"
-                        :placeholder="$t('fair_price.references.minimum_narx')"
-                        class="required"
-                        rules="required"
-                        label-on-top
-                    />
-                  </b-col>
-                  <b-col cols="12" md="3" class="px-3">
-                    <BaseInputWithValidation
-                        v-model="editingItem.maxPrice"
-                        :label="$t('fair_price.references.maximum_narx')"
-                        :placeholder="$t('fair_price.references.maximum_narx')"
-                        class="required"
-                        rules="required"
-                        label-on-top
-                    />
-                  </b-col>
-                  <b-col cols="12" md="3" class="px-3" style="width: 100%">
-                    <BaseInputWithValidation
-                        v-model="editingItem.middleSum"
-                        :label="$t('fair_price.references.xaridorgir_narx')"
-                        :placeholder="$t('fair_price.references.xaridorgir_narx')"
-                        class="required"
-                        rules="required"
-                        label-on-top
-                    />
-                  </b-col>
-                  <b-col cols="12" md="3" class="mt-3">
-                    <b-overlay
-                        :show="loader"
-                        rounded
-                        opacity="0.6"
-                        spinner-small
-                        spinner-variant="primary"
-                        class="d-inline-block px-3"
-                    >
-                      <b-btn
-                          :disabled="loader"
-                          class="text-capitalize float-end"
-                          @click="saveData"
-                          style="width: 150px; background: #2b675b; height: 35px"
+                          v-model="price_market_typeId"
+                          :label="$t('fair_price.references.type_of_shopping')"
+                          value-field="type"
+                          label-on-top
                       >
-                        {{ $t("actions.save") }}
-                      </b-btn>
-                    </b-overlay>
+                        <b-form-select-option v-for="(item, index) in price_market_type"
+                                              :key="index"
+                                              :value="item.type">{{
+                            getName({
+                              nameRu: item.nameRu,
+                              nameLt: item.nameLt,
+                              nameUz: item.nameUz,
+                              nameEn: item.nameEn,
+                            })
+                          }}
+                        </b-form-select-option>
+                      </BaseSelectWithValidation>
+                    </b-col>
+                    <b-col cols="12" class="px-3 p-1">
+                      <BaseSelectWithValidation
+                          rules="required"
+                          class="required"
+                          v-model="editingItem.marketId"
+                          :label="$t('fair_price.references.priceMarkets')"
+                          value-field="id"
+                          label-on-top
+                      >
+                        <b-form-select-option v-for="(item, index) in price_market"
+                                              :key="index"
+                                              :value="item.id">{{
+                            item.marketName
+                          }}
+                        </b-form-select-option>
+                      </BaseSelectWithValidation>
+                    </b-col>
+                  </b-row>
+                </div>
+              </b-card>
+            </b-col>
+            <b-col>
+              <b-card style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px;margin-top:10px;">
+                <div>
+                  <b-row>
+                    <b-col cols="5" class="px-3 py-0">
+                      <div
+                          style="font-size: 16px;background: #2b675b; color: white; padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 2px; font-weight: bold">
+                        {{ $t('fair_price.info_product') }}
+                      </div>
+                    </b-col>
+                  </b-row>
+                  <b-row>
+                    <b-col cols="12" md="3" class="px-3 py-0">
+                      <div style="width: 100%">
+                        <span style="color: #2b675b">
+                        {{ $t('fair_price.type_product') }}
+                        </span>
+                        <BaseTreeselectWithValidation
+                            :searchable="true"
+                            :clearable="true"
+                            open-direction="bottom"
+                            vee-name="parentDepVeeName"
+                            rules="required"
+                            class="required"
+                            :placeholder="$t('')"
+                            ref="parentDep"
+                            only-form-element
+                            form-label="__none"
+                            v-model="editingItem.productId"
+                            :options="price_product"
+                            :default-expand-level="1"
+                            :normalizer="normalizer"
+                            name="parentDep"
+                            custom-styles=""
+                            @close="treeClosed('parentDepVeeName')"
+                        ></BaseTreeselectWithValidation>
+                      </div>
+                    </b-col>
+                    <b-col cols="12" md="3" class="px-3">
+                      <BaseInputWithValidation
+                          v-model="editingItem.minPrice"
+                          :label="$t('fair_price.min')"
+                          :placeholder="$t('')"
+                          class="required"
+                          rules="required"
+                          label-on-top
+                      />
+                    </b-col>
+                    <b-col cols="12" md="3" class="px-3">
+                      <BaseInputWithValidation
+                          v-model="editingItem.maxPrice"
+                          :label="$t('fair_price.max')"
+                          :placeholder="$t('')"
+                          class="required"
+                          rules="required"
+                          label-on-top
+                      />
+                    </b-col>
+                    <b-col cols="12" md="3" class="px-3" style="width: 100%">
+                      <BaseInputWithValidation
+                          v-model="editingItem.middleSum"
+                          :label="$t('fair_price.references.xaridorgir_narx')"
+                          :placeholder="$t('')"
+                          class="required"
+                          rules="required"
+                          label-on-top
+                      />
+                    </b-col>
+                  </b-row>
+                  <b-row class="p-1">
+                    <b-col cols="12" md="9"></b-col>
+                    <b-col cols="12" md="3" class="mt-3">
+                      <b-overlay
+                          :show="loader"
+                          rounded
+                          opacity="0.6"
+                          spinner-small
+                          spinner-variant="primary"
+                          class="px-3"
+                      >
+                        <b-button
+                            :disabled="loader"
+                            class="text-capitalize float-end p-1 ml-1"
+                            @click="saveData"
+                            block
+                            style="background: #2b675b; font-size: 16px"
+                        >
+                          {{ $t("actions.save") }}
+                        </b-button>
+                      </b-overlay>
 
-                    <!--                                        <b-button  @click="saveData">-->
-                    <!--                                            <b-overlay :opacity="0.1" :show="loader">-->
-                    <!--                                                <i class="fa fa-save"></i>-->
-                    <!--                                                {{ $t("actions.save") }}-->
-                    <!--                                            </b-overlay>-->
-                    <!--                                        </b-button>-->
-                  </b-col>
-                </b-row>
-              </div>
-            </ValidationObserver>
-          </b-col>
-        </b-row>
+                      <!--                                        <b-button  @click="saveData">-->
+                      <!--                                            <b-overlay :opacity="0.1" :show="loader">-->
+                      <!--                                                <i class="fa fa-save"></i>-->
+                      <!--                                                {{ $t("actions.save") }}-->
+                      <!--                                            </b-overlay>-->
+                      <!--                                        </b-button>-->
+                    </b-col>
+                  </b-row>
+                </div>
+              </b-card>
+            </b-col>
+          </b-row>
+        </ValidationObserver>
+      </b-container>
+    </b-card>
+
+    <b-card style="border:1px solid #2b675b; border-radius: 5px; padding: 15px; margin: 15px">
+      <b-container fluid="100%">
+        <AllList></AllList>
       </b-container>
     </b-card>
   </div>
@@ -187,6 +191,7 @@ import "@riophae/vue-treeselect/dist/vue-treeselect.css";
 
 
 const REF_NAME = 'court_instantions'
+import AllList from "./List.vue"
 import appConfig from "@/app.config";
 import crudAndListsService from '@/shared/services/crud_and_list.service'
 import Service from '../service'
@@ -198,7 +203,7 @@ export default {
     title: "Passport info",
     meta: [{name: "description", content: appConfig.description}],
   },
-  components: {BaseSelectWithValidation},
+  components: {BaseSelectWithValidation, AllList},
   data() {
     return {
       submitted: false,
@@ -404,10 +409,6 @@ table {
   border: 1px solid #2b675b;
 }
 
-::v-deep .vue-treeselect__control {
-  border: 1px solid #2b675b;
-}
-
 ::v-deep .form-control {
   border: 1px solid #2b675b;
 }
@@ -422,6 +423,11 @@ table {
 }
 
 ::v-deep .base-form-component__date-picker {
+  border: 1px solid #2b675b;
+  border-radius: 5px;
+}
+
+::v-deep .vue-treeselect {
   border: 1px solid #2b675b;
   border-radius: 5px;
 }

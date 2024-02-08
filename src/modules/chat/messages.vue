@@ -194,7 +194,7 @@
                       }}
                     </div>
                     <div v-if="data.parentId" class=" pl-3 d-flex justify-content-start align-items-start " style="
-                        border-left: 3px solid #556ee6;
+                        border-left: 3px solid #2b6c58;
                         flex-direction: column;"
                     >
                       <div class="conversation-name">

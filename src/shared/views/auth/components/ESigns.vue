@@ -49,7 +49,7 @@
                 <b-card-body>
                   <b-row>
                     <p class="ml-2">
-                      <i class="mdi mdi-file-key-outline" style="color: #556ee6; font-size: 2.5rem;"/>
+                      <i class="mdi mdi-file-key-outline" style="color: #2b6c58; font-size: 2.5rem;"/>
                       <b>{{ $t('auth.certificate_number') }}</b>: {{ item.serialNumber }}
                     </p>
                   </b-row>

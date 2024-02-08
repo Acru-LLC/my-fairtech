@@ -793,7 +793,7 @@ export default {
     <div class="mt-4 auth-register-form-wrapper">
       <form-wizard
           shape="tab"
-          color="#556ee6"
+          color="#2b6c58"
       >
         <wizard-step
             slot-scope="props"
@@ -1102,7 +1102,7 @@ export default {
               >
                 <i
                     class="mdi mdi-email-check-outline"
-                    style="color: #556ee6; font-size: 2.5rem;"
+                    style="color: #2b6c58; font-size: 2.5rem;"
                 ></i>
                 <p class="ml-2 d-inline-block"><b>{{ signupForm.user.mail }}</b></p>
                 <p>{{ $t('auth.confirm_with_email') }}</p>
@@ -1136,7 +1136,7 @@ export default {
               >
                 <i
                     class="mdi mdi-phone-check-outline"
-                    style="color: #556ee6; font-size: 2.5rem;"
+                    style="color: #2b6c58; font-size: 2.5rem;"
                 ></i>
                 <p class="ml-2 d-inline-block"><b>{{ signupForm.user.phoneNumber }}</b></p>
                 <p>{{ $t('auth.confirm_with_phone_number') }}</p>
