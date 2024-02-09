@@ -4194,6 +4194,9 @@
   },
   "fair_price": {
     "title": "FAIR PRICE",
+    "date": "Sana",
+    "product_type1": "Oziq-ovqat maxsulotlari",
+    "product_type2": "Boshqa maxsulotlar",
     "main_menu": "Maxsulot narxlari",
     "enter_cost": "Narx kiritish",
     "add_product": "Maxsulot qo'shish",
@@ -4202,6 +4205,7 @@
     "type_product": "Maxsulot turi",
     "min": "Eng past narx",
     "max": "Eng qimmat narx",
+    "birlik": "O'lchov birligi",
     "not_added_sections": "Hozircha maxsulot (tovar)lar qo‘shilmagan",
     "added_button": "Qo‘shish belgili tugmachaga bosib maxsulot (tovar)lar qo‘shishingiz mumkin\n",
     "not_added_sections_users": "Hozircha foydalanuvchilar qo‘shilmagan",
@@ -4213,8 +4217,8 @@
     "references": {
       "title": "References",
       "products": "Maxsulot (tovar)lar",
-      "type_of_shopping": "Savdo obyektlari turi",
-      "priceMarkets": "Savdo obyektlari",
+      "type_of_shopping": "Savdo obyekti turi",
+      "priceMarkets": "Савдо объекти номи",
       "toifa": "Bozorning toifasi\n(dehqon, qurilish va boshqa turdagi)",
       "minimum_narx": "Minimal narx",
       "maximum_narx": "Maksimal narx",

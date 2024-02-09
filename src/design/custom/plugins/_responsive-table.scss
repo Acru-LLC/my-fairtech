@@ -1,15 +1,21 @@
-
 //
 // Responsive Table
 //
 
 .custom-b-table {
   &.table-bordered, th, td {
-    border: 1px solid #d7d7d7;
+    border: 1px solid #2b675b;
   }
+
   &.table > :not(:last-child) > :last-child > * {
-    border-bottom-color: #d7d7d7;
+    border-bottom-color: #2b675b;
   }
+}
+
+//
+.custom-b-table-head thead {
+  background: #BED0CD;
+  color: #2b675b;
 }
 
 /* .table-rep-plugin {

@@ -24,5 +24,13 @@ export default {
     saveData(data) {
         return ApiService.post(`/price_sum/create?maxPrice=${data.maxPrice}&minPrice=${data.minPrice}&middleSum=${data.middleSum}&date=${data.date}&productId=${data.productId}&marketId=${data.marketId}&code=web`)
     },
+    listEnteredPrice(url, payload, withLoader = false) {
+        let myPayload = Object.assign({}, payload)
+        myPayload.page -= 1
+        return ApiService.post(
+            `${url}/list-searchSet?keyword=${myPayload.keyword ? myPayload.keyword : ''}`,
+            myPayload, withLoader
+        );
+    },
 }
 

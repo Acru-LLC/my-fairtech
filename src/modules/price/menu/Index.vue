@@ -175,7 +175,7 @@
 
     <b-card style="border:1px solid #2b675b; border-radius: 5px; padding: 15px; margin: 15px">
       <b-container fluid="100%">
-        <AllList></AllList>
+        <AllList ref="allListRef"></AllList>
       </b-container>
     </b-card>
   </div>
@@ -275,6 +275,7 @@ export default {
                 this.computedObserver.reset()
                 this.editingItem = Object.assign({}, {});
                 this.price_market_typeId = null
+                await this.$refs.allListRef.fetchNotificationTableItems()
               })
               .finally(() => {
                 this.loader = false;

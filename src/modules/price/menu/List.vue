@@ -35,20 +35,18 @@
             worksheet="My Worksheet"
             :name="`${$t('submodules.integration.customs_product.title')}.xls`"
         >
-          <b-btn block style="background: #2b675b" @click="downloadExcel" class="mb-2" rounded>
+          <b-btn disabled block style="background: #2b675b" @click="downloadExcel" class="mb-2" rounded>
             <i class="mdi mdi-microsoft-excel me-1"></i> {{ $t('actions.excel_file_upload') }}
           </b-btn>
         </download-excel>
       </b-col>
-
     </b-row>
     <!-- Table data -->
     <b-table
         :items="notificationTableItems"
         :fields="notificationTableFields"
         id="notification-table"
-        class="custom-b-table"
-        borderless
+        class="custom-b-table custom-b-table-head"
         bordered
         small
         fixed
@@ -61,6 +59,96 @@
         {{
           util_paginate(innerData.index, var_default_search_payload.page, var_default_search_payload.itemsPerPage)
         }}
+      </template>
+
+      <template #cell(type_product)="innerData">
+        <span v-if="innerData.item.priceProductDto && innerData.item.priceProductDto.code == 'FOODS'">
+             {{
+            $t('fair_price.product_type1')
+          }}
+        </span>
+      </template>
+
+
+      <template #cell(productName)="innerData">
+        <span>
+             {{
+            getName({
+              nameRu: innerData.item.priceProductDto && innerData.item.priceProductDto.nameRu,
+              nameLt: innerData.item.priceProductDto && innerData.item.priceProductDto.nameLt,
+              nameUz: innerData.item.priceProductDto && innerData.item.priceProductDto.nameUz,
+            })
+          }}
+        </span>
+      </template>
+
+      <template #cell(birlik)="innerData">
+        <span>
+             {{
+            getName({
+              nameRu: innerData.item.priceProductDto && innerData.item.priceProductDto.measureDto && innerData.item.priceProductDto.measureDto.nameRu,
+              nameLt: innerData.item.priceProductDto && innerData.item.priceProductDto.measureDto && innerData.item.priceProductDto.measureDto.nameLt,
+              nameUz: innerData.item.priceProductDto && innerData.item.priceProductDto.measureDto && innerData.item.priceProductDto.measureDto.nameUz,
+            })
+          }}
+        </span>
+      </template>
+
+      <template #cell(minPrice)="innerData">
+        <span>
+             {{
+            formatNumber(innerData.item.minPrice)
+          }}
+        </span>
+      </template>
+
+      <template #cell(maxPrice)="innerData">
+        <span>
+             {{
+            formatNumber(innerData.item.maxPrice)
+          }}
+        </span>
+      </template>
+
+      <template #cell(middleSum)="innerData">
+        <span>
+             {{
+            formatNumber(innerData.item.middleSum)
+
+          }}
+        </span>
+      </template>
+
+      <template #cell(region)="innerData">
+        <span>
+             {{
+            getName({
+              nameRu: innerData.item.marketDto && innerData.item.marketDto.disNameRu,
+              nameLt: innerData.item.marketDto && innerData.item.marketDto.disNameLt,
+              nameUz: innerData.item.marketDto && innerData.item.marketDto.disNameUz,
+            })
+          }}
+        </span>
+      </template>
+
+      <template #cell(type_of_shopping)="innerData">
+        <span>
+             {{
+            getName({
+              nameRu: innerData.item.marketDto && innerData.item.marketDto.businessStructureRu,
+              nameLt: innerData.item.marketDto && innerData.item.marketDto.businessStructureLt,
+              nameUz: innerData.item.marketDto && innerData.item.marketDto.businessStructureUz,
+            })
+          }}
+        </span>
+      </template>
+
+      <template #cell(priceMarkets)="innerData">
+        <span>
+             {{
+            innerData.item.marketDto && innerData.item.marketDto.marketName
+          }}
+        </span>
       </template>
 
       <!-- EMPTY SLOT -->
@@ -84,10 +172,11 @@
 import {mapActions} from 'vuex'
 import {TokenService} from "@/shared/services/storage.service"
 
-const MAIN_API_URL = 'contractor-advertising-construction'
+const MAIN_API_URL = 'price_sum'
 const MAIN_NOTIFICATION_API_URL = 'report/advertisement-notifications'
 import appConfig from "@/app.config";
 import crudAndListsService from '@/shared/services/crud_and_list.service'
+import Service from '../service'
 import helperService from '@/shared/services/helper.service'
 
 const i18n = require("@/i18n");
@@ -131,31 +220,97 @@ export default {
           tdClass: "text-center",
           sortable: false,
           key: "index",
+          thStyle: {
+            width: '40px',
+          },
         },
         {
-          label: this.$t('column.comment'),
-          key: "description",
-        },
-        {
-          label: this.$t('column.created_by'),
-          key: "createdBy",
-        },
-        {
-          label: this.$t('column.placement_date'),
-          key: "placedDate",
-        },
-        {
-          label: this.$t('column.actions'),
-          key: "notificationActions",
+          label: this.$t('fair_price.type_product'),
+          key: "type_product",
           thClass: "text-center",
           tdClass: "text-center",
-          sortable: false
         },
+        {
+          label: this.$t('submodules.integration.customs_product.productName'),
+          key: "productName",
+          thClass: "text-center",
+          tdClass: "text-center",
+        },
+        {
+          label: this.$t('fair_price.birlik'),
+          key: "birlik",
+          thClass: "text-center",
+          tdClass: "text-center",
+          thStyle: {
+            width: '70px',
+          },
+        },
+        {
+          label: this.$t('fair_price.min'),
+          key: "minPrice",
+          thClass: "text-center",
+          tdClass: "text-center",
+          thStyle: {
+            width: '100px',
+          },
+        },
+        {
+          label: this.$t('fair_price.max'),
+          key: "maxPrice",
+          thClass: "text-center",
+          tdClass: "text-center",
+          thStyle: {
+            width: '100px',
+          },
+        },
+        {
+          label: this.$t('fair_price.references.xaridorgir_narx'),
+          key: "middleSum",
+          thClass: "text-center",
+          tdClass: "text-center",
+          thStyle: {
+            width: '100px',
+          },
+        },
+        {
+          label: this.$t('submodules.integration.price_stock.region_name'),
+          key: "region",
+          thClass: "text-center",
+          tdClass: "text-center",
+        },
+        {
+          label: this.$t('fair_price.references.type_of_shopping'),
+          key: "type_of_shopping",
+          thClass: "text-center",
+          tdClass: "text-center",
+        },
+        {
+          label: this.$t('fair_price.references.priceMarkets'),
+          key: "priceMarkets",
+          thClass: "text-center",
+          tdClass: "text-center",
+        },
+        {
+          label: this.$t('fair_price.date'),
+          key: "date",
+          thClass: "text-center",
+          tdClass: "text-center",
+          thStyle: {
+            width: '100px',
+          },
+        },
+        // {
+        //   label: this.$t('column.actions'),
+        //   key: "notificationActions",
+        //   thClass: "text-center",
+        //   tdClass: "text-center",
+        //   sortable: false
+        // },
       ],
       searchKeyword: '',
       searchNotificationKeyword: '',
       createdDate: '',
-      selected: 20,
+      selected: 10,
       optionsTable: [
         {value: 20, text: 20},
         {value: 50, text: 50},
@@ -222,14 +377,16 @@ export default {
       }
       this.fetchNotificationTableItems(this.$route.params.id);
     },
-    fetchNotificationTableItems(id) {
+    fetchNotificationTableItems() {
       this.loadingTableItems = true
       this.var_default_search_payload.keyword = this.searchKeyword
-      this.var_default_search_payload.placedDate = this.placedDate
-      crudAndListsService
-          .searchListNotificationByConstructionId(MAIN_NOTIFICATION_API_URL, this.var_default_search_payload, id, true)
+      this.var_default_search_payload.itemsPerPage = this.selected
+      // this.var_default_search_payload.placedDate = this.placedDate
+      Service
+          .listEnteredPrice(MAIN_API_URL, this.var_default_search_payload, true)
           .then((res) => {
             this.notificationTableItems = res.data.list
+            this.totalItems = res.data.total
           })
           .catch(e => {
             this.notificationTableItems = [];
@@ -297,12 +454,6 @@ export default {
             })
       this.fetchNotificationTableItems(this.$route.params.id)
     },
-    updateFiles(id, forAgency = false) {
-      this.$router.push({
-        name: forAgency ? 'UpdateAdPassportInfoFilesByAgency' : 'UpdateAdPassportInfoFilesByGovernment',
-        params: {id: id}
-      })
-    },
     createItem(id, forAgency = false) {
       this.$router.push({
         name: 'CreateContractorNotification',
@@ -353,45 +504,14 @@ export default {
   },
   /* CREATED */
   async created() {
-    this.fetchNotificationTableItems(this.$route.params.id)
-
-    // GET REGIONS
-    await helperService.fetchRegionsForAdvertisementByCurrentUserId()
-        .then(res => {
-          this.regions = res.data
-          // this.regionSelected(this.editingItem ? this.editingItem.regionId : null, true)
-        })
-        .catch(e => {
-          console.log(e)
-        })
-
-    // GET CONTRACTORS
-    if (!this.isOuter) {
-      await crudAndListsService.searchList('contractor', this.var_default_search_payload, 'by-contractor')
-          .then(res => {
-            this.contractors = res.data.list
-          })
-          .catch(e => {
-            console.log(e)
-          })
-    }
-
-    // GET AD DESIGN TYPES
-    await helperService.getAdDesignTypesByActiveStatus()
-        .then((res) => {
-          this.adDesignTypes = res.data;
-        })
-        .catch(e => {
-          console.log(e)
-        })
-
+    await this.fetchNotificationTableItems()
   },
   /*
   WATCH */
   watch: {
     'var_default_search_payload.page': {
       handler() {
-        this.fetchNotificationTableItems(this.$route.params.id)
+        this.fetchNotificationTableItems()
       }
     }
   }
@@ -399,13 +519,6 @@ export default {
 </script>
 
 <style scoped lang='scss'>
-.centered-table {
-  td, th {
-    vertical-align: middle;
-    text-align: center;
-  }
-}
-
 .max-height-70 {
   max-height: 70vh;
 }
@@ -419,12 +532,8 @@ export default {
 ::v-deep .mx-icon-calendar {
   color: #2b675b;
 }
-::v-deep .b-pagination {
-  color: #2b675b !important;
-}
- .custom-b-table.table-bordered, .custom-b-table th, .custom-b-table td .custom-b-table tr {
-  border: 1px solid #2b675b;
-  color: #2b675b;
+::v-deep  .table-striped tbody tr:nth-of-type(odd) {
+  background-color: #EAF0EF;
 }
 
 </style>
