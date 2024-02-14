@@ -1,7 +1,8 @@
 <template>
   <div>
     <div class="col-md-12 text-center">
-      <div class="h3 mt-4 d-inline-block" style="color: #2b675b; font-weight: 500">{{ $t('fair_price.enter_cost') }}</div>
+      <div class="h3 mt-4 d-inline-block" style="color: #2b675b; font-weight: 500">{{ $t('fair_price.enter_cost') }}
+      </div>
     </div>
     <b-card>
       <b-container fluid="100%">
@@ -10,7 +11,7 @@
             v-slot="{}"
         >
           <b-row>
-            <b-col cols="3" v-if="!$can('view', 'price-enter-cost')">
+            <b-col cols="3" v-if="$can('view', 'price-enter-cost')">
               <b-card
                   style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px; margin-top:10px;">
                 <div>
@@ -35,12 +36,12 @@
                         <b-form-select-option v-for="(item, index) in price_market_type"
                                               :key="index"
                                               :value="item.type">{{
-                            getName({
-                              nameRu: item.nameRu,
-                              nameLt: item.nameLt,
-                              nameUz: item.nameUz,
-                              nameEn: item.nameEn,
-                            })
+                          getName({
+                          nameRu: item.nameRu,
+                          nameLt: item.nameLt,
+                          nameUz: item.nameUz,
+                          nameEn: item.nameEn,
+                          })
                           }}
                         </b-form-select-option>
                       </BaseSelectWithValidation>
@@ -57,7 +58,7 @@
                         <b-form-select-option v-for="(item, index) in price_market"
                                               :key="index"
                                               :value="item.id">{{
-                            item.marketName
+                          item.marketName
                           }}
                         </b-form-select-option>
                       </BaseSelectWithValidation>
@@ -220,7 +221,9 @@ export default {
   watch: {
     'price_market_typeId': {
       async handler() {
-        await this.getprice_market();
+        if (this.price_market_typeId) {
+          await this.getprice_market();
+        }
       }
     },
     'editingItem.maxPrice': {
@@ -342,7 +345,7 @@ export default {
       this.var_default_search_payload.itemsPerPage = 500
       this.var_default_search_payload.type = this.price_market_typeId
       Service
-          .searchListWithKeyword('price_market', this.var_default_search_payload)
+          .searchListWithKeywordOuter('price_market', this.var_default_search_payload)
           .then((res) => {
             this.price_market = res.data.list;
             this.totalItems = res.data.total;

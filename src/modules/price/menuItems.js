@@ -5,7 +5,7 @@ export default [
     {
         id: "commissionParentMenuId",
         label: i18n.t("fair_price.main_menu"),
-        // hasPerm: () => ability.can('view', 'price-main-menu'),
+        hasPerm: () => ability.can('view', 'price-main-menu'),
         subItems: [
             {
                 id: "priceId",

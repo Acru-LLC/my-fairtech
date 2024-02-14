@@ -32,5 +32,20 @@ export default {
             myPayload, withLoader
         );
     },
+    searchListWithKeywordOuter: function (mainUrl, payload, appendUrl, withLoader = false) {
+        let myPayload = Object.assign({}, payload)
+        myPayload.page -= 1
+        if (appendUrl) {
+            return ApiService.post(
+                `${mainUrl}/list-search-outer/${appendUrl}?keyword=${myPayload.keyword ? myPayload.keyword : ''}&type=${myPayload.type ? myPayload.type : ''}`,
+                myPayload, withLoader
+            );
+        } else {
+            return ApiService.post(
+                `${mainUrl}/list-search-outer?keyword=${myPayload.keyword ? myPayload.keyword : ''}&type=${myPayload.type ? myPayload.type : ''}`,
+                myPayload, withLoader = true
+            );
+        }
+    },
 }
 
