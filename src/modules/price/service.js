@@ -21,6 +21,35 @@ export default {
             );
         }
     },
+    searchListWithKeywordAandType: function (type, code, mainUrl, payload, appendUrl, withLoader = false) {
+        let myPayload = Object.assign({}, payload)
+        myPayload.page -= 1
+        if (appendUrl) {
+            return ApiService.post(
+                `${mainUrl}/list-search/${appendUrl}?keyword=${myPayload.keyword ? myPayload.keyword : ''}&code=${code ? code : ''}&type=${type ? type : ''}`,
+                myPayload, withLoader
+            );
+        } else {
+            return ApiService.post(
+                `${mainUrl}/list-search?keyword=${myPayload.keyword ? myPayload.keyword : ''}&code=${code ? code : ''}&type=${type ? type : ''}`,
+                myPayload, withLoader
+            );
+        }
+    },
+    async createWithFiles(bodyFormData, url) {
+        const requestData = {
+            method: 'post',
+            url: '/price_sum/create',
+            data: bodyFormData,
+            headers: {'Content-Type': 'multipart/form-data'}
+        };
+        try {
+            const response = await ApiService.customRequest(requestData);
+            return response.data;
+        } catch (error) {
+            return error.response.data
+        }
+    },
     saveData(data) {
         return ApiService.post(`/price_sum/create?maxPrice=${data.maxPrice}&minPrice=${data.minPrice}&middleSum=${data.middleSum}&productId=${data.productId}&marketId=${data.marketId}&code=web`)
     },
@@ -28,7 +57,7 @@ export default {
         let myPayload = Object.assign({}, payload)
         myPayload.page -= 1
         return ApiService.post(
-            `${url}/list-searchSet?keyword=${myPayload.keyword ? myPayload.keyword : ''}&date=${date ? date: ''}`,
+            `${url}/list-searchSet?keyword=${myPayload.keyword ? myPayload.keyword : ''}&date=${date ? date : ''}`,
             myPayload, withLoader
         );
     },
