@@ -1,20 +1,20 @@
 <template>
   <div>
     <b-row class="mb-2">
-      <b-col cols="4">
+      <b-col cols="3">
         <div class="position-relative search-box">
           <input
-              v-model="searchNotificationKeyword"
+              v-model="searchKeyword"
               type="text"
               class="form-control"
-              style="border-radius: 3px !important;"
-              @input="fetchNotificationTableItems($route.params.id)"
+              style="border-radius: 4px !important;"
+              @input="fetchNotificationTableItems()"
               :placeholder="$t('column.search')"
           />
           <i class="bx bx-search-alt search-icon"></i>
         </div>
       </b-col>
-      <b-col cols="4"></b-col>
+      <b-col cols="5"></b-col>
       <b-col cols="2">
         <BaseDatePickerWithValidation
             not-required
@@ -22,7 +22,7 @@
             v-model="createdDate"
             disable-after
             :label="$t('submodules.integration.e_auction_info.date')"
-            @input="fetchNotificationTableItems($route.params.id)"
+
             lang="ru"
         ></BaseDatePickerWithValidation>
       </b-col>
@@ -169,18 +169,11 @@
 
 <script lang="js">
 
-import {mapActions} from 'vuex'
-import {TokenService} from "@/shared/services/storage.service"
-
 const MAIN_API_URL = 'price_sum'
-const MAIN_NOTIFICATION_API_URL = 'report/advertisement-notifications'
 import appConfig from "@/app.config";
-import crudAndListsService from '@/shared/services/crud_and_list.service'
 import Service from '../service'
-import helperService from '@/shared/services/helper.service'
 
 const i18n = require("@/i18n");
-
 export default {
   page: {
     title: "Passport info",
@@ -308,7 +301,6 @@ export default {
         // },
       ],
       searchKeyword: '',
-      searchNotificationKeyword: '',
       createdDate: '',
       selected: 10,
       optionsTable: [
@@ -318,48 +310,11 @@ export default {
         {value: 150, text: 150},
         {value: 200, text: 200},
       ],
-      regions: [],
-      districts: [],
-      contractors: [],
-      adDesignTypes: [],
-      filterPayload: {
-        passportNumber: '',
-        contractorId: '',
-        regionId: '',
-        districtIds: [],
-        designTypeIds: []
-      },
       index: 0,
-      photosFromServer: [],
       loadingTableItems: false,
-      isOuter: TokenService.getIsOuter(),
     };
   },
-  /*
-  COMPUTED */
-  computed: {
-    tableFields() {
-      return this.$can('list', 'contractor advertising construction') ? this.tableFieldsForAgency : this.tableFieldsForGovernment;
-    },
-
-    dtoName() {
-      return this.$can('list', 'contractor advertising construction') ? 'contractorAdvertisingConstructionForSecondAgentDto' : 'contractorAdvertisingConstructionForFirstAgentDto';
-    },
-
-    numberOfPages() {
-      return (!this.totalItems || this.totalItems <= 0 || this.totalItems < this.var_default_search_payload.itemsPerPage) ? 1 : this.totalItems / this.var_default_search_payload.itemsPerPage
-    },
-    imgArr() {
-      let arrs = [];
-      this.photosFromServer.forEach(e => {
-        if (this.photosFromServer)
-          arrs.push(this.publicPath + e.url)
-      })
-      return arrs
-    }
-  },
   methods: {
-    ...mapActions(['setCount']),
     async downloadExcel() {
       this.json_data = this.tableItems.map((item, index) => {
         return {
@@ -375,15 +330,15 @@ export default {
       } else {
         this.var_default_search_payload.itemsPerPage = $event
       }
-      this.fetchNotificationTableItems(this.$route.params.id);
+      this.fetchNotificationTableItems();
     },
     fetchNotificationTableItems() {
       this.loadingTableItems = true
       this.var_default_search_payload.keyword = this.searchKeyword
       this.var_default_search_payload.itemsPerPage = this.selected
-      // this.var_default_search_payload.placedDate = this.placedDate
+
       Service
-          .listEnteredPrice(MAIN_API_URL, this.var_default_search_payload, true)
+          .listEnteredPrice(this.createdDate, MAIN_API_URL, this.var_default_search_payload, true)
           .then((res) => {
             this.notificationTableItems = res.data.list
             this.totalItems = res.data.total
@@ -395,112 +350,6 @@ export default {
             this.loadingTableItems = false
           })
     },
-    customLabelDistrict(opt) {
-      let selected = this.districts.find(e => e.id == opt);
-      if (selected) {
-        return `${
-            this.getName({
-              nameRu: selected.nameRu,
-              nameLt: selected.nameLt,
-              nameUz: selected.nameUz,
-            })
-        }`
-      }
-      return ``;
-    },
-    customLabelContractor(opt) {
-      let selected = this.contractors.find(e => e.id == opt);
-      if (selected) {
-        return `${selected.fullName}`
-      }
-      return ``;
-    },
-    customLabelRegion(opt) {
-      let selected = this.regions.find(e => e.regionId == (opt.regionId ? opt.regionId : opt));
-      if (selected) {
-        return `${this.getName({
-          nameRu: selected.regionNameRu,
-          nameLt: selected.regionNameLt,
-          nameUz: selected.regionNameUz,
-        })
-        }`
-      }
-      return ``;
-    },
-    customLabelAdDesignType(opt) {
-      let selected = this.adDesignTypes.find(e => e.id == (opt.id ? opt.id : opt));
-      if (selected) {
-        return `${this.getName({
-          nameRu: selected.nameRu,
-          nameLt: selected.nameLt,
-          nameUz: selected.nameUz,
-        })
-        }`
-      }
-      return ``;
-    },
-    async regionSelected($event, dontResetDistrict = false) {
-      if (!dontResetDistrict) {
-        this.filterPayload.districtIds = []
-      }
-      // GET DISTRICTS
-      if ($event)
-        await helperService.getGeoLocationsByParentId($event)
-            .then(res => {
-              this.districts = res.data
-            })
-            .catch(e => {
-              console.log(e)
-            })
-      this.fetchNotificationTableItems(this.$route.params.id)
-    },
-    createItem(id, forAgency = false) {
-      this.$router.push({
-        name: 'CreateContractorNotification',
-        params: {adConstructionId: id}
-      })
-    },
-    editItem(id) {
-      this.$router.push({name: 'UpdateContractorNotification', params: {id: id}})
-    },
-    getImages(id, adConstructionIndex) {
-      let foundIndex = this.tableItems[adConstructionIndex].contractorAdvertisingConstructionForSecondAgentDto.notifications.findIndex(el => el.id == id)
-      if (foundIndex > -1) {
-        this.photosFromServer = this.tableItems[adConstructionIndex].contractorAdvertisingConstructionForSecondAgentDto.notifications[foundIndex].advertisementNotificationPhotoList
-        this.showImg(0)
-      }
-    },
-    showImg(index) {
-      this.index = index
-      this.visible = true
-    },
-    handleHide() {
-      this.visible = false
-    },
-    handlePrevNext(oldIndex, newIndex) {
-      this.index = newIndex
-    },
-    deleteItem(id) {
-      this.$bvModal.msgBoxConfirm(this.$t('messages.delete_title'), {
-        okTitle: this.$t('actions.confirm'),
-        cancelTitle: this.$t('actions.cancel')
-      })
-          .then(value => {
-            if (value) {
-              crudAndListsService
-                  .deleteById(MAIN_API_URL, id)
-                  .then((res) => {
-                    this.fetchNotificationTableItems(this.$route.params.id)
-                  })
-                  .catch(e => {
-                    console.log(e)
-                  })
-            }
-          })
-          .catch(err => {
-            // An error occurred
-          })
-    },
   },
   /* CREATED */
   async created() {
@@ -510,6 +359,11 @@ export default {
   WATCH */
   watch: {
     'var_default_search_payload.page': {
+      handler() {
+        this.fetchNotificationTableItems()
+      }
+    },
+    'createdDate': {
       handler() {
         this.fetchNotificationTableItems()
       }

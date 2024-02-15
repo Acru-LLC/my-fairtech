@@ -85,6 +85,7 @@
                         {{ $t('fair_price.type_product') }}
                         </span>
                         <BaseTreeselectWithValidation
+                            :disable-branch-nodes="true"
                             :searchable="true"
                             :clearable="true"
                             open-direction="bottom"
@@ -323,7 +324,7 @@ export default {
       await crudAndListsService.getEmpty('price_sum')
           .then(res => {
             this.editingItem = res.data
-            this.editingItem.date = this.getDateFormat(new Date(), '-');
+            // this.editingItem.date = this.getDateFormat(new Date(), '-');
           })
           .catch(e => {
             console.log(e)
