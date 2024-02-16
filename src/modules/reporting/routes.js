@@ -12,13 +12,31 @@ export default [
         },
         children: [
             {
-                name: 'Reporting',
+                name: 'Menu',
                 path: '/reporting/menu',
-                component: () => import('@/modules/reporting/menu/Index.vue'),
+                component: () => import('@/modules/reporting/menu/menu.vue'),
                 meta: {
                     authRequired: true,
                 }
             },
+            {
+                name: 'ReportingOnline',
+                path: '/reporting/online',
+                component: () => import('@/modules/reporting/menu/Index.vue'),
+                meta: {
+                    authRequired: true,
+                    // hasPerm: () => ability.can('view', 'statistics')
+                },
+            },
+            // {
+            //     name: 'IntegrationMenuIndex',
+            //     path: '',
+            //     component: () => import('@/modules/integration/modules/menu-card/menu'),
+            //     meta: {
+            //         bcTo: {name: "IntegrationMenuIndex"},
+            //         authRequired: true,
+            //     },
+            // },
             // {
             //     name: 'priceEnterCostHypermarket',
             //     path: '/price/enter-cost-hypermarket',

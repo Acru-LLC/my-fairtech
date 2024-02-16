@@ -6,9 +6,9 @@ export default [
         id: "reportingId",
         label: i18n.t('reporting.name'),
         // icon: "bx mdi mdi-file-document-multiple",
-        link: {name: "Reporting"},
+        link: {name: "Menu"},
         parentId: "reportingMenuId",
-        hasPerm: () => ability.can('view', 'reporting-menu')
+        // hasPerm: () => ability.can('view', 'reporting-menu')
     },
     // {
     //     id: "reportingParentMenuId",
