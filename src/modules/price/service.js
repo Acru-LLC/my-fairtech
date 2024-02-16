@@ -6,6 +6,11 @@ export default {
         let res = await ApiService.post(`/yuridik-shaxs/get-info?&tin=${stir}`, withLoader);
         return res;
     },
+    // yuridik-shaxs
+    getYuridikShaxsDataByPinfl: async function (pinfl, withLoader = false) {
+        let res = await ApiService.post(`/ytt/get-info?pinfl=${pinfl}`, withLoader);
+        return res;
+    },
     searchListWithKeyword: function (mainUrl, payload, appendUrl, withLoader = false) {
         let myPayload = Object.assign({}, payload)
         myPayload.page -= 1

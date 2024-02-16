@@ -8,7 +8,7 @@ export default [
         // icon: "bx mdi mdi-file-document-multiple",
         link: {name: "Reporting"},
         parentId: "reportingMenuId",
-        // hasPerm: () => ability.can('view', 'reporting-menu')
+        hasPerm: () => ability.can('view', 'reporting-menu')
     },
     // {
     //     id: "reportingParentMenuId",

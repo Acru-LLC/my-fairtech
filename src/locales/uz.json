@@ -3002,6 +3002,8 @@
     "infoFull_short": "Miqdori to'g'risida umumlashtirilgan ma'lumot"
   },
   "tender": {
+    "yatt": "YaTT shaxs",
+    "person_type": "Ishtirokchi turi",
     "title": "Davlat buyurtmasi bo‘yicha o‘tkaziladigan tanlov (tender) savdolarini raqobat qonunchiligiga rioya etilishi ustidan amalga oshirilgan nazorat ishlari",
     "tender_create_title": "DAVLAT BUYURTMASI BO‘YICHA O‘TKAZILGAN TANLOV (TЕNDЕR) SAVDOLARI BO‘YICHA UMUMIY MA’LUMOTLAR",
     "short_title": "DAVLAT BUYURTMASI BO‘YICHA O‘TKAZILGAN TANLOV (TЕNDЕR) SAVDOLARI NATIJALARI BO‘YICHA QO‘LLANILGAN TA’SIR CHORALARI VA NATIJALARI",
@@ -3009,6 +3011,7 @@
     "select": "Iltimos, ro'yhatdan birini tanlang",
     "reference": "Ma'lumotnomalar",
     "menu": "Tender savdolari",
+
     "list": "O'rganilgan savdolar",
     "menu_create": "Savdolarni nazorat qilish",
     "status": "Holati",
