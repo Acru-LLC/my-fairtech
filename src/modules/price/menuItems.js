@@ -21,7 +21,7 @@ export default [
                 // icon: "bx mdi mdi-file-document-multiple",
                 link: {name: "PriceMarkets"},
                 parentId: "priceMarketsMenuId",
-                hasPerm: () => ability.can('view', 'price-enter-cost') || ability.can('view', 'price-enter-market')
+                hasPerm: () => ability.can('view', 'price-enter-market')
             },
             {
                 id: "priceId",
