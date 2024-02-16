@@ -36,21 +36,6 @@ export default {
             );
         }
     },
-    searchListWithKeyword1: function (mainUrl, payload, appendUrl, withLoader = false) {
-        let myPayload = Object.assign({}, payload)
-        myPayload.page -= 1
-        if (appendUrl) {
-            return ApiService.post(
-                `${mainUrl}/list-search/${appendUrl}?keyword=${myPayload.keyword ? myPayload.keyword : ''}&type=${myPayload.type ? myPayload.type : ''}`,
-                myPayload, withLoader
-            );
-        } else {
-            return ApiService.post(
-                `${mainUrl}/list-search?keyword=${myPayload.keyword ? myPayload.keyword : ''}&type=${myPayload.type ? myPayload.type : ''}`,
-                myPayload, withLoader = true
-            );
-        }
-    },
     async createWithFiles(bodyFormData, url) {
         const requestData = {
             method: 'post',

@@ -22,6 +22,7 @@ import sendMessage_routes from "@/modules/sendMessageToPhone/router";
 import wordTemplates_routes from "@/modules/wordTemplates/router";
 import pharm_routes from "@/modules/pharm/routes";
 import price_routes from "@/modules/price/routes";
+import reporting_routes from "@/modules/reporting/routes";
 import i18n from "@/i18n";
 import { ability } from "@/shared/store/ability";
 
@@ -48,6 +49,7 @@ export default [
   ...wordTemplates_routes,
   ...pharm_routes,
   ...price_routes,
+  ...reporting_routes,
 
 
   {

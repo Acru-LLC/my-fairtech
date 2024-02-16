@@ -20,6 +20,26 @@ export default [
                     authRequired: true,
                 }
             },
+            {
+                name: "PriceMarkets",
+                path: "price-markets",
+                component: () => import("@/modules/price/priceMarkets/Index.vue"),
+                meta: {
+                    // hasPerm: () => ability.can('view', '')
+                }
+            },
+            {
+                name: "CreatePriceMarkets",
+                path: "price-markets/create",
+                component: () => import("@/modules/price/priceMarkets/CreateOrUpdate.vue"),
+                meta: {},
+            },
+            {
+                name: "UpdatePriceMarkets",
+                path: "price-markets/update/:id",
+                component: () => import("@/modules/price/priceMarkets/CreateOrUpdate.vue"),
+                meta: {},
+            },
             // {
             //     name: 'priceEnterCostHypermarket',
             //     path: '/price/enter-cost-hypermarket',

@@ -4195,6 +4195,7 @@
     "product_type2": "Бошқа махсулотлар",
     "main_menu": "Махсулот нархлари",
     "enter_cost": "Нарх киритиш",
+    "priceMarkets": "Савдо объектлари",
     "add_product": "Махсулот қўшиш",
     "info": "Савдо объекти маълумотлари",
     "info_product": "Махсулот маълумотлари",
@@ -4220,5 +4221,9 @@
       "maximum_narx": "Максимал нарх",
       "xaridorgir_narx": "Харидоргир нарх"
     }
+  },
+  "reporting": {
+    "title": "Tovar, moliya va raqamli bozorlar to'g'risidagi xisobotni yuritish",
+    "name": "Онлайн ҳисобот юбориш"
   }
 }

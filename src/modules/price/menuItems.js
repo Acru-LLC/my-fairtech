@@ -16,6 +16,14 @@ export default [
                 hasPerm: () => ability.can('view', 'price-enter-cost') || ability.can('view', 'price-enter-cost-hypermarket')
             },
             {
+                id: "priceMarketsId",
+                label: i18n.t('fair_price.priceMarkets'),
+                // icon: "bx mdi mdi-file-document-multiple",
+                link: {name: "PriceMarkets"},
+                parentId: "priceMarketsMenuId",
+                hasPerm: () => ability.can('view', 'price-enter-cost') || ability.can('view', 'price-enter-market')
+            },
+            {
                 id: "priceId",
                 label: i18n.t('fair_price.add_product'),
                 // icon: "bx mdi mdi-file-document-multiple",

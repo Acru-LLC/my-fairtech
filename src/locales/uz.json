@@ -4195,6 +4195,7 @@
   "fair_price": {
     "title": "FAIR PRICE",
     "date": "Sana",
+    "priceMarkets": "Savdo obyektlari",
     "product_type1": "Oziq-ovqat maxsulotlari",
     "product_type2": "Boshqa maxsulotlar",
     "main_menu": "Maxsulot narxlari",
@@ -4223,6 +4224,50 @@
       "minimum_narx": "Minimal narx",
       "maximum_narx": "Maksimal narx",
       "xaridorgir_narx": "Xaridorgir narx"
+    }
+  },
+  "reporting": {
+    "title": "Tovar, moliya va raqamli bozorlar to'g'risidagi xisobotni yuritish",
+    "name": "Onlayn hisobot yuborish",
+    "main": {
+      "form1": {
+        "title": "subyekt ma'lumoti",
+        "name1": "STIR",
+        "name2": "KTUT",
+        "name3": "Nomi",
+        "name4": "Raxbarning F.I.SH",
+        "name5": "Manzili"
+      },
+      "form2": {
+        "title": "Hisobot ma'lumotlari",
+        "name1": "Soha shakli",
+        "name2": "Hisobot davri",
+        "name3": "6 oylik",
+        "name4": "yillik",
+        "name5": "Vaqt oralig'i",
+        "name6": "dan",
+        "name7": "gacha"
+      },
+      "form3": {
+        "title": "Sanoat",
+        "name1": "Maxsulot TIF TN kodi",
+        "name2": "Maxsulot nomi",
+        "name3": "MST kodi",
+        "name4": "Ishlab chiqarish quvvati (tonna)",
+        "name5": "Ishlab chiqarish xajmi (QQS va aksizsiz)",
+        "name6": "Sotish xajmi (Ichki bozorda) (QQS va aksizsiz)",
+        "name7": "Export xajmi (QQS va aksizsiz)",
+        "name8": "Yil ohiriga tayyor maxsulot qoldig'i",
+        "name9": "Tonna",
+        "name10": "Summasi"
+      },
+      "form4": {
+        "title": "Xizmat",
+        "name1": "Xizmat nomi",
+        "name2": "Xizmat kodi",
+        "name3": "Xizmat xajmi summasi",
+        "name4": "Shundan, export xajmi summasi"
+      }
     }
   }
 }

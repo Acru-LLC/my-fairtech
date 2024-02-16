@@ -4,6 +4,7 @@ import murojaat_menu from "@/modules/reestr-contractors/menuItems";
 import interactive_services from "@/modules/integration/menuItems";
 import settings_menu from "@/modules/chat/menuItems";
 import price_menu from "@/modules/price/menuItems";
+import reporting_menu from "@/modules/reporting/menuItems";
 
 function copy(o) {
   return Object.assign({}, o)
@@ -16,7 +17,8 @@ export default [
   ...murojaat_menu,
   ...interactive_services,
   ...settings_menu,
-  ...price_menu
+  ...price_menu,
+  ...reporting_menu
   // {
   //   id: "ProjectLessons1",
   //   label: i18n.t("modules.management.project_lessons.title"),
