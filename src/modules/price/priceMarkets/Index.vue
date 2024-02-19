@@ -7,7 +7,7 @@
       <div class="card">
         <div class="card-body">
           <div class="row mb-2">
-            <div class="col-sm-8">
+            <div class="col-sm-8 col-12">
               <div class="search-box me-4 mb-2 d-inline-block">
                 <div class="position-relative">
                   <input
@@ -20,6 +20,7 @@
                   <i class="bx bx-search-alt search-icon"></i>
                 </div>
               </div>
+              <br class="d-lg-none d-block">
               <span>{{ $t('column.select.text1') }}</span>
               <div class="col-2 me-2 mx-2 d-inline-block">
                 <div class="position-relative">
@@ -33,10 +34,10 @@
               </div>
               <span>{{ $t('column.select.text2') }}</span>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4 col-12">
               <div class="text-sm-end">
                 <b-row>
-                  <b-col cols="7">
+                  <b-col cols="12" lg="7">
                     <!-- <div class="text-sm-end">
   <download-excel
       :data="json_data"
@@ -55,7 +56,7 @@
   </download-excel>
 </div> -->
                   </b-col>
-                  <b-col cols="5">
+                  <b-col cols="12" lg="5" class="d-flex justify-content-md-end justify-content-start">
                     <b-btn
                         type="button"
                         class="btn btn-success btn-rounded mb-2 me-2"

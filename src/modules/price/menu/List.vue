@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-row class="mb-2">
-      <b-col cols="3">
+      <b-col cols="12" lg="4">
         <div class="position-relative search-box">
           <input
               v-model="searchKeyword"
@@ -14,8 +14,8 @@
           <i class="bx bx-search-alt search-icon"></i>
         </div>
       </b-col>
-      <b-col cols="5"></b-col>
-      <b-col cols="2">
+      <b-col cols="12" lg="4"></b-col>
+      <b-col cols="12" lg="2">
         <BaseDatePickerWithValidation
             not-required
             custom-styles="grid-template-columns: 20% 80% 0 !important;"
@@ -26,9 +26,8 @@
             lang="ru"
         ></BaseDatePickerWithValidation>
       </b-col>
-      <b-col cols="2">
+      <b-col cols="12" lg="2">
         <download-excel
-
             :data="json_data"
             :fields="json_fields"
             :header="$t('submodules.integration.customs_product.title')"
@@ -222,12 +221,18 @@ export default {
           key: "type_product",
           thClass: "text-center",
           tdClass: "text-center",
+          thStyle: {
+            width: '80px',
+          },
         },
         {
           label: this.$t('submodules.integration.customs_product.productName'),
           key: "productName",
           thClass: "text-center",
           tdClass: "text-center",
+          thStyle: {
+            width: '80px',
+          },
         },
         {
           label: this.$t('fair_price.birlik'),
@@ -244,7 +249,7 @@ export default {
           thClass: "text-center",
           tdClass: "text-center",
           thStyle: {
-            width: '100px',
+            width: '70px',
           },
         },
         {
@@ -253,7 +258,7 @@ export default {
           thClass: "text-center",
           tdClass: "text-center",
           thStyle: {
-            width: '100px',
+            width: '80px',
           },
         },
         {
@@ -270,18 +275,27 @@ export default {
           key: "region",
           thClass: "text-center",
           tdClass: "text-center",
+          thStyle: {
+            width: '60px',
+          },
         },
         {
           label: this.$t('fair_price.references.type_of_shopping'),
           key: "type_of_shopping",
           thClass: "text-center",
           tdClass: "text-center",
+          thStyle: {
+            width: '70px',
+          },
         },
         {
           label: this.$t('fair_price.references.priceMarkets'),
           key: "priceMarkets",
           thClass: "text-center",
           tdClass: "text-center",
+          thStyle: {
+            width: '70px',
+          },
         },
         {
           label: this.$t('fair_price.date'),
@@ -289,7 +303,7 @@ export default {
           thClass: "text-center",
           tdClass: "text-center",
           thStyle: {
-            width: '100px',
+            width: '70px',
           },
         },
         // {

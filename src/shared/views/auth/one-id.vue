@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-overlay :show="loading" class="loader">
+    <b-overlay :show="loading" class="loader d-lg-block d-none">
       <div class="wrap-login100">
         <div class="body-content">
           <div class="login100-more">
@@ -75,8 +75,8 @@
             </div>
 
           </div>
-
         </div>
+
         <div class="footer-info">
           <div class="txt-left-footer">
             {{ $t('system.footer_left_text') }}
@@ -87,6 +87,77 @@
         </div>
       </div>
     </b-overlay>
+
+    <b-container class="mobile-version d-lg-none d-block px-3">
+      <b-row>
+        <b-col cols="12">
+          <div>
+            <b-dropdown variant="white" style="color: white" right toggle-class="header-item" class="language-bar-res d-flex">
+              <template v-slot:button-content>
+                {{ text }}
+                <!--                <span class="flag-icon flag-icon-uz" id="selectSpan"-->
+                <!--                      style="width: 21px; height: 21px; border-radius: 50%; background-size: cover"></span>-->
+                <!-- Uzbek flag icon -->
+              </template>
+              <b-dropdown-item
+                  v-for="(entry, i) in languages"
+                  :key="i"
+                  :value="entry"
+                  :class="{ active: currentLocale.language === entry.language }"
+                  @click="changeLocale(entry.language)"
+                  class="notify-item"
+              >
+                <!--                <img :src="entry.flag" alt="Flag" class="language-img">-->
+                <span class="align-middle">{{ entry.title }}</span>
+              </b-dropdown-item>
+            </b-dropdown>
+          </div>
+        </b-col>
+        <b-col cols="12">
+          <div style="margin-top: 145px;">
+            <b-row class="main-txt-responsive mb-1">FAIR TECH</b-row>
+            <b-row class="welcome-text-responsive mb-5">{{ $t('system.oneId.welcome_text') }}</b-row>
+            <b-row class="bg-white p-3 oneID-res d-flex align-items-center mb-4">
+              <img width="80" src="../auth/images/loginImages/oneID.svg" alt="">
+              <b-card-text style="color: #2C675B; font-size: 15px" class="ml-4">{{ $t('system.oneId.login_with') }}</b-card-text>
+            </b-row>
+            <b-row>
+              <div class="container-login100-form-btn-res">
+                <a href='https://sso.egov.uz/sso/oauth/Authorization.do?response_type=one_code&client_id=fair_tech&redirect_uri=https://my.fairtech.uz/login&scope=fair_tech&state=eyJtZXRob2QiOiJJRFBXIn0=selfOne Id,left=0,top=0,width=1000,height=1000,toolbar=0,scrollbars=0,status=0' class="login100-form-btn-res btn">
+                  {{ $t('system.login') }}
+                </a>
+              </div>
+            </b-row>
+            <b-card-text>
+              <span class="info-text-responsive d-flex flex-column justify-content-center font-size-12 text-white my-5 pt-4">{{ $t('system.oneId.text_info') }}</span>
+            </b-card-text>
+
+
+            <div class="text-footer-responsive mt-5">
+              <p style="color:white;">{{ $t('system.tex_support') }}</p>
+              <div class="d-flex align-items-center">
+                <img src="../auth/images/loginImages/phone.svg" alt="">
+                <p class="ml-2" style="color: #FFFFFF">+ 99871 1234567</p>
+              </div>
+
+
+              <div>
+                <div class="d-flex align-items-center my-2">
+                <img src="../auth/images/loginImages/message.svg" alt="">
+                <a href="#" class="svg-footer2 ml-2">@rqbot</a>
+                </div>
+                <div>
+                  <img src="../auth/images/loginImages/tutorial.svg" alt="">
+                  <a v-if="checkLocale" href="https://fairtech.uz/my.fairtech.uz/instruction/%D0%A2%D0%B0%D1%88%D2%9B%D0%B8_%D1%84%D0%BE%D0%B9%D0%B4%D0%B0%D0%BB%D0%B0%D0%BD%D1%83%D0%B2%D1%87%D0%B8%D0%BB%D0%B0%D1%80_%D1%83%D1%87%D1%83%D0%BD_%D2%9B%D1%9E%D0%BB%D0%BB%D0%B0%D0%BD%D0%BC%D0%B0_%D0%9A%D0%B8%D1%80%D0%B8%D0%BB%D0%BB_hyfymufngipfzilhhindggcnttslftylmdpqatruwdfhoxidwxkpmiftcqwwmrtwhdxbtawintdikmpxkspvurzdvyjgjeztnawn1698044334964.pdf" target="_blank"><span class="svg-footer3 cursor-pointer"> {{ $t('system.tutorial') }}</span></a>
+                  <a v-else href="https://fairtech.uz/my.fairtech.uz/instruction/%D0%A2%D0%B0%D1%88%D2%9B%D0%B8_%D1%84%D0%BE%D0%B9%D0%B4%D0%B0%D0%BB%D0%B0%D0%BD%D1%83%D0%B2%D1%87%D0%B8%D0%BB%D0%B0%D1%80_%D1%83%D1%87%D1%83%D0%BD_%D2%9B%D1%9E%D0%BB%D0%BB%D0%B0%D0%BD%D0%BC%D0%B0_%D0%9B%D0%BE%D1%82%D0%B8%D0%BD_hvginiatpzbhvzxfvdgzihioarvqwkacrsrcmuxoyrmhubsytekuweilrtdcnwtytkkhmjdrekxdpsvffvnstzitwwsjykltcmwn1698044432180.pdf" target="_blank"><span class="svg-footer3 cursor-pointer"> {{ $t('system.tutorial') }}</span></a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
@@ -263,6 +334,12 @@ ul, li {
   list-style-type: none;
 }
 
+.mobile-version{
+  height: 100vh;
+  background-image: url("images/loginImages/bgr_40.png");
+}
+
+
 .language-bar {
 //background-color: #E1E8E7;
 //border-radius: 50%;
@@ -276,6 +353,23 @@ ul, li {
   left: 50px;
   position: absolute;
   border: 2px solid #2C665A;
+  border-radius: 6px;
+  width: 68px;
+  height: 40px;
+}
+.language-bar-res {
+//background-color: #E1E8E7;
+//border-radius: 50%;
+//width: 33px;
+//height: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  top: 50px;
+  left: 0px;
+  position: absolute;
+  border: 2px solid #fff;
   border-radius: 6px;
   width: 68px;
   height: 40px;
@@ -499,6 +593,9 @@ iframe {
   bottom: 5%;
   left: 20%;
 }
+.text-footer-responsive{
+  width: 100%;
+}
 
 .text-footer2 {
   font-family: "NoirPro-Regular", sans-serif;
@@ -546,10 +643,6 @@ iframe {
   height: 700px;
   background-image: url("images/loginImages/logo.png");
   background-size: cover;
-}
-
-.login100-more {
-
 }
 
 .language-select select {
@@ -823,6 +916,11 @@ input.input100 {
   /*flex-wrap: wrap;*/
   justify-content: center;
 }
+.container-login100-form-btn-res {
+  width: 100%;
+  max-width: 500px;
+
+}
 
 .login100-form-btn {
   display: flex;
@@ -830,6 +928,29 @@ input.input100 {
   /*padding: 0 20px;*/
   /*background: #6675df;*/
   width: 590px;
+  height: 50px;
+  justify-content: center;
+  border-radius: 6px;
+  border: 2px solid #FFF;
+  background: rgba(255, 255, 255, 0.25);
+  font-family: "NoirPro-Regular", sans-serif;
+  font-size: 20px;
+  color: #fff;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  align-items: center;
+
+  transition: all 0.4s;
+  /*margin-right: 140px;*/
+  /*margin-top: 15px;*/
+}
+.login100-form-btn-res{
+  display: flex;
+  /*align-items: center;*/
+  /*padding: 0 20px;*/
+  /*background: #6675df;*/
+  width: 100%;
   height: 50px;
   justify-content: center;
   border-radius: 6px;
@@ -920,6 +1041,14 @@ select:-webkit-autofill:focus {
   width: 333px;
   height: 100px;
 }
+.welcome-text-responsive {
+  width: 100%;
+  color: #FFF;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 .main-txt {
   color: #FFF;
   font-size: 30px;
@@ -932,14 +1061,33 @@ select:-webkit-autofill:focus {
   width: 333px;
   height: 100px;
 }
+.main-txt-responsive {
+  width: 100%;
+  color: #FFF;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 .oneID {
   width: 590px;
   height: 101px;
   border-radius: 20px;
 }
+.oneID-res {
+  width: 100%;
+  height: 70px;
+  border-radius: 15px;
+}
 .info-text {
   width: 588px;
   height: 212px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.info-text-responsive {
+  width: 100%;
   font-style: normal;
   font-weight: 400;
   line-height: normal;

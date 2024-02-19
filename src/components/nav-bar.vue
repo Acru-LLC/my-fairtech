@@ -17,6 +17,7 @@ export default {
   data() {
     return {
       userInfos:{},
+      sideBarShowHide:false,
       employeePhoto: TokenService.getUserAvatarUrl(),
       dropdownActive: false,
       notificationList: [],
@@ -110,6 +111,26 @@ export default {
     mainLogo() {
       TokenService.removeCurrentProject();
       this.$router.push('/main')
+    },
+    toggleMenuRes() {
+      this.$parent.toggleMenu(true);
+      this.sideBarShowHide = !this.sideBarShowHide
+      // document.getElementById("beforeTitleText").setAttribute("hidden", "")
+      // document.getElementById("afterTitleText").removeAttribute("hidden")
+      const after = document.getElementById("afterTitleText"),
+          before = document.getElementById("beforeTitleText"),
+          chevron = document.getElementById("bars-icon");
+
+      // if (before.hasAttribute("hidden")) {
+        if (!this.sideBarShowHide) {
+        // before.removeAttribute("hidden")
+        chevron.className = "fa fa-times"
+        // after.setAttribute("hidden", "")
+      } else {
+        // before.setAttribute("hidden", "")
+        // after.removeAttribute("hidden")
+        chevron.className = "fa fa-bars"
+      }
     },
     toggleMenu() {
       this.$parent.toggleMenu(true);
@@ -465,7 +486,7 @@ export default {
           <div
               tag="a"
               @click="mainLogo"
-              class="logo logo-dark mt-2"
+              class="logo logo-dark mt-lg-2 mt-0"
               style="cursor:pointer;"
           >
                         <span class="logo-sm">
@@ -494,7 +515,7 @@ export default {
                 <img src="@/shared/views/auth/images/mainPageImages/flags/logo.svg" alt height=80%/>
             </span>
           </router-link>
-          <div class="header-text mt-2" id="beforeTitleText">
+          <div class="d-lg-block d-none header-text mt-2" id="beforeTitleText">
             <div class="header-main-text cursor-pointer"><a @click="mainLogo()"><span>{{ $t('system.title') }}</span></a></div>
             <div class="header-sub-text"><span>{{ $t('system.sub_title') }}</span></div>
           </div>
@@ -504,11 +525,12 @@ export default {
       <button
           id="vertical-menu-btn"
           type="button"
-          class="btn font-size-20 header-item btn-menu"
+          class="btn d-lg-block d-none font-size-20 header-item btn-menu"
           @click="toggleMenu"
       >
         <i class="fa fa-chevron-right" style="color: #2C665A;" id="chevron-icon"></i>
       </button>
+
       <div class="header-text mt-2" id="afterTitleText" hidden>
         <div class="header-main-text"><a href="#"><span>{{ $t('system.title') }}</span></a></div>
         <div class="header-sub-text"><span>{{ $t('system.sub_title') }}</span></div>
@@ -527,7 +549,7 @@ export default {
         <!--                        <i class="bx bx-video"></i>-->
         <!--                    </button>-->
         <!--                </router-link>-->
-        <div class="d-flex align-items-center mr-3" style="top: 10px">
+        <div class="d-lg-flex d-none align-items-center mr-3" style="top: 10px">
           <div class="live-icon mr-3">
             <div class="live-effect"></div>
           </div>
@@ -908,7 +930,7 @@ export default {
             <i class="mdi mdi-bell-off-outline"></i>
           </div>
         </b-dropdown>
-        <div class="date-label">
+        <div class="date-label d-lg-block d-none">
           <span></span>
           <span></span>
           <span></span>
@@ -937,7 +959,7 @@ export default {
                 :src="`${userInfos.passportPhoto ? `data:image/png;base64, ${userInfos.passportPhoto}`: require('../shared/views/auth/images/mainPageImages/flags/user.png')}`"
                 alt=""
             />
-            <span class="d-non  e d-xl-inline-block ms-1">
+            <span class="d-none d-lg-inline-block ms-1">
                             {{
                 userInfos.username
               }}
@@ -960,6 +982,16 @@ export default {
             {{ $t("actions.logout") }}
           </a>
         </b-dropdown>
+        <div>
+          <button
+              id="vertical-menu-btn"
+              type="button"
+              class="btn d-lg-none d-block font-size-20 header-item"
+              @click="toggleMenuRes"
+          >
+            <i :class="sideBarShowHide ? 'fa fa-bars' : 'fa fa-times'" style="color: #2C665A;"></i>
+          </button>
+        </div>
       </div>
     </div>
   </header>

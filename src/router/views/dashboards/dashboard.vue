@@ -340,9 +340,9 @@ COMPUTED */
   <div>
     <Layout>
       <PageHeader :title="title" class="mt-3"/>
-      <div class="mx-3">
-        <div class="row">
-          <div class="col-xl-5">
+      <div class="mx-lg-3 mx-0">
+        <div class="row px-3">
+          <div class="col-xl-5 col-12 px-0">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
 <!--              <ol class="carousel-indicators">-->
 <!--                <li data-target="#myCarousel" :data-slide-to="index" :class="{ active: index === 0 }" v-for="(slide, index) in slideCount()" :key="index"></li>-->
@@ -365,10 +365,10 @@ COMPUTED */
                     <!--          </div>-->
                     <div class="card-body pt-0 col-part-1">
                       <div class="row">
-                        <div class="col-sm-12 py-5">
+                        <div class="col-sm-12 py-lg-5 py-1">
 <!--                          <a href="#"><button type="button" class="btn btn-success mt-3 mb-3" style="background-color: #1DA78E; z-index: 2">{{ $t('dashboard.slide_bar.info_btn') }}</button></a>-->
-                          <h4 class="body-card-text text-white text-uppercase mt-3">{{ $t('dashboard.slide_bar.ask_title') }}</h4>
-                          <p class="card-text">{{ $t('dashboard.slide_bar.ask_info') }}</p>
+                          <h4 class="body-card-text-res text-white text-uppercase mt-3">{{ $t('dashboard.slide_bar.ask_title') }}</h4>
+                          <p class="card-text-res">{{ $t('dashboard.slide_bar.ask_info') }}</p>
 <!--                          <a href="#"><button type="button" class="btn btn-success" style="background-color: #1DA78E">{{ $t('dashboard.slide_bar.detail_btn') }}</button></a>-->
                         </div>
 <!--                        JSHSHIR-->
@@ -437,7 +437,7 @@ COMPUTED */
             </div>
           </div>
           <!-- end col -->
-          <div class="col-xl-7 bg-white d-flex justify-content-around flex-column">
+          <div class="col-xl-7 bg-white d-lg-flex justify-content-around flex-column d-none">
             <div class="row">
               <div class="col-md-5">
                 <h5 class="font-size-16" style="color: #ABABAD">{{ $t('dashboard.results.done_task') }}</h5>
@@ -493,19 +493,85 @@ COMPUTED */
               </div>
             </div>
           </div>
+
+          <div class="col-12 py-3 bg-white d-lg-none justify-content-around d-block" style="border: 2px solid #2C665A; border-radius: 20px">
+            <div class="row">
+              <div class="col-md-5 col-12">
+                <h5 class="font-size-16" style="background-color: #2b675b; color: white; padding: 5px;">{{ $t('dashboard.results.done_task') }}</h5>
+              </div>
+            </div>
+            <div class="row d-flex justify-content-start align-items-center pl-2 py-2">
+              <div class="col-1 d-flex align-items-center justify-content-center">
+                <i class="fa fa-calendar" style="font-weight: bold; color: #2b675b; font-size: 18px"></i>
+              </div>
+              <div class="col-11 pl-0">
+                <h5 class="font-size-18 mb-0 pt-1" style="color: #2C665A">1-{{ getCurrentDate }}</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-5">
+                <h4 class="font-size-20" style="color: #2C665A">{{ $t('dashboard.results.saw_task') }}</h4>
+              </div>
+              <div class="col-12 py-2">
+                <div class="row d-flex align-items-center">
+                  <div class="col-4">
+                    <h3 class="result-text-res">{{ $t('dashboard.results.total') }}</h3>
+                  </div>
+                    <div class="col-8 d-flex ">
+                      <span class="btn btn-info"><i class="fa fa-check"></i></span>
+                      <div class="ml-2 d-flex justify-content-around flex-column">
+                        <span class="font-size-16" style="color: #85DFC2">{{ $t('dashboard.results.status.2') }}</span>
+                        <span class="font-size-20" style="color: #1DA78E">{{appealCount.finished}} {{ $t('dashboard.results.ta') }}</span>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div class="col-12 py-2">
+                <div class="row d-flex align-items-center">
+                  <div class="col-4">
+                    <h3 class="result-text-res">{{appealCount.all}} {{ $t('dashboard.results.ta') }}</h3>
+                  </div>
+                  <div class="col-8 d-flex ">
+                    <span class="btn btn-danger"><i class="fa fa-arrow-down"></i></span>
+                    <div class="ml-2 d-flex justify-content-around flex-column">
+                      <span class="font-size-16" style="color: #EBA77C">{{ $t('dashboard.results.status.1') }}</span>
+                      <span class="font-size-20" style="color: #E06A1F">{{appealCount.returned}}  {{ $t('dashboard.results.ta') }}</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-12 py-2">
+                <div class="row d-flex align-items-center">
+                  <div class="col-4">
+                    <h3 class="result-text-res">{{appealCount.thisMonth}} {{ $t('dashboard.results.ta') }}</h3>
+                  </div>
+                  <div class="col-8 d-flex ">
+                    <span class="btn btn-warning"><i class="fa fa-hourglass-end"></i></span>
+                    <div class="ml-2 d-flex justify-content-around flex-column">
+                      <span class="font-size-16" style="color: #E7DD57">{{ $t('dashboard.results.status.3') }}</span>
+                      <span class="font-size-20" style="color: #CCBF07">{{appealCount.process}} {{ $t('dashboard.results.ta') }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="p-2" style="border-top: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-          <b-row class="text-white p-1 col-3" style="background-color: #236257; border-radius: 2px">
-            {{ $t('product_dashboard_info.customer_ifo_title') }}
+        <div class="p-2 my-2" style="border: 2px solid #2b675b; border-radius: 20px;">
+          <b-row class="mt-2">
+            <b-col cols="12" lg="3">
+             <h5 class="text-white" style="background-color: #236257; padding: 5px;">{{ $t('product_dashboard_info.customer_ifo_title') }}</h5>
+            </b-col>
           </b-row>
           <b-row class="mt-3">
-            <b-col cols="2" style="text-align: center">
+            <b-col cols="12" lg="2" style="text-align: center">
               <img class="user-img"
                    :src="`${userInfos.passportPhoto ? `data:image/png;base64, ${userInfos.passportPhoto}`: require('../images/user.png')}`"
                    alt=""
               >
             </b-col>
-            <b-col cols="2">
+            <b-col cols="12" lg="2">
               <div>
                 <p>{{ $t('product_dashboard_info.customer_infos.surname') }}</p>
                 <h6>{{userInfos.lastName}}</h6>
@@ -515,7 +581,7 @@ COMPUTED */
                 <h6>{{userInfos.middleName}}</h6>
               </div>
             </b-col>
-            <b-col cols="2">
+            <b-col cols="12" lg="2">
               <div>
                 <p>{{ $t('product_dashboard_info.customer_infos.birth_date') }}</p>
                 <h6>{{userInfos.birthday}}</h6>
@@ -525,7 +591,7 @@ COMPUTED */
                 <h6>{{userInfos.pinfl}}</h6>
               </div>
             </b-col>
-            <b-col cols="2">
+            <b-col cols="12" lg="2">
               <div>
 <!--                <p>{{ $t('product_dashboard_info.customer_infos.birth_region') }}</p>-->
                 <p>{{ $t('product_dashboard_info.customer_infos.birthArea') }}</p>
@@ -539,7 +605,7 @@ COMPUTED */
 
               </div>
             </b-col>
-            <b-col cols="2">
+            <b-col cols="12" lg="2">
               <div>
                 <p>{{ $t('product_dashboard_info.customer_infos.passport_data') }}</p>
                 <h6>{{userInfos.passportSeries}} {{userInfos.passportNumber}}</h6>
@@ -549,7 +615,7 @@ COMPUTED */
                 <h6>{{userInfos.passportEndDate}}</h6>
               </div>
             </b-col>
-            <b-col cols="2">
+            <b-col cols="12" lg="2">
               <div>
                 <p>{{ $t('product_dashboard_info.phone_number') }}</p>
                 <h6>{{userInfos.phoneNumber}}</h6>
@@ -591,9 +657,19 @@ body-card-text{
   font-size: 20px;
   z-index: 2;
 }
+body-card-text-res{
+  color: #FFFFFF;
+  font-size: 15px;
+  z-index: 2;
+}
 .card-text{
   color: #FFFFFF;
   font-size: 15px;
+  z-index: 2;
+}
+.card-text-res{
+  color: #FFFFFF;
+  font-size: 12px;
   z-index: 2;
 }
 .col-xl-7{
@@ -632,6 +708,11 @@ body-card-text{
   font-size: 40px;
   color: #1DA78E;
   line-height: 14px;
+}
+.result-text-res{
+  font-size: 30px;
+  color: #1DA78E;
+  line-height: 5px;
 }
 
 .col3-text .row:nth-child(2) span:nth-child(1){

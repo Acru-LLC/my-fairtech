@@ -16,7 +16,7 @@
                   style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px; margin-top:10px;">
                 <div>
                   <b-row>
-                    <b-col class="px-3 py-0">
+                    <b-col class="px-2 py-0">
                       <div
                           style="font-size: 16px;  background: #2b675b; color: white; padding: 5px; width: 100%; margin-bottom: 10px; border-radius: 2px; font-weight: bold">
                         {{ $t('fair_price.info') }}
@@ -67,13 +67,13 @@
                 </div>
               </b-card>
             </b-col>
-            <b-col>
+            <b-col cols="12" lg="9">
               <b-card style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px;margin-top:10px;">
                 <div>
                   <b-row>
-                    <b-col cols="5" class="px-3 py-0">
+                    <b-col cols="12" lg="5" class="px-lg-5 px-2 py-0">
                       <div
-                          style="font-size: 16px;background: #2b675b; color: white; padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 2px; font-weight: bold">
+                          style="font-size: 16px;background-color: #2b675b; color: white; padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 2px; font-weight: bold">
                         {{ $t('fair_price.info_product') }}
                       </div>
                     </b-col>
@@ -194,7 +194,7 @@
                       ></b-form-file>
                     </b-col>
                   </b-row>
-                  <b-row class="p-1">
+                  <b-row class="p-lg-1 p-0">
                     <b-col cols="12" md="9"></b-col>
                     <b-col cols="12" md="3" class="mt-3">
                       <b-overlay
@@ -207,7 +207,7 @@
                       >
                         <b-button
                             :disabled="loader"
-                            class="text-capitalize float-end p-1 ml-1"
+                            class="text-capitalize float-end p-1 ml-lg-1 ml-0"
                             @click="saveData"
                             block
                             style="background: #2b675b; font-size: 16px"
@@ -232,7 +232,7 @@
       </b-container>
     </b-card>
 
-    <b-card style="border:1px solid #2b675b; border-radius: 5px; padding: 15px; margin: 15px">
+    <b-card style="border:1px solid #2b675b; border-radius: 5px; padding: 15px; margin: 15px; overflow: auto;">
       <b-container fluid="100%">
         <AllList ref="allListRef"></AllList>
       </b-container>
