@@ -2729,24 +2729,23 @@
       "salerEmail": "Sotuvchi tashkilotning elektron pochta manzili",
       "salerRegionName": "Sotuvchi tashkilot viloyati",
       "salerDistrictName": "Sotuvchi tashkilot tumani",
-      "buyerName" : "Xaridor tashkilot nomi",
-      "buyerTin" : "Xaridor tashkilot STIRi",
-      "buyerAddress" : "Xaridor tashkilot manzili",
-      "buyerEmail" : "Xaridor tashkilotning elektron pochta manzili",
-      "buyerRegionName" : "Xaridor tashkilot viloyati",
-      "buyerDistrictName" : "Xaridor tashkilot tumani",
-      "productName" : "Maxsulot nomi",
-      "productMxikCode" : "Maxsulot MXIK kodi",
-      "productPaymentPrice" : "Sotilgan narx",
-      "productReferentPrice" : "Sotish ruxsat berilgan narx",
-      "productOneItemDifferentPrice" : "1 ta maxsulot uchun oshirilgan narx",
-      "productDifferencePrice" : "To`liq maxsulot soni uchun oshirilgan narx",
-      "productCount" : "Sotilgan maxsulot soni",
-      "productPackageName" : "O`lchov birligi",
-      "productPackageCode" : "Paket kodi",
-      "productCommittentTinOrPinfl" : "Ishlab chiqaruvchi tashkilot STIRi"
+      "buyerName": "Xaridor tashkilot nomi",
+      "buyerTin": "Xaridor tashkilot STIRi",
+      "buyerAddress": "Xaridor tashkilot manzili",
+      "buyerEmail": "Xaridor tashkilotning elektron pochta manzili",
+      "buyerRegionName": "Xaridor tashkilot viloyati",
+      "buyerDistrictName": "Xaridor tashkilot tumani",
+      "productName": "Maxsulot nomi",
+      "productMxikCode": "Maxsulot MXIK kodi",
+      "productPaymentPrice": "Sotilgan narx",
+      "productReferentPrice": "Sotish ruxsat berilgan narx",
+      "productOneItemDifferentPrice": "1 ta maxsulot uchun oshirilgan narx",
+      "productDifferencePrice": "To`liq maxsulot soni uchun oshirilgan narx",
+      "productCount": "Sotilgan maxsulot soni",
+      "productPackageName": "O`lchov birligi",
+      "productPackageCode": "Paket kodi",
+      "productCommittentTinOrPinfl": "Ishlab chiqaruvchi tashkilot STIRi"
     },
-
     "pharm_chakana": "Chakana",
     "new": {
       "sendRequestToPharmacy": "Dorixonaga so'rov yuborish",
@@ -2817,6 +2816,7 @@
       "typeWork": "Hujjat turi",
       "sendFile": "Hujjat yuborilgan sana",
       "fileName": "Fayl nomi",
-      "seeDown": "Ko'rish va yuklab olish",
-
+      "seeDown": "Ko'rish va yuklab olish"
+    }
+  }
 }
