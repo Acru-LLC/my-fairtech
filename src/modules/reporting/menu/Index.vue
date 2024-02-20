@@ -25,7 +25,7 @@
                 <b-row>
                   <b-col class="px-3 py-0">
                     <BaseInputWithValidation
-                        v-model="editingItem.inn"
+                        v-model="editingItem.stir"
                         mask="#########"
                         class="required"
                         placeholder="123456789"
@@ -47,9 +47,9 @@
                       </template>
                     </BaseInputWithValidation>
                   </b-col>
-                  <b-col  class="px-3" >
+                  <b-col class="px-3">
                     <BaseInputWithValidation
-                        v-model="editingItem.minPrice"
+                        v-model="editingItem.ktut"
                         :label="$t('reporting.main.form1.name2')"
                         :placeholder="$t('')"
                         class="required"
@@ -57,9 +57,9 @@
                         label-on-top
                     />
                   </b-col>
-                  <b-col  class="px-3" >
+                  <b-col class="px-3">
                     <BaseInputWithValidation
-                        v-model="editingItem.maxPrice"
+                        v-model="editingItem.name"
                         :label="$t('reporting.main.form1.name3')"
                         :placeholder="$t('')"
                         class="required"
@@ -67,9 +67,9 @@
                         label-on-top
                     />
                   </b-col>
-                  <b-col  class="px-3" >
+                  <b-col class="px-3">
                     <BaseInputWithValidation
-                        v-model="editingItem.maxPrice"
+                        v-model="editingItem.fio"
                         :label="$t('reporting.main.form1.name4')"
                         :placeholder="$t('')"
                         class="required"
@@ -77,9 +77,9 @@
                         label-on-top
                     />
                   </b-col>
-                  <b-col  class="px-3" >
+                  <b-col class="px-3">
                     <BaseInputWithValidation
-                        v-model="editingItem.maxPrice"
+                        v-model="editingItem.address"
                         :label="$t('reporting.main.form1.name5')"
                         :placeholder="$t('')"
                         class="required"
@@ -103,34 +103,34 @@
                 <b-row>
                   <b-col cols="12" md="3" class="px-3 py-0">
                     <BaseSelectWithValidation
-                        v-model="editingItem.code"
+                        v-model="editingItem.codeSoxa"
                         class="required"
                         rules="required"
                         :label="$t('reporting.main.form2.name1')"
                         label-on-top
                     >
                       <b-form-select-option
-                          value="FOODS">{{ $t('reporting.main.form3.title') }}
+                          value="SANOAT">{{ $t('reporting.main.form3.title') }}
                       </b-form-select-option>
                       <b-form-select-option
-                          value="OTHERS">{{ $t('reporting.main.form4.title') }}
+                          value="HIZMAT">{{ $t('reporting.main.form4.title') }}
                       </b-form-select-option>
                     </BaseSelectWithValidation>
                   </b-col>
 
                   <b-col cols="12" md="3" class="px-3">
                     <BaseSelectWithValidation
-                        v-model="editingItem.code"
+                        v-model="editingItem.codeXisobod"
                         class="required"
                         rules="required"
                         :label="$t('reporting.main.form2.name2')"
                         label-on-top
                     >
                       <b-form-select-option
-                          value="FOODS">{{ $t('reporting.main.form2.name3') }}
+                          value="6OYLIK">{{ $t('reporting.main.form2.name3') }}
                       </b-form-select-option>
                       <b-form-select-option
-                          value="OTHERS">{{ $t('reporting.main.form2.name4') }}
+                          value="YILLIK">{{ $t('reporting.main.form2.name4') }}
                       </b-form-select-option>
                     </BaseSelectWithValidation>
                   </b-col>
@@ -141,35 +141,309 @@
                         label-cols-sm="3"
                         label-align-sm="right"
                     >
-                     <b-row>
-                       <b-col>
-                         <BaseDatePickerWithValidation
-                             not-required
-                             disable-after
-                             custom-styles="grid-template-columns: 100%;"
-                             :only-form-element="true"
-                             v-model="editingItem.date"
-                             lang="ru"
-                             :placeholder="$t('reporting.main.form2.name6')"
-                         >
-                         </BaseDatePickerWithValidation>
-                       </b-col>
-                       <b-col>
-                         <BaseDatePickerWithValidation
-                             not-required
-                             disable-after
-                             custom-styles="grid-template-columns: 100%;"
-                             :only-form-element="true"
-                             v-model="editingItem.date"
-                             :placeholder="$t('reporting.main.form2.name7')"
-                             lang="ru"
-                         ></BaseDatePickerWithValidation>
-                       </b-col>
-                     </b-row>
+                      <b-row>
+                        <b-col>
+                          <BaseDatePickerWithValidation
+                              not-required
+                              disable-after
+                              custom-styles="grid-template-columns: 100%;"
+                              :only-form-element="true"
+                              v-model="editingItem.dateFrom"
+                              lang="ru"
+                              :placeholder="$t('reporting.main.form2.name6')"
+                          >
+                          </BaseDatePickerWithValidation>
+                        </b-col>
+                        <b-col>
+                          <BaseDatePickerWithValidation
+                              not-required
+                              disable-after
+                              custom-styles="grid-template-columns: 100%;"
+                              :only-form-element="true"
+                              v-model="editingItem.dateTo"
+                              :placeholder="$t('reporting.main.form2.name7')"
+                              lang="ru"
+                          ></BaseDatePickerWithValidation>
+                        </b-col>
+                      </b-row>
                     </b-form-group>
-
                   </b-col>
 
+                </b-row>
+              </b-card>
+
+              <b-card v-if="editingItem.codeSoxa == 'SANOAT'"
+                      style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px;margin-top:10px;">
+                <b-row>
+                  <b-col cols="3" class="px-3 py-0">
+                    <div
+                        style="font-size: 16px;background: #2b675b; color: white; padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 2px; font-weight: bold">
+                      {{ $t('reporting.main.form3.title') }}
+                    </div>
+                  </b-col>
+                  <b-col cols="3" class="px-3 py-0"></b-col>
+                  <b-col cols="3" class="px-3 py-0"></b-col>
+                  <b-col cols="3" class="px-3 py-0">
+                    <b-button-group style="width: 100%;">
+                      <b-button
+                          block
+                          variant="primary"
+                          class="pt-1 mb-4 pb-1 pr-2 pl-2"
+                      >
+                        <i class="fa fa-plus"></i>
+                        <span style="font-size: 14px">
+                        {{ $t("actions.add") }}
+                      </span>
+                      </b-button>
+                      <b-button
+                          variant="warning"
+                          class="pt-1 mb-4 pb-1 pr-2 pl-2"
+                      >
+                        <i class="fa fa-eye"></i>
+                      </b-button>
+                    </b-button-group>
+                  </b-col>
+                </b-row>
+                <b-row>
+                  <b-col class="px-3">
+                    <BaseInputWithValidation
+                        v-model="editingItem.codeTiftn"
+                        :label="$t('reporting.main.form3.name1')"
+                        :placeholder="$t('')"
+                        class="required"
+                        rules="required"
+                        label-on-top
+                    />
+                  </b-col>
+                  <b-col class="px-3">
+                    <BaseInputWithValidation
+                        v-model="editingItem.nameProduct"
+                        :label="$t('reporting.main.form3.name2')"
+                        :placeholder="$t('')"
+                        class="required"
+                        rules="required"
+                        label-on-top
+                    />
+                  </b-col>
+                  <b-col class="px-3">
+                    <BaseInputWithValidation
+                        v-model="editingItem.codeMct"
+                        :label="$t('reporting.main.form3.name3')"
+                        :placeholder="$t('')"
+                        class="required"
+                        rules="required"
+                        label-on-top
+                    />
+                  </b-col>
+                  <b-col class="px-3">
+                    <BaseInputWithValidation
+                        v-model="editingItem.madePowerAll"
+                        :label="$t('reporting.main.form3.name4')"
+                        :placeholder="$t('')"
+                        class="required"
+                        rules="required"
+                        label-on-top
+                    />
+                  </b-col>
+                </b-row>
+
+                <b-row class="mt-4">
+                  <b-col cols="3" class="px-3 py-0">
+                    <div class="text-center"
+                         style="font-size: 14px;border:1px solid #2b675b;  padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 4px; font-weight: bold; cursor: none">
+                      {{ $t('reporting.main.form3.name5') }} <br>
+                      {{ $t('reporting.main.form3.name11') }}
+                    </div>
+                    <b-row>
+                      <b-col class="px-1 py-0">
+                        <BaseInputWithValidation
+                            v-model="editingItem.madeTonna"
+                            :label="$t('reporting.main.form3.name9')"
+                            :placeholder="$t('')"
+                            class="required"
+                            rules="required"
+                            label-on-top
+                        />
+                      </b-col>
+                      <b-col class="px-1 py-0">
+                        <BaseInputWithValidation
+                            v-model="editingItem.madeSum"
+                            :label="$t('reporting.main.form3.name10')"
+                            :placeholder="$t('')"
+                            class="required"
+                            rules="required"
+                            label-on-top
+                        />
+                      </b-col>
+                    </b-row>
+                  </b-col>
+
+                  <b-col cols="3" class="px-3 py-0">
+                    <div class="text-center"
+                         style="font-size: 14px;border:1px solid #2b675b;  padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 4px; font-weight: bold; cursor: none">
+                      {{ $t('reporting.main.form3.name6') }} <br>
+                      {{ $t('reporting.main.form3.name11') }}
+                    </div>
+                    <b-row>
+                      <b-col class="px-1 py-0">
+                        <BaseInputWithValidation
+                            v-model="editingItem.buyTonna"
+                            :label="$t('reporting.main.form3.name9')"
+                            :placeholder="$t('')"
+                            class="required"
+                            rules="required"
+                            label-on-top
+                        />
+                      </b-col>
+                      <b-col class="px-1 py-0">
+                        <BaseInputWithValidation
+                            v-model="editingItem.buySum"
+                            :label="$t('reporting.main.form3.name10')"
+                            :placeholder="$t('')"
+                            class="required"
+                            rules="required"
+                            label-on-top
+                        />
+                      </b-col>
+                    </b-row>
+                  </b-col>
+
+                  <b-col cols="3" class="px-3 py-0">
+                    <div class="text-center"
+                         style="font-size: 14px;border:1px solid #2b675b;  padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 4px; font-weight: bold; cursor: none">
+                      {{ $t('reporting.main.form3.name7') }} <br>
+                      {{ $t('reporting.main.form3.name11') }}
+                    </div>
+                    <b-row>
+                      <b-col class="px-1 py-0">
+                        <BaseInputWithValidation
+                            v-model="editingItem.exportTonna"
+                            :label="$t('reporting.main.form3.name9')"
+                            :placeholder="$t('')"
+                            class="required"
+                            rules="required"
+                            label-on-top
+                        />
+                      </b-col>
+                      <b-col class="px-1 py-0">
+                        <BaseInputWithValidation
+                            v-model="editingItem.exportSum"
+                            :label="$t('reporting.main.form3.name10')"
+                            :placeholder="$t('')"
+                            class="required"
+                            rules="required"
+                            label-on-top
+                        />
+                      </b-col>
+                    </b-row>
+                  </b-col>
+
+                  <b-col cols="3" class="px-3 py-0">
+                    <div class="text-center"
+                         style="font-size: 14px;border:1px solid #2b675b;  padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 4px; font-weight: bold; cursor: none">
+                      {{ $t('reporting.main.form3.name8') }} <br>
+                      {{ $t('reporting.main.form3.name11') }}
+                    </div>
+                    <b-row>
+                      <b-col class="px-1 py-0">
+                        <BaseInputWithValidation
+                            v-model="editingItem.finallyTonna"
+                            :label="$t('reporting.main.form3.name9')"
+                            :placeholder="$t('')"
+                            class="required"
+                            rules="required"
+                            label-on-top
+                        />
+                      </b-col>
+                      <b-col class="px-1 py-0">
+                        <BaseInputWithValidation
+                            v-model="editingItem.finallySum"
+                            :label="$t('reporting.main.form3.name10')"
+                            :placeholder="$t('')"
+                            class="required"
+                            rules="required"
+                            label-on-top
+                        />
+                      </b-col>
+                    </b-row>
+                  </b-col>
+                </b-row>
+              </b-card>
+
+              <b-card v-else-if="editingItem.codeSoxa == 'HIZMAT'"
+                      style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px;margin-top:10px;">
+                <b-row>
+                  <b-col cols="3" class="px-3 py-0">
+                    <div
+                        style="font-size: 16px;background: #2b675b; color: white; padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 2px; font-weight: bold">
+                      {{ $t('reporting.main.form4.title') }}
+                    </div>
+                  </b-col>
+                  <b-col cols="3" class="px-3 py-0"></b-col>
+                  <b-col cols="3" class="px-3 py-0"></b-col>
+                  <b-col cols="3" class="px-3 py-0">
+                    <b-button-group style="width: 100%;">
+                      <b-button
+                          block
+                          variant="primary"
+                          class="pt-1 mb-4 pb-1 pr-2 pl-2"
+                      >
+                        <i class="fa fa-plus"></i>
+                        <span style="font-size: 14px">
+                        {{ $t("actions.add") }}
+                      </span>
+                      </b-button>
+                      <b-button
+                          variant="warning"
+                          class="pt-1 mb-4 pb-1 pr-2 pl-2"
+                      >
+                        <i class="fa fa-info-circle"></i>
+                      </b-button>
+                    </b-button-group>
+                  </b-col>
+                </b-row>
+
+                <b-row>
+                  <b-col class="px-3">
+                    <BaseInputWithValidation
+                        v-model="editingItem.nameService"
+                        :label="$t('reporting.main.form4.name1')"
+                        :placeholder="$t('')"
+                        class="required"
+                        rules="required"
+                        label-on-top
+                    />
+                  </b-col>
+                  <b-col class="px-3">
+                    <BaseInputWithValidation
+                        v-model="editingItem.codeSevice"
+                        :label="$t('reporting.main.form4.name2')"
+                        :placeholder="$t('')"
+                        class="required"
+                        rules="required"
+                        label-on-top
+                    />
+                  </b-col>
+                  <b-col class="px-3">
+                    <BaseInputWithValidation
+                        v-model="editingItem.sumService"
+                        :label="$t('reporting.main.form4.name3')"
+                        :placeholder="$t('')"
+                        class="required"
+                        rules="required"
+                        label-on-top
+                    />
+                  </b-col>
+                  <b-col class="px-3">
+                    <BaseInputWithValidation
+                        v-model="editingItem.exportSumService"
+                        :label="$t('reporting.main.form4.name4')"
+                        :placeholder="$t('')"
+                        class="required"
+                        rules="required"
+                        label-on-top
+                    />
+                  </b-col>
                 </b-row>
               </b-card>
 
@@ -240,7 +514,6 @@ export default {
     }
   },
   async created() {
-    await this.getEmpty();
   },
   computed: {
     computedObserver() {
@@ -250,13 +523,15 @@ export default {
   methods: {
     findContractorByInn() {
       this.loadingStirItems = true
-      if (this.editingItem.inn) {
+      if (this.editingItem.stir && this.editingItem.stir.length == 9) {
         this.loadingStirItems = true
-        integratsiyaService.getSoliqQomitasiInfoByInn(this.editingItem.inn, true)
+        Service.getYuridikShaxsData(this.editingItem.stir, true)
             .then(res => {
-              this.createItem.nameSubject = res.data.fullName
-              this.createItem.nameHeadSubject = res.data.director
-              this.createItem.addressSubject = res.data.address
+              console.log(res.data)
+              this.editingItem.name = res.data.company.name
+              this.editingItem.fio = res.data.accountant.firstName + res.data.accountant.lastName + res.data.accountant.middleName
+              this.editingItem.address = res.data.fullName
+
               this.$toast(this.$t('submodules.integration.statistics_info.download_success'), {type: 'success'});
               this.loadingStirItems = false
             })
@@ -311,21 +586,8 @@ export default {
       })
 
 
-    },
-    async getEmpty() {
-      this.var_default_search_payload.keyword = this.searchKeyword
-      this.var_default_search_payload.itemsPerPage = 500
-
-      await crudAndListsService.getEmpty('price_sum')
-          .then(res => {
-            this.editingItem = res.data
-            // this.editingItem.date = this.getDateFormat(new Date(), '-');
-          })
-          .catch(e => {
-            console.log(e)
-          })
-    },
-  },
+    }
+  }
 }
 const i18n = require("@/i18n");
 </script>

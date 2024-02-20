@@ -3011,7 +3011,6 @@
     "select": "Iltimos, ro'yhatdan birini tanlang",
     "reference": "Ma'lumotnomalar",
     "menu": "Tender savdolari",
-
     "list": "O'rganilgan savdolar",
     "menu_create": "Savdolarni nazorat qilish",
     "status": "Holati",
@@ -4230,11 +4229,11 @@
     }
   },
   "reporting": {
-    "title": "Tovar, moliya va raqamli bozorlar to'g'risidagi xisobotni yuritish",
+    "title": "Tovar, moliya va raqamli bozorlar to'g'risidagi xisobotni yuborish",
     "name": "Onlayn hisobot yuborish",
     "main": {
       "form1": {
-        "title": "subyekt ma'lumoti",
+        "title": "Subyekt ma'lumoti",
         "name1": "STIR",
         "name2": "KTUT",
         "name3": "Nomi",
@@ -4246,26 +4245,27 @@
         "name1": "Soha shakli",
         "name2": "Hisobot davri",
         "name3": "6 oylik",
-        "name4": "yillik",
+        "name4": "Yillik",
         "name5": "Vaqt oralig'i",
         "name6": "dan",
         "name7": "gacha"
       },
       "form3": {
-        "title": "Sanoat",
+        "title": "Sanoat sohasi",
         "name1": "Maxsulot TIF TN kodi",
         "name2": "Maxsulot nomi",
         "name3": "MST kodi",
         "name4": "Ishlab chiqarish quvvati (tonna)",
-        "name5": "Ishlab chiqarish xajmi (QQS va aksizsiz)",
-        "name6": "Sotish xajmi (Ichki bozorda) (QQS va aksizsiz)",
-        "name7": "Export xajmi (QQS va aksizsiz)",
-        "name8": "Yil ohiriga tayyor maxsulot qoldig'i",
+        "name5": "Ishlab chiqarish xajmi ",
+        "name6": "Sotish xajmi (Ichki bozorda)",
+        "name7": "Export xajmi",
+        "name8": "Yil oxiriga tayyor maxsulot qoldig'i",
         "name9": "Tonna",
-        "name10": "Summasi"
+        "name10": "Summasi",
+        "name11": "(QQS va aksizsiz)"
       },
       "form4": {
-        "title": "Xizmat",
+        "title": "Xizmat ko'rsatish sohasi",
         "name1": "Xizmat nomi",
         "name2": "Xizmat kodi",
         "name3": "Xizmat xajmi summasi",
