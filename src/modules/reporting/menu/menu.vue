@@ -1,399 +1,390 @@
 <template>
-  <div>
-    <b-row class="mb-2">
-      <b-col cols="3">
-        <div class="position-relative search-box">
-          <input
-              v-model="searchKeyword"
-              type="text"
-              class="form-control"
-              style="border-radius: 4px !important;"
-              @input="fetchNotificationTableItems()"
-              :placeholder="$t('column.search')"
-          />
-          <i class="bx bx-search-alt search-icon"></i>
-        </div>
-      </b-col>
-      <b-col cols="5"></b-col>
-      <b-col cols="2">
-        <BaseDatePickerWithValidation
-            not-required
-            custom-styles="grid-template-columns: 20% 80% 0 !important;"
-            v-model="createdDate"
-            disable-after
-            :label="$t('submodules.integration.e_auction_info.date')"
-
-            lang="ru"
-        ></BaseDatePickerWithValidation>
-      </b-col>
-      <b-col cols="2">
-        <download-excel
-
-            :data="json_data"
-            :fields="json_fields"
-            :header="$t('submodules.integration.customs_product.title')"
-            worksheet="My Worksheet"
-            :name="`${$t('submodules.integration.customs_product.title')}.xls`"
-        >
-          <b-btn disabled block style="background: #2b675b" @click="downloadExcel" class="mb-2" rounded>
-            <i class="mdi mdi-microsoft-excel me-1"></i> {{ $t('actions.excel_file_upload') }}
-          </b-btn>
-        </download-excel>
-      </b-col>
-    </b-row>
-    <!-- Table data -->
-    <b-table
-        :items="notificationTableItems"
-        :fields="notificationTableFields"
-        id="notification-table"
-        class="custom-b-table custom-b-table-head"
-        bordered
-        small
-        fixed
-        hover
-        show-empty
-        striped>
-
-      <!-- NUMBER OF ITEM -->
-      <template #cell(index)="innerData">
-        {{
-          util_paginate(innerData.index, var_default_search_payload.page, var_default_search_payload.itemsPerPage)
-        }}
-      </template>
-
-      <template #cell(type_product)="innerData">
-        <span v-if="innerData.item.priceProductDto && innerData.item.priceProductDto.code == 'FOODS'">
-             {{
-            $t('fair_price.product_type1')
-          }}
-        </span>
-        <span v-if="innerData.item.priceProductDto && innerData.item.priceProductDto.code == 'OTHERS'">
-             {{
-            $t('fair_price.product_type2')
-          }}
-        </span>
-      </template>
+  <!-- ADVERTISERS SERVICE CARD  :class="{ 'box-style': integration.isDone, 'noClick': !integration.isDone }"
+  :class="{ 'disable-img': !integration.isDone }"-->
+  <section id="advertisers" class="advertisers-service-sec pt-4 pb-5">
+    <div v-if="!toRouterLoader">
+      <b-row class="p-1 font-size-20 font-weight-bold col-3 mx-auto" style="color: #236257; font-size: 1.625rem !important;" >
+        {{ $t('reporting.name') }}
+      </b-row>
+      <b-row class="rais-page-respons my-2">
+        <b-col cols="12" sm="6" md="4" lg="3" xl="2" class="frame-hover" v-for="(integration, index) in listPro"
+               :key="index">
+          <div :id="!integration.perm ? index + 'tooltip-button-variant' : ''"
+               :class="{ 'box-style': integration.isDone, 'box-style': integration.perm, 'box-notAccess-style': !integration.perm, 'noClick': !integration.isDone }"
+               @click="toRouter(integration.routerName)" class="box-style">
+            <div>
+              <img :class="'img-content-full'"
+                   :src="require(`@/assets/integration/${integration.image}`)"
+                   :height="integration.height">
+            </div>
 
 
-      <template #cell(productName)="innerData">
-        <span>
-             {{
-            getName({
-              nameRu: innerData.item.priceProductDto && innerData.item.priceProductDto.nameRu,
-              nameLt: innerData.item.priceProductDto && innerData.item.priceProductDto.nameLt,
-              nameUz: innerData.item.priceProductDto && innerData.item.priceProductDto.nameUz,
-            })
-          }}
-        </span>
-      </template>
+            <span class="box-title-style" :class="(integration.id == 12) ? 'pt-0 px-0': 'py-3 px-4'">
+                            <span style="color: #349184; font-size: 22px"
+                                  v-show="integration.routerName == 'ServicesProduct'">Product Info</span>
+                            <hr class="mt-1 mb-1"
+                                style="border: 1px solid #029984; margin-left: 35px; margin-right: 35px"
+                                v-show="integration.routerName == 'ServicesProduct'">
+                            {{ integration.name }}
+                        </span>
+            <!--            <button     v-if="integration.perm" class="card-button">{{ $t("actions.details") }}</button>-->
+            <!--            <button v-else class="card-notAccess-button">{{ $t("error.netAccess") }}</button>-->
+          </div>
 
-      <template #cell(birlik)="innerData">
-        <span>
-             {{
-            getName({
-              nameRu: innerData.item.priceProductDto && innerData.item.priceProductDto.measureDto && innerData.item.priceProductDto.measureDto.nameRu,
-              nameLt: innerData.item.priceProductDto && innerData.item.priceProductDto.measureDto && innerData.item.priceProductDto.measureDto.nameLt,
-              nameUz: innerData.item.priceProductDto && innerData.item.priceProductDto.measureDto && innerData.item.priceProductDto.measureDto.nameUz,
-            })
-          }}
-        </span>
-      </template>
+        </b-col>
+        <!--                <b-col cols="12">-->
+        <!--                    <div><button @click="$router.push('/integration/kommunal')">test</button></div>-->
+        <!--                </b-col>-->
+        <!-- <b-col v-for="(integration, index) in listPro" :key="index" cols="3">
+            <div :id="!integration.perm ? index + 'tooltip-button-variant' : ''"
+                :class="integration.perm ? 'service-card' : 'service-card-disable'"
+                @click="integration.perm ? toRouter(integration.routerName) : ''">
+                <div :class="integration.isDone ? 'arrow-up-success' : 'arrow-up'">
+                    <span class="itinerary-number"> </span>
+                </div>
+                <div class="icon-wrapper">
+                    <img :src="integration.image" :height="integration.height" />
+                </div>
+                <h3 class="mt-3 text-center">
+                    {{ integration.name }}</h3>
+                <b-tooltip :target="index + 'tooltip-button-variant'" variant="danger">
+                    {{ $t('error.netAccess') }}
+                </b-tooltip>
+            </div>
+        </b-col> -->
+      </b-row>
+    </div>
 
-      <template #cell(minPrice)="innerData">
-        <span>
-             {{
-            formatNumber(innerData.item.minPrice)
-          }}
-        </span>
-      </template>
-
-      <template #cell(maxPrice)="innerData">
-        <span>
-             {{
-            formatNumber(innerData.item.maxPrice)
-          }}
-        </span>
-      </template>
-
-      <template #cell(middleSum)="innerData">
-        <span>
-             {{
-            formatNumber(innerData.item.middleSum)
-
-          }}
-        </span>
-      </template>
-
-      <template #cell(region)="innerData">
-        <span>
-             {{
-            getName({
-              nameRu: innerData.item.marketDto && innerData.item.marketDto.disNameRu,
-              nameLt: innerData.item.marketDto && innerData.item.marketDto.disNameLt,
-              nameUz: innerData.item.marketDto && innerData.item.marketDto.disNameUz,
-            })
-          }}
-        </span>
-      </template>
-
-      <template #cell(type_of_shopping)="innerData">
-        <span>
-             {{
-            getName({
-              nameRu: innerData.item.marketDto && innerData.item.marketDto.businessStructureRu,
-              nameLt: innerData.item.marketDto && innerData.item.marketDto.businessStructureLt,
-              nameUz: innerData.item.marketDto && innerData.item.marketDto.businessStructureUz,
-            })
-          }}
-        </span>
-      </template>
-
-      <template #cell(priceMarkets)="innerData">
-        <span>
-             {{
-            innerData.item.marketDto && innerData.item.marketDto.marketName
-          }}
-        </span>
-      </template>
-
-      <!-- EMPTY SLOT -->
-      <template #empty="">
-        <h4 class="text-center">{{ $t('messages.data_not_found') }}</h4>
-      </template>
-    </b-table>
-    <!-- end table -->
-    <b-pagination
-        v-model="var_default_search_payload.page"
-        :total-rows="totalItems"
-        :per-page="var_default_search_payload.itemsPerPage"
-        aria-controls="my-table"
-        class="justify-content-end"
-    ></b-pagination>
-  </div>
+    <div class="text-center" v-else-if="toRouterLoader">
+      <b-spinner style="width: 3rem; height: 3rem; margin-top: 100px"></b-spinner>
+    </div>
+  </section>
+  <!-- ADVERTISERS SERVICE CARD ENDED -->
 </template>
 
-<script lang="js">
+<script>
 
-const MAIN_API_URL = 'price_sum'
-import appConfig from "@/app.config";
-import Service from '../service'
-
-const i18n = require("@/i18n");
 export default {
-  page: {
-    title: "Passport info",
-    meta: [{name: "description", content: appConfig.description}],
-  },
-  components: {},
   data() {
     return {
-      json_fields: {
-        [this.$t('submodules.integration.customs_product.infoDateOfIssue')]: 'infoDateOfIssue',
-        [this.$t('submodules.integration.customs_product.infoMode')]: 'infoMode',
-        [this.$t('submodules.integration.customs_product.infoShipperAddress')]: 'infoShipperAddress',
-        [this.$t('submodules.integration.customs_product.infoShipperName')]: 'infoShipperName',
-        [this.$t('submodules.integration.customs_product.tifTnCode')]: 'tifTnCode',
-        [this.$t('submodules.integration.customs_product.productName')]: 'productName',
-        [this.$t('submodules.integration.customs_product.unitName')]: 'unitName',
-        [this.$t('submodules.integration.customs_product.productWeight')]: 'productWeight',
-        [this.$t('submodules.integration.customs_product.productWeightUnit')]: 'productWeightUnit',
-        [this.$t('submodules.integration.customs_product.productStatisticalValue')]: 'productStatisticalValue',
-        [this.$t('submodules.integration.customs_product.productStatisticalValueUnit')]: 'productStatisticalValueUnit',
-        [this.$t('submodules.integration.customs_product.productAmount')]: 'productAmount',
-        [this.$t('submodules.integration.customs_product.infoDollarExchangeRate')]: 'infoDollarExchangeRate',
-        [this.$t('submodules.integration.customs_product.infoConsigneeName')]: 'infoConsigneeName',
-      },
-      json_data: [],
-      publicPath: process.env.BASE_URL,
-      visible: false,
-      title: "Passport info",
-      activeDep: {},
-      tableItems: [],
-      notificationTableItems: [],
-      totalItems: 0,
-      notificationTableFields: [
+      toRouterLoader: false,
+      listPro: [
         {
-          label: "№",
-          thClass: "text-center",
-          tdClass: "text-center",
-          sortable: false,
-          key: "index",
-          thStyle: {
-            width: '40px',
-          },
-        },
-        {
-          label: this.$t('fair_price.type_product'),
-          key: "type_product",
-          thClass: "text-center",
-          tdClass: "text-center",
-        },
-        {
-          label: this.$t('submodules.integration.customs_product.productName'),
-          key: "productName",
-          thClass: "text-center",
-          tdClass: "text-center",
-        },
-        {
-          label: this.$t('fair_price.birlik'),
-          key: "birlik",
-          thClass: "text-center",
-          tdClass: "text-center",
-          thStyle: {
-            width: '70px',
-          },
-        },
-        {
-          label: this.$t('fair_price.min'),
-          key: "minPrice",
-          thClass: "text-center",
-          tdClass: "text-center",
-          thStyle: {
-            width: '100px',
-          },
-        },
-        {
-          label: this.$t('fair_price.max'),
-          key: "maxPrice",
-          thClass: "text-center",
-          tdClass: "text-center",
-          thStyle: {
-            width: '100px',
-          },
-        },
-        {
-          label: this.$t('fair_price.references.xaridorgir_narx'),
-          key: "middleSum",
-          thClass: "text-center",
-          tdClass: "text-center",
-          thStyle: {
-            width: '100px',
-          },
-        },
-        {
-          label: this.$t('submodules.integration.price_stock.region_name'),
-          key: "region",
-          thClass: "text-center",
-          tdClass: "text-center",
-        },
-        {
-          label: this.$t('fair_price.references.type_of_shopping'),
-          key: "type_of_shopping",
-          thClass: "text-center",
-          tdClass: "text-center",
-        },
-        {
-          label: this.$t('fair_price.references.priceMarkets'),
-          key: "priceMarkets",
-          thClass: "text-center",
-          tdClass: "text-center",
-        },
-        {
-          label: this.$t('fair_price.date'),
-          key: "date",
-          thClass: "text-center",
-          tdClass: "text-center",
-          thStyle: {
-            width: '100px',
-          },
+          id: 1,
+          routerName: 'ReportingOnline',
+          perm: '',
+          image: 'appeal.svg',
+          name: this.$t('reporting.title'),
+          isDone: true
         },
         // {
-        //   label: this.$t('column.actions'),
-        //   key: "notificationActions",
-        //   thClass: "text-center",
-        //   tdClass: "text-center",
-        //   sortable: false
+        //     id: 2,
+        //     routerName: 'ServicesProduct',
+        //     perm: '',
+        //     image: 'status.svg',
+        //     name: this.$t('system.product_info.info'),
+        //     isDone: true
+        // }
+
+        // {
+        //   id: 1,
+        //   perm: this.$can('view', 'integration-kommunal'),
+        //   routerName: 'IntegrationKommunalInfoIndex',
+        //   name: this.$t('submodules.integration.kommunal_info.title'),
+        //   image: 'kommunal.svg',
+        //   height: 50,
+        //   isDone: true,
         // },
-      ],
-      searchKeyword: '',
-      createdDate: '',
-      selected: 10,
-      optionsTable: [
-        {value: 20, text: 20},
-        {value: 50, text: 50},
-        {value: 100, text: 100},
-        {value: 150, text: 150},
-        {value: 200, text: 200},
-      ],
-      index: 0,
-      loadingTableItems: false,
-    };
+        // {
+        //   id: 2,
+        //   perm: this.$can('view', 'integration-davlat-active'),
+        //   routerName: 'IntegrationDavlatInfoIndex',
+        //   name: this.$t('submodules.integration.davlat_active_info.title'),
+        //   image: 'davlat_active.svg',
+        //   height: 15,
+        //   isDone: true
+        // },
+
+
+      ]
+    }
   },
   methods: {
-    async downloadExcel() {
-      this.json_data = this.tableItems.map((item, index) => {
-        return {
-          ...item,
-          infoDateOfIssue: item.infoDateOfIssue ? this.getDateFormat(item.infoDateOfIssue) : '',
-          infoInformationDate: item.infoInformationDate ? this.getDateFormat(item.infoInformationDate) : '',
-        }
-      });
-    },
-    selectList($event) {
-      if ($event == 'all') {
-        this.var_default_search_payload.itemsPerPage = this.totalItems
-      } else {
-        this.var_default_search_payload.itemsPerPage = $event
-      }
-      this.fetchNotificationTableItems();
-    },
-    fetchNotificationTableItems() {
-      this.loadingTableItems = true
-      this.var_default_search_payload.keyword = this.searchKeyword
-      this.var_default_search_payload.itemsPerPage = this.selected
+    toRouter(link) {
+      this.toRouterLoader = true
+      setTimeout(() => {
+        this.toRouterLoader = false
+        this.$router.push({
+          name: link,
+        })
+      }, 500);
 
-      Service
-          .listEnteredPrice(this.createdDate, MAIN_API_URL, this.var_default_search_payload, true)
-          .then((res) => {
-            this.notificationTableItems = res.data.list
-            this.totalItems = res.data.total
-          })
-          .catch(e => {
-            this.notificationTableItems = [];
-          })
-          .finally(() => {
-            this.loadingTableItems = false
-          })
-    },
-  },
-  /* CREATED */
-  async created() {
-    await this.fetchNotificationTableItems()
-  },
-  /*
-  WATCH */
-  watch: {
-    'var_default_search_payload.page': {
-      handler() {
-        this.fetchNotificationTableItems()
-      }
-    },
-    'createdDate': {
-      handler() {
-        this.fetchNotificationTableItems()
-      }
+
     }
-  }
-};
+  },
+  created() {
+    this.listPro1 = this.listPro.filter((e) => e.perm == true)
+    this.listPro2 = this.listPro.filter((e) => e.perm == false)
+    this.listPro = this.listPro1.concat(this.listPro2)
+  },
+}
 </script>
 
-<style scoped lang='scss'>
-.max-height-70 {
-  max-height: 70vh;
+<style lang="scss" scoped>
+/* ADVERTISERS SERVICE CARD */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-::v-deep .base-form-component__label {
-  margin-top: 10px;
-  color: #104238;
+.rais-page-respons {
+  width: 100%;
+  max-width: 1140px;
+  //margin: 0 auto;
+}
+
+.body-title-style {
+  width: 100%;
+  margin: 18px auto 0;
+  padding: 20px;
+  background: linear-gradient(to top, #2c675b, #029984);
+  text-align: center;
+  border-radius: 5px;
+}
+
+.body-title-style-text {
+  width: 80%;
+  font-size: 23px;
+  color: white;
+  text-align: center;
+  margin: 0 auto;
+}
+
+::v-deep .wizard-progress-with-circle {
+  display: none !important;
+}
+
+::v-deep .vue-form-wizard .wizard-nav-pills > li {
+  background-color: transparent;
+}
+
+::v-deep .wizard-icon-circle {
+  display: none;
+}
+
+/*::v-deep .vue-form-wizard .wizard-nav-pills>li>a,
+.vue-form-wizard .wizard-nav-pills>li>a,
+.vue-form-wizard .wizard-nav-pills>li>.stepTitle:nth-child(3) {
+  padding-left: 36px !important;
+  padding-right: 0 !important;
+}*/
+
+::v-deep .vue-form-wizard .wizard-nav-pills > li > a,
+.vue-form-wizard .wizard-nav-pills > li > a,
+.vue-form-wizard .wizard-nav-pills > li > .stepTitle {
+  width: 100%;
+  padding: 12px;
+  font-size: 17px;
+  display: flex;
+  margin: 0px;
+  justify-content: center;
+  border: thin solid #cbe6e1e4;
+  background-color: white;
+  color: #86a59f;
   font-weight: bold;
+  box-shadow: 0 2px 5px rgba(2, 153, 133, 0.533);
+  text-align: center;
+  cursor: pointer;
+
+
 }
 
-::v-deep .mx-icon-calendar {
-  color: #2b675b;
+::v-deep .vue-form-wizard .wizard-nav-pills > li.active > a,
+.vue-form-wizard .wizard-nav-pills > li.active > a:focus,
+.vue-form-wizard .wizard-nav-pills > li > .stepTitle .active {
+  width: 100%;
+  padding: 12px;
+  font-size: 17px;
+  display: flex;
+  margin: 0px;
+  justify-content: center;
+  border-bottom: 6px solid #029984;
+  background-color: white;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+
 }
 
-::v-deep .table-striped tbody tr:nth-of-type(odd) {
-  background-color: #EAF0EF;
+::v-deep .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #029984;
+  border-color: #029984;
 }
 
+::v-deep .btn-primary {
+  background-color: #029984 !important;
+  border-color: #029984 !important;
+  color: white !important;
+}
+
+::v-deep .btn-secondary {
+  color: white;
+  background-color: #aaa8a8;
+  border-color: #aaa8a8;
+}
+
+
+.frame-hover {
+  min-width: 400px;
+  padding: 60px 20px 20px;
+  margin: 5px 0 10px 0;
+  border-width: 10px;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: transparent;
+  transition: all 0.4s ease;
+}
+
+.box-style {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #029984;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+
+  .box-title-style {
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #029984;
+    text-align: center;
+    transition: all 0.4s ease;
+  }
+}
+
+.img-content-full {
+  position: absolute;
+  top: 15px;
+  left: 40%;
+}
+
+.frame-hover:hover {
+  border-width: 10px;
+  border-style: solid;
+  border-color: #029984;
+}
+
+.frame-hover:hover .box-style {
+  border: 3px solid #029984;
+  box-shadow: 0 0 13px #029984
+}
+
+.frame-hover:hover .box-title-style {
+  color: #2c675b;
+
+}
+
+.activeBox {
+  border-width: 10px;
+  border-style: solid;
+  border-color: #029984;
+}
+
+.activeText {
+  color: #2c675b !important;
+}
+
+.activeShadow {
+  border: 3px solid #029984;
+  box-shadow: 0 0 13px #029984
+}
+
+
+.dNone {
+  display: none;
+}
+
+
+@media screen and (min-width: 1981px) {
+  .rais-page-respons {
+    max-width: 1600px;
+  }
+}
+
+@media screen and (max-width: 1980px) {
+  .rais-page-respons {
+    max-width: 1500px;
+    //padding: 0 20px;
+  }
+}
+
+@media screen and (max-width: 1365px) {
+
+  ::v-deep .vue-form-wizard .wizard-nav-pills > li > a,
+  .vue-form-wizard .wizard-nav-pills > li > a,
+  .vue-form-wizard .wizard-nav-pills > li > .stepTitle {
+    width: 320px;
+  }
+
+  ::v-deep .vue-form-wizard .wizard-nav-pills > li.active > a,
+  .vue-form-wizard .wizard-nav-pills > li.active > a:focus,
+  .vue-form-wizard .wizard-nav-pills > li > .stepTitle {
+    width: 320px;
+  }
+
+  .box-style {
+    height: 190px;
+  }
+
+  .box-style .box-title-style {
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 1066px) {
+  .box-style {
+    height: 180px;
+  }
+
+  .box-style .box-title-style {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .box-style {
+    height: 170px;
+  }
+
+  .rais-page-respons {
+    max-width: 1000px;
+    padding: 0 15px;
+  }
+
+  .body-title-style {
+    width: 100%;
+    font-size: 20px;
+    padding: 0 10px;
+
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .box-style {
+    width: 100%;
+    height: 150px;
+
+    .box-title-style {
+      font-size: 20px;
+      padding: 10px;
+    }
+  }
+}
 </style>
+
+
