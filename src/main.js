@@ -3,7 +3,14 @@ import BootstrapVue from 'bootstrap-vue'
 import VueRouter from 'vue-router'
 import router from './router/index'
 import Lightbox from 'vue-easy-lightbox'
+import VueParticles from 'vue-particles'
+
+import Scrollspy from 'vue2-scrollspy';
+var VueScrollTo = require('vue-scrollto');
+Vue.use(VueParticles)
 Vue.use(Lightbox)
+Vue.use(Scrollspy);
+Vue.use(VueScrollTo)
 
 import VueMultiselctCustomized from "./components/vue-multiselect-customized"
 Vue.component('MultiselectCustomized', VueMultiselctCustomized)
@@ -165,7 +172,7 @@ Vue.prototype.cancelBtn = cancelBtn
 Vue.prototype.editSuccess = editSuccess
 /*
  * SET API BASE_URL */
-ApiService.init(process.env.VUE_APP_ROOT_API);
+ApiService.init('http://localhost:8085/api/v.1/');
 /*
  * MOUNT AXIOS GLOBAL REQUEST INTERCEPTOR */
 ApiService.mount401Interceptor();
