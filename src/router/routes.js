@@ -1,90 +1,70 @@
 /*
 * IMPORT MAIN REGISTER_MODULE ROUTES */
 import modules_routes from "@/modules/routes";
-import check_routes from "@/modules/check/routes";
 
 export default [
     ...modules_routes,
-    ...check_routes,
     {
         path: '/',
         name: 'dashboard',
         meta: {
-            authRequired: true,
+            public: true,
         },
         component: () => import('./views/dashboards/dashboard'),
         children: []
     },
     {
-        path: '/dashboard',
-        name: 'dashboard',
+        path: '/murojaat',
+        name: 'MurojaatCreate',
         meta: {
-            authRequired: true,
+            public: true,
         },
-        component: () => import('./views/dashboards/dashboard'),
+        component: () => import('/src/modules/appeal/MurojatMonitor.vue'),
         children: []
     },
     {
-        path: '/login',
-        name: 'Login',
-        component: () => import('@/shared/views/auth/one-id'),
-        meta: {
-            public: true, // allow even if not logged in
-            onlyWhenLoggedOut: true
-        }
-    },
-    {
-        path: '/one-id/login',
-        name: 'OneID Login',
-        component: () => import('@/shared/views/auth/one-id'),
-        meta: {
-            public: true, // allow even if not logged in
-            onlyWhenLoggedOut: true
-        }
-    },
-    {
-        path: '/register',
-        name: 'Register',
-        component: () => import('@/shared/views/auth/register'),
-        meta: {
-            public: true, // allow even if not logged in
-            onlyWhenLoggedOut: true
-        }
-    },
-    {
-        path: '/forgot-password',
-        name: 'ForgotPassword',
-        component: () => import('@/shared/views/auth/forgot-password'),
-        meta: {
-            public: true, // allow even if not logged in
-            onlyWhenLoggedOut: true
-        }
-    },
-    {
-        path: '/pharm-sms/confirm-window/:id',
-        name: 'PharmSmsConfirmWindow',
-        component: () => import('@/modules/pharm/start/PharmSmsConfirmWindow'),
+        path: '/online-watching',
+        name: 'OnlineWatching',
         meta: {
             public: true,
-            onlyWhenLoggedOut: true
-        }
+        },
+        component: () => import('/src/modules/online-watching/onlineWatching.vue'),
+        children: []
     },
     {
-        path: '/pharm-check',
-        name: 'PharmCheck',
-        component: () => import('../shared/views/auth/PharmCheck'),
+        path: '/product-services',
+        name: 'ProductInfoServices',
         meta: {
-            public: true,
-            onlyWhenLoggedOut: true
-        }
+            public: true
+        },
+        component: () => import('/src/modules/product/index.vue'),
+        children: []
     },
     {
-        path: '/pharmacy-check/:id',
-        name: 'PharmacyCheckDoc',
-        component: () => import('../shared/views/auth/PharmacyCheckDoc'),
+        path: '/tovar-mahsulot',
+        name: 'TovarMahsulot',
         meta: {
-            public: true,
-            onlyWhenLoggedOut: true
-        }
+            public: true
+        },
+        component: () => import('/src/modules/product/serviceMahsulot.vue'),
+        children: []
     },
+    {
+        path: '/ish-xizmatlar',
+        name: 'IshXizmatlar',
+        meta: {
+            public: true
+        },
+        component: () => import('/src/modules/product/serviceXizmat.vue'),
+        children: []
+    },
+    {
+        path: '/online-report',
+        name: 'OnlineReport',
+        meta: {
+        },
+        // component: () => import('/src/modules/appeal/MurojatMonitor.vue'),
+        children: []
+    }
+
 ]
