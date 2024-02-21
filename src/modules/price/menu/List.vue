@@ -66,6 +66,11 @@
             $t('fair_price.product_type1')
           }}
         </span>
+        <span v-if="innerData.item.priceProductDto && innerData.item.priceProductDto.code == 'OTHERS'">
+             {{
+            $t('fair_price.product_type2')
+          }}
+        </span>
       </template>
 
 
@@ -400,7 +405,8 @@ export default {
 ::v-deep .mx-icon-calendar {
   color: #2b675b;
 }
-::v-deep  .table-striped tbody tr:nth-of-type(odd) {
+
+::v-deep .table-striped tbody tr:nth-of-type(odd) {
   background-color: #EAF0EF;
 }
 

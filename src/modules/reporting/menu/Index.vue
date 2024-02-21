@@ -479,7 +479,14 @@
             </b-card>
 
             <b-row class="p-1">
-              <b-col cols="12" md="10"></b-col>
+              <b-col cols="12" md="10">
+                <b-col class="mb-2 mt-3">
+                  <b-button style="background: #F39138; width: 222px; height: 33px" class="btn btn-warning" size="md"
+                            @click="$router.go(-1)">
+                    {{ $t("actions.back") }}
+                  </b-button>
+                </b-col>
+              </b-col>
               <b-col cols="12" md="2" class="mt-3">
                 <b-overlay
                     :show="loader"
@@ -496,7 +503,7 @@
                       block
                       style="background: #2b675b; font-size: 16px"
                   >
-                    {{ $t("actions.save") }}
+                    {{ $t("reporting.send_button") }}
                   </b-button>
                 </b-overlay>
               </b-col>
@@ -675,7 +682,7 @@ export default {
   watch: {
     'editingItem.madePowerAll': {
       async handler(newValue) {
-        if (this.editingItem.madePowerAll) {
+        if (this.editingItem.madePowerAll != '') {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.madePowerAll = result
@@ -684,7 +691,7 @@ export default {
     },
     'editingItem.madeTonna': {
       async handler(newValue) {
-        if (this.editingItem.madeTonna) {
+        if (this.editingItem.madeTonna != '') {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.madeTonna = result
@@ -693,7 +700,7 @@ export default {
     },
     'editingItem.madeSum': {
       async handler(newValue) {
-        if (this.editingItem.madeSum) {
+        if (this.editingItem.madeSum != '') {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.madeSum = result
@@ -702,7 +709,7 @@ export default {
     },
     'editingItem.buyTonna': {
       async handler(newValue) {
-        if (this.editingItem.buyTonna) {
+        if (this.editingItem.buyTonna != '') {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.buyTonna = result
@@ -711,7 +718,7 @@ export default {
     },
     'editingItem.buySum': {
       async handler(newValue) {
-        if (this.editingItem.buySum) {
+        if (this.editingItem.buySum != '') {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.buySum = result
@@ -720,7 +727,7 @@ export default {
     },
     'editingItem.exportTonna': {
       async handler(newValue) {
-        if (this.editingItem.exportTonna) {
+        if (this.editingItem.exportTonna != '') {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.exportTonna = result
@@ -729,7 +736,7 @@ export default {
     },
     'editingItem.exportSum': {
       async handler(newValue) {
-        if (this.editingItem.exportSum) {
+        if (this.editingItem.exportSum != '') {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.exportSum = result
@@ -738,7 +745,7 @@ export default {
     },
     'editingItem.finallyTonna': {
       async handler(newValue) {
-        if (this.editingItem.finallyTonna) {
+        if (this.editingItem.finallyTonna != '') {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.finallyTonna = result
@@ -747,7 +754,7 @@ export default {
     },
     'editingItem.finallySum': {
       async handler(newValue) {
-        if (this.editingItem.finallySum) {
+        if (this.editingItem.finallySum != '') {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.finallySum = result
@@ -756,7 +763,7 @@ export default {
     },
     'editingItem.sumService': {
       async handler(newValue) {
-        if (this.editingItem.sumService) {
+        if (this.editingItem.sumService != '') {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.sumService = result
@@ -765,7 +772,7 @@ export default {
     },
     'editingItem.exportSumService': {
       async handler(newValue) {
-        if (this.editingItem.exportSumService) {
+        if (this.editingItem.exportSumService != '') {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.exportSumService = result
@@ -849,6 +856,7 @@ export default {
           this.editingItem.sumService = ''
           this.editingItem.exportSumService = ''
           this.hizmat.push(objHizmat);
+
         } else {
           this.loaderHizmat = false;
           this.$toast(this.$t('messages.fill_required_fields'), {type: 'error'});
@@ -864,7 +872,7 @@ export default {
               console.log(res.data)
               this.editingItem.name = res.data.company.name
               this.editingItem.fio = res.data.accountant.firstName + res.data.accountant.lastName + res.data.accountant.middleName
-              this.editingItem.address = res.data.fullName
+              this.editingItem.address = res.data.companyBillingAddress.regionNameUz + ' ' + res.data.companyBillingAddress.nameUz
 
               this.$toast(this.$t('submodules.integration.statistics_info.download_success'), {type: 'success'});
               this.loadingStirItems = false
@@ -896,9 +904,14 @@ export default {
             fio: this.editingItem.fio ? this.editingItem.fio : ''
           }
 
-          Service.createReporting(obj, this.sanoat.concat(this.hizmat))
+          let bodyData = []
+          bodyData = bodyData.concat(this.sanoat)
+          bodyData = bodyData.concat(this.hizmat)
+
+          Service.createReporting(obj, bodyData)
               .then(async () => {
-                await this.successSaved();
+                this.$toast.success(this.$t('messages.send_successfully'), {position: "top-right"});
+                this.editingItem = {}
                 this.computedObserver.reset()
                 this.computedObserverHizmat.reset()
                 this.computedObserverSanoat.reset()
