@@ -11,7 +11,7 @@
             v-slot="{}"
         >
           <b-row>
-            <b-col cols="3" v-if="$can('view', 'price-enter-cost')">
+            <b-col cols="12" lg="3" v-if="$can('view', 'price-enter-cost')">
               <b-card
                   style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px; margin-top:10px;">
                 <div>
