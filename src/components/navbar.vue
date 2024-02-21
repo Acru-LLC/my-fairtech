@@ -87,7 +87,7 @@ export default {
              style="box-shadow: rgb(36, 98, 86) 1px 2px 8px; border-radius: 50%"
         />
       </a>
-      <h5 style="width: 33%" class="text-color">
+      <h5 style="width: 33%" class="text-color mb-0">
         ЎЗБЕКИСТОН РЕСПУБЛИКАСИ
         РАҚОБАТНИ РИВОЖЛАНТИРИШ
         ВА ИСТЕЪМОЛЧИЛАР ХУҚУҚЛАРИНИ

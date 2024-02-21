@@ -13,7 +13,7 @@ export default {
       <div class="row">
         <div class="col-lg-8 offset-lg-2">
           <h1 class="section-title text-center">ИНТЕРАКТИВ ХИЗМАТЛАР</h1>
-          <div class="section-title-border margin-t-20"></div>
+          <div class="section-title-border margin-t-20" style="background-color: #246256"></div>
           <!--          <p-->
           <!--              class="section-subtitle text-muted text-center padding-t-30 font-secondary"-->
           <!--          >We craft digital, graphic and dimensional thinking, to create category leading brand experiences that have meaning and add a value for our clients.</p>-->
