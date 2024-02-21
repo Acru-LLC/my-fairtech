@@ -3,7 +3,7 @@ import ApiService from '@/shared/services/api.service'
 export default {
     // yuridik-shaxs
     getYuridikShaxsData: async function (stir, withLoader = false) {
-        let res = await ApiService.post(`/yuridik-shaxs/get-info?&tin=${stir}`, withLoader);
+        let res = await ApiService.post(`/yuridik-shaxs/get-info-open?&tin=${stir}`, withLoader);
         return res;
     },
     searchListWithKeyword: function (mainUrl, payload, appendUrl, withLoader = false) {
@@ -37,7 +37,10 @@ export default {
         }
     },
     async createReporting(data, bodyData) {
-        return ApiService.post(`/number_market/create?codeXisobod=${data.codeXisobod}&dateFrom=${data.dateFrom}&dateTo=${data.dateTo}&name=${data.name}&ktut=${data.ktut}&stir=${data.stir}&address=${data.address}&fio=${data.fio}&year=${data.year}`, bodyData)
+        console.log(bodyData)
+        return ApiService.post(`/number_market/create?codeXisobod=${data.codeXisobod}&dateFrom=${data.dateFrom}
+        &dateTo=${data.dateTo}&name=${data.name}&ktut=${data.ktut}&stir=${data.stir}&address=${data.address}
+        &fio=${data.fio}&year=${data.year}`, bodyData)
     },
     async createWithFiles(bodyFormData, url) {
         const requestData = {

@@ -24,7 +24,7 @@ export default [
                 path: '/reporting/online',
                 component: () => import('@/modules/reporting/menu/Index.vue'),
                 meta: {
-                    authRequired: true,
+
                     // hasPerm: () => ability.can('view', 'statistics')
                 },
             },
