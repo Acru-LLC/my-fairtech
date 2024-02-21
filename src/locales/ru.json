@@ -2820,6 +2820,7 @@
     }
   },
   "reporting": {
+    "send_button": "Yuborish",
     "title": "Tovar, moliya va raqamli bozorlar to'g'risidagi xisobotni yuborish",
     "name": "Onlayn hisobot yuborish",
     "main": {
