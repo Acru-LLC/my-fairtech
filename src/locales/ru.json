@@ -2820,48 +2820,48 @@
     }
   },
   "reporting": {
-    "send_button": "Yuborish",
-    "title": "Tovar, moliya va raqamli bozorlar to'g'risidagi xisobotni yuborish",
-    "name": "Onlayn hisobot yuborish",
+    "send_button": "Юбориш",
+    "title": "Товар, молия ва рақамли бозорлар тўғрисидаги хисоботни юбориш",
+    "name": "Онлайн ҳисобот юбориш",
     "main": {
       "form1": {
-        "title": "Subyekt ma'lumoti",
-        "name1": "STIR",
-        "name2": "KTUT",
-        "name3": "Nomi",
-        "name4": "Raxbarning F.I.SH",
-        "name5": "Manzili"
+        "title": "Субъект маълумоти",
+        "name1": "СТИР",
+        "name2": "КТУТ",
+        "name3": "Номи",
+        "name4": "Рахбарнинг F.I.SH",
+        "name5": "Манзили"
       },
       "form2": {
-        "title": "Hisobot ma'lumotlari",
-        "name1": "Soha shakli",
-        "name2": "Hisobot davri",
-        "name3": "6 oylik",
-        "name4": "Yillik",
-        "name5": "Vaqt oralig'i",
-        "name6": "dan",
-        "name7": "gacha"
+        "title": "Ҳисобот маълумотлари",
+        "name1": "Соҳа шакли",
+        "name2": "Ҳисобот даври",
+        "name3": "6 ойлик",
+        "name4": "Йиллик",
+        "name5": "Вақт оралиғи",
+        "name6": "дан",
+        "name7": "гача"
       },
       "form3": {
-        "title": "Sanoat sohasi",
-        "name1": "Maxsulot TIF TN kodi",
-        "name2": "Maxsulot nomi",
-        "name3": "MST kodi",
-        "name4": "Ishlab chiqarish quvvati (tonna)",
-        "name5": "Ishlab chiqarish xajmi ",
-        "name6": "Sotish xajmi (Ichki bozorda)",
-        "name7": "Export xajmi",
-        "name8": "Yil oxiriga tayyor maxsulot qoldig'i",
-        "name9": "Tonna",
-        "name10": "Summasi",
-        "name11": "(QQS va aksizsiz)"
+        "title": "Саноат соҳаси",
+        "name1": "Махсулот ТИФ ТН коди",
+        "name2": "Махсулот номи",
+        "name3": "МСТ коди",
+        "name4": "Ишлаб чиқариш қуввати (тонна)",
+        "name5": "Ишлаб чиқариш хажми ",
+        "name6": "Сотиш хажми (Ички бозорда)",
+        "name7": "Экспорт хажми",
+        "name8": "Йил охирига тайёр махсулот қолдиғи",
+        "name9": "Тонна",
+        "name10": "Суммаси",
+        "name11": "(ҚҚС ва акцизсиз)"
       },
       "form4": {
-        "title": "Xizmat ko'rsatish sohasi",
-        "name1": "Xizmat nomi",
-        "name2": "Xizmat kodi",
-        "name3": "Xizmat xajmi summasi",
-        "name4": "Shundan, export xajmi summasi"
+        "title": "Хизмат кўрсатиш соҳаси",
+        "name1": "Хизмат номи",
+        "name2": "Хизмат коди",
+        "name3": "Хизмат хажми суммаси",
+        "name4": "Шундан, экспорт хажми суммаси"
       }
     }
   }
