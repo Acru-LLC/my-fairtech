@@ -50,7 +50,7 @@ export default {
                   </div>
 
                   <div>
-                    <b-button variant="outline-light" class="mt-3">Хизматлардан фойдаланиш</b-button>
+                    <b-button variant="outline-light" class="mt-3 text-white">Хизматлардан фойдаланиш</b-button>
                   </div>
                 </b-col>
 

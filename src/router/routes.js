@@ -62,8 +62,9 @@ export default [
         path: '/online-report',
         name: 'OnlineReport',
         meta: {
+            public: true
         },
-        // component: () => import('/src/modules/appeal/MurojatMonitor.vue'),
+        component: () => import('/src/modules/reporting/menu/Index.vue'),
         children: []
     }
 
