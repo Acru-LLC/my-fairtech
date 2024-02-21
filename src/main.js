@@ -172,7 +172,7 @@ Vue.prototype.cancelBtn = cancelBtn
 Vue.prototype.editSuccess = editSuccess
 /*
  * SET API BASE_URL */
-ApiService.init('http://localhost:8085/api/v.1/');
+ApiService.init(process.env.VUE_APP_ROOT_API);
 /*
  * MOUNT AXIOS GLOBAL REQUEST INTERCEPTOR */
 ApiService.mount401Interceptor();

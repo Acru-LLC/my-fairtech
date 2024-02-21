@@ -3,7 +3,7 @@ import ApiService from '@/shared/services/api.service'
 export default {
     // yuridik-shaxs
     getYuridikShaxsData: async function (stir, withLoader = false) {
-        let res = await ApiService.post(`/yuridik-shaxs/get-info?&tin=${stir}`, withLoader);
+        let res = await ApiService.post(`/yuridik-shaxs/get-info-open?&tin=${stir}`, withLoader);
         return res;
     },
     searchListWithKeyword: function (mainUrl, payload, appendUrl, withLoader = false) {

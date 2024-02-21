@@ -502,7 +502,7 @@
                       block
                       style="background: #2b675b; font-size: 16px"
                   >
-                    {{ $t("actions.save") }}
+                    {{ $t("reporting.send_button") }}
                   </b-button>
                 </b-overlay>
               </b-col>
@@ -870,7 +870,7 @@ export default {
               console.log(res.data)
               this.editingItem.name = res.data.company.name
               this.editingItem.fio = res.data.accountant.firstName + res.data.accountant.lastName + res.data.accountant.middleName
-              this.editingItem.address = res.data.fullName
+              this.editingItem.address = res.data.companyBillingAddress.regionNameUz + ' ' + res.data.companyBillingAddress.nameUz
 
               this.$toast(this.$t('submodules.integration.statistics_info.download_success'), {type: 'success'});
               this.loadingStirItems = false
@@ -904,7 +904,8 @@ export default {
 
           Service.createReporting(obj, this.sanoat.concat(this.hizmat))
               .then(async () => {
-                await this.successSaved();
+                this.$toast.success(this.$t('messages.send_successfully'), {position: "top-right"});
+                this.editingItem = {}
                 this.computedObserver.reset()
                 this.computedObserverHizmat.reset()
                 this.computedObserverSanoat.reset()
