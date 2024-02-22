@@ -37,12 +37,27 @@ export default {
         }
     },
     async createReporting(data, bodyData) {
+        debugger
         return ApiService.post(`/number_market/create?name=${data.name}&ktut=${data.ktut}&stir=${data.stir}&address=${data.address}&fio=${data.fio}&phone=${data.phone}`, bodyData)
     },
     async createWithFiles(bodyFormData, url) {
         const requestData = {
             method: 'post',
             url: '/price_sum/create',
+            data: bodyFormData,
+            headers: {'Content-Type': 'multipart/form-data'}
+        };
+        try {
+            const response = await ApiService.customRequest(requestData);
+            return response.data;
+        } catch (error) {
+            return error.response.data
+        }
+    },
+    async createWithFiles1(bodyFormData) {
+        const requestData = {
+            method: 'post',
+            url: `/number_market/create/file`,
             data: bodyFormData,
             headers: {'Content-Type': 'multipart/form-data'}
         };

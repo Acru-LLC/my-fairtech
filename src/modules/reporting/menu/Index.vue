@@ -727,6 +727,7 @@ const REF_NAME = 'court_instantions'
 import appConfig from "@/app.config";
 import crudAndListsService from '@/shared/services/crud_and_list.service'
 import Service from '../service'
+import ApiService from "@/shared/services/api.service";
 
 const MAIN_API_URL = 'contractor-advertising-construction'
 export default {
@@ -1060,17 +1061,28 @@ export default {
             fio: this.editingItem.fio ? this.editingItem.fio : ''
           }
 
-          Service.createReporting(obj, this.sanoat.concat(this.hizmat))
-              .then(async () => {
-                this.$toast.success(this.$t('messages.send_successfully'), {position: "top-right"});
-                this.editingItem = {}
-                this.phoneId = null
-                this.phoneNumber = ''
-                this.computedObserver.reset()
-                this.computedObserverHizmat.reset()
-                this.computedObserverSanoat.reset()
-                this.editingItem = Object.assign({}, {});
-              })
+          let bodyData = []
+          bodyData = bodyData.concat(this.sanoat)
+          bodyData = bodyData.concat(this.hizmat)
+
+          Service.createReporting(obj, bodyData).then(res => {
+
+            let bodyFormData = new FormData()
+            bodyFormData.append("id", res.data.id)
+            bodyFormData.append("file", this.upload_files)
+
+            Service.createWithFiles1(bodyFormData).then(res2 => {
+              this.$toast.success(this.$t('messages.send_successfully'), {position: "top-right"});
+              this.editingItem = {}
+              this.phoneId = null
+              this.phoneNumber = ''
+              this.upload_files = null
+              this.computedObserver.reset()
+              this.computedObserverHizmat.reset()
+              this.computedObserverSanoat.reset()
+              this.editingItem = Object.assign({}, {});
+            })
+          })
               .finally(() => {
                 this.loader = false;
               });
@@ -1079,9 +1091,7 @@ export default {
           this.$toast(this.$t('messages.fill_required_fields'), {type: 'error'});
         }
       })
-
-
-    }
+    },
   }
 }
 const i18n = require("@/i18n");
