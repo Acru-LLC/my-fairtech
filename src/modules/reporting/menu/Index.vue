@@ -481,7 +481,8 @@
             <b-row class="p-1">
               <b-col cols="12" md="10">
                 <b-col class="mb-2 mt-3">
-                  <b-button style="background: #F39138; width: 222px; height: 33px" class="btn btn-warning" size="md" @click="$router.go(-1)">
+                  <b-button style="background: #F39138; width: 222px; height: 33px" class="btn btn-warning" size="md"
+                            @click="$router.go(-1)">
                     {{ $t("actions.back") }}
                   </b-button>
                 </b-col>
@@ -681,7 +682,7 @@ export default {
   watch: {
     'editingItem.madePowerAll': {
       async handler(newValue) {
-        if (this.editingItem.madePowerAll) {
+        if (this.editingItem.madePowerAll != '') {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.madePowerAll = result
@@ -690,7 +691,7 @@ export default {
     },
     'editingItem.madeTonna': {
       async handler(newValue) {
-        if (this.editingItem.madeTonna) {
+        if (this.editingItem.madeTonna != '') {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.madeTonna = result
@@ -699,7 +700,7 @@ export default {
     },
     'editingItem.madeSum': {
       async handler(newValue) {
-        if (this.editingItem.madeSum) {
+        if (this.editingItem.madeSum != '') {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.madeSum = result
@@ -708,7 +709,7 @@ export default {
     },
     'editingItem.buyTonna': {
       async handler(newValue) {
-        if (this.editingItem.buyTonna) {
+        if (this.editingItem.buyTonna != '') {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.buyTonna = result
@@ -717,7 +718,7 @@ export default {
     },
     'editingItem.buySum': {
       async handler(newValue) {
-        if (this.editingItem.buySum) {
+        if (this.editingItem.buySum != '') {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.buySum = result
@@ -726,7 +727,7 @@ export default {
     },
     'editingItem.exportTonna': {
       async handler(newValue) {
-        if (this.editingItem.exportTonna) {
+        if (this.editingItem.exportTonna != '') {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.exportTonna = result
@@ -735,7 +736,7 @@ export default {
     },
     'editingItem.exportSum': {
       async handler(newValue) {
-        if (this.editingItem.exportSum) {
+        if (this.editingItem.exportSum != '') {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.exportSum = result
@@ -744,7 +745,7 @@ export default {
     },
     'editingItem.finallyTonna': {
       async handler(newValue) {
-        if (this.editingItem.finallyTonna) {
+        if (this.editingItem.finallyTonna != '') {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.finallyTonna = result
@@ -753,7 +754,7 @@ export default {
     },
     'editingItem.finallySum': {
       async handler(newValue) {
-        if (this.editingItem.finallySum) {
+        if (this.editingItem.finallySum != '') {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.finallySum = result
@@ -762,7 +763,7 @@ export default {
     },
     'editingItem.sumService': {
       async handler(newValue) {
-        if (this.editingItem.sumService) {
+        if (this.editingItem.sumService != '') {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.sumService = result
@@ -771,7 +772,7 @@ export default {
     },
     'editingItem.exportSumService': {
       async handler(newValue) {
-        if (this.editingItem.exportSumService) {
+        if (this.editingItem.exportSumService != '') {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.exportSumService = result
@@ -902,7 +903,11 @@ export default {
             fio: this.editingItem.fio ? this.editingItem.fio : ''
           }
 
-          Service.createReporting(obj, this.sanoat.concat(this.hizmat))
+          let bodyData = []
+          bodyData = bodyData.concat(this.sanoat)
+          bodyData = bodyData.concat(this.hizmat)
+
+          Service.createReporting(obj, bodyData)
               .then(async () => {
                 this.$toast.success(this.$t('messages.send_successfully'), {position: "top-right"});
                 this.editingItem = {}
