@@ -39,22 +39,22 @@ export default {
                 ҲИМОЯ ҚИЛИШ ҚЎМИТАСИ</h4>
             </div>
             <h5 class="text-color">Ўзбекистон Республикаси, Тошкент шахри,
-              Лабзак кўчаси, 3А, 1234567</h5>
+              Лабзак кўчаси, 3А</h5>
           </div>
           <div class="col-lg-4 margin-t-20">
             <div class="text-color margin-t-20">
               <ul class="list-unstyled footer-list">
                 <li>
                   <span class="h4">CALL-марказ</span>
-                  <p>(71) 123-45-67</p>
+                  <p>1159</p>
                 </li>
                 <li>
                   <span class="h4">Девонхона</span>
-                  <p>(71) 123-45-67</p>
+                  <p>(71) 207-48-00</p>
                 </li>
                 <li>
                   <span class="h4">Ишонч рақами</span>
-                  <p>(71) 123-45-67</p>
+                  <p>(71) 207-47-00</p>
                 </li>
               </ul>
             </div>
@@ -63,30 +63,38 @@ export default {
             <div class="text-color margin-t-20">
               <ul class="list-unstyled footer-list">
                 <li>
-                  <span class="h4">TELTGRAM орқали мурожаат</span>
-                  <p>@rqbot</p>
+                  <span class="h4">TELEGRAM орқали мурожаат</span>
+                  <a href="https://t.me/RaqobatGovUz" target="_blank">@RaqobatGovUz</a>
                 </li>
                 <li>
                   <span class="h4">Ижтимоий тармоқлар</span>
                   <ul class="list-inline social margin-t-20">
                     <li class="list-inline-item">
-                      <a href class="social-icon">
+                      <a href="https://www.facebook.com/RaqobatGovUz"
+                         target="_blank"
+                         class="social-icon">
                         <i class="mdi mdi-facebook"></i>
                       </a>
                     </li>
                     <li class="list-inline-item">
-                      <a href class="social-icon">
+                      <a href="https://www.instagram.com/raqobat_gov_uz?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                         target="_blank"
+                         class="social-icon">
+                        <i class="mdi mdi-instagram"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="https://twitter.com/RaqobatGovUz"
+                         target="_blank"
+                         class="social-icon">
                         <i class="mdi mdi-twitter"></i>
                       </a>
                     </li>
                     <li class="list-inline-item">
-                      <a href class="social-icon">
-                        <i class="mdi mdi-linkedin"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href class="social-icon">
-                        <i class="mdi mdi-google-plus"></i>
+                      <a href="https://www.youtube.com/channel/UCck1Cy6qLxZ7tiXEdm5vuWQ"
+                         target="_blank"
+                         class="social-icon">
+                        <i class="mdi mdi-youtube"></i>
                       </a>
                     </li>
                   </ul>

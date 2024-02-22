@@ -20,8 +20,8 @@ export default {
         </div>
       </div>
       <div class="row margin-t-30">
-        <router-link to="/murojaat" teg="div" class="col mx-2 margin-t-20">
-          <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: 2px 4px 8px 0 #246256;">
+        <router-link to="/murojaat" teg="div" class="col margin-t-20">
+          <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
             <div class="services-box text-center hover-effect">
               <img src="@/assets/image/service-logo.svg" alt="">
               <h4 class="padding-t-15">МУРОЖААТ</h4>
@@ -31,8 +31,8 @@ export default {
             </div>
           </div>
         </router-link>
-        <router-link to="/online-watching" teg="div" class="col mx-2 margin-t-20">
-          <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: 2px 4px 8px 0px #246256;">
+        <router-link to="/online-watching" teg="div" class="col mx-5 margin-t-20">
+          <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
             <div class="services-box text-center hover-effect">
               <img src="@/assets/image/service-logo.svg" alt="">
               <h4 class="padding-t-15">ОНЛАЙН КУЗАТУВ</h4>
@@ -43,8 +43,8 @@ export default {
             </div>
           </div>
         </router-link>
-        <router-link to="/product-services" teg="div" class="col mx-2 margin-t-20">
-          <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: 2px 4px 8px 0px #246256;">
+        <router-link to="/product-services" teg="div" class="col margin-t-20">
+          <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
             <div class="services-box text-center hover-effect">
               <img src="@/assets/image/service-logo.svg" alt="">
               <h4 class="padding-t-15">"PRODUCT INFO" АТ</h4>
@@ -55,55 +55,42 @@ export default {
             </div>
           </div>
         </router-link>
-        <router-link to="/online-report" teg="div" class="col mx-2 margin-t-20">
-          <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: 2px 4px 8px 0px #246256;">
-            <div class="services-box text-center hover-effect">
-              <img src="@/assets/image/service-logo.svg" alt="">
-              <h4 class="padding-t-15">ОНЛАЙН ҲИСОБОТ ЮБОРИШ</h4>
-              <p class="padding-t-15 text-muted">
-                Ҳисобот ва статистик маълумотларни ахборот тизими орқали электрон юбориш
-              </p>
-            </div>
-          </div>
-        </router-link>
+
       </div>
-      <!--      <div class="row margin-t-30">-->
-      <!--        <div class="col-lg-4 margin-t-20">-->
-      <!--          <div class="services-box text-center hover-effect">-->
-      <!--            <img src="@/assets/image/service-logo.svg" alt="">-->
-      <!--            <h4 class="padding-t-15">ОНЛАЙН ҲИСОБОТ ЮБОРИШ</h4>-->
-      <!--            <p class="padding-t-15 text-muted">-->
-      <!--              Ҳисобот ва статистик маълумотларни ахборот тизими орқали электрон юбориш-->
-      <!--            </p>-->
-      <!--          </div>-->
-      <!--        </div>-->
-      <!--        <div class="col-lg-4 margin-t-20">-->
-      <!--          <div class="services-box text-center hover-effect">-->
-      <!--            <img src="@/assets/image/service-logo.svg" alt="">-->
-      <!--            <h4 class="padding-t-15">ХИЗМАТ-5</h4>-->
-      <!--            <p class="padding-t-15 text-muted">-->
-      <!--              Бизнесни юритишда давлат томонидан амалга оширилаётган тизимли ислоҳотлар натижаларини тадбиркорлик субъектлари фаолиятига таъсирини аниқлаш шунингдек рақобат муҳитини ривожлантиришда мавжуд тўсиқларнинг иқтисодиётга таъсирини юмшатиш мақсадида Рақобатни ривожлантириш индекси (кейинги ўринларда Индекс) юритиб келинмоқда.-->
-      <!--              Индекснинг асосий кўрсаткичлари тадбиркорлик субъектлари ҳамда мустақил экспертлар ўртасида сўровномалар ўтказиш орқали аниқланиб, натижаси юзасидан таклифлар Ўзбекистон Республикаси Олий Мажлиси ҳамда ҳукуматга киритилади.-->
-      <!--            </p>-->
-      <!--          </div>-->
-      <!--        </div>-->
-      <!--        <div class="col-lg-4 margin-t-20">-->
-      <!--          <div class="services-box text-center hover-effect">-->
-      <!--            <img src="@/assets/image/service-logo.svg" alt="">-->
-      <!--            <h4 class="padding-t-15">ХИЗМАТ-6</h4>-->
-      <!--            <p class="padding-t-15 text-muted">-->
-      <!--              Бизнесни юритишда давлат томонидан амалга оширилаётган тизимли ислоҳотлар натижаларини тадбиркорлик субъектлари фаолиятига таъсирини аниқлаш шунингдек рақобат муҳитини ривожлантиришда мавжуд тўсиқларнинг иқтисодиётга таъсирини юмшатиш мақсадида Рақобатни ривожлантириш индекси (кейинги ўринларда Индекс) юритиб келинмоқда.-->
-      <!--              Индекснинг асосий кўрсаткичлари тадбиркорлик субъектлари ҳамда мустақил экспертлар ўртасида сўровномалар ўтказиш орқали аниқланиб, натижаси юзасидан таклифлар Ўзбекистон Республикаси Олий Мажлиси ҳамда ҳукуматга киритилади.-->
-      <!--            </p>-->
-      <!--          </div>-->
-      <!--        </div>-->
-      <!--      </div>-->
+      <div class="row mt-5">
+        <div class="col-2 mx-2 margin-t-20"></div>
+              <router-link to="/online-report" teg="div" class="col margin-t-20">
+                <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
+                  <div class="services-box text-center hover-effect">
+                    <img src="@/assets/image/service-logo.svg" alt="">
+                    <h4 class="padding-t-15">ОНЛАЙН ҲИСОБОТ ЮБОРИШ</h4>
+                    <p class="padding-t-15 text-muted">
+                      Ҳисобот ва статистик маълумотларни ахборот тизими орқали электрон юбориш
+                    </p>
+                  </div>
+                </div>
+              </router-link>
+              <a href="https://my.gov.uz/uz/service/355" target="_blank" class="col mx-5 margin-t-20">
+                <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
+                  <div class="services-box text-center hover-effect">
+                    <img src="@/assets/image/service-logo.svg" alt="">
+                    <h4 class="padding-t-15">РОЗИЛИК БЕРИШ</h4>
+                    <p class="padding-t-15 text-muted">
+                      Хўжалик юритувчи субъектнинг устав фондидаги (устав капиталидаги)
+                      акцияларни (улушларни) олиш бўйича битимларга олдиндан розилик олиш тўғрисида мурожаат юбориш
+                    </p>
+                  </div>
+                </div>
+              </a>
+        <div class="col-2 mx-2 margin-t-20"></div>
+            </div>
 
       <hr class="green-gradient-bg mt-5" style="height: 2px"/>
       <b-row>
         <b-col>
-          <h4 class="text-center text-color">РАҚОБАТ РИВОЖЛАНТИРИШ ВА ИСТЕЪМОЛЧИЛАРНИ ХУҚУҚЛАРИНИ ҲИМОЯ ҚИЛИШ
-            КЎМИТАСИНИНГ</h4>
+          <h4 class="text-center text-color">ЎЗБЕКИСТОН РЕСПУБЛИКАСИ РАҚОБАТНИ РИВОЖЛАНТИРИШ
+            ВА ИСТЕЪМОЛЧИЛАР ХУҚУҚЛАРИНИ
+            ҲИМОЯ ҚИЛИШ ҚЎМИТАСИНИНГ</h4>
         </b-col>
       </b-row>
 

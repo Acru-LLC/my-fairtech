@@ -35,7 +35,7 @@ export default {};
                   <span class="h4 font-weight-bold text-color">Манзил</span>
                   <br/>
                   <span
-                      class="d-block text-color">Ўзбекистон Республикаси, Тошкент шахри, Лабзак кўчаси, 3А, 1234567</span>
+                      class="d-block text-color">Ўзбекистон Республикаси, Тошкент шахри, Лабзак кўчаси, 3А</span>
                 </p>
               </div>
             </div>
@@ -48,7 +48,7 @@ export default {};
                   <span class="h4 font-weight-bold text-color">Электрон почта манзил</span>
                   <br/>
                   <span
-                      class="d-block text-color">info@raqobat.uz</span>
+                      class="d-block text-color">info@antimon.gov.uz</span>
                 </p>
               </div>
             </div>
@@ -61,7 +61,7 @@ export default {};
                   <span class="h4 font-weight-bold text-color">Фуқаролар қабулхонаси</span>
                   <br/>
                   <span
-                      class="d-block text-color">info@raqobat.uz</span>
+                      class="d-block text-color">info@antimon.gov.uz</span>
                 </p>
               </div>
             </div>
@@ -73,8 +73,9 @@ export default {};
                 <p class="mt-4">
                   <span class="h4 font-weight-bold text-color">TELEGRAM орқали мурожаат</span>
                   <br/>
-                  <span
-                      class="d-block text-color">@rqbot</span>
+                  <a href="https://t.me/RaqobatGovUz"
+                     target="_blank"
+                      class="d-block text-color">@RaqobatGovUz</a>
                 </p>
               </div>
             </div>
