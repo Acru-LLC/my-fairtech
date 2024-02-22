@@ -50,11 +50,11 @@ export default {
                   </div>
 
                   <div>
-                    <b-button variant="outline-light" class="mt-3 text-white">Хизматлардан фойдаланиш</b-button>
+                    <b-button v-scroll-to="'#services'" href="javascript: void(0);" variant="outline-light" class="mt-3 text-white">Хизматлардан фойдаланиш</b-button>
                   </div>
                 </b-col>
 
-                <b-col>
+                <b-col class="d-flex justify-content-center">
                   <div>
                     <VanillaTilt parallax>
                       <img src="@/assets/image/big-logo.svg" alt="logo" class="img-fluid"
