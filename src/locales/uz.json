@@ -3063,7 +3063,7 @@
         "title": "Buyurtmachi ma'lumotlari",
         "stir": "Buyurtmachi STIRi",
         "name": "Buyurtmachi nomi",
-        "director": "Buyurtmachi raxbari",
+        "director": "Buyurtmachi rahbari",
         "address": "Buyurtmachi manzili"
       },
       "step3": {
@@ -3071,7 +3071,7 @@
         "title2": "Ishtirokchining tasischilari",
         "stir": "STIR",
         "name": "Ishtirokchi nomi",
-        "director": "Ishtirokchi raxbari",
+        "director": "Ishtirokchi rahbari",
         "pinfl": "JSH SHIR",
         "address": "Ishtirokchi manzili",
         "fio": "F.I.SH",
@@ -3193,7 +3193,7 @@
       "q_date": "Qoldirilgan sana",
       "y_date": "O'zgartirilgan sana",
       "tin": "STIR",
-      "director": "Subyekt raxbari",
+      "director": "Subyekt rahbari",
       "address": "Subyekt manzili",
       "name": "Subyekt nomi",
       "summ": "Aniqlangan summa",
@@ -3277,7 +3277,7 @@
         "address": "Yuridik manzili",
         "phone": "Telefon raqami",
         "email": "Elektron pochta manzili ",
-        "directorName": "Raxbarning F.I.SH",
+        "directorName": "Rahbarning F.I.SH",
         "region": "Viloyat soato code",
         "district": "Tuman soato code"
       },
@@ -4235,7 +4235,7 @@
         "name1": "STIR",
         "name2": "KTUT",
         "name3": "Nomi",
-        "name4": "Raxbarning F.I.SH",
+        "name4": "Rahbarning F.I.SH",
         "name5": "Manzili"
       },
       "form2": {
