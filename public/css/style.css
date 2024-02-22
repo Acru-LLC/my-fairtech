@@ -276,9 +276,9 @@ iframe {
     box-shadow: none !important;
 }
 
-.btn:hover {
-    transform: translateY(-5px);
-}
+/*.btn:hover {*/
+/*    transform: translateY(-5px);*/
+/*}*/
 
 .btn-rounded {
     border-radius: 30px;
