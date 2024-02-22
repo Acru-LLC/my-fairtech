@@ -25,7 +25,10 @@
 16. FOOTER
 17. RESPONSIVE
 */
-
+@font-face {
+    font-family: "NoirPro-Regular";
+    src: url("../../src/assets/fonts/Noir_regular.otf") format("truetype");
+}
 
 /* ==========
    1.BASIC
@@ -62,9 +65,10 @@ button {
 p {
     font-size: 14.4px;
     line-height: 24px;
+    font-family: NoirPro-Regular, sans-serif;
 }
-h1,h2,h3,h4,h5,h6 {
-    font-family: 'Poppins', sans-serif;
+h1,h2,h3,h4,h5,h6, a, span, label {
+    /*font-family: 'NoirPro-Regular', sans-serif;*/
 }
 
 .h1,
