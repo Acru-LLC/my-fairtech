@@ -14,6 +14,7 @@
                 ref="observer"
                 v-slot="{}"
             >
+              {{ editingItem.name }}
               <b-card style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px;margin-top:10px;">
                 <b-row>
                   <b-col cols="3" class="px-3 py-0">
@@ -24,7 +25,7 @@
                   </b-col>
                 </b-row>
                 <b-row>
-                  <b-col class="px-3 py-0">
+                  <b-col cols="3" class="px-3 py-0">
                     <BaseInputWithValidation
                         v-model="editingItem.stir"
                         mask="#########"
@@ -38,27 +39,19 @@
                     >
                       <template v-slot:append-slot>
                         <b-button
+                            :disabled="loadingStirItems"
                             @click="findContractorByInn"
                             variant="outline-primary"
                             id="contractorSearchButton"
                             style="padding: 2.5px 10px; font-size: 1.2rem;"
                         >
-                          <i class="mdi mdi-account-search"></i>
+                          <b-spinner small v-if="loadingStirItems" label="Spinning"></b-spinner>
+                          <i v-else class="mdi mdi-account-search"></i>
                         </b-button>
                       </template>
                     </BaseInputWithValidation>
                   </b-col>
-                  <b-col class="px-3">
-                    <BaseInputWithValidation
-                        v-model="editingItem.ktut"
-                        :label="$t('reporting.main.form1.name2')"
-                        :placeholder="$t('')"
-                        class="required"
-                        rules="required"
-                        label-on-top
-                    />
-                  </b-col>
-                  <b-col class="px-3">
+                  <b-col cols="3" class="px-3">
                     <BaseInputWithValidation
                         v-model="editingItem.name"
                         :label="$t('reporting.main.form1.name3')"
@@ -68,7 +61,7 @@
                         label-on-top
                     />
                   </b-col>
-                  <b-col class="px-3">
+                  <b-col cols="3" class="px-3">
                     <BaseInputWithValidation
                         v-model="editingItem.fio"
                         :label="$t('reporting.main.form1.name4')"
@@ -78,7 +71,7 @@
                         label-on-top
                     />
                   </b-col>
-                  <b-col class="px-3">
+                  <b-col cols="3" class="px-3">
                     <BaseInputWithValidation
                         v-model="editingItem.address"
                         :label="$t('reporting.main.form1.name5')"
@@ -88,9 +81,52 @@
                         label-on-top
                     />
                   </b-col>
+                  <b-col cols="3" class="px-3">
+                    <BaseInputWithValidation
+                        v-model="editingItem.ktut"
+                        :label="$t('reporting.main.form1.name2')"
+                        :placeholder="$t('')"
+                        class="required"
+                        rules="required"
+                        label-on-top
+                    />
+                  </b-col>
+                  <b-col cols="3" class="px-3">
+                    <b-row>
+                      <b-col cols="2">
+                        <BaseMultiselectWithValidation
+                            rules="required"
+                            class="required"
+                            v-model="phoneId"
+                            label-on-top
+                            :options="phoneCodes.map(e => e.id)"
+                            :label="$t('send_message.code')"
+                            :placeholder="$t('')"
+                            open-direction="bottom"
+                            :show-labels="false"
+                            :custom-label="customLabelPhoneCode"
+                        />
+                      </b-col>
+                      <b-col>
+                        <BaseInputWithValidation
+                            type="tel"
+                            rules="required"
+                            class="required"
+                            :label="$t('send_message.phone_number')"
+                            label-on-top
+                            custom-styles="grid-template-columns: 0% 80%"
+                            v-model="phoneNumber"
+                            mask="###-##-##"
+                            placeholder="###-##-##"
+                        />
+                      </b-col>
+                    </b-row>
 
+
+                  </b-col>
                 </b-row>
               </b-card>
+
               <b-card style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px;margin-top:10px;">
                 <b-row>
                   <b-col cols="3" class="px-3 py-0">
@@ -101,7 +137,7 @@
                   </b-col>
                 </b-row>
                 <b-row>
-                  <b-col cols="12" md="3" class="px-3 py-0">
+                  <b-col cols="3" class="px-3 py-0">
                     <BaseSelectWithValidation
                         v-model="editingItem.codeSoxa"
                         class="required"
@@ -117,8 +153,7 @@
                       </b-form-select-option>
                     </BaseSelectWithValidation>
                   </b-col>
-
-                  <b-col cols="12" md="3" class="px-3">
+                  <b-col cols="3" class="px-3">
                     <BaseSelectWithValidation
                         v-model="editingItem.codeXisobod"
                         class="required"
@@ -134,12 +169,12 @@
                       </b-form-select-option>
                     </BaseSelectWithValidation>
                   </b-col>
-                  <b-col cols="12" md="3" class="px-3"
+                  <b-col cols="2" class="px-3"
                          v-if="editingItem.codeXisobod == 'YILLIK'">
                     <BaseDatePickerWithValidation
                         class="required"
                         rules="required"
-                        :label="$t('column.birthdate')"
+                        :label="$t('column.year')"
                         type="year"
                         format="YYYY"
                         label-on-top
@@ -147,7 +182,7 @@
                         v-model="editingItem.year"
                     ></BaseDatePickerWithValidation>
                   </b-col>
-                  <b-col cols="12" md="3" class="px-3 mt-3"
+                  <b-col cols="3" class="px-3 mt-3"
                          v-if="editingItem.codeXisobod == '6OYLIK'">
                     <b-form-group
                         :label="$t('reporting.main.form2.name5')"
@@ -182,9 +217,44 @@
                       </b-row>
                     </b-form-group>
                   </b-col>
-
+                  <b-col cols="3" class="py-0 px-3">
+                    <b-row v-if="uploadFilename !== ''">
+                      <b-col cols="6" class="mt-3">
+                        {{ uploadFilename }}
+                      </b-col>
+                      <b-col cols="6">
+                        <b-button
+                            style=" background: #f39138"
+                            class="mt-3 p-1"
+                            @click="clearFile"
+                        >
+                          <i class="fa fa-window-close"></i>
+                          {{ $t("rais.cancel") }}
+                        </b-button>
+                      </b-col>
+                    </b-row>
+                    <b-button
+                        v-else
+                        class="mt-3 p-2"
+                        :block="uploadFilename !== '' ? false : true"
+                        style="border: 1px solid #2b675b; background: #FFFFFF; width: 200px"
+                        @click="uploadFile"
+                    >
+                                <span style="color: #2b675b; !important;">
+                                                <i class="fa fa-upload"></i>
+                                            {{ $t("actions.upload_file") }}
+                                           </span>
+                    </b-button>
+                    <b-form-file
+                        @change="onFileChange"
+                        v-model="uploadFiles"
+                        class="d-none"
+                        ref="ilovaRef"
+                    ></b-form-file>
+                  </b-col>
                 </b-row>
               </b-card>
+
             </ValidationObserver>
 
             <b-card v-if="editingItem.codeSoxa == 'SANOAT'"
@@ -481,6 +551,10 @@
             <b-row class="p-1">
               <b-col cols="12" md="10">
                 <b-col class="mb-2 mt-3">
+                  <b-button style="background: #F39138; width: 222px; height: 33px" class="btn btn-warning" size="md"
+                            @click="$router.go(-1)">
+                    {{ $t("actions.back") }}
+                  </b-button>
                 </b-col>
               </b-col>
               <b-col cols="12" md="2" class="mt-3">
@@ -653,6 +727,7 @@ const REF_NAME = 'court_instantions'
 import appConfig from "@/app.config";
 import crudAndListsService from '@/shared/services/crud_and_list.service'
 import Service from '../service'
+import ApiService from "@/shared/services/api.service";
 
 const MAIN_API_URL = 'contractor-advertising-construction'
 export default {
@@ -666,19 +741,52 @@ export default {
       loader: false,
       loadingStirItems: false,
       summm: '',
-      editingItem: {},
+      editingItem: {
+        name: '',
+        fio: '',
+        address: ''
+      },
       sanoat: [],
       hizmat: [],
       isModalSanoat: false,
       isModalHizmat: false,
       loaderSanoat: false,
       loaderHizmat: false,
+      uploadFiles: null,
+      uploadFilename: '',
+      upload_files: null,
+      phoneId: null,
+      phoneNumber: '',
+      phoneCodes: [],
+      phoneCode: null,
     }
   },
   watch: {
+    phoneId(id) {
+      if (id !== null) {
+        this.phoneCode = this.phoneCodes.find(e => e.id == id);
+      } else {
+        this.phoneCode = null;
+      }
+    },
+    'editingItem.codeSoxa': {
+      async handler() {
+        this.editingItem.codeXisobod = ''
+        this.editingItem.dateFrom = ''
+        this.editingItem.dateTo = ''
+        this.editingItem.year = ''
+      }
+    },
+    'editingItem.stir': {
+      async handler() {
+        if (this.editingItem.stir && this.editingItem.stir.length == 9) {
+          this.findContractorByInn()
+        }
+      }
+    },
     'editingItem.madePowerAll': {
       async handler(newValue) {
-        if (this.editingItem.madePowerAll != '') {
+        if (this.editingItem.madePowerAll) {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.madePowerAll = result
@@ -687,7 +795,7 @@ export default {
     },
     'editingItem.madeTonna': {
       async handler(newValue) {
-        if (this.editingItem.madeTonna != '') {
+        if (this.editingItem.madeTonna) {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.madeTonna = result
@@ -696,7 +804,7 @@ export default {
     },
     'editingItem.madeSum': {
       async handler(newValue) {
-        if (this.editingItem.madeSum != '') {
+        if (this.editingItem.madeSum) {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.madeSum = result
@@ -705,7 +813,7 @@ export default {
     },
     'editingItem.buyTonna': {
       async handler(newValue) {
-        if (this.editingItem.buyTonna != '') {
+        if (this.editingItem.buyTonna) {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.buyTonna = result
@@ -714,7 +822,7 @@ export default {
     },
     'editingItem.buySum': {
       async handler(newValue) {
-        if (this.editingItem.buySum != '') {
+        if (this.editingItem.buySum) {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.buySum = result
@@ -723,7 +831,7 @@ export default {
     },
     'editingItem.exportTonna': {
       async handler(newValue) {
-        if (this.editingItem.exportTonna != '') {
+        if (this.editingItem.exportTonna) {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.exportTonna = result
@@ -732,7 +840,7 @@ export default {
     },
     'editingItem.exportSum': {
       async handler(newValue) {
-        if (this.editingItem.exportSum != '') {
+        if (this.editingItem.exportSum) {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.exportSum = result
@@ -741,7 +849,7 @@ export default {
     },
     'editingItem.finallyTonna': {
       async handler(newValue) {
-        if (this.editingItem.finallyTonna != '') {
+        if (this.editingItem.finallyTonna) {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.finallyTonna = result
@@ -750,7 +858,7 @@ export default {
     },
     'editingItem.finallySum': {
       async handler(newValue) {
-        if (this.editingItem.finallySum != '') {
+        if (this.editingItem.finallySum) {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.finallySum = result
@@ -759,7 +867,7 @@ export default {
     },
     'editingItem.sumService': {
       async handler(newValue) {
-        if (this.editingItem.sumService != '') {
+        if (this.editingItem.sumService) {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.sumService = result
@@ -768,7 +876,7 @@ export default {
     },
     'editingItem.exportSumService': {
       async handler(newValue) {
-        if (this.editingItem.exportSumService != '') {
+        if (this.editingItem.exportSumService) {
           const result = newValue.replace(/\D/g, "")
               .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
           this.editingItem.exportSumService = result
@@ -777,6 +885,7 @@ export default {
     },
   },
   async created() {
+    await this.getPhoneCode();
   },
   computed: {
     computedObserver() {
@@ -790,6 +899,36 @@ export default {
     },
   },
   methods: {
+    async getPhoneCode() {
+      // this.var_default_search_payload.itemsPerPage = 100
+      await crudAndListsService.searchListWithKeyword("message-phone-code", this.var_default_search_payload)
+          .then(res => {
+            this.phoneCodes = res.data.list
+          })
+          .catch(e => {
+            console.log(e)
+          })
+    },
+    customLabelPhoneCode(opt) {
+      let selectedCode = this.phoneCodes.find(e => e.id == opt);
+      if (selectedCode) {
+        return selectedCode.code;
+      }
+      return ``;
+    },
+    onFileChange(e) {
+
+      const file = e.target.files[0];
+      this.upload_files = file
+      this.uploadFilename = file.name;
+    },
+    uploadFile() {
+      this.$refs.ilovaRef.$el.firstChild.click();
+    },
+    clearFile() {
+      this.upload_files = null
+      this.uploadFilename = ''
+    },
     deleteSanoat(index) {
       this.sanoat.splice(index, 1)
     },
@@ -798,6 +937,11 @@ export default {
       this.computedObserverSanoat.validate().then(valid => {
         if (valid) {
           let objSanoat = {
+            codeXisobod: this.editingItem.codeXisobod ? this.editingItem.codeXisobod : '',
+            dateFrom: this.editingItem.dateFrom ? this.editingItem.dateFrom : '',
+            dateTo: this.editingItem.dateTo ? this.editingItem.dateTo : '',
+            year: this.editingItem.year ? this.editingItem.year : '',
+
             codeSoxa: this.editingItem.codeSoxa,
             codeTiftn: this.editingItem.codeTiftn,
             nameProduct: this.editingItem.nameProduct,
@@ -841,6 +985,11 @@ export default {
       this.computedObserverHizmat.validate().then(valid => {
         if (valid) {
           let objHizmat = {
+            codeXisobod: this.editingItem.codeXisobod ? this.editingItem.codeXisobod : '',
+            dateFrom: this.editingItem.dateFrom ? this.editingItem.dateFrom : '',
+            dateTo: this.editingItem.dateTo ? this.editingItem.dateTo : '',
+            year: this.editingItem.year ? this.editingItem.year : '',
+
             codeSoxa: this.editingItem.codeSoxa,
             codeSevice: this.editingItem.codeSevice,
             nameService: this.editingItem.nameService,
@@ -864,10 +1013,25 @@ export default {
         this.loadingStirItems = true
         Service.getYuridikShaxsData(this.editingItem.stir, true)
             .then(res => {
-              console.log(res.data)
-              this.editingItem.name = res.data.company.name
-              this.editingItem.fio = res.data.accountant.firstName + res.data.accountant.lastName + res.data.accountant.middleName
-              this.editingItem.address = res.data.companyBillingAddress.regionNameUz + ' ' + res.data.companyBillingAddress.nameUz
+              if (res.data) {
+                this.editingItem.name = res.data.company && res.data.company.name
+                if (res.data.accountant) {
+                  this.editingItem.fio = res.data.accountant.firstName + ' ' + res.data.accountant.lastName + ' ' + res.data.accountant.middleName
+                }
+                if (res.data.companyBillingAddress) {
+                  this.editingItem.address = this.getName({
+                        nameRu: res.data.companyBillingAddress.regionNameRu,
+                        nameUz: res.data.companyBillingAddress.regionNameUz,
+                        nameLt: res.data.companyBillingAddress.regionNameLt,
+                      })
+                      + ' ' +
+                      this.getName({
+                        nameRu: res.data.companyBillingAddress.nameRu,
+                        nameUz: res.data.companyBillingAddress.nameUz,
+                        nameLt: res.data.companyBillingAddress.nameLt,
+                      })
+                }
+              }
 
               this.$toast(this.$t('submodules.integration.statistics_info.download_success'), {type: 'success'});
               this.loadingStirItems = false
@@ -883,15 +1047,13 @@ export default {
       }
 
     },
+
     saveData() {
       this.loader = true;
       this.computedObserver.validate().then(valid => {
         if (valid) {
           let obj = {
-            codeXisobod: this.editingItem.codeXisobod ? this.editingItem.codeXisobod : '',
-            dateFrom: this.editingItem.dateFrom ? this.editingItem.dateFrom : '',
-            dateTo: this.editingItem.dateTo ? this.editingItem.dateTo : '',
-            year: this.editingItem.year ? this.editingItem.year : '',
+            phone: '+998' + this.phoneCode.code + this.phoneNumber.replaceAll('-', ''),
             name: this.editingItem.name ? this.editingItem.name : '',
             ktut: this.editingItem.ktut ? this.editingItem.ktut : '',
             stir: this.editingItem.stir ? this.editingItem.stir : '',
@@ -903,15 +1065,24 @@ export default {
           bodyData = bodyData.concat(this.sanoat)
           bodyData = bodyData.concat(this.hizmat)
 
-          Service.createReporting(obj, bodyData)
-              .then(async () => {
-                this.$toast.success(this.$t('messages.send_successfully'), {position: "top-right"});
-                this.editingItem = {}
-                this.computedObserver.reset()
-                this.computedObserverHizmat.reset()
-                this.computedObserverSanoat.reset()
-                this.editingItem = Object.assign({}, {});
-              })
+          Service.createReporting(obj, bodyData).then(res => {
+
+            let bodyFormData = new FormData()
+            bodyFormData.append("id", res.data.id)
+            bodyFormData.append("file", this.upload_files)
+
+            Service.createWithFiles1(bodyFormData).then(res2 => {
+              this.$toast.success(this.$t('messages.send_successfully'), {position: "top-right"});
+              this.editingItem = {}
+              this.phoneId = null
+              this.phoneNumber = ''
+              this.upload_files = null
+              this.computedObserver.reset()
+              this.computedObserverHizmat.reset()
+              this.computedObserverSanoat.reset()
+              this.editingItem = Object.assign({}, {});
+            })
+          })
               .finally(() => {
                 this.loader = false;
               });
@@ -920,9 +1091,7 @@ export default {
           this.$toast(this.$t('messages.fill_required_fields'), {type: 'error'});
         }
       })
-
-
-    }
+    },
   }
 }
 const i18n = require("@/i18n");
@@ -985,6 +1154,11 @@ table {
 }
 
 ::v-deep .vue-treeselect {
+  border: 1px solid #2b675b;
+  border-radius: 5px;
+}
+
+::v-deep .custom-multiselect {
   border: 1px solid #2b675b;
   border-radius: 5px;
 }

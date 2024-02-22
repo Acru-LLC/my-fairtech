@@ -4229,6 +4229,7 @@
     }
   },
   "reporting": {
+    "send_button": "Yuborish",
     "title": "Tovar, moliya va raqamli bozorlar to'g'risidagi xisobotni yuborish",
     "name": "Onlayn hisobot yuborish",
     "main": {
@@ -4237,7 +4238,7 @@
         "name1": "STIR",
         "name2": "KTUT",
         "name3": "Nomi",
-        "name4": "Raxbarning F.I.SH",
+        "name4": "Rahbarning F.I.SH",
         "name5": "Manzili"
       },
       "form2": {
