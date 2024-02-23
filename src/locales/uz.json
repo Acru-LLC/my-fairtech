@@ -145,8 +145,8 @@
     "int_err": "Kiritilgan qiymat raqam bo'lishi kerak",
     "jadval_shartlari": "Hisobot shakli shartlari bajarilmadi",
     "doc_table_formula": {
-      "doc_table_not_found": "Xisobot shakli topilmadi",
-      "doc_column_not_found": "Xisobot shakli ustuni topilmadi"
+      "doc_table_not_found": "Hisobot shakli topilmadi",
+      "doc_column_not_found": "Hisobot shakli ustuni topilmadi"
     }
   },
   "template_departments": "Jadvalga biriktilgan tashkilotlar ro'yxati",
@@ -1097,7 +1097,7 @@
       "auto_generated_types_sugar": "Shakar",
       "auto_generated_types_flour": "Un",
       "auto_generated_types_bakery": "Non",
-      "select_minimum_two_report": "Kamida 2 ta xisobot tanlash kerak"
+      "select_minimum_two_report": "Kamida 2 ta hisobot tanlash kerak"
     },
     "projects": {
       "title_plural": "Loyihalar",
@@ -1825,8 +1825,8 @@
         "methods": {
           "1": "Yuridik shaxs to'g'risidagi ma'lumot",
           "2": "YaTT to'g'risidagi ma'lumot",
-          "3": "Moliyaviy xisobotlar nusxalari to'g'risidagi. Buxgalteriya balansi(1-shakl)",
-          "4": "Moliyaviy xisobotlar nusxalari to'g'risidagi. Korxona va tashkilotlarning moliya-xo'jalik faoliyatining asosiy ko'rsatkichlari(2-shakl)",
+          "3": "Moliyaviy hisobotlar nusxalari to'g'risidagi. Buxgalteriya balansi(1-shakl)",
+          "4": "Moliyaviy hisobotlar nusxalari to'g'risidagi. Korxona va tashkilotlarning moliya-xo'jalik faoliyatining asosiy ko'rsatkichlari(2-shakl)",
           "5": "Tovar yoki moliya bozorida ustun mavqeni egallab turgan xo'jalik yurutuvchi subyektlar to'g'risida ma'lumot",
           "6": "Tabiiy monopoliya subyektlarining Davlat reestridagi korxonalar to'g'risida ma'lumot",
           "7": "Intellektual mulk xuquqlarini buzgan noxalol tadbirkorlik subyektlari reestri"
@@ -4227,7 +4227,7 @@
   },
   "reporting": {
     "send_button": "Yuborish",
-    "title": "Tovar, moliya va raqamli bozorlar to'g'risidagi xisobotni yuborish",
+    "title": "Tovar, moliya va raqamli bozorlar to'g'risidagi hisobotni yuborish",
     "name": "Onlayn hisobot yuborish",
     "main": {
       "form1": {

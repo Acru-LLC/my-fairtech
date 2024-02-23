@@ -276,7 +276,7 @@
     "empty_table": "Информация не найдена"
   },
   "actions": {
-    "sorting":"Filtrlar",
+    "sorting": "Filtrlar",
     "empty": "Ma'lumot mavjud emas",
     "qrcode": "Добавить QR-код",
     "view_pdf": "Добавить в формате Pdf",
@@ -1364,7 +1364,7 @@
     "integration": {
       "error_message": "Информация отсутствует в базе данных",
       "title": "Интеграция",
-      "bodyTitle":"ʻʻFAIR TECHʼʼ ЕДИНАЯ ПЛАТФОРМА ИНТЕГРАЦИИ ИНФОРМАЦИОННОЙ СИСТЕМЫ",
+      "bodyTitle": "ʻʻFAIR TECHʼʼ ЕДИНАЯ ПЛАТФОРМА ИНТЕГРАЦИИ ИНФОРМАЦИОННОЙ СИСТЕМЫ",
       "personallashtirish": {
         "required_info_title": "Введите информацию о физическом лице",
         "menu_title": "Агентство персонализации",
@@ -2829,7 +2829,7 @@
         "name1": "СТИР",
         "name2": "КТУТ",
         "name3": "Номи",
-        "name4": "Рахбарнинг F.I.SH",
+        "name4": "Раҳбарнинг Ф.И.Ш",
         "name5": "Манзили"
       },
       "form2": {

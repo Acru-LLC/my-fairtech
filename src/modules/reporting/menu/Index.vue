@@ -107,6 +107,7 @@
                             :custom-label="customLabelPhoneCode"
                         />
                       </b-col>
+                      <b-col cols="1"></b-col>
                       <b-col>
                         <BaseInputWithValidation
                             type="tel"
@@ -267,9 +268,9 @@
                   </div>
                 </b-col>
                 <b-col cols="3" class="px-3 py-0"></b-col>
-                <b-col cols="3" class="px-3 py-0"></b-col>
-                <b-col cols="3" class="px-3 py-0">
-                  <b-button-group style="width: 100%;">
+                <b-col cols="4" class="px-3 py-0"></b-col>
+                <b-col cols="2" class="px-3 py-0">
+                  <b-button-group style="width: 70%; float: right">
                     <b-button
                         @click="addFormSanoat"
                         block
@@ -474,9 +475,9 @@
                   </div>
                 </b-col>
                 <b-col cols="3" class="px-3 py-0"></b-col>
-                <b-col cols="3" class="px-3 py-0"></b-col>
-                <b-col cols="3" class="px-3 py-0">
-                  <b-button-group style="width: 100%;">
+                <b-col cols="4" class="px-3 py-0"></b-col>
+                <b-col cols="2" class="px-3 py-0">
+                  <b-button-group style="width: 70%; float: right">
                     <b-button
                         @click="addFormHizmat"
                         block
@@ -551,7 +552,7 @@
             <b-row class="p-1">
               <b-col cols="12" md="10">
                 <b-col class="mb-2 mt-3">
-                  <b-button style="background: #F39138; width: 222px; height: 33px" class="btn btn-warning" size="md"
+                  <b-button style="background: #F39138; width: 150px; height: 33px" class="btn btn-warning" size="md"
                             @click="$router.go(-1)">
                     {{ $t("actions.back") }}
                   </b-button>
@@ -571,7 +572,7 @@
                       class="text-capitalize float-end p-1 ml-1"
                       @click="saveData"
                       block
-                      style="background: #2b675b; font-size: 16px"
+                      style="background: #2b675b; font-size: 16px; width: 200px; float: right"
                   >
                     {{ $t("reporting.send_button") }}
                   </b-button>
