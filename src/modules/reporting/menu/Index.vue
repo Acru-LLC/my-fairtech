@@ -204,6 +204,7 @@
                           >
                           </BaseDatePickerWithValidation>
                         </b-col>
+                        <b-col cols="1"></b-col>
                         <b-col>
                           <BaseDatePickerWithValidation
                               class="required"
