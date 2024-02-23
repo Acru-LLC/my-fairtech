@@ -8,11 +8,11 @@ export default {
 
 <template>
   <!--START SERVICES-->
-  <section class="section pb-0" id="services">
+  <section class=" section-lg pb-0" id="services">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 offset-lg-2">
-          <h1 class="section-title text-center">ИНТЕРАКТИВ ХИЗМАТЛАР</h1>
+          <h1 class="section-title text-center text-color">ИНТЕРАКТИВ ХИЗМАТЛАР</h1>
           <div class="section-title-border margin-t-20" style="background-color: #246256"></div>
           <!--          <p-->
           <!--              class="section-subtitle text-muted text-center padding-t-30 font-secondary"-->
@@ -24,8 +24,8 @@ export default {
           <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
             <div class="services-box text-center hover-effect">
               <img src="@/assets/image/service-logo.svg" alt="">
-              <h4 class="padding-t-15">МУРОЖААТ</h4>
-              <p class="padding-t-15 text-muted">
+              <h4 class="padding-t-15 text-color">МУРОЖААТ</h4>
+              <p class="padding-t-15 text-color">
                 Рақобат қўмитасига электрон шаклда мурожаат қилиш
               </p>
             </div>
@@ -35,8 +35,8 @@ export default {
           <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
             <div class="services-box text-center hover-effect">
               <img src="@/assets/image/service-logo.svg" alt="">
-              <h4 class="padding-t-15">ОНЛАЙН КУЗАТУВ</h4>
-              <p class="padding-t-15 text-muted">
+              <h4 class="padding-t-15 text-color">ОНЛАЙН КУЗАТУВ</h4>
+              <p class="padding-t-15 text-color">
                 Рақобат қўмитасига <a href="https://cabinet.fairtech.uz" target="_blank">cabinet.fairtech.uz</a> орқали
                 юборилган мурожаатлар ҳолатларини онлайн кузатиб бориш
               </p>
@@ -47,8 +47,8 @@ export default {
           <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
             <div class="services-box text-center hover-effect">
               <img src="@/assets/image/service-logo.svg" alt="">
-              <h4 class="padding-t-15">"PRODUCT INFO" АТ</h4>
-              <p class="padding-t-15 text-muted">
+              <h4 class="padding-t-15 text-color">"PRODUCT INFO" АТ</h4>
+              <p class="padding-t-15 text-color">
                 Товар тўғрисида маълумот
                 Товар (иш, хизмат)лар тўғрисида маълумотларни онлайн тарзда олиш
               </p>
@@ -63,8 +63,8 @@ export default {
                 <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
                   <div class="services-box text-center hover-effect">
                     <img src="@/assets/image/service-logo.svg" alt="">
-                    <h4 class="padding-t-15">ОНЛАЙН ҲИСОБОТ ЮБОРИШ</h4>
-                    <p class="padding-t-15 text-muted">
+                    <h4 class="padding-t-15 text-color">ОНЛАЙН ҲИСОБОТ ЮБОРИШ</h4>
+                    <p class="padding-t-15 text-color">
                       Ҳисобот ва статистик маълумотларни ахборот тизими орқали электрон юбориш
                     </p>
                   </div>
@@ -74,8 +74,8 @@ export default {
                 <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
                   <div class="services-box text-center hover-effect">
                     <img src="@/assets/image/service-logo.svg" alt="">
-                    <h4 class="padding-t-15">РОЗИЛИК БЕРИШ</h4>
-                    <p class="padding-t-15 text-muted">
+                    <h4 class="padding-t-15 text-color">РОЗИЛИК БЕРИШ</h4>
+                    <p class="padding-t-15 text-color">
                       Хўжалик юритувчи субъектнинг устав фондидаги (устав капиталидаги)
                       акцияларни (улушларни) олиш бўйича битимларга олдиндан розилик олиш тўғрисида мурожаат юбориш
                     </p>
