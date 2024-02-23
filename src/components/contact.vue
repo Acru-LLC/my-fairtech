@@ -25,7 +25,7 @@ export default {};
     <section class="section" id="contact">
       <div class="container">
         <b-row cols="12">
-          <b-col cols="5" style="border: 2px solid #246256; border-radius: 5px">
+          <b-col cols="5" style="box-shadow: rgb(201, 219, 215) 2px 4px 8px 0px; border-radius: 5px">
             <div class="d-flex align-items-center">
               <div class="mr-3">
                 <img width="25" height="25" src="@/assets/image/location.svg" alt="">
@@ -82,7 +82,7 @@ export default {};
           </b-col>
           <b-col cols="7" class="">
             <form method="post" name="contact-form" id="contact-form"
-                  style="border: 2px solid #246256; border-radius: 5px" class="p-3">
+                  style="box-shadow: rgb(201, 219, 215) 2px 4px 8px 0px; border-radius: 5px" class="p-3">
               <iframe
                   src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d794.5543438897944!2d69.26438938580422!3d41.322519301175866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1708090590309!5m2!1sen!2s"
                   width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
