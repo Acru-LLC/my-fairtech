@@ -47,9 +47,10 @@ export default {
           <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
             <div class="services-box text-center hover-effect">
               <img src="@/assets/image/service-logo.svg" alt="">
-              <h4 class="padding-t-15 text-color">"PRODUCT INFO" АТ</h4>
+              <h4 class="padding-t-15 text-color ">PRODUCT INFO</h4>
+              <hr class="green-gradient-bg w-75" style="height: 2px">
+              <h4 class="text-color">Товар тўғрисида маълумот</h4>
               <p class="padding-t-15 text-color">
-                Товар тўғрисида маълумот
                 Товар (иш, хизмат)лар тўғрисида маълумотларни онлайн тарзда олиш
               </p>
             </div>

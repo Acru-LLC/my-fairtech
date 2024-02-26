@@ -122,7 +122,7 @@ export default {
               <b-row>
                 <h4 class="font-weight-bold text-color">Қаюмов Асадулло Ўролович</h4>
 <!--                <img style="top: 0; right: 0;" class="position-absolute cursor-pointer" @click="openModal1" src="@/assets/image/danger.png" alt="">-->
-                <span class="font-weight-bold">Раиснинг биринчи ўринбосари</span>
+                <span class="font-weight-bold">Раис ўринбосари</span>
                 <b-modal v-model="showModal1" hide-footer size="lg" title="Қаюмов Асадулло Ўролович">
                   <p>
                     Қаюмов Асадулла Уролович 1984 йил Сурхондарё вилоятида туғилган.
