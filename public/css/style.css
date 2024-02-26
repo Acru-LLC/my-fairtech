@@ -27,7 +27,20 @@
 */
 @font-face {
     font-family: "NoirPro-Regular";
-    src: url("../../src/assets/fonts/Noir_regular.otf") format("truetype");
+    src: url("../../src/assets/fonts/NOIRPRO-REGULAR.ttf") format("truetype");
+}
+@font-face {
+    font-family: "NoirPro-Bold";
+    src: url("../../src/assets/fonts/NOIRPRO-BOLD.ttf") format("truetype");
+}
+@font-face {
+    font-family: "NoirPro-Italic";
+    src: url("../../src/assets/fonts/NOIRPRO-ITALIC.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "NoirPro-Light";
+    src: url("../../src/assets/fonts/NOIRPRO-LIGHT.ttf") format("truetype");
 }
 
 /* ==========
@@ -35,7 +48,7 @@
    ========== */
 
 body {
-    font-family: 'Rubik', sans-serif;
+    font-family: "NoirPro-Regular", sans-serif;
     overflow-x: hidden !important;
     position: relative;
 }
@@ -65,10 +78,10 @@ button {
 p {
     font-size: 14.4px;
     line-height: 24px;
-    font-family: NoirPro-Regular, sans-serif;
+    font-family: "NoirPro-Regular", sans-serif;
 }
 h1,h2,h3,h4,h5,h6, a, span, label {
-    /*font-family: 'NoirPro-Regular', sans-serif;*/
+    font-family: "NoirPro-Regular", sans-serif;
 }
 
 .h1,
@@ -357,7 +370,7 @@ iframe {
     font-weight: 700;
     letter-spacing: 2px;
     height: auto;
-    font-family: 'Poppins', sans-serif;
+    font-family: "NoirPro-Regular", sans-serif;
 }
 
 .navbar-custom .navbar-nav li a {
