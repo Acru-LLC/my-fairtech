@@ -53,7 +53,7 @@ export default {
                 </b-modal>
               </b-row>
               <b-row>
-                <span class="font-weight-bold">Қўмита раиси</span>
+                <span class="font-weight-bold">Раис</span>
               </b-row>
               <b-row class="d-flex align-items-center">
                 <i class="fa fa-clock font-size-17"></i>
@@ -122,7 +122,6 @@ export default {
               <b-row>
                 <h4 class="font-weight-bold text-color">Қаюмов Асадулло Ўролович</h4>
 <!--                <img style="top: 0; right: 0;" class="position-absolute cursor-pointer" @click="openModal1" src="@/assets/image/danger.png" alt="">-->
-                <span class="font-weight-bold">Раис ўринбосари</span>
                 <b-modal v-model="showModal1" hide-footer size="lg" title="Қаюмов Асадулло Ўролович">
                   <p>
                     Қаюмов Асадулла Уролович 1984 йил Сурхондарё вилоятида туғилган.
@@ -148,6 +147,9 @@ export default {
                     Ўзбекистон Республикаси Президентининг 2023 йил 31 январдаги ПҚ-38-сонли Қарорига асосан Қаюмов Асадулла Уролович Рақобатни ривожлантириш ва истеъмолчилар ҳуқуқларини ҳимоя қилиш қўмитаси раиси ўринбосари лавозимига тайинланди.
                   </p>
                 </b-modal>
+              </b-row>
+              <b-row>
+                <span class="font-weight-bold">Раис ўринбосари</span>
               </b-row>
               <b-row class="d-flex align-items-center">
                 <i class="fa fa-clock font-size-17"></i>
@@ -195,7 +197,6 @@ export default {
               <b-row>
                 <h4 class="font-weight-bold text-color">Карабаев Фаррух Эсаналиевич</h4>
 <!--                <img style="top: 0; right: 0;" class="position-absolute cursor-pointer" @click="openModal2" src="@/assets/image/danger.png" alt="">-->
-                <span class="font-weight-bold">Раис ўринбосари</span>
                 <b-modal v-model="showModal2" hide-footer size="lg" title="Карабаев Фаррух Эсаналиевич">
                   <p>
                     Карабаев Фаррух Эсаналиевич 1981 йилда Тошкент вилоятининг Ангрен шаҳрида туғилган.
@@ -211,6 +212,9 @@ export default {
                     Ўзбекистон Республикаси Президентининг 2023 йил 31 январдаги ПҚ-38-сонли Қарорига асосан Ўзбекистон Республикаси Рақобатни ривожлантириш ва истеъмолчилар ҳуқуқларини ҳимоя қилиш қўмитаси раиси ўринбосари этиб тайинланган.
                   </p>
                 </b-modal>
+              </b-row>
+              <b-row>
+                <span class="font-weight-bold">Раис ўринбосари</span>
               </b-row>
               <b-row class="d-flex align-items-center">
                 <i class="fa fa-clock font-size-17"></i>
