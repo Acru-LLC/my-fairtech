@@ -1,5 +1,12 @@
 <script>
+import da from "vue2-datepicker/locale/es/da";
+
 export default {
+  data() {
+    return {
+      showModal: false
+    }
+  },
   methods: {
   }
 };
@@ -71,27 +78,61 @@ export default {
                   </div>
                 </div>
               </router-link>
-              <a href="https://my.gov.uz/uz/service/355" target="_blank" class="col mx-5 margin-t-20">
-                <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
+<!--              <a href="https://my.gov.uz/uz/service/355" target="_blank" class="col mx-5 margin-t-20">-->
+                <div class="h-100 col mx-5 margin-t-20" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px" @click="showModal = true">
                   <div class="services-box text-center hover-effect">
                     <img src="@/assets/image/service-logo.svg" alt="">
                     <h4 class="padding-t-15 text-color">РОЗИЛИК БЕРИШ</h4>
                     <p class="padding-t-15 text-color">
-                      Хўжалик юритувчи субъектнинг устав фондидаги (устав капиталидаги)
-                      акцияларни (улушларни) олиш бўйича битимларга олдиндан розилик олиш тўғрисида мурожаат юбориш
+                      Хўжалик юритувчи субъектлар устав фондидаги (устав капиталидаги) акцияларни (улушларни) олиш ҳамда уларни қўшиб юбориш ва қўшиб олишга доир битимларга олдиндан розилик бериш тўғрисида мурожаат юбориш
                     </p>
                   </div>
                 </div>
-              </a>
+<!--              </a>-->
         <div class="col-2 mx-2 margin-t-20"></div>
             </div>
+
+      <b-modal id="modal-1" hide-footer title="РОЗИЛИК БЕРИШ" v-model="showModal" size="lg">
+        <b-row>
+          <b-col>
+            <a href="https://my.gov.uz/uz/service/355" target="_blank">
+              <b-card class="text-center h-100" style="box-shadow: rgb(201, 219, 215) 2px 4px 8px 0px">
+                <!--              <b-card class="default-bg">-->
+                <img src="@/assets/image/service-logo.svg" alt="image" class="img-fluid bg-white"
+                     style="border-radius: 50%; box-shadow: rgb(36, 98, 86) 1px 1px 7px 3px;">
+                <!--              </b-card>-->
+                <h4 class="padding-t-15 text-color">РОЗИЛИК БЕРИШ</h4>
+                <p class="padding-t-15 text-color">
+                  Хўжалик юритувчи субъектнинг устав фондидаги (устав капиталидаги)
+                  акцияларни (улушларни) олиш бўйича битимларга олдиндан розилик олиш тўғрисида мурожаат юбориш
+                </p>
+              </b-card>
+            </a>
+          </b-col>
+
+          <b-col>
+            <a href="https://license.gov.uz/service/3991" target="_blank">
+            <b-card class="text-center h-100" style="box-shadow: rgb(201, 219, 215) 2px 4px 8px 0px">
+<!--              <b-card class="default-bg">-->
+                <img src="@/assets/image/service-logo.svg" alt="image" class="img-fluid bg-white"
+                     style="border-radius: 50%; box-shadow: rgb(36, 98, 86) 1px 1px 7px 3px;">
+<!--              </b-card>-->
+              <h4 class="padding-t-15 text-color">РОЗИЛИК БЕРИШ</h4>
+              <p class="padding-t-15 text-color">
+                Хўжалик юритувчи субъектларни қўшиб юбориш ва қўшиб олишга доир битимларга олдиндан розилик бериш тўғрисида мурожаат юбориш
+              </p>
+            </b-card>
+            </a>
+          </b-col>
+        </b-row>
+      </b-modal>
 
       <hr class="green-gradient-bg mt-5" style="height: 2px"/>
       <b-row>
         <b-col>
           <h4 class="text-center text-color">ЎЗБЕКИСТОН РЕСПУБЛИКАСИ РАҚОБАТНИ РИВОЖЛАНТИРИШ
             ВА ИСТЕЪМОЛЧИЛАР ХУҚУҚЛАРИНИ
-            ҲИМОЯ ҚИЛИШ ҚЎМИТАСИНИНГ</h4>
+            ҲИМОЯ ҚИЛИШ ҚЎМИТАСИ</h4>
         </b-col>
       </b-row>
 
@@ -101,7 +142,7 @@ export default {
         </b-col>
 
         <b-col cols="">
-          <h4 class="text-center text-color">АСОСИЙ ВАЗИФАЛАРИ</h4>
+          <h4 class="text-center text-color">Раҳбарлари</h4>
         </b-col>
 
         <b-col>
@@ -113,3 +154,13 @@ export default {
   </section>
   <!--START SERVICES-->
 </template>
+
+<style>
+#modal-1 .modal-title {
+  width: 200px;
+  color: #ffffff;
+  background-color: #2b675b;
+  border-radius: 5px;
+  text-align: center;
+}
+</style>
