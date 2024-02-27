@@ -142,7 +142,7 @@ export default {
         </b-col>
 
         <b-col cols="">
-          <h4 class="text-center text-color">Раҳбарлари</h4>
+          <h4 class="text-center text-color">РАҲБАРЛАРИ</h4>
         </b-col>
 
         <b-col>
