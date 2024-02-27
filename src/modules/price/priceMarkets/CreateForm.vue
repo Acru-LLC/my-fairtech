@@ -196,7 +196,21 @@
       </b-col>
     </b-row>
 
-
+    <b-row class="mb-3">
+      <b-col
+          sm="12"
+          md="6"
+      >
+        <BaseTextareaWithValidation
+            v-model="editingItem.link"
+            :label="$t('column.location_address')"
+        />
+      </b-col>
+      <b-col
+          sm="12"
+          md="6"
+      ></b-col>
+    </b-row>
   </ValidationObserver>
 </template>
 <script>
@@ -206,6 +220,7 @@ const MAIN_API_URL = 'price_market'
 import crudAndListsService from "@/shared/services/crud_and_list.service"
 import BaseSelectWithValidation from "@/components/base/BaseSelectWithValidation.vue";
 import Service from "../service";
+import BaseTextareaWithValidation from "@/components/base/BaseTextareaWithValidation.vue";
 
 export default {
   name: "CreateForm",
@@ -217,7 +232,7 @@ export default {
   },
   /*
   * COMPONENTS */
-  components: {BaseSelectWithValidation},
+  components: {BaseTextareaWithValidation, BaseSelectWithValidation},
   /*
   * DATA */
   data() {
@@ -259,6 +274,7 @@ export default {
                 soato: res.data.companyBillingAddress.soato,
                 marketTypeId: this.editingItem.marketTypeId,
                 statusId: this.editingItem.statusId,
+                link: this.editingItem.link,
                 address: `${this.getName({
                   nameRu: res.data.companyBillingAddress.nameRu,
                   nameLt: res.data.companyBillingAddress.nameLt,
@@ -369,6 +385,7 @@ export default {
               marketTypeId: this.$refs.formOfficeType.editingItem.marketTypeId,
               soato: this.$refs.formOfficeType.editingItem.soato,
               statusId: this.$refs.formOfficeType.editingItem.statusId,
+              link: this.$refs.formOfficeType.editingItem.link,
               tin: this.$refs.formOfficeType.editingItem.tin,
               marketName: this.$refs.formOfficeType.editingItem.nameLt,
             }

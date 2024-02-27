@@ -18,7 +18,7 @@ export default [
   ...interactive_services,
   ...settings_menu,
   ...price_menu,
-  ...reporting_menu
+  // ...reporting_menu
   // {
   //   id: "ProjectLessons1",
   //   label: i18n.t("modules.management.project_lessons.title"),

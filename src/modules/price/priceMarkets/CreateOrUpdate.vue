@@ -73,6 +73,7 @@ export default {
               statusId: this.$refs.formOfficeType.editingItem.statusId,
               tin: this.$refs.formOfficeType.editingItem.tin,
               marketName: this.$refs.formOfficeType.editingItem.nameLt,
+              link: this.$refs.formOfficeType.editingItem.link,
             }
 
             crudAndListsService.update(MAIN_API_URL, form).then(res => {
@@ -93,6 +94,7 @@ export default {
               statusId: this.$refs.formOfficeType.editingItem.statusId,
               tin: this.$refs.formOfficeType.editingItem.tin,
               marketName: this.$refs.formOfficeType.editingItem.nameLt,
+              link: this.$refs.formOfficeType.editingItem.link,
             }
             crudAndListsService.create(MAIN_API_URL, form).then(res => {
               this.computedObserver.reset()
