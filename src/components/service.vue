@@ -27,7 +27,7 @@ export default {
         </div>
       </div>
       <div class="row margin-t-30">
-        <router-link to="/murojaat" teg="div" class="col margin-t-20">
+        <a href="https://cabinet.fairtech.uz/murojaat-create" target="_blank" class="col margin-t-20">
           <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
             <div class="services-box text-center hover-effect">
               <img src="@/assets/image/service-logo.svg" alt="">
@@ -37,7 +37,7 @@ export default {
               </p>
             </div>
           </div>
-        </router-link>
+        </a>
         <router-link to="/online-watching" teg="div" class="col mx-5 margin-t-20">
           <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
             <div class="services-box text-center hover-effect">

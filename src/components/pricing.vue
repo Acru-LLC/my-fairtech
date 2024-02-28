@@ -27,8 +27,8 @@ export default {
 <template>
   <!--START PRICING-->
   <section class="section pt-5" id="pricing">
-    <div class="p-5">
-      <b-row class="my-5">
+    <div>
+      <b-row>
         <b-col style="border-radius: 5px; box-shadow: rgb(201, 219, 215) 2px 4px 8px 0px;"  class="p-3 text-color">
           <b-row class="h-100">
             <b-col cols="4" class="d-flex align-items-center">
