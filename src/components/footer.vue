@@ -120,8 +120,8 @@ export default {
                     target="_blank"
                     class="btn btn-warning"
                     style="background-color: rgb(243, 145, 56); width: 128px"
-                    href="https://drive.google.com/file/d/1X6A7tVGtGgXGx7WfhYd9ycvVoMnj-oeH/view?usp=sharing"
-                > Юклаш</a>
+                    href="https://drive.google.com/file/d/1A3xHb7Od2VRkqtY7QAQzqtpcjewZ8Amn/view?usp=sharing"
+                > FAIRTECH V_1.2802</a>
               </b-col>
               <b-col>
                 <a target="_blank" href='https://play.google.com/store/apps/details?id=com.raqobat.fairtech_mobile&pcampaignid=web_share&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img width="128"  alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
