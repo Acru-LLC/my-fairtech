@@ -132,7 +132,7 @@ export default {
         <b-col>
           <h4 class="text-center text-color">ЎЗБЕКИСТОН РЕСПУБЛИКАСИ РАҚОБАТНИ РИВОЖЛАНТИРИШ
             ВА ИСТЕЪМОЛЧИЛАР ХУҚУҚЛАРИНИ
-            ҲИМОЯ ҚИЛИШ ҚЎМИТАСИ</h4>
+            ҲИМОЯ ҚИЛИШ </h4>
         </b-col>
       </b-row>
 
@@ -142,7 +142,7 @@ export default {
         </b-col>
 
         <b-col cols="">
-          <h4 class="text-center text-color">РАҲБАРЛАРИ</h4>
+          <h4 class="text-center text-color">ҚЎМИТАСИ РАҲБАРИЯТИ</h4>
         </b-col>
 
         <b-col>

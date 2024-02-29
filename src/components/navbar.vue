@@ -131,7 +131,7 @@ export default {
         </ul>
       </div>
       <div >
-        <b-dropdown variant="white" right toggle-class="header-item" class="language-bar">
+        <b-dropdown variant="white" right toggle-class="header-item" class="languageBar">
           <template v-slot:button-content>
             {{ text }}
             <!--                        <span class="flag-icon flag-icon-uz" id="selectSpan"-->
@@ -156,7 +156,7 @@ export default {
   <!-- Navbar End -->
 </template>
 <style>
-.language-bar{
+.languageBar{
   display: flex;
   align-items: center;
   justify-content: center;
