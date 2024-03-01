@@ -38,19 +38,18 @@ export default {
                 <b-col cols="7">
                   <div>
                   <span class="text-white font-weight-bold" style="font-size: 30px">
-                    ИНТЕРАКТИВ ХИЗМАТЛАР
+                    {{ $t('main_page.title') }}
                   </span>
                   </div>
 
                   <div class="my-3 text-white" style="font-size: 20px">
                   <span>
-                    Ўзбекистон Республикаси Рақобатни ривожлантириш
-ва истеъмолчиларни ҳуқуқларини ҳимоя қилиш қўмитасининг интерактив хизматлари портали
+                    {{ $t('main_page.subtitle') }}
                   </span>
                   </div>
 
                   <div>
-                    <b-button v-scroll-to="'#services'" href="javascript: void(0);" variant="outline-light" class="mt-3 text-white font-size-20">Хизматлардан фойдаланиш</b-button>
+                    <b-button v-scroll-to="'#services'" href="javascript: void(0);" variant="outline-light" class="mt-3 text-white font-size-20">{{ $t('main_page.service_button') }}</b-button>
                   </div>
                 </b-col>
 
