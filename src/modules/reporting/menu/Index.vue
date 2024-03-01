@@ -231,7 +231,7 @@
                             @click="clearFile"
                         >
                           <i class="fa fa-window-close"></i>
-                          {{ $t("rais.cancel") }}
+                          {{ $t("validator.cancel") }}
                         </b-button>
                       </b-col>
                     </b-row>

@@ -60,7 +60,7 @@ export default {
             <div class="margin-t-20">
               <ul class="list-unstyled footer-list">
                 <li>
-                  <span class="h4 text-color">{{ $t('contact.telegram') }}</span>
+                  <span class="h4 text-color d-block">{{ $t('contact.telegram') }}</span>
                   <a href="https://t.me/RaqobatGovUz" target="_blank">@RaqobatGovUz</a>
                 </li>
                 <li>
