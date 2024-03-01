@@ -12,7 +12,7 @@ export default {};
           </b-col>
 
           <b-col>
-            <h3 class="section-title text-center text-white">БОҒЛАНИШ</h3>
+            <h3 class="section-title text-center text-white">{{ $t('contact.title') }}</h3>
           </b-col>
 
           <b-col>
@@ -32,10 +32,10 @@ export default {};
               </div>
               <div>
                 <p class="mt-4">
-                  <span class="h4 font-weight-bold text-color">Манзил</span>
+                  <span class="h4 font-weight-bold text-color">{{ $t('contact.address_title') }}</span>
                   <br/>
                   <span
-                      class="d-block text-color">Ўзбекистон Республикаси, Тошкент шахри, Лабзак кўчаси, 3А</span>
+                      class="d-block text-color">{{ $t('contact.address') }}</span>
                 </p>
               </div>
             </div>
@@ -45,7 +45,7 @@ export default {};
               </div>
               <div>
                 <p class="mt-4">
-                  <span class="h4 font-weight-bold text-color">Электрон почта манзил</span>
+                  <span class="h4 font-weight-bold text-color">{{ $t('contact.email') }}</span>
                   <br/>
                   <span
                       class="d-block text-color">info@antimon.gov.uz</span>
@@ -58,7 +58,7 @@ export default {};
               </div>
               <div>
                 <p class="mt-4">
-                  <span class="h4 font-weight-bold text-color">Фуқаролар қабулхонаси</span>
+                  <span class="h4 font-weight-bold text-color">{{ $t('contact.citizens_email') }}</span>
                   <br/>
                   <span
                       class="d-block text-color">info@antimon.gov.uz</span>
@@ -71,7 +71,7 @@ export default {};
               </div>
               <div>
                 <p class="mt-4">
-                  <span class="h4 font-weight-bold text-color">TELEGRAM орқали мурожаат</span>
+                  <span class="h4 font-weight-bold text-color">{{ $t('contact.telegram') }}</span>
                   <br/>
                   <a href="https://t.me/RaqobatGovUz"
                      target="_blank"

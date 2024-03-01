@@ -80,11 +80,11 @@ export default {
                     result.data.lastName !== null ||
                     result.data.middleName !== null)
             ){
-              this.$toast.success(this.$t('submodules.integration.statistics_info.download_success'));
+              this.$toast.success(this.$t('statistics_info.download_success'));
               this.modalVisible = true;
             }
             else{
-              this.$toast.error(this.$t('submodules.integration.statistics_info.download_error'));
+              this.$toast.error(this.$t('statistics_info.download_error'));
               this.modalVisible = true;
             }
             // console.log(result.data)

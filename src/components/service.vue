@@ -19,7 +19,7 @@ export default {
     <div class="container">
       <div class="row">
         <div class="col-lg-8 offset-lg-2">
-          <h1 class="section-title text-center text-color">ИНТЕРАКТИВ ХИЗМАТЛАР</h1>
+          <h1 class="section-title text-center text-color">{{ $t('main_page.title') }}</h1>
           <div class="section-title-border margin-t-20" style="background-color: #246256"></div>
           <!--          <p-->
           <!--              class="section-subtitle text-muted text-center padding-t-30 font-secondary"-->
@@ -31,9 +31,9 @@ export default {
           <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
             <div class="services-box text-center hover-effect">
               <img src="@/assets/image/service-logo.svg" alt="">
-              <h4 class="padding-t-15 text-color">МУРОЖААТ</h4>
+              <h4 class="padding-t-15 text-color">{{ $t('services.appeal_title') }}</h4>
               <p class="padding-t-15 text-color">
-                Рақобат қўмитасига электрон шаклда мурожаат қилиш
+                {{ $t('services.appeal_subtitle') }}
               </p>
             </div>
           </div>
@@ -42,10 +42,11 @@ export default {
           <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
             <div class="services-box text-center hover-effect">
               <img src="@/assets/image/service-logo.svg" alt="">
-              <h4 class="padding-t-15 text-color">ОНЛАЙН КУЗАТУВ</h4>
+              <h4 class="padding-t-15 text-color">{{ $t('services.online_checking.card_title') }}</h4>
               <p class="padding-t-15 text-color">
-                Рақобат қўмитасига <a href="https://cabinet.fairtech.uz" target="_blank">cabinet.fairtech.uz</a> орқали
-                юборилган мурожаатлар ҳолатларини онлайн кузатиб бориш
+                {{ $t('services.online_checking.card_subtitle1') }}
+                <a href="https://cabinet.fairtech.uz" target="_blank">cabinet.fairtech.uz</a>
+                {{ $t('services.online_checking.card_subtitle2') }}
               </p>
             </div>
           </div>
@@ -54,11 +55,11 @@ export default {
           <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
             <div class="services-box text-center hover-effect">
               <img src="@/assets/image/service-logo.svg" alt="">
-              <h4 class="padding-t-15 text-color ">PRODUCT INFO</h4>
+              <h4 class="padding-t-15 text-color ">{{ $t('services.product_info.card_title') }}</h4>
               <hr class="green-gradient-bg w-75" style="height: 2px">
-              <h4 class="text-color">Товар тўғрисида маълумот</h4>
+              <h4 class="text-color">{{ $t('services.product_info.card_subtitle1') }}</h4>
               <p class="padding-t-15 text-color">
-                Товар (иш, хизмат)лар тўғрисида маълумотларни онлайн тарзда олиш
+                {{ $t('services.product_info.card_subtitle2') }}
               </p>
             </div>
           </div>
@@ -71,9 +72,9 @@ export default {
                 <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
                   <div class="services-box text-center hover-effect">
                     <img src="@/assets/image/service-logo.svg" alt="">
-                    <h4 class="padding-t-15 text-color">ОНЛАЙН ҲИСОБОТ ЮБОРИШ</h4>
+                    <h4 class="padding-t-15 text-color">{{ $t('services.online_report.card_title') }}</h4>
                     <p class="padding-t-15 text-color">
-                      Ҳисобот ва статистик маълумотларни ахборот тизими орқали электрон юбориш
+                      {{ $t('services.online_report.card_subtitle') }}
                     </p>
                   </div>
                 </div>
@@ -82,9 +83,9 @@ export default {
                 <div class="h-100 col mx-5 margin-t-20" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px" @click="showModal = true">
                   <div class="services-box text-center hover-effect">
                     <img src="@/assets/image/service-logo.svg" alt="">
-                    <h4 class="padding-t-15 text-color">РОЗИЛИК БЕРИШ</h4>
+                    <h4 class="padding-t-15 text-color">{{ $t('services.agreement.card_title') }}</h4>
                     <p class="padding-t-15 text-color">
-                      Хўжалик юритувчи субъектлар устав фондидаги (устав капиталидаги) акцияларни (улушларни) олиш ҳамда уларни қўшиб юбориш ва қўшиб олишга доир битимларга олдиндан розилик бериш тўғрисида мурожаат юбориш
+                      {{ $t('services.agreement.card_subtitle') }}
                     </p>
                   </div>
                 </div>
@@ -92,7 +93,7 @@ export default {
         <div class="col-2 mx-2 margin-t-20"></div>
             </div>
 
-      <b-modal id="modal-1" hide-footer title="РОЗИЛИК БЕРИШ" v-model="showModal" size="lg">
+      <b-modal id="modal-1" hide-footer :title="$t('services.agreement.card_title')" v-model="showModal" size="lg">
         <b-row>
           <b-col>
             <a href="https://my.gov.uz/uz/service/355" target="_blank">
@@ -101,10 +102,9 @@ export default {
                 <img src="@/assets/image/service-logo.svg" alt="image" class="img-fluid bg-white"
                      style="border-radius: 50%; box-shadow: rgb(36, 98, 86) 1px 1px 7px 3px;">
                 <!--              </b-card>-->
-                <h4 class="padding-t-15 text-color">РОЗИЛИК БЕРИШ</h4>
+                <h4 class="padding-t-15 text-color">{{ $t('services.agreement.card_title') }}</h4>
                 <p class="padding-t-15 text-color">
-                  Хўжалик юритувчи субъектнинг устав фондидаги (устав капиталидаги)
-                  акцияларни (улушларни) олиш бўйича битимларга олдиндан розилик олиш тўғрисида мурожаат юбориш
+                  {{ $t('services.agreement.modal1_subtitle') }}
                 </p>
               </b-card>
             </a>
@@ -117,9 +117,9 @@ export default {
                 <img src="@/assets/image/service-logo.svg" alt="image" class="img-fluid bg-white"
                      style="border-radius: 50%; box-shadow: rgb(36, 98, 86) 1px 1px 7px 3px;">
 <!--              </b-card>-->
-              <h4 class="padding-t-15 text-color">РОЗИЛИК БЕРИШ</h4>
+              <h4 class="padding-t-15 text-color">{{ $t('services.agreement.card_title') }}</h4>
               <p class="padding-t-15 text-color">
-                Хўжалик юритувчи субъектларни қўшиб юбориш ва қўшиб олишга доир битимларга олдиндан розилик бериш тўғрисида мурожаат юбориш
+                {{ $t('services.agreement.modal2_subtitle') }}
               </p>
             </b-card>
             </a>
@@ -130,9 +130,7 @@ export default {
       <hr class="green-gradient-bg mt-5" style="height: 2px"/>
       <b-row>
         <b-col>
-          <h4 class="text-center text-color">ЎЗБЕКИСТОН РЕСПУБЛИКАСИ РАҚОБАТНИ РИВОЖЛАНТИРИШ
-            ВА ИСТЕЪМОЛЧИЛАР ХУҚУҚЛАРИНИ
-            ҲИМОЯ ҚИЛИШ </h4>
+          <h4 class="text-center text-color">{{ $t('boss.head_title1') }}</h4>
         </b-col>
       </b-row>
 
@@ -142,7 +140,7 @@ export default {
         </b-col>
 
         <b-col cols="">
-          <h4 class="text-center text-color">ҚЎМИТАСИ РАҲБАРИЯТИ</h4>
+          <h4 class="text-center text-color">{{ $t('boss.head_title2') }}</h4>
         </b-col>
 
         <b-col>

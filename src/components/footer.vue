@@ -34,27 +34,23 @@ export default {
         <div class="row">
           <div class="col-lg-4 margin-t-20">
             <div class="margin-t-20">
-              <h4 class="text-color">ЎЗБЕКИСТОН РЕСПУБЛИКАСИ
-                РАҚОБАТНИ РИВОЖЛАНТИРИШ
-                ВА ИСТЕЪМОЛЧИЛАР ХУҚУҚЛАРИНИ
-                ҲИМОЯ ҚИЛИШ ҚЎМИТАСИ</h4>
+              <h4 class="text-color">{{ $t('navbar.main_title') }}</h4>
             </div>
-            <h5 class="text-color">Ўзбекистон Республикаси, Тошкент шахри,
-              Лабзак кўчаси, 3А</h5>
+            <h5 class="text-color">{{ $t('contact.address') }}</h5>
           </div>
           <div class="col-lg-4 margin-t-20">
             <div class="text-color margin-t-20">
               <ul class="list-unstyled footer-list">
                 <li>
-                  <span class="h4 text-color">CALL-марказ</span>
+                  <span class="h4 text-color">{{ $t('contact.call_center') }}</span>
                   <p class="text-color">1159</p>
                 </li>
                 <li>
-                  <span class="h4 text-color">Девонхона</span>
+                  <span class="h4 text-color">{{ $t('contact.devonxona') }}</span>
                   <p class="text-color">(71) 207-48-00</p>
                 </li>
                 <li>
-                  <span class="h4 text-color">Ишонч рақами</span>
+                  <span class="h4 text-color">{{ $t('contact.call_number') }}</span>
                   <p class="text-color">(71) 207-47-00</p>
                 </li>
               </ul>
@@ -64,11 +60,11 @@ export default {
             <div class="margin-t-20">
               <ul class="list-unstyled footer-list">
                 <li>
-                  <span class="h4 text-color">TELEGRAM орқали мурожаат</span>
+                  <span class="h4 text-color">{{ $t('contact.telegram') }}</span>
                   <a href="https://t.me/RaqobatGovUz" target="_blank">@RaqobatGovUz</a>
                 </li>
                 <li>
-                  <span class="h4 text-color">Ижтимоий тармоқлар</span>
+                  <span class="h4 text-color">{{ $t('contact.socials') }}</span>
                   <ul class="list-inline social margin-t-20 d-flex justify-content-between">
                     <li class="list-inline-item">
                       <a href="https://www.facebook.com/RaqobatGovUz"
@@ -100,7 +96,7 @@ export default {
             </div>
             <b-row style="box-shadow: rgb(201, 219, 215) 2px 4px 8px 0px; border-radius: 5px;" class="d-flex align-items-center p-3">
               <b-col cols="9">
-                <h5 class="text-color font-weight-bold">FAIRTECH мобил иловаси</h5>
+                <h5 class="text-color font-weight-bold">{{ $t('contact.app_title') }}</h5>
               </b-col>
               <b-col cols="3">
                 <b-button
@@ -113,7 +109,7 @@ export default {
             </b-row>
           </div>
 
-          <b-modal v-model="showModal" hide-footer title="FAIRTECH мобил иловаси">
+          <b-modal v-model="showModal" hide-footer :title="$t('contact.app_title')">
             <b-row class="d-flex align-items-center">
               <b-col>
                 <a
@@ -141,8 +137,7 @@ export default {
     <div class="mt-4">
       <div class="container">
         <h4 style="height: 3px; background-color: #2B6A5D; width: 100%"></h4>
-        <p class="copy-rights text-color text-center"> © {{ new Date().getFullYear()}} РАҚАМЛИ ТРАНСФОРМАЦИЯ ВА АУТСОРСИНГ МАРКАЗИ
-          БАРЧА ХУҚУҚЛАР ҲИМОЯЛАНГАН</p>
+        <p class="copy-rights text-color text-center"> © {{ new Date().getFullYear()}} {{ $t('contact.required_footer') }}</p>
       </div>
       <div class="clearfix"></div>
     </div>
