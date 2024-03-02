@@ -89,7 +89,7 @@
 
       <div v-if="selected == 'TIF_TN'">
                 <span style="background: #2b675b" class="p-1 text-white">
-            {{ $t('submodules.integration.farmasevtika_info.response') }}
+            {{ $t('product_info.response') }}
                 </span>
         <div style="border:1px solid #2b675b; padding:15px; border-radius: 7px">
           <span v-if="tableItems2.mxik_code == null">{{ $t("messages.data_not_found_0") }}</span>
@@ -99,7 +99,7 @@
       </div>
       <div v-if="selected == 'SHTRIX' || selected == 'MXIK'">
                 <span style="background: #2b675b" class="p-1 text-white">
-            {{ $t('submodules.integration.farmasevtika_info.response') }}
+            {{ $t('product_info.response') }}
                 </span>
         <div style="border:1px solid #2b675b; padding:15px; border-radius: 7px">
           <span v-if="tableItems2.mxik_code == null">{{ $t("messages.data_not_found_0") }}</span>

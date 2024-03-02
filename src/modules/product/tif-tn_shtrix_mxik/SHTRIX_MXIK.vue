@@ -199,8 +199,8 @@
                 <div style="border:1px solid #2b675b; padding:15px; border-radius: 7px; max-height:300px; !important; overflow:auto;"
                      class="mt-3">
                     <b-row>
-                        <b-col cols="5"><b>{{$t('column.units')}}</b></b-col>
-                        <b-col cols="7"><b>{{$t('column.code')}}</b></b-col>
+                        <b-col cols="5"><b>{{$t('product_info.units')}}</b></b-col>
+                        <b-col cols="7"><b>{{$t('product_info.code')}}</b></b-col>
                     </b-row>
                 </div>
 
