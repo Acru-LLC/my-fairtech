@@ -7,7 +7,7 @@
             <b-col cols="3">
               <BaseSelectWithValidation
                   v-model="selected"
-                  :label="$t('submodules.integration.personallashtirish.search_button')"
+                  :label="$t('messages.search')"
                   value-field="id"
                   label-on-top
               >
