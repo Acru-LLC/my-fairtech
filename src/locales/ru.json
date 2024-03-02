@@ -189,7 +189,10 @@
     "maxsulot1": "Товары",
     "maxsulot2": "Продукт",
     "xizmat1": "Работа",
-    "xizmat2": "Услуги"
+    "xizmat2": "Услуги",
+    "response": "Ответ на запрос",
+    "units": "Единица измерения",
+    "code": "Код"
   },
   "reporting": {
     "send_button": "Отправка",

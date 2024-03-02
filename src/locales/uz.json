@@ -189,7 +189,10 @@
     "maxsulot1": "Tovar",
     "maxsulot2": "Maxsulot",
     "xizmat1": "Ish",
-    "xizmat2": "Xizmatlar"
+    "xizmat2": "Xizmatlar",
+    "response": "So'rovga javob",
+    "units": "O'lchov birligi",
+    "code": "Kod"
   },
   "reporting": {
     "send_button": "Yuborish",
