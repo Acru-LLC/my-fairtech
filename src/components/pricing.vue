@@ -27,26 +27,26 @@ export default {
 <template>
   <!--START PRICING-->
   <section class="section pt-5" id="pricing">
-    <div>
-      <b-row>
-        <b-col style="border-radius: 5px; box-shadow: rgb(201, 219, 215) 2px 4px 8px 0px;"  class="p-3 text-color">
+    <div class="container">
+      <b-row class="d-flex justify-content-center mb-4">
+        <b-col cols="7" style="border-radius: 5px; box-shadow: rgb(201, 219, 215) 2px 4px 8px 0px;"  class="p-3 text-color">
           <b-row class="h-100">
             <b-col cols="4" class="d-flex align-items-center">
               <div class="d-flex justify-content-center">
                 <img width="112" height="112" style="border-radius: 50%; border: 3px solid #246256" src="@/assets/image/vakant.png" alt="">
               </div>
-<!--              <div class="d-flex justify-content-center">-->
-                <!--              <b-button class="mt-3 btn btn-bg-white"-->
-                <!--                        style="box-shadow: 0 1px 6px 0 #246256!important; color: #246256!important;">-->
-                <!--                Қабулга ёзилиш-->
-                <!--              </b-button>-->
-<!--              </div>-->
+              <!--              <div class="d-flex justify-content-center">-->
+              <!--              <b-button class="mt-3 btn btn-bg-white"-->
+              <!--                        style="box-shadow: 0 1px 6px 0 #246256!important; color: #246256!important;">-->
+              <!--                Қабулга ёзилиш-->
+              <!--              </b-button>-->
+              <!--              </div>-->
             </b-col>
 
             <b-col cols="8">
               <b-row>
                 <h4 class="font-weight-bold text-color">{{ $t('boss.vakant_card_name') }}</h4>
-<!--                  <img style="top: 0; right: 0;" class="position-absolute cursor-pointer" @click="openModal" src="@/assets/image/danger.png" alt="">-->
+                <!--                  <img style="top: 0; right: 0;" class="position-absolute cursor-pointer" @click="openModal" src="@/assets/image/danger.png" alt="">-->
 
                 <b-modal v-model="showModal" hide-footer :title="$t('boss.vakant_card_name')">
                   <p>{{ $t('boss.vakant_card_name') }}</p>
@@ -83,27 +83,29 @@ export default {
             </b-col>
           </b-row>
 
-<!--          <b-row>-->
-<!--            <b-col>-->
-<!--              <b-button class="mt-3 btn btn-bg-white"-->
-<!--                        style="box-shadow: 0 1px 6px 0 #246256!important; color: #246256!important;">-->
-<!--                Қабулга ёзилиш-->
-<!--              </b-button>-->
-<!--            </b-col>-->
-<!--            <b-col>-->
-<!--              <b-button class="mt-3 btn btn-bg-white"-->
-<!--                        style="box-shadow: 0 1px 6px 0 #246256!important; color: #246256!important;">-->
-<!--                Меҳнат фаолияти-->
-<!--              </b-button>-->
-<!--            </b-col>-->
-<!--            <b-col>-->
-<!--              <b-button class="mt-3 btn btn-bg-white"-->
-<!--                        style="box-shadow: 0 1px 6px 0 #246256!important; color: #246256!important;">-->
-<!--                Иш мажбурияти-->
-<!--              </b-button>-->
-<!--            </b-col>-->
-<!--          </b-row>-->
+          <!--          <b-row>-->
+          <!--            <b-col>-->
+          <!--              <b-button class="mt-3 btn btn-bg-white"-->
+          <!--                        style="box-shadow: 0 1px 6px 0 #246256!important; color: #246256!important;">-->
+          <!--                Қабулга ёзилиш-->
+          <!--              </b-button>-->
+          <!--            </b-col>-->
+          <!--            <b-col>-->
+          <!--              <b-button class="mt-3 btn btn-bg-white"-->
+          <!--                        style="box-shadow: 0 1px 6px 0 #246256!important; color: #246256!important;">-->
+          <!--                Меҳнат фаолияти-->
+          <!--              </b-button>-->
+          <!--            </b-col>-->
+          <!--            <b-col>-->
+          <!--              <b-button class="mt-3 btn btn-bg-white"-->
+          <!--                        style="box-shadow: 0 1px 6px 0 #246256!important; color: #246256!important;">-->
+          <!--                Иш мажбурияти-->
+          <!--              </b-button>-->
+          <!--            </b-col>-->
+          <!--          </b-row>-->
         </b-col>
+      </b-row>
+      <b-row>
         <b-col style="border-radius: 5px; box-shadow: rgb(201, 219, 215) 2px 4px 8px 0px;"  class="p-3 mx-3 text-color">
           <b-row class="h-100">
             <b-col cols="4" class="d-flex align-items-center">
