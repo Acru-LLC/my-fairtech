@@ -22,12 +22,12 @@
                         <span v-if="integration.routerName == 'TovarMahsulot'" class="box-title-style"
                               :class="(integration.id == 12) ? 'pt-0 px-0': 'py-3 px-4'">
                             {{ integration.name }} <br>
-                            ({{ $t('system.product_info.maxsulot2') }})
+                            ({{ $t('product_info.maxsulot2') }})
                         </span>
                         <span v-if="integration.routerName == 'IshXizmatlar'" class="box-title-style"
                               :class="(integration.id == 12) ? 'pt-0 px-0': 'py-3 px-4'">
                             {{ integration.name }} <br>
-                          ({{ $t('system.product_info.xizmat2') }})
+                          ({{ $t('product_info.xizmat2') }})
                         </span>
                     </div>
 
@@ -74,7 +74,7 @@ export default {
                     routerName: 'TovarMahsulot',
                     perm: '',
                     image: 'status.svg',
-                    name: this.$t('system.product_info.maxsulot1'),
+                    name: this.$t('product_info.maxsulot1'),
                     isDone: true
                 },
                 {
@@ -82,7 +82,7 @@ export default {
                     routerName: 'IshXizmatlar',
                     perm: '',
                     image: 'status.svg',
-                    name: this.$t('system.product_info.xizmat1'),
+                    name: this.$t('product_info.xizmat1'),
                     isDone: true
                 }
 

@@ -15,9 +15,9 @@
                     <b-row class="mt-4">
                         <b-col cols="5">
                             <span v-if="resTableItems.mxik_code && resTableItems.mxik_code.substring(0,3) < 99"
-                                  style="opacity: 0.7; color: #2b675b">{{ $t('system.product_info.name') }}</span>
+                                  style="opacity: 0.7; color: #2b675b">{{ $t('product_info.name') }}</span>
                             <span v-else style="opacity: 0.7; color: #2b675b">{{
-                                    $t('system.product_info.mxik_name')
+                                    $t('product_info.mxik_name')
                                 }}</span>
                             <br>
                             <span style="color: #2b675b; font-weight: lighter; font-size: 14px"> {{
@@ -26,7 +26,7 @@
                                 }}</span>
                         </b-col>
                         <b-col cols="5">
-                            <span style="opacity: 0.7; color: #2b675b">{{ $t('system.product_info.MXIK_code') }}</span>
+                            <span style="opacity: 0.7; color: #2b675b">{{ $t('product_info.MXIK_code') }}</span>
                             <br>
                             <span style="color: #2b675b; font-weight: lighter; font-size: 14px"> {{
                                     resTableItems.mxik_code
@@ -36,14 +36,14 @@
                     <!--                    resTableItems.mxik_code.substring(0,3) < 99-->
                     <b-row class="mt-4" v-if="resTableItems.mxik_code && resTableItems.mxik_code.substring(0,3) < 99">
                         <b-col cols="5">
-                            <span style="opacity: 0.7; color: #2b675b">{{ $t('system.product_info.brand') }}</span> <br>
+                            <span style="opacity: 0.7; color: #2b675b">{{ $t('product_info.brand') }}</span> <br>
                             <span style="color: #2b675b; font-weight: lighter; font-size: 14px"> {{
                                     resTableItems.mxik_info && resTableItems.mxik_info.brand_name
                                 }}</span>
                         </b-col>
                         <b-col cols="5">
                             <span style="opacity: 0.7; color: #2b675b">{{
-                                    $t('system.product_info.Shtrix_code')
+                                    $t('product_info.Shtrix_code')
                                 }}</span> <br>
                             <span style="color: #2b675b; font-weight: lighter; font-size: 14px"> {{
                                     resTableItems.mxik_info && resTableItems.mxik_info.international_code
@@ -52,13 +52,13 @@
                     </b-row>
                     <b-row class="mt-4">
                         <b-col cols="5">
-                            <span style="opacity: 0.7; color: #2b675b">{{ $t('system.product_info.group') }}</span> <br>
+                            <span style="opacity: 0.7; color: #2b675b">{{ $t('product_info.group') }}</span> <br>
                             <span style="color: #2b675b; font-weight: lighter; font-size: 14px"> {{
                                     resTableItems.mxik_info && resTableItems.mxik_info.group_name
                                 }}</span>
                         </b-col>
                         <b-col cols="5">
-                            <span style="opacity: 0.7; color: #2b675b">{{ $t('system.product_info.class') }}</span> <br>
+                            <span style="opacity: 0.7; color: #2b675b">{{ $t('product_info.class') }}</span> <br>
                             <span style="color: #2b675b; font-weight: lighter; font-size: 14px"> {{
                                     resTableItems.mxik_info && resTableItems.mxik_info.class_name
                                 }}</span>
@@ -68,7 +68,7 @@
                     <b-row class="mt-4">
 
                         <b-col cols="5">
-                            <span style="opacity: 0.7; color: #2b675b">{{ $t('system.product_info.pozition') }}</span>
+                            <span style="opacity: 0.7; color: #2b675b">{{ $t('product_info.pozition') }}</span>
                             <br>
                             <span style="color: #2b675b; font-weight: lighter; font-size: 14px"> {{
                                     resTableItems.mxik_info && resTableItems.mxik_info.position_name
@@ -76,7 +76,7 @@
                         </b-col>
                         <b-col cols="5">
                             <span style="opacity: 0.7; color: #2b675b">{{
-                                    $t('system.product_info.subpozition')
+                                    $t('product_info.subpozition')
                                 }}</span> <br>
                             <span style="color: #2b675b; font-weight: lighter; font-size: 14px"> {{
                                     resTableItems.mxik_info && resTableItems.mxik_info.sub_position_name
@@ -88,7 +88,7 @@
                         <b-button @click="openModal" class="ml-3 mr-3" block variant="outline-light"
                                   style="border:1px solid #2b675b;">
                             <i class="mdi mdi-arrow-expand-all"></i>
-                            {{ $t("system.product_info.all") }}
+                            {{ $t("product_info.all") }}
                         </b-button>
                     </b-row>
                 </div>
@@ -116,18 +116,18 @@
                 <div style="padding:15px; padding-top: 35px" class="text-center">
                    <span v-if="resTableItems.mxik_code && resTableItems.mxik_code.substring(0,3) < 99" style="font-size: 1.3rem!important; line-height: 2rem!important;">
                         {{
-                           $t('system.product_info.xarakteristika')
+                           $t('product_info.xarakteristika')
                        }}
                    </span>
                     <span v-else style="font-size: 1.3rem!important; line-height: 2rem!important;">
                         {{
-                            $t('system.product_info.xarakteristika_xizmat')
+                            $t('product_info.xarakteristika_xizmat')
                         }}
                    </span>
                 </div>
                 <div style="border:1px solid #2b675b; padding:15px; border-radius: 7px">
                     <b-row>
-                        <b-col cols="5"><b>{{ $t('system.product_info.MXIK_code') }}</b></b-col>
+                        <b-col cols="5"><b>{{ $t('product_info.MXIK_code') }}</b></b-col>
                         <b-col cols="7">
                             {{
                                 resTableItems.mxik_code ? resTableItems.mxik_code : '_ _ _'
@@ -137,7 +137,7 @@
                 </div>
                 <div style="border:1px solid #2b675b; padding:15px; border-radius: 7px" class="mt-2">
                     <b-row>
-                        <b-col cols="5"><b>{{ $t('system.product_info.mxik_name') }}</b></b-col>
+                        <b-col cols="5"><b>{{ $t('product_info.mxik_name') }}</b></b-col>
                         <b-col cols="7">
                             {{
                                 resTableItems.mxik_info && resTableItems.mxik_info.mxik_name ? resTableItems.mxik_info && resTableItems.mxik_info.mxik_name : '_ _ _'
@@ -148,7 +148,7 @@
                 <div v-show="resTableItems.mxik_code && resTableItems.mxik_code.substring(0,3) < 99"
                      style="border:1px solid #2b675b; padding:15px; border-radius: 7px" class="mt-2">
                     <b-row>
-                        <b-col cols="5"><b>{{ $t('system.product_info.name') }}</b></b-col>
+                        <b-col cols="5"><b>{{ $t('product_info.name') }}</b></b-col>
                         <b-col cols="7">
                             {{
                                 resTableItems.marking_info && resTableItems.marking_info.product_name ? resTableItems.marking_info && resTableItems.marking_info.product_name : '_ _ _'
@@ -159,7 +159,7 @@
                 <div v-show="resTableItems.mxik_code && resTableItems.mxik_code.substring(0,3) < 99"
                      style="border:1px solid #2b675b; padding:15px; border-radius: 7px" class="mt-2">
                     <b-row>
-                        <b-col cols="5"><b>{{ $t('system.product_info.Shtrix_code') }}</b></b-col>
+                        <b-col cols="5"><b>{{ $t('product_info.Shtrix_code') }}</b></b-col>
                         <b-col cols="7">
                             {{
                                 resTableItems.mxik_info && resTableItems.mxik_info.international_code ? resTableItems.mxik_info && resTableItems.mxik_info.international_code : '_ _ _'
@@ -172,7 +172,7 @@
                      v-show="resTableItems.mxik_code && resTableItems.mxik_code.substring(0,3) < 99">
                    <span style="font-size: 1.3rem!important; line-height: 2rem!important;">
                        {{
-                           $t('system.product_info.alll')
+                           $t('product_info.alll')
                        }}
                    </span>
                 </div>
@@ -191,7 +191,7 @@
                 <div style="padding:15px; padding-top: 35px" class="text-center">
                    <span style="font-size: 1.3rem!important; line-height: 2rem!important;">
                        {{
-                           $t('system.product_info.packages')
+                           $t('product_info.packages')
                        }}
                    </span>
                 </div>
@@ -199,8 +199,8 @@
                 <div style="border:1px solid #2b675b; padding:15px; border-radius: 7px; max-height:300px; !important; overflow:auto;"
                      class="mt-3">
                     <b-row>
-                        <b-col cols="5"><b>{{$t('column.units')}}</b></b-col>
-                        <b-col cols="7"><b>{{$t('column.code')}}</b></b-col>
+                        <b-col cols="5"><b>{{$t('product_info.units')}}</b></b-col>
+                        <b-col cols="7"><b>{{$t('product_info.code')}}</b></b-col>
                     </b-row>
                 </div>
 

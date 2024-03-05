@@ -88,10 +88,7 @@ export default {
         />
       </a>
       <h5 style="width: 35%" class="text-color mb-0">
-        ЎЗБЕКИСТОН РЕСПУБЛИКАСИ
-        РАҚОБАТНИ РИВОЖЛАНТИРИШ
-        ВА ИСТЕЪМОЛЧИЛАР ХУҚУҚЛАРИНИ
-        ҲИМОЯ ҚИЛИШ ҚЎМИТАСИ
+        {{ $t('navbar.main_title') }}
       </h5>
       <button
           class="navbar-toggler"
@@ -108,10 +105,10 @@ export default {
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav ml-auto navbar-center" id="mySidenav">
           <li class="nav-item">
-            <a v-scroll-to="'#home'" href="javascript: void(0);" class="nav-link text-color">АСОСИЙ САҲИФА</a>
+            <a v-scroll-to="'#home'" href="javascript: void(0);" class="nav-link text-color">{{ $t('navbar.home') }}</a>
           </li>
           <li class="nav-item mx-2">
-            <a href="https://raqobat.gov.uz/" target="_blank" class="nav-link text-color">РАҚОБАТ ҚЎМИТАСИ ВЕБ-САЙТИ</a>
+            <a href="https://raqobat.gov.uz/" target="_blank" class="nav-link text-color">{{ $t('navbar.raqobat_site') }}</a>
           </li>
           <li class="nav-item">
             <a href="https://fairtech.uz/" target="_blank" class="nav-link text-color">FAIRTECH</a>
@@ -131,7 +128,7 @@ export default {
         </ul>
       </div>
       <div >
-        <b-dropdown variant="white" right toggle-class="header-item" class="language-bar">
+        <b-dropdown variant="white" right toggle-class="header-item" class="languageBar">
           <template v-slot:button-content>
             {{ text }}
             <!--                        <span class="flag-icon flag-icon-uz" id="selectSpan"-->
@@ -156,7 +153,7 @@ export default {
   <!-- Navbar End -->
 </template>
 <style>
-.language-bar{
+.languageBar{
   display: flex;
   align-items: center;
   justify-content: center;

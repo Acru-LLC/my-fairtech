@@ -37,27 +37,26 @@ export default {
               <b-row cols="12" class="d-flex align-items-center">
                 <b-col cols="7">
                   <div>
-                  <span class="text-white font-weight-bold" style="font-size: 20px">
-                    ИНТЕРАКТИВ ХИЗМАТЛАР
+                  <span class="text-white font-weight-bold" style="font-size: 30px">
+                    {{ $t('main_page.title') }}
                   </span>
                   </div>
 
-                  <div class="my-3 text-white" style="font-size: 17px">
+                  <div class="my-3 text-white" style="font-size: 20px">
                   <span>
-                    Ўзбекистон Республикаси Рақобатни ривожлантириш
-ва истеъмолчиларни ҳуқуқларини ҳимоя қилиш қўмитасининг интерактив хизматлари портали
+                    {{ $t('main_page.subtitle') }}
                   </span>
                   </div>
 
                   <div>
-                    <b-button v-scroll-to="'#services'" href="javascript: void(0);" variant="outline-light" class="mt-3 text-white">Хизматлардан фойдаланиш</b-button>
+                    <b-button v-scroll-to="'#services'" href="javascript: void(0);" variant="outline-light" class="mt-3 text-white font-size-20">{{ $t('main_page.service_button') }}</b-button>
                   </div>
                 </b-col>
 
                 <b-col class="d-flex justify-content-center">
                   <div>
                     <VanillaTilt parallax>
-                      <img src="@/assets/image/big-logo.svg" alt="logo" class="img-fluid"
+                      <img width="500" src="@/assets/image/big-logo.svg" alt="logo" class="img-fluid"
                            style="border-radius: 50%; box-shadow: rgb(36, 98, 86) 1px 1px 7px 3px;">
                     </VanillaTilt>
                   </div>

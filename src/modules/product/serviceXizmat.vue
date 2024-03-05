@@ -15,7 +15,7 @@
                     rules="required"
                     v-model="MXIK"
                     @keyup.enter="findInfosBy"
-                    :label="$t('system.product_info.MXIK_code')"
+                    :label="$t('product_info.MXIK_code')"
                     label-on-top
                 >
                 </BaseInputWithValidation>
@@ -34,7 +34,7 @@
                     style="font-size: 15px"
                     class="mdi mdi-search-web">
                 </i>
-                {{ $t('system.product_info.search') }}
+                {{ $t('product_info.search') }}
               </b-button>
               <b-button class="mt-3" style="background: #2b6c58" disabled v-show="loadingTableItems">
                 <b-spinner small type="grow"></b-spinner>
@@ -52,7 +52,7 @@
     <b-card>
       <div v-show="resSuccess">
                 <span style="background: #2b675b" class="p-1 text-white">
-            {{ $t('submodules.integration.farmasevtika_info.response') }}
+            {{ $t('product_info.response') }}
                 </span>
         <div style="border:1px solid #2b675b; padding:15px; border-radius: 7px">
           <span v-if="tableItems2.mxik_code == null">{{ $t("messages.data_not_found_0") }}</span>
@@ -76,7 +76,7 @@ export default {
   data() {
     return {
       optionsTable: [
-        {value: 'MXIK', text: i18n.t("system.product_info.MXIK")}
+        {value: 'MXIK', text: i18n.t("product_info.MXIK")}
       ],
       selected: 'MXIK',
       TIF_TN: '',

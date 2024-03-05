@@ -12,7 +12,7 @@ export default {};
           </b-col>
 
           <b-col>
-            <h3 class="section-title text-center text-white">БОҒЛАНИШ</h3>
+            <h3 class="section-title text-center text-white">{{ $t('contact.title') }}</h3>
           </b-col>
 
           <b-col>
@@ -32,10 +32,10 @@ export default {};
               </div>
               <div>
                 <p class="mt-4">
-                  <span class="h4 font-weight-bold text-color">Манзил</span>
+                  <span class="h4 font-weight-bold text-color">{{ $t('contact.address_title') }}</span>
                   <br/>
                   <span
-                      class="d-block text-color">Ўзбекистон Республикаси, Тошкент шахри, Лабзак кўчаси, 3А</span>
+                      class="d-block text-color">{{ $t('contact.address') }}</span>
                 </p>
               </div>
             </div>
@@ -45,7 +45,7 @@ export default {};
               </div>
               <div>
                 <p class="mt-4">
-                  <span class="h4 font-weight-bold text-color">Электрон почта манзил</span>
+                  <span class="h4 font-weight-bold text-color">{{ $t('contact.email') }}</span>
                   <br/>
                   <span
                       class="d-block text-color">info@antimon.gov.uz</span>
@@ -58,7 +58,7 @@ export default {};
               </div>
               <div>
                 <p class="mt-4">
-                  <span class="h4 font-weight-bold text-color">Фуқаролар қабулхонаси</span>
+                  <span class="h4 font-weight-bold text-color">{{ $t('contact.citizens_email') }}</span>
                   <br/>
                   <span
                       class="d-block text-color">info@antimon.gov.uz</span>
@@ -71,7 +71,7 @@ export default {};
               </div>
               <div>
                 <p class="mt-4">
-                  <span class="h4 font-weight-bold text-color">TELEGRAM орқали мурожаат</span>
+                  <span class="h4 font-weight-bold text-color">{{ $t('contact.telegram') }}</span>
                   <br/>
                   <a href="https://t.me/RaqobatGovUz"
                      target="_blank"
@@ -83,10 +83,7 @@ export default {};
           <b-col cols="7" class="">
             <form method="post" name="contact-form" id="contact-form"
                   style="box-shadow: rgb(201, 219, 215) 2px 4px 8px 0px; border-radius: 5px" class="p-3">
-              <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d794.5543438897944!2d69.26438938580422!3d41.322519301175866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1708090590309!5m2!1sen!2s"
-                  width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.361650637049!2d69.26273495463661!3d41.32274863436962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8ba60f739dff%3A0xf5893ba8065e084!2sCommittee%20for%20the%20Development%20of%20Competition%20and%20Protection%20of%20Consumer%20Rights%20of%20the%20Republic%20of%20Uzbekistan!5e0!3m2!1sen!2sus!4v1709115506007!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </form>
           </b-col>
         </b-row>

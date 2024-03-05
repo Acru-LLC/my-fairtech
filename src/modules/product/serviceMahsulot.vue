@@ -7,7 +7,7 @@
             <b-col cols="3">
               <BaseSelectWithValidation
                   v-model="selected"
-                  :label="$t('submodules.integration.personallashtirish.search_button')"
+                  :label="$t('messages.search')"
                   value-field="id"
                   label-on-top
               >
@@ -29,7 +29,7 @@
                     rules="required"
                     v-model="TIF_TN"
                     @keyup.enter="findInfosBy"
-                    :label="$t('system.product_info.tif_tn_code')"
+                    :label="$t('product_info.tif_tn_code')"
                     label-on-top
                 >
                 </BaseInputWithValidation>
@@ -40,7 +40,7 @@
                     rules="required"
                     v-model="SHTRIX"
                     @keyup.enter="findInfosBy"
-                    :label="$t('system.product_info.Shtrix_code')"
+                    :label="$t('product_info.Shtrix_code')"
                     label-on-top
                 >
                 </BaseInputWithValidation>
@@ -51,7 +51,7 @@
                     rules="required"
                     v-model="MXIK"
                     @keyup.enter="findInfosBy"
-                    :label="$t('system.product_info.MXIK_code')"
+                    :label="$t('product_info.MXIK_code')"
                     label-on-top
                 >
                 </BaseInputWithValidation>
@@ -70,7 +70,7 @@
                     style="font-size: 15px"
                     class="mdi mdi-search-web">
                 </i>
-                {{ $t('system.product_info.search') }}
+                {{ $t('product_info.search') }}
               </b-button>
               <b-button class="mt-3" style="background: #2b6c58" disabled v-show="loadingTableItems">
                 <b-spinner small type="grow"></b-spinner>
@@ -89,7 +89,7 @@
 
       <div v-if="selected == 'TIF_TN'">
                 <span style="background: #2b675b" class="p-1 text-white">
-            {{ $t('submodules.integration.farmasevtika_info.response') }}
+            {{ $t('product_info.response') }}
                 </span>
         <div style="border:1px solid #2b675b; padding:15px; border-radius: 7px">
           <span v-if="tableItems2.mxik_code == null">{{ $t("messages.data_not_found_0") }}</span>
@@ -99,7 +99,7 @@
       </div>
       <div v-if="selected == 'SHTRIX' || selected == 'MXIK'">
                 <span style="background: #2b675b" class="p-1 text-white">
-            {{ $t('submodules.integration.farmasevtika_info.response') }}
+            {{ $t('product_info.response') }}
                 </span>
         <div style="border:1px solid #2b675b; padding:15px; border-radius: 7px">
           <span v-if="tableItems2.mxik_code == null">{{ $t("messages.data_not_found_0") }}</span>
@@ -198,9 +198,9 @@ export default {
   data() {
     return {
       optionsTable: [
-        {value: 'TIF_TN', text: i18n.t("system.product_info.tif_tn")},
-        {value: 'SHTRIX', text: i18n.t("system.product_info.Shtrix")},
-        {value: 'MXIK', text: i18n.t("system.product_info.MXIK")}
+        {value: 'TIF_TN', text: i18n.t("product_info.tif_tn")},
+        {value: 'SHTRIX', text: i18n.t("product_info.Shtrix")},
+        {value: 'MXIK', text: i18n.t("product_info.MXIK")}
       ],
       selected: null,
       TIF_TN: '',
