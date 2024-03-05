@@ -4227,7 +4227,7 @@
   },
   "reporting": {
     "send_button": "Yuborish",
-    "title": "Tovar, moliya va raqamli bozorlar to'g'risidagi hisobotni yuborish",
+    "title": "Tovar, moliya va raqamli bozorlar to'g'risidagi statistik ma'lumotlarni yuborish",
     "name": "Onlayn hisobot yuborish",
     "main": {
       "form1": {

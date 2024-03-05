@@ -81,16 +81,16 @@
                         label-on-top
                     />
                   </b-col>
-                  <b-col cols="3" class="px-3">
-                    <BaseInputWithValidation
-                        v-model="editingItem.ktut"
-                        :label="$t('reporting.main.form1.name2')"
-                        :placeholder="$t('')"
-                        class="required"
-                        rules="required"
-                        label-on-top
-                    />
-                  </b-col>
+                  <!--                  <b-col cols="3" class="px-3">-->
+                  <!--                    <BaseInputWithValidation-->
+                  <!--                        v-model="editingItem.ktut"-->
+                  <!--                        :label="$t('reporting.main.form1.name2')"-->
+                  <!--                        :placeholder="$t('')"-->
+                  <!--                        class="required"-->
+                  <!--                        rules="required"-->
+                  <!--                        label-on-top-->
+                  <!--                    />-->
+                  <!--                  </b-col>-->
                   <b-col cols="3" class="px-3">
                     <b-row>
                       <b-col cols="2">
@@ -1057,7 +1057,7 @@ export default {
           let obj = {
             phone: '+998' + this.phoneCode.code + this.phoneNumber.replaceAll('-', ''),
             name: this.editingItem.name ? this.editingItem.name : '',
-            ktut: this.editingItem.ktut ? this.editingItem.ktut : '',
+            // ktut: this.editingItem.ktut ? this.editingItem.ktut : '',
             stir: this.editingItem.stir ? this.editingItem.stir : '',
             address: this.editingItem.address ? this.editingItem.address : '',
             fio: this.editingItem.fio ? this.editingItem.fio : ''
@@ -1079,6 +1079,8 @@ export default {
               this.phoneId = null
               this.phoneNumber = ''
               this.upload_files = null
+              this.uploadFiles = null
+              this.uploadFilename = ''
               this.computedObserver.reset()
               this.computedObserverHizmat.reset()
               this.computedObserverSanoat.reset()
