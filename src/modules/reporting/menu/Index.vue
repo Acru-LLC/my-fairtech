@@ -984,6 +984,7 @@ export default {
             madeSum: this.editingItem.madeSum.replaceAll(' ', ''),
             buyTonna: this.editingItem.buyTonna.replaceAll(' ', ''),
             buySum: this.editingItem.buySum.replaceAll(' ', ''),
+            measureId: this.editingItem.measureId,
             exportTonna: this.editingItem.exportTonna.replaceAll(' ', ''),
             exportSum: this.editingItem.exportSum.replaceAll(' ', ''),
             finallyTonna: this.editingItem.finallyTonna.replaceAll(' ', ''),
@@ -996,6 +997,7 @@ export default {
           this.editingItem.madeTonna = ''
           this.editingItem.madeSum = ''
           this.editingItem.buyTonna = ''
+          this.editingItem.measureId = ''
           this.editingItem.buySum = ''
           this.editingItem.exportTonna = ''
           this.editingItem.exportSum = ''
@@ -1024,7 +1026,6 @@ export default {
             year: this.editingItem.year ? this.editingItem.year : '',
 
             codeSoxa: this.editingItem.codeSoxa,
-            measureId: this.editingItem.measureId,
             codeSevice: this.editingItem.codeSevice,
             nameService: this.editingItem.nameService,
             sumService: this.editingItem.sumService.replaceAll(' ', ''),
