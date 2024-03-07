@@ -34,6 +34,10 @@
                             {{ integration.name }} <br>
                           ({{ $t('product_info.xizmat2') }})
                         </span>
+            <span v-if="integration.routerName == 'FAQ'" class="box-title-style"
+                  :class="(integration.id == 12) ? 'pt-0 px-0': 'py-3 px-4'">
+                            {{ integration.name }} <br>
+                        </span>
           </div>
 
         </b-col>
@@ -88,6 +92,14 @@ export default {
           perm: '',
           image: 'status.svg',
           name: this.$t('product_info.xizmat1'),
+          isDone: true
+        },
+        {
+          id: 2,
+          routerName: 'FAQ',
+          perm: '',
+          image: 'status.svg',
+          name: this.$t('faq.sideNav'),
           isDone: true
         }
 

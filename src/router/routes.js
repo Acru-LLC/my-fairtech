@@ -66,6 +66,15 @@ export default [
         },
         component: () => import('/src/modules/reporting/menu/Index.vue'),
         children: []
+    },
+    {
+        path: '/faq',
+        name: 'FAQ',
+        meta: {
+            public: true
+        },
+        component: () => import('/src/modules/product/FAQ/index.vue'),
+        children: []
     }
 
 ]
