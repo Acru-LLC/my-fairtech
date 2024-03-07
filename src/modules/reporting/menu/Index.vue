@@ -331,6 +331,35 @@
                         label-on-top
                     />
                   </b-col>
+
+                  <b-col>
+                    <BaseSelectWithValidation
+                        v-model="editingItem.measureId"
+                        class="required"
+                        rules="required"
+                        :label="$t('product_info.units')"
+                        value-field="id"
+                        label-on-top
+                    >
+                      <template #first>
+                        <!--                        <b-form-select-option-->
+                        <!--                                :value="null"-->
+                        <!--                                disabled-->
+                        <!--                        >{{ $t('column.status') }}-->
+                        <!--                        </b-form-select-option>-->
+                        <b-form-select-option v-for="(status, index) in measure" :key="`${status}-${index}`"
+                                              :value="status.id">{{
+                            getName({
+                              nameRu: status.nameRu,
+                              nameLt: status.nameLt,
+                              nameUz: status.nameUz,
+                            })
+                          }}
+                        </b-form-select-option>
+                      </template>
+                    </BaseSelectWithValidation>
+                  </b-col>
+
                   <b-col class="px-3">
                     <BaseInputWithValidation
                         v-model="editingItem.madePowerAll"
@@ -740,6 +769,7 @@ export default {
   components: {},
   data() {
     return {
+      measures: [],
       loader: false,
       loadingStirItems: false,
       summm: '',
@@ -887,6 +917,7 @@ export default {
     },
   },
   async created() {
+    await this.getMeasure();
     await this.getPhoneCode();
   },
   computed: {
@@ -993,6 +1024,7 @@ export default {
             year: this.editingItem.year ? this.editingItem.year : '',
 
             codeSoxa: this.editingItem.codeSoxa,
+            measureId: this.editingItem.measureId,
             codeSevice: this.editingItem.codeSevice,
             nameService: this.editingItem.nameService,
             sumService: this.editingItem.sumService.replaceAll(' ', ''),
@@ -1048,6 +1080,21 @@ export default {
         this.$toast(this.$t('messages.fill_required_fields'), {type: 'error'});
       }
 
+    },
+    async getMeasure() {
+      // GET STATUSES
+      this.var_default_search_payload.keyword = this.searchKeyword
+      this.var_default_search_payload.itemsPerPage = 500
+
+      crudAndListsService.searchListWithKeyword('price_measure', this.var_default_search_payload)
+          .then((res) => {
+            this.measure = res.data.list;
+          })
+          .catch(e => {
+            this.measure = [];
+          })
+          .finally(() => {
+          })
     },
 
     saveData() {
