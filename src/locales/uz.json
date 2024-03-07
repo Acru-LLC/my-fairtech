@@ -195,6 +195,7 @@
     "code": "Kod"
   },
   "reporting": {
+    "year": "Yil",
     "send_button": "Yuborish",
     "title": "Tovar, moliya va raqamli bozorlar to‘g‘risidagi statistik ma'lumotlarni yuborish",
     "name": "Onlayn hisobot yuborish",
@@ -222,12 +223,12 @@
         "name1": "Maxsulot TIF TN kodi",
         "name2": "Maxsulot nomi",
         "name3": "MST kodi",
-        "name4": "Ishlab chiqarish quvvati (tonna)",
+        "name4": "Ishlab chiqarish quvvati",
         "name5": "Ishlab chiqarish xajmi ",
         "name6": "Sotish xajmi (Ichki bozorda)",
         "name7": "Eksport xajmi",
         "name8": "Yil oxiriga tayyor maxsulot qoldig‘i",
-        "name9": "Tonna",
+        "name9": "Миқдори",
         "name10": "Summasi",
         "name11": "(QQS va aksizsiz)"
       },

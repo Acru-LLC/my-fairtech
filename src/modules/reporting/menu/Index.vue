@@ -175,7 +175,7 @@
                     <BaseDatePickerWithValidation
                         class="required"
                         rules="required"
-                        :label="$t('column.year')"
+                        :label="$t('reporting.year')"
                         type="year"
                         format="YYYY"
                         label-on-top
