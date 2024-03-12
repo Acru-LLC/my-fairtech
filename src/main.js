@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
-import VueRouter from 'vue-router'
 import router from './router/index'
 import Lightbox from 'vue-easy-lightbox'
 import VueParticles from 'vue-particles'
@@ -117,7 +116,6 @@ import { ability } from '@/shared/store/ability'
 Vue.use(abilitiesPlugin, ability);
 Vue.component("Can", Can);
 
-Vue.use(VueRouter)
 Vue.config.productionTip = false
 
 Vue.use(BootstrapVue)
