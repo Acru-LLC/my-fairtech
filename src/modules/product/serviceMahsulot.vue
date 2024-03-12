@@ -107,6 +107,7 @@
         </div>
       </div>
     </b-card>
+    <div v-if="tableItems1 && tableItems1.length > 0">
     <div style="border:1px solid #2b675b; padding:15px; margin: 10px; border-radius: 7px"
          v-for="(item, index) in tableItems1" :key="index"
          :value="item.id"
@@ -158,6 +159,10 @@
         </b-row>
       </div>
     </div>
+    </div>
+    <div v-if="tableItems1 && tableItems1.length == 0" class="text-color text-center">
+      {{ $t("messages.data_not_found") }}
+    </div>
   </div>
 </template>
 
@@ -208,7 +213,7 @@ export default {
       MXIK: '',
       loadingTableItems: false,
       resSuccess: null,
-      tableItems1: [],
+      // tableItems1: [],
       tableItems2: {}
     }
   },
@@ -219,7 +224,7 @@ export default {
   },
   methods: {
     findInfosBy() {
-      this.tableItems = null
+      this.tableItems1 = []
       this.resSuccess = null
       this.computedObserver.validate().then(valid => {
         if (valid) {
