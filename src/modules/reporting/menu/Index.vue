@@ -278,19 +278,18 @@
                         variant="primary"
                         class="pt-1 mb-4 pb-1 pr-2 pl-2"
                     >
-                      <i class="fa fa-plus"></i>
                       <span style="font-size: 14px">
                         {{ $t("actions.add") }}
                       </span>
                     </b-button>
-                    <b-button
-                        v-show="sanoat.length > 0"
-                        variant="warning"
-                        class="pt-1 mb-4 pb-1 pr-2 pl-2"
-                        @click="isModalSanoat = true"
-                    >
-                      <i class="fa fa-eye"></i>
-                    </b-button>
+<!--                    <b-button-->
+<!--                        v-show="sanoat.length > 0"-->
+<!--                        variant="warning"-->
+<!--                        class="pt-1 mb-4 pb-1 pr-2 pl-2"-->
+<!--                        @click="isModalSanoat = true"-->
+<!--                    >-->
+<!--                      <i class="fa fa-eye"></i>-->
+<!--                    </b-button>-->
                   </b-button-group>
                 </b-col>
               </b-row>
@@ -514,19 +513,18 @@
                         variant="primary"
                         class="pt-1 mb-4 pb-1 pr-2 pl-2"
                     >
-                      <i class="fa fa-plus"></i>
                       <span style="font-size: 14px">
                         {{ $t("actions.add") }}
                       </span>
                     </b-button>
-                    <b-button
-                        @click="isModalHizmat = true"
-                        v-show="hizmat.length > 0"
-                        variant="warning"
-                        class="pt-1 mb-4 pb-1 pr-2 pl-2"
-                    >
-                      <i class="fa fa-info-circle"></i>
-                    </b-button>
+<!--                    <b-button-->
+<!--                        @click="isModalHizmat = true"-->
+<!--                        v-show="hizmat.length > 0"-->
+<!--                        variant="warning"-->
+<!--                        class="pt-1 mb-4 pb-1 pr-2 pl-2"-->
+<!--                    >-->
+<!--                      <i class="fa fa-info-circle"></i>-->
+<!--                    </b-button>-->
                   </b-button-group>
                 </b-col>
               </b-row>
@@ -578,6 +576,145 @@
                 </b-row>
               </ValidationObserver>
             </b-card>
+
+
+            <b-card style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px;margin-top:10px;"
+                    v-if="sanoat.length > 0">
+              <div
+                  style="font-size: 16px;background: #2b675b; color: white; padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 2px; font-weight: bold">
+                {{ $t('reporting.main.form3.title') }}
+              </div>
+              <div v-for="(card, index) in sanoat" :key="index">
+                <b-col cols="12" style="border:1px solid #2b675b; padding: 10px 20px; margin-bottom: 20px;">
+                  <b-row>
+                    <b-col cols="2">
+                      <div class="d-flex justify-content-start align-items-center">
+                        <div class="mr-3" style="font-size: 16px; font-weight: bold;">
+                          {{ index + 1 }}.
+                        </div>
+                        <div>
+                          <div style="color:#88a59e;">{{ $t('reporting.main.form3.name1') }}:</div>
+                          <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
+                            {{ card.codeTiftn ? card.codeTiftn : '- - -' }}
+                          </div>
+                        </div>
+                      </div>
+                    </b-col>
+                    <b-col cols="3">
+                      <div>
+                        <div style="color:#88a59e;">{{ $t('reporting.main.form3.name2') }}:</div>
+                        <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
+                          {{ card.nameProduct ? card.nameProduct : '- - -' }}
+                        </div>
+                      </div>
+                    </b-col>
+                    <b-col cols="2">
+                      <div>
+                        <div style="color:#88a59e;">
+                          {{
+                            $t('reporting.main.form3.name3')
+                          }}:
+                        </div>
+                        <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
+                          {{ card.codeMct ? card.codeMct : '- - -' }}
+                        </div>
+                      </div>
+                    </b-col>
+                    <b-col cols="2">
+                      <div>
+                        <div style="color:#88a59e;">{{ $t('product_info.units') }}</div>
+                        <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
+                          {{
+                            getName({
+                              nameRu: measure.find(e => e.id === card.measureId) ? measure.find(e => e.id === card.measureId).nameRu : '- - -',
+                              nameUz: measure.find(e => e.id === card.measureId) ? measure.find(e => e.id === card.measureId).nameUz : '- - -',
+                              nameLt: measure.find(e => e.id === card.measureId) ? measure.find(e => e.id === card.measureId).nameLt : '- - -',
+                            })
+                          }}
+                        </div>
+                      </div>
+                    </b-col>
+                    <b-col cols="3">
+                      <div>
+                        <div style="color:#88a59e;">{{ $t('reporting.main.form3.name4') }}</div>
+                        <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
+                          {{ card.madePowerAll ? card.madePowerAll : '- - -' }}
+                        </div>
+                      </div>
+                    </b-col>
+                  </b-row>
+                  <div style="position: absolute; top: 15px; right: 8px;">
+                    <b-btn style="border: none; background-color: transparent;" @click="deleteSanoat(index)">
+                      <i class="mdi mdi-trash-can-outline cursor-pointer"
+                         style="font-size: 24px; color:red"></i>
+                    </b-btn>
+                  </div>
+                </b-col>
+              </div>
+            </b-card>
+
+
+            <b-card style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px;margin-top:10px;"
+                    v-if="hizmat.length > 0">
+              <div
+                  style="font-size: 16px;background: #2b675b; color: white; padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 2px; font-weight: bold">
+                {{ $t('reporting.main.form4.title') }}
+              </div>
+              <div v-for="(card, index) in hizmat" :key="index">
+                <b-col cols="12" style="border:1px solid #2b675b; padding: 10px 20px; margin-bottom: 20px;">
+                  <b-row>
+                    <b-col cols="12" md="3">
+                      <div class="d-flex justify-content-start align-items-center">
+                        <div class="mr-3" style="font-size: 16px; font-weight: bold;">
+                          {{ index + 1 }}.
+                        </div>
+                        <div>
+                          <div style="color:#88a59e;">{{ $t('reporting.main.form4.name1') }}:</div>
+                          <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
+                            {{ card.codeSevice ? card.codeSevice : '- - -' }}
+                          </div>
+                        </div>
+                      </div>
+                    </b-col>
+                    <b-col cols="12" md="3">
+                      <div>
+                        <div style="color:#88a59e;">{{ $t('reporting.main.form4.name2') }}:</div>
+                        <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
+                          {{ card.nameService ? card.nameService : '- - -' }}
+                        </div>
+                      </div>
+                    </b-col>
+                    <b-col cols="12" md="3">
+                      <div>
+                        <div style="color:#88a59e;">
+                          {{
+                            $t('reporting.main.form4.name3')
+                          }}:
+                        </div>
+                        <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
+                          {{ card.sumService ? card.sumService : '- - -' }}
+                        </div>
+                      </div>
+                    </b-col>
+                    <b-col cols="12" md="3">
+                      <div>
+                        <div style="color:#88a59e;">{{ $t('reporting.main.form4.name4') }}</div>
+                        <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
+                          {{ card.exportSumService ? card.exportSumService : '- - -' }}
+                        </div>
+                      </div>
+                    </b-col>
+                  </b-row>
+                  <div style="position: absolute; top: 15px; right: 8px;">
+                    <b-btn style="border: none; background-color: transparent;" @click="deleteHizmat(index)">
+                      <i class="mdi mdi-trash-can-outline cursor-pointer"
+                         style="font-size: 24px; color:red"></i>
+                    </b-btn>
+                  </div>
+                </b-col>
+              </div>
+            </b-card>
+
 
             <b-row class="p-1">
               <b-col cols="12" md="10">
@@ -1054,6 +1191,7 @@ export default {
                   this.editingItem.fio = res.data.accountant.firstName + ' ' + res.data.accountant.lastName + ' ' + res.data.accountant.middleName
                 }
                 if (res.data.companyBillingAddress) {
+                  this.editingItem.soato = res.data.companyBillingAddress.soato
                   this.editingItem.address = this.getName({
                         nameRu: res.data.companyBillingAddress.regionNameRu,
                         nameUz: res.data.companyBillingAddress.regionNameUz,
@@ -1099,45 +1237,59 @@ export default {
     },
 
     saveData() {
-      this.loader = true;
+
       this.computedObserver.validate().then(valid => {
         if (valid) {
+          this.loader = true;
           let obj = {
             phone: '+998' + this.phoneCode.code + this.phoneNumber.replaceAll('-', ''),
             name: this.editingItem.name ? this.editingItem.name : '',
+            soato: this.editingItem.soato ? this.editingItem.soato : '',
             // ktut: this.editingItem.ktut ? this.editingItem.ktut : '',
             stir: this.editingItem.stir ? this.editingItem.stir : '',
             address: this.editingItem.address ? this.editingItem.address : '',
             fio: this.editingItem.fio ? this.editingItem.fio : ''
           }
 
-          let bodyData = []
-          bodyData = bodyData.concat(this.sanoat)
-          bodyData = bodyData.concat(this.hizmat)
+          if (this.editingItem.codeTiftn == '' && this.editingItem.nameService == '') {
+            let bodyData = []
+            bodyData = bodyData.concat(this.sanoat)
+            bodyData = bodyData.concat(this.hizmat)
 
-          Service.createReporting(obj, bodyData).then(res => {
+            Service.createReporting(obj, bodyData).then(res => {
 
-            let bodyFormData = new FormData()
-            bodyFormData.append("id", res.data.id)
-            bodyFormData.append("file", this.upload_files)
+              let bodyFormData = new FormData()
+              bodyFormData.append("id", res.data.id)
+              bodyFormData.append("file", this.upload_files)
 
-            Service.createWithFiles1(bodyFormData).then(res2 => {
-              this.$toast.success(this.$t('messages.send_successfully'), {position: "top-right"});
-              this.editingItem = {}
-              this.phoneId = null
-              this.phoneNumber = ''
-              this.upload_files = null
-              this.uploadFiles = null
-              this.uploadFilename = ''
-              this.computedObserver.reset()
-              this.computedObserverHizmat.reset()
-              this.computedObserverSanoat.reset()
-              this.editingItem = Object.assign({}, {});
+              Service.createWithFiles1(bodyFormData).then(res2 => {
+                this.$toast.success(this.$t('messages.send_successfully'), {position: "top-right"});
+                this.editingItem = {}
+                this.phoneId = null
+                this.phoneNumber = ''
+                this.upload_files = null
+                this.uploadFiles = null
+                this.uploadFilename = ''
+                this.sanoat = []
+                this.hizmat = []
+                this.computedObserver.reset()
+                this.computedObserverHizmat.reset()
+                this.computedObserverSanoat.reset()
+                this.editingItem = Object.assign({}, {});
+              })
             })
-          })
-              .finally(() => {
-                this.loader = false;
-              });
+                .finally(() => {
+                  this.loader = false;
+                });
+          } else {
+            this.loader = false;
+            if (this.editingItem.codeTiftn !== '') {
+              this.$toast(this.$t('reporting.error1'), {type: 'error'});
+            } else if (this.editingItem.nameService !== '') {
+              this.$toast(this.$t('reporting.error2'), {type: 'error'});
+            }
+          }
+
         } else {
           this.loader = false;
           this.$toast(this.$t('messages.fill_required_fields'), {type: 'error'});

@@ -195,6 +195,8 @@
     "code": "Код"
   },
   "reporting": {
+    "error1": "Саноат соҳасида маълумотлар киритилган. Юбориш учун  \\«Қўшиш\\» тугмасини босинг.",
+    "error2": "Xizmat ko‘rsatish sohasida ma'lumotlar kiritilgan. Yuborish uchun  \"Qo'shish\" tugmasini bosing.",
     "year": "Йил",
     "send_button": "Юбориш",
     "title": "Товар, молия ва рақамли бозорлар тўғрисидаги статистик маълумотларни юбориш",
