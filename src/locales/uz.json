@@ -195,6 +195,7 @@
     "code": "Kod"
   },
   "reporting": {
+    "check": "Korxona faoliyati to'xtatilgan",
     "regionalAdministration": "Hududiy boshqarma nomi",
     "error1": "Sanoat sohasida ma'lumotlar kiritilgan. Yuborish uchun \"Qo'shish\" tugmasini bosing",
     "error2": "Xizmat ko‘rsatish sohasida ma'lumotlar kiritilgan. Yuborish uchun \"Qo'shish\" tugmasini bosing",

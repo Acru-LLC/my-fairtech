@@ -45,7 +45,7 @@ export default {
         }
     },
     async createReporting(data, bodyData) {
-        return ApiService.post(`/number_market/create?name=${data.name}&stir=${data.stir}&address=${data.address}&fio=${data.fio}&phone=${data.phone}&soato=${data.soato}`, bodyData)
+        return ApiService.post(`/number_market/create?name=${data.name}&stir=${data.stir}&address=${data.address}&fio=${data.fio}&phone=${data.phone}&soato=${data.soato}&check=${data.check}`, bodyData)
     },
     async createWithFiles(bodyFormData, url) {
         const requestData = {

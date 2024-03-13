@@ -14,7 +14,6 @@
                 ref="observer"
                 v-slot="{}"
             >
-              {{ editingItem.name }}
               <b-card style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px;margin-top:10px;">
                 <b-row>
                   <b-col cols="3" class="px-3 py-0">
@@ -91,6 +90,7 @@
                   <!--                        label-on-top-->
                   <!--                    />-->
                   <!--                  </b-col>-->
+
                   <b-col cols="3" class="px-3">
                     <b-row>
                       <b-col cols="2">
@@ -122,13 +122,22 @@
                         />
                       </b-col>
                     </b-row>
-
-
+                  </b-col>
+                  <b-col cols="3" class="px-3 mt-4 ml-4">
+                    <b-form-checkbox
+                        :value="true"
+                        :unchecked-value="false"
+                        v-model="editingItem.check"
+                        style="font-size: medium;"
+                    >
+                      <strong style="color: #2b675b;">{{ $t('reporting.check') }}</strong>
+                    </b-form-checkbox>
                   </b-col>
                 </b-row>
               </b-card>
 
-              <b-card style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px;margin-top:10px;">
+              <b-card v-if="!editingItem.check"
+                      style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px;margin-top:10px;">
                 <b-row>
                   <b-col cols="3" class="px-3 py-0">
                     <div
@@ -261,7 +270,7 @@
 
             </ValidationObserver>
 
-            <b-card v-if="editingItem.codeSoxa == 'SANOAT'"
+            <b-card v-if="editingItem.codeSoxa == 'SANOAT' && !editingItem.check"
                     style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px;margin-top:10px;">
               <b-row>
                 <b-col cols="3" class="px-3 py-0">
@@ -525,7 +534,7 @@
               </b-row>
             </b-card>
 
-            <b-card v-else-if="editingItem.codeSoxa == 'HIZMAT'"
+            <b-card v-else-if="editingItem.codeSoxa == 'HIZMAT'  && !editingItem.check"
                     style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px;margin-top:10px;">
               <b-row>
                 <b-col cols="3" class="px-3 py-0">
@@ -1072,7 +1081,8 @@ export default {
       editingItem: {
         name: '',
         fio: '',
-        address: ''
+        address: '',
+        check: false
       },
       sanoat: [],
       hizmat: [],
@@ -1470,6 +1480,7 @@ export default {
             // ktut: this.editingItem.ktut ? this.editingItem.ktut : '',
             stir: this.editingItem.stir ? this.editingItem.stir : '',
             address: this.editingItem.address ? this.editingItem.address : '',
+            check: this.editingItem.check ? this.editingItem.check : '',
             fio: this.editingItem.fio ? this.editingItem.fio : ''
           }
 
