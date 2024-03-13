@@ -107,6 +107,7 @@
         </div>
       </div>
     </b-card>
+    <div v-if="tableItems1 && tableItems1.length > 0">
     <div style="border:1px solid #2b675b; padding:15px; margin: 10px; border-radius: 7px"
          v-for="(item, index) in tableItems1" :key="index"
          :value="item.id"
@@ -115,7 +116,7 @@
         <b-row>
           <b-col cols="1" style="text-align: center">
                         <span style="opacity: 0.7; color: #2b675b">{{
-                            $t('submodules.integration.bojxona_info.number_commodity')
+                            $t('bojxona_info.number_commodity')
                           }}</span> <br>
             <span style="color: #2b675b; font-weight: lighter; font-size: 14px">  {{
                 item.number_commodity
@@ -123,7 +124,7 @@
           </b-col>
           <b-col cols="3" style="text-align: center">
                         <span style="opacity: 0.7; color: #2b675b">{{
-                            $t('submodules.integration.bojxona_info.receiver_name')
+                            $t('bojxona_info.receiver_name')
                           }}</span> <br>
             <span style="color: #2b675b; font-weight: lighter; font-size: 14px">  {{
                 item.receiver_name
@@ -131,7 +132,7 @@
           </b-col>
           <b-col cols="5" style="text-align: center">
                         <span style="opacity: 0.7; color: #2b675b">{{
-                            $t('submodules.integration.bojxona_info.product_name')
+                            $t('bojxona_info.product_name')
                           }}</span> <br>
             <span style="color: #2b675b; font-weight: lighter; font-size: 14px">  {{
                 item.product_name
@@ -139,7 +140,7 @@
           </b-col>
           <b-col cols="2" style="text-align: center">
                           <span style="opacity: 0.7; color: #2b675b">{{
-                              $t('submodules.integration.bojxona_info.made_in_country')
+                              $t('bojxona_info.made_in_country')
                             }}</span> <br>
             <span style="color: #2b675b; font-weight: lighter; font-size: 14px; text-align: center !important;">  {{
                 item.made_in_country
@@ -148,7 +149,7 @@
 
           <b-col cols="1" style="text-align: center">
                         <span style="opacity: 0.7; color: #2b675b">{{
-                            $t('submodules.integration.bojxona_info.tn_code')
+                            $t('bojxona_info.tn_code')
                           }}</span> <br>
             <span style="color: #2b675b; font-weight: lighter; font-size: 14px">  {{
                 item.tn_code
@@ -157,6 +158,10 @@
 
         </b-row>
       </div>
+    </div>
+    </div>
+    <div v-if="tableItems1 && tableItems1.length == 0" class="text-color text-center">
+      {{ $t("messages.data_not_found") }}
     </div>
   </div>
 </template>
@@ -208,7 +213,7 @@ export default {
       MXIK: '',
       loadingTableItems: false,
       resSuccess: null,
-      tableItems1: [],
+      // tableItems1: [],
       tableItems2: {}
     }
   },
@@ -219,7 +224,7 @@ export default {
   },
   methods: {
     findInfosBy() {
-      this.tableItems = null
+      this.tableItems1 = []
       this.resSuccess = null
       this.computedObserver.validate().then(valid => {
         if (valid) {
