@@ -1,6 +1,14 @@
 import ApiService from '@/shared/services/api.service'
 
 export default {
+    getDepartments: async function ( withLoader = false) {
+        let res = await ApiService.get(`/consent_app_result_main/get/region-and-committee-open`, withLoader);
+        return res;
+    },
+    getByCodeTiftn: async function (tnvedCode, withLoader = false) {
+        let res = await ApiService.post(`/bojxona/tnved-code?tnvedCode=${tnvedCode}`, withLoader);
+        return res;
+    },
     // yuridik-shaxs
     getYuridikShaxsData: async function (stir, withLoader = false) {
         let res = await ApiService.post(`/yuridik-shaxs/get-info-open?&tin=${stir}`, withLoader);
@@ -37,7 +45,7 @@ export default {
         }
     },
     async createReporting(data, bodyData) {
-        return ApiService.post(`/number_market/create?name=${data.name}&stir=${data.stir}&address=${data.address}&fio=${data.fio}&phone=${data.phone}&soato=${data.soato}`, bodyData)
+        return ApiService.post(`/number_market/create?name=${data.name}&stir=${data.stir}&address=${data.address}&fio=${data.fio}&phone=${data.phone}&soato=${data.soato}&check=${data.check}`, bodyData)
     },
     async createWithFiles(bodyFormData, url) {
         const requestData = {
