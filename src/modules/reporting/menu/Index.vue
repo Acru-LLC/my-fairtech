@@ -196,6 +196,7 @@
                           <BaseDatePickerWithValidation
                               class="required"
                               rules="required"
+                              format="DD-MM-YYYY"
                               custom-styles="grid-template-columns: 100%;"
                               :only-form-element="true"
                               v-model="editingItem.dateFrom"
@@ -212,6 +213,7 @@
                               custom-styles="grid-template-columns: 100%;"
                               :only-form-element="true"
                               v-model="editingItem.dateTo"
+                              format="DD-MM-YYYY"
                               :placeholder="$t('reporting.main.form2.name7')"
                               lang="ru"
                           ></BaseDatePickerWithValidation>
@@ -271,29 +273,8 @@
                 <b-col cols="3" class="px-3 py-0"></b-col>
                 <b-col cols="4" class="px-3 py-0"></b-col>
                 <b-col cols="2" class="px-3 py-0">
-                  <b-button-group style="width: 70%; float: right">
-                    <b-button
-                        @click="addFormSanoat"
-                        block
-                        variant="primary"
-                        class="pt-1 mb-4 pb-1 pr-2 pl-2"
-                    >
-                      <span style="font-size: 14px">
-                        {{ $t("actions.add") }}
-                      </span>
-                    </b-button>
-<!--                    <b-button-->
-<!--                        v-show="sanoat.length > 0"-->
-<!--                        variant="warning"-->
-<!--                        class="pt-1 mb-4 pb-1 pr-2 pl-2"-->
-<!--                        @click="isModalSanoat = true"-->
-<!--                    >-->
-<!--                      <i class="fa fa-eye"></i>-->
-<!--                    </b-button>-->
-                  </b-button-group>
                 </b-col>
               </b-row>
-
               <ValidationObserver
                   ref="observerSanoat"
                   v-slot="{}"
@@ -302,15 +283,44 @@
                   <b-col class="px-3">
                     <BaseInputWithValidation
                         v-model="editingItem.codeTiftn"
-                        mask="#########"
                         :label="$t('reporting.main.form3.name1')"
                         :placeholder="$t('')"
                         class="required"
                         rules="required"
+                        type="number"
                         label-on-top
-                    />
+                        with-input-append
+                        @keyup.enter="findByCodeTiftn"
+                    >
+                      <template v-slot:append-slot>
+                        <b-button
+                            v-if="!loaderTifTn"
+                            @click="findByCodeTiftn"
+                            variant="outline-primary"
+                            id="contractorSearchButton"
+                            style="padding: 2.5px 10px; font-size: 1.2rem;"
+                        >
+                          <i class="mdi mdi-account-search"></i>
+                        </b-button>
+                        <b-button style="padding: 2.5px 10px; font-size: 1.2rem;"
+                                  variant="primary"
+                                  disabled v-else>
+                          <b-spinner small type="grow"></b-spinner>
+                        </b-button>
+                      </template>
+                    </BaseInputWithValidation>
                   </b-col>
                   <b-col class="px-3">
+                    <!--                    <label style="color: #2b6c58">-->
+                    <!--                      {{ $t('reporting.main.form3.name2') }}-->
+                    <!--                    </label>-->
+                    <!--                    <div-->
+                    <!--                        style="border: 1px solid #2b6c58; min-height: 35px;max-height: 35px; overflow-y: auto; border-radius: 3px">-->
+                    <!--                      <span style="width: 20px; text-overflow: hidden">-->
+                    <!--                        {{ editingItem.nameProduct }}-->
+                    <!--                      </span>-->
+
+                    <!--                    </div>-->
                     <BaseInputWithValidation
                         v-model="editingItem.nameProduct"
                         :label="$t('reporting.main.form3.name2')"
@@ -318,45 +328,37 @@
                         class="required"
                         rules="required"
                         label-on-top
-                    />
+                        with-input-append
+                    >
+                      <template v-slot:append-slot>
+                        <b-button v-b-popover.hover.top="{title:editingItem.nameProduct,content:null}"
+                                  style="padding: 2.5px 10px; font-size: 1.2rem;"
+                                  variant="outline-primary"
+                        >
+                          <i class="mdi mdi-information"></i>
+                        </b-button>
+                      </template>
+                    </BaseInputWithValidation>
                   </b-col>
                   <b-col class="px-3">
                     <BaseInputWithValidation
                         v-model="editingItem.codeMct"
                         :label="$t('reporting.main.form3.name3')"
                         :placeholder="$t('')"
-                        class="required"
-                        rules="required"
                         label-on-top
                     />
                   </b-col>
 
                   <b-col>
-                    <BaseSelectWithValidation
-                        v-model="editingItem.measureId"
+
+                    <BaseInputWithValidation
+                        v-model="editingItem.measureName"
+                        :label="$t('product_info.units')"
+                        :placeholder="$t('')"
                         class="required"
                         rules="required"
-                        :label="$t('product_info.units')"
-                        value-field="id"
                         label-on-top
-                    >
-                      <template #first>
-                        <!--                        <b-form-select-option-->
-                        <!--                                :value="null"-->
-                        <!--                                disabled-->
-                        <!--                        >{{ $t('column.status') }}-->
-                        <!--                        </b-form-select-option>-->
-                        <b-form-select-option v-for="(status, index) in measure" :key="`${status}-${index}`"
-                                              :value="status.id">{{
-                            getName({
-                              nameRu: status.nameRu,
-                              nameLt: status.nameLt,
-                              nameUz: status.nameUz,
-                            })
-                          }}
-                        </b-form-select-option>
-                      </template>
-                    </BaseSelectWithValidation>
+                    />
                   </b-col>
 
                   <b-col class="px-3">
@@ -492,6 +494,35 @@
                   </b-col>
                 </b-row>
               </ValidationObserver>
+              <b-row>
+                <b-col cols="3" class="px-3 py-0">
+
+                </b-col>
+                <b-col cols="3" class="px-3 py-0"></b-col>
+                <b-col cols="4" class="px-3 py-0"></b-col>
+                <b-col cols="2" class="px-3 py-0">
+                  <b-button-group style="width: 70%; float: right">
+                    <b-button
+                        @click="addFormSanoat"
+                        block
+                        variant="primary"
+                        class="pt-1 mt-2 pb-1 pr-2 pl-2"
+                    >
+                      <span style="font-size: 14px">
+                        {{ $t("actions.add") }}
+                      </span>
+                    </b-button>
+                    <!--                    <b-button-->
+                    <!--                        v-show="sanoat.length > 0"-->
+                    <!--                        variant="warning"-->
+                    <!--                        class="pt-1 mb-4 pb-1 pr-2 pl-2"-->
+                    <!--                        @click="isModalSanoat = true"-->
+                    <!--                    >-->
+                    <!--                      <i class="fa fa-eye"></i>-->
+                    <!--                    </b-button>-->
+                  </b-button-group>
+                </b-col>
+              </b-row>
             </b-card>
 
             <b-card v-else-if="editingItem.codeSoxa == 'HIZMAT'"
@@ -506,26 +537,7 @@
                 <b-col cols="3" class="px-3 py-0"></b-col>
                 <b-col cols="4" class="px-3 py-0"></b-col>
                 <b-col cols="2" class="px-3 py-0">
-                  <b-button-group style="width: 70%; float: right">
-                    <b-button
-                        @click="addFormHizmat"
-                        block
-                        variant="primary"
-                        class="pt-1 mb-4 pb-1 pr-2 pl-2"
-                    >
-                      <span style="font-size: 14px">
-                        {{ $t("actions.add") }}
-                      </span>
-                    </b-button>
-<!--                    <b-button-->
-<!--                        @click="isModalHizmat = true"-->
-<!--                        v-show="hizmat.length > 0"-->
-<!--                        variant="warning"-->
-<!--                        class="pt-1 mb-4 pb-1 pr-2 pl-2"-->
-<!--                    >-->
-<!--                      <i class="fa fa-info-circle"></i>-->
-<!--                    </b-button>-->
-                  </b-button-group>
+
                 </b-col>
               </b-row>
               <ValidationObserver
@@ -575,8 +587,36 @@
                   </b-col>
                 </b-row>
               </ValidationObserver>
-            </b-card>
+              <b-row>
+                <b-col cols="3" class="px-3 py-0">
 
+                </b-col>
+                <b-col cols="3" class="px-3 py-0"></b-col>
+                <b-col cols="4" class="px-3 py-0"></b-col>
+                <b-col cols="2" class="px-3 py-0">
+                  <b-button-group style="width: 70%; float: right">
+                    <b-button
+                        @click="addFormHizmat"
+                        block
+                        variant="primary"
+                        class="pt-1 mt-2 pb-1 pr-2 pl-2"
+                    >
+                      <span style="font-size: 14px">
+                        {{ $t("actions.add") }}
+                      </span>
+                    </b-button>
+                    <!--                    <b-button-->
+                    <!--                        v-show="sanoat.length > 0"-->
+                    <!--                        variant="warning"-->
+                    <!--                        class="pt-1 mb-4 pb-1 pr-2 pl-2"-->
+                    <!--                        @click="isModalSanoat = true"-->
+                    <!--                    >-->
+                    <!--                      <i class="fa fa-eye"></i>-->
+                    <!--                    </b-button>-->
+                  </b-button-group>
+                </b-col>
+              </b-row>
+            </b-card>
 
             <b-card style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px;margin-top:10px;"
                     v-if="sanoat.length > 0">
@@ -584,8 +624,9 @@
                   style="font-size: 16px;background: #2b675b; color: white; padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 2px; font-weight: bold">
                 {{ $t('reporting.main.form3.title') }}
               </div>
-              <div v-for="(card, index) in sanoat" :key="index">
-                <b-col cols="12" style="border:1px solid #2b675b; padding: 10px 20px; margin-bottom: 20px;">
+              <div v-for="(card, index) in sanoat" :key="index"
+                   style="border:1px solid #2b675b; padding: 10px 20px; margin-bottom: 20px;">
+                <b-col cols="12">
                   <b-row>
                     <b-col cols="2">
                       <div class="d-flex justify-content-start align-items-center">
@@ -608,6 +649,7 @@
                         </div>
                       </div>
                     </b-col>
+                    <b-col></b-col>
                     <b-col cols="2">
                       <div>
                         <div style="color:#88a59e;">
@@ -624,17 +666,11 @@
                       <div>
                         <div style="color:#88a59e;">{{ $t('product_info.units') }}</div>
                         <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
-                          {{
-                            getName({
-                              nameRu: measure.find(e => e.id === card.measureId) ? measure.find(e => e.id === card.measureId).nameRu : '- - -',
-                              nameUz: measure.find(e => e.id === card.measureId) ? measure.find(e => e.id === card.measureId).nameUz : '- - -',
-                              nameLt: measure.find(e => e.id === card.measureId) ? measure.find(e => e.id === card.measureId).nameLt : '- - -',
-                            })
-                          }}
+                          {{ card.measureName ? card.measureName : '- - -' }}
                         </div>
                       </div>
                     </b-col>
-                    <b-col cols="3">
+                    <b-col cols="2">
                       <div>
                         <div style="color:#88a59e;">{{ $t('reporting.main.form3.name4') }}</div>
                         <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
@@ -643,13 +679,135 @@
                       </div>
                     </b-col>
                   </b-row>
-                  <div style="position: absolute; top: 15px; right: 8px;">
+                  <div style="position: absolute; top: 0px; right: 8px;">
                     <b-btn style="border: none; background-color: transparent;" @click="deleteSanoat(index)">
                       <i class="mdi mdi-trash-can-outline cursor-pointer"
-                         style="font-size: 24px; color:red"></i>
+                         style="font-size: 30px; color:red"></i>
                     </b-btn>
                   </div>
                 </b-col>
+                <b-row class="mt-4">
+                  <b-col cols="3" class="px-3 py-0">
+                    <div class="text-center"
+                         style="font-size: 14px;border:1px solid #2b675b;  padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 4px; font-weight: bold; cursor: none">
+                      {{ $t('reporting.main.form3.name5') }}
+                      {{ $t('reporting.main.form3.name11') }}
+                    </div>
+                    <b-row>
+                      <b-col class="px-1 py-0">
+                        <div>
+                          <div style="color:#88a59e;">
+                            {{ $t('reporting.main.form3.name9') }}:
+                          </div>
+                          <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
+                            {{ card.madeTonna ? card.madeTonna : '- - -' }}
+                          </div>
+                        </div>
+                      </b-col>
+                      <b-col class="px-1 py-0">
+                        <div>
+                          <div style="color:#88a59e;">
+                            {{ $t('reporting.main.form3.name10') }}:
+                          </div>
+                          <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
+                            {{ card.madeSum ? card.madeSum : '- - -' }}
+                          </div>
+                        </div>
+                      </b-col>
+                    </b-row>
+                  </b-col>
+
+                  <b-col cols="3" class="px-3 py-0">
+                    <div class="text-center"
+                         style="font-size: 14px;border:1px solid #2b675b;  padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 4px; font-weight: bold; cursor: none">
+                      {{ $t('reporting.main.form3.name6') }}
+                      {{ $t('reporting.main.form3.name11') }}
+                    </div>
+                    <b-row>
+                      <b-col class="px-1 py-0">
+                        <div>
+                          <div style="color:#88a59e;">
+                            {{ $t('reporting.main.form3.name9') }}:
+                          </div>
+                          <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
+                            {{ card.buyTonna ? card.buyTonna : '- - -' }}
+                          </div>
+                        </div>
+                      </b-col>
+                      <b-col class="px-1 py-0">
+                        <div>
+                          <div style="color:#88a59e;">
+                            {{ $t('reporting.main.form3.name10') }}:
+                          </div>
+                          <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
+                            {{ card.buySum ? card.buySum : '- - -' }}
+                          </div>
+                        </div>
+                      </b-col>
+                    </b-row>
+
+                  </b-col>
+
+                  <b-col cols="3" class="px-3 py-0">
+                    <div class="text-center"
+                         style="font-size: 14px;border:1px solid #2b675b;  padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 4px; font-weight: bold; cursor: none">
+                      {{ $t('reporting.main.form3.name7') }}
+                      {{ $t('reporting.main.form3.name11') }}
+                    </div>
+                    <b-row>
+                      <b-col class="px-1 py-0">
+                        <div>
+                          <div style="color:#88a59e;">
+                            {{ $t('reporting.main.form3.name9') }}:
+                          </div>
+                          <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
+                            {{ card.exportTonna ? card.exportTonna : '- - -' }}
+                          </div>
+                        </div>
+                      </b-col>
+                      <b-col class="px-1 py-0">
+                        <div>
+                          <div style="color:#88a59e;">
+                            {{ $t('reporting.main.form3.name10') }}:
+                          </div>
+                          <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
+                            {{ card.exportSum ? card.exportSum : '- - -' }}
+                          </div>
+                        </div>
+                      </b-col>
+                    </b-row>
+                  </b-col>
+
+                  <b-col cols="3" class="px-3 py-0">
+                    <div class="text-center"
+                         style="font-size: 14px;border:1px solid #2b675b;  padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 4px; font-weight: bold; cursor: none">
+                      {{ $t('reporting.main.form3.name8') }}
+                      {{ $t('reporting.main.form3.name11') }}
+                    </div>
+                    <b-row>
+                      <b-col class="px-1 py-0">
+                        <div>
+                          <div style="color:#88a59e;">
+                            {{ $t('reporting.main.form3.name9') }}:
+                          </div>
+                          <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
+                            {{ card.finallyTonna ? card.finallyTonna : '- - -' }}
+                          </div>
+                        </div>
+                      </b-col>
+                      <b-col class="px-1 py-0">
+                        <div>
+                          <div style="color:#88a59e;">
+                            {{ $t('reporting.main.form3.name10') }}:
+                          </div>
+                          <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
+                            {{ card.finallySum ? card.finallySum : '- - -' }}
+                          </div>
+                        </div>
+                      </b-col>
+                    </b-row>
+                  </b-col>
+                </b-row>
               </div>
             </b-card>
 
@@ -716,7 +874,7 @@
             </b-card>
 
 
-            <b-row class="p-1">
+            <b-row class="p-3 mb-5">
               <b-col cols="12" md="10">
                 <b-col class="mb-2 mt-3">
                   <b-button style="background: #F39138; width: 150px; height: 33px" class="btn btn-warning" size="md"
@@ -896,6 +1054,7 @@ import appConfig from "@/app.config";
 import crudAndListsService from '@/shared/services/crud_and_list.service'
 import Service from '../service'
 import ApiService from "@/shared/services/api.service";
+import * as moment from "moment";
 
 const MAIN_API_URL = 'contractor-advertising-construction'
 export default {
@@ -928,6 +1087,8 @@ export default {
       phoneNumber: '',
       phoneCodes: [],
       phoneCode: null,
+      loaderTifTn: false,
+      resDataTifTn: null
     }
   },
   watch: {
@@ -936,6 +1097,36 @@ export default {
         this.phoneCode = this.phoneCodes.find(e => e.id == id);
       } else {
         this.phoneCode = null;
+      }
+    },
+    'editingItem.dateFrom': {
+      async handler(newValue) {
+        // if (newValue) {
+        //   var input = newValue.split("-");
+
+// Get the day of the month
+//           var dd = input[0]
+
+// Get the month (adding 1 because months are zero-based)
+//           var mm = parseInt(input[1]) + 6
+//
+// Get the year
+//           var yyyy = input[2]
+
+// Add leading zero if the day is less than 10
+//           if (dd < 10) {
+//             dd = '0' + dd;
+//           }
+
+// Add leading zero if the month is less than 10
+//           if (mm < 10) {
+//             mm = '0' + mm;
+//           }
+
+        //   this.editingItem.dateTo = dd + '-' + mm + '-' + yyyy;
+        // } else {
+        //   this.editingItem.dateTo = null
+        // }
       }
     },
     'editingItem.codeSoxa': {
@@ -1069,6 +1260,32 @@ export default {
     },
   },
   methods: {
+    findByCodeTiftn() {
+      this.editingItem.nameProduct = ''
+      this.editingItem.measureName = ''
+      this.loaderTifTn = true
+      Service.getByCodeTiftn(this.editingItem.codeTiftn, true)
+          .then(res => {
+            this.loaderTifTn = false
+            if (res.data.status == -1) {
+              this.editingItem.nameProduct = ''
+              this.editingItem.measureName = ''
+              this.$toast(this.$t('actions.empty_table'), {type: 'error'});
+            }
+            if (res.data.status == 1) {
+              if (res.data) {
+                this.editingItem.nameProduct = res.data.data[0] && res.data.data[0].goods && res.data.data[0].goods[0] && res.data.data[0].goods[0].product_name
+                this.editingItem.measureName = res.data.data[0] && res.data.data[0].goods && res.data.data[0].goods[0] && res.data.data[0].goods[0].added_units_measureName
+              }
+              this.$toast(this.$t(this.$t('actions.success')), {type: 'success'});
+            }
+
+          })
+          .catch(e => {
+            console.log(e)
+            this.loaderTifTn = false
+          });
+    },
     async getPhoneCode() {
       // this.var_default_search_payload.itemsPerPage = 100
       await crudAndListsService.searchListWithKeyword("message-phone-code", this.var_default_search_payload)
@@ -1115,6 +1332,7 @@ export default {
             codeSoxa: this.editingItem.codeSoxa,
             codeTiftn: this.editingItem.codeTiftn,
             nameProduct: this.editingItem.nameProduct,
+            measureName: this.editingItem.measureName,
             codeMct: this.editingItem.codeMct,
             madePowerAll: this.editingItem.madePowerAll.replaceAll(' ', ''),
             madeTonna: this.editingItem.madeTonna.replaceAll(' ', ''),
@@ -1129,6 +1347,7 @@ export default {
           }
           this.editingItem.codeTiftn = ''
           this.editingItem.nameProduct = ''
+          this.editingItem.measureName = ''
           this.editingItem.codeMct = ''
           this.editingItem.madePowerAll = ''
           this.editingItem.madeTonna = ''
@@ -1179,6 +1398,7 @@ export default {
         }
       })
     },
+
     findContractorByInn() {
       this.loadingStirItems = true
       if (this.editingItem.stir && this.editingItem.stir.length == 9) {
@@ -1197,12 +1417,14 @@ export default {
                         nameUz: res.data.companyBillingAddress.regionNameUz,
                         nameLt: res.data.companyBillingAddress.regionNameLt,
                       })
-                      + ' ' +
+                      + ', ' +
                       this.getName({
                         nameRu: res.data.companyBillingAddress.nameRu,
                         nameUz: res.data.companyBillingAddress.nameUz,
                         nameLt: res.data.companyBillingAddress.nameLt,
                       })
+                      + ', ' +
+                      res.data.companyBillingAddress.streetName
                 }
               }
 
@@ -1251,7 +1473,10 @@ export default {
             fio: this.editingItem.fio ? this.editingItem.fio : ''
           }
 
-          if (this.editingItem.codeTiftn == '' && this.editingItem.nameService == '') {
+          // if (this.editingItem.codeTiftn == '' && this.editingItem.nameService == '') {
+
+          var bool = true
+          if (bool) {
             let bodyData = []
             bodyData = bodyData.concat(this.sanoat)
             bodyData = bodyData.concat(this.hizmat)

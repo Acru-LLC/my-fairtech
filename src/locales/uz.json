@@ -195,8 +195,9 @@
     "code": "Kod"
   },
   "reporting": {
-    "error1": "Саноат соҳасида маълумотлар киритилган. Юбориш учун  \\«Қўшиш\\» тугмасини босинг.",
-    "error2": "Хизмат кўрсатиш соҳасида маълумотлар киритилган. Юбориш учун  \\«Қўшиш\\» тугмасини босинг.",
+    "regionalAdministration": "Hududiy boshqarma nomi",
+    "error1": "Sanoat sohasida ma'lumotlar kiritilgan. Yuborish uchun \"Qo'shish\" tugmasini bosing",
+    "error2": "Xizmat ko‘rsatish sohasida ma'lumotlar kiritilgan. Yuborish uchun \"Qo'shish\" tugmasini bosing",
     "year": "Yil",
     "send_button": "Yuborish",
     "title": "Tovar, moliya va raqamli bozorlar to‘g‘risidagi statistik ma'lumotlarni yuborish",
@@ -244,6 +245,8 @@
     }
   },
   "actions": {
+    "success": "Ma'lumotlarni yuklab olish muvaffaqiyatli bajarildi",
+    "not_found": "Ma'lumot topilmadi",
     "sorting":"Filtrlar",
     "empty": "Ma’lumot mavjud emas",
     "qrcode": "QR-kod qo‘yish",

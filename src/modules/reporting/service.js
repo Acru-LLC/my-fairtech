@@ -1,6 +1,14 @@
 import ApiService from '@/shared/services/api.service'
 
 export default {
+    getDepartments: async function ( withLoader = false) {
+        let res = await ApiService.get(`/consent_app_result_main/get/region-and-committee-open`, withLoader);
+        return res;
+    },
+    getByCodeTiftn: async function (tnvedCode, withLoader = false) {
+        let res = await ApiService.post(`/bojxona/tnved-code?tnvedCode=${tnvedCode}`, withLoader);
+        return res;
+    },
     // yuridik-shaxs
     getYuridikShaxsData: async function (stir, withLoader = false) {
         let res = await ApiService.post(`/yuridik-shaxs/get-info-open?&tin=${stir}`, withLoader);

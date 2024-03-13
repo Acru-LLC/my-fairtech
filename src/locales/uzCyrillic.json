@@ -195,6 +195,7 @@
     "code": "Код"
   },
   "reporting": {
+    "regionalAdministration": "Ҳудудий бошқарма номи",
     "error1": "Саноат соҳасида маълумотлар киритилган. Юбориш учун  \\«Қўшиш\\» тугмасини босинг.",
     "error2": "Xizmat ko‘rsatish sohasida ma'lumotlar kiritilgan. Yuborish uchun  \"Qo'shish\" tugmasini bosing.",
     "year": "Йил",
@@ -244,6 +245,8 @@
     }
   },
   "actions": {
+    "success": "Маълумотларни юклаб олиш муваффақиятли бажарилди",
+    "empty_table": "Маълумот топилмади",
     "sorting":"Фильтрлар",
     "empty": "Маълумот мавжуд эмас",
     "qrcode": "QR-код қўйиш",
