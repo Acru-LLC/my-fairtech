@@ -79,31 +79,40 @@ export default {
   <!--Navbar Start-->
   <nav class="navbar navbar-expand-lg fixed-top bg-white sticky sticky-dark" id="navbar">
     <div class="container">
-      <!-- LOGO -->
-      <a class="navbar-brand logo text-uppercase" href="/">
-        <img src="@/assets/image/gerb.svg"
-             width="61" height="61"
-             alt="logo"
-             style="box-shadow: rgb(36, 98, 86) 1px 2px 8px; border-radius: 50%"
-        />
-      </a>
-      <h5 style="width: 35%" class="text-color mb-0">
-        {{ $t('navbar.main_title') }}
-      </h5>
-      <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarCollapse"
-          aria-controls="navbarCollapse"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          @click="toggleMenu()"
-      >
-        <i class="mdi mdi-menu"></i>
-      </button>
+
+      <div class="main-container">
+        <div>
+          <a class="" href="/">
+            <img src="@/assets/image/gerb.svg"
+                 width="61" height="61"
+                 alt="logo"
+                 style="box-shadow: rgb(36, 98, 86) 1px 2px 8px; border-radius: 50%"
+            />
+          </a>
+        </div>
+        <div>
+                <span class="text-color main-title">
+                    {{ $t('navbar.main_title') }}
+                </span>
+        </div>
+        <div>
+          <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarCollapse"
+              aria-controls="navbarCollapse"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+              @click="toggleMenu()"
+          >
+            <i class="mdi mdi-menu text-color"></i>
+          </button>
+        </div>
+      </div>
+
       <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav ml-auto navbar-center" id="mySidenav">
+        <ul class="navbar-nav" id="mySidenav">
           <li class="nav-item">
             <a v-scroll-to="'#home'" href="javascript: void(0);" class="nav-link text-color">{{ $t('navbar.home') }}</a>
           </li>
@@ -113,43 +122,29 @@ export default {
           <li class="nav-item">
             <a href="https://fairtech.uz/" target="_blank" class="nav-link text-color">FAIRTECH</a>
           </li>
-          <!--          <li class="nav-item">-->
-          <!--            <a v-scroll-to="'#pricing'" href="javascript: void(0);" class="nav-link text-color">Pricing</a>-->
-          <!--          </li>-->
-          <!--          <li class="nav-item">-->
-          <!--            <a v-scroll-to="'#team'" href="javascript: void(0);" class="nav-link text-color">Team</a>-->
-          <!--          </li>-->
-          <!--          <li class="nav-item">-->
-          <!--            <a v-scroll-to="'#blog'" href="javascript: void(0);" class="nav-link text-color">Blog</a>-->
-          <!--          </li>-->
-          <!--          <li class="nav-item">-->
-          <!--            <a v-scroll-to="'#contact'" href="javascript: void(0);" class="nav-link text-color">Contact</a>-->
-          <!--          </li>-->
+          <li class="dropdown-items">
+            <b-dropdown variant="white" right toggle-class="header-item" class="languageBar">
+              <template v-slot:button-content>
+                {{ text }}
+              </template>
+              <b-dropdown-item
+                  v-for="(entry, i) in languages"
+                  :key="i"
+                  :value="entry"
+                  :class="{ active: currentLocale.language === entry.language }"
+                  @click="changeLocale(entry.language)"
+                  class="notify-item"
+              >
+                <span class="align-middle">{{ entry.title }}</span>
+              </b-dropdown-item>
+            </b-dropdown>
+          </li>
         </ul>
-      </div>
-      <div >
-        <b-dropdown variant="white" right toggle-class="header-item" class="languageBar">
-          <template v-slot:button-content>
-            {{ text }}
-            <!--                        <span class="flag-icon flag-icon-uz" id="selectSpan"-->
-            <!--                              style="width: 21px; height: 21px; border-radius: 50%; background-size: cover"></span>-->
-            <!-- Uzbek flag icon -->
-          </template>
-          <b-dropdown-item
-              v-for="(entry, i) in languages"
-              :key="i"
-              :value="entry"
-              :class="{ active: currentLocale.language === entry.language }"
-              @click="changeLocale(entry.language)"
-              class="notify-item"
-          >
-            <!--                        <img :src="entry.flag" alt="Flag" class="language-img">-->
-            <span class="align-middle">{{ entry.title }}</span>
-          </b-dropdown-item>
-        </b-dropdown>
+
       </div>
     </div>
   </nav>
+
   <!-- Navbar End -->
 </template>
 <style>
@@ -165,5 +160,110 @@ export default {
   border-radius: 6px;
   width: 68px;
   height: 40px;
+}
+
+/* Media queries for responsiveness */
+@media only screen and (max-width: 767px) {
+  .navbar-collapse {
+    position: static;
+    transform: translateY(0);
+    flex-direction: row;
+    //justify-content: flex-end;
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    display: flex;
+    text-align: center;
+  }
+
+  .dropdown-items{
+    display: flex;
+    justify-content: center;
+  }
+
+  .main-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .main-container div:nth-child(2){
+    width: 60%;
+    margin-left: 8px;
+  }
+  .main-title{
+    font-size: 10px;
+  }
+
+  .nav-item {
+    margin: 0 15px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .navbar-collapse {
+    position: static;
+    transform: translateY(0);
+    flex-direction: row;
+    //justify-content: flex-end;
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    display: flex;
+    text-align: center;
+  }
+
+
+  .main-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .main-container div:nth-child(2){
+    width: 60%;
+    margin-left: 8px;
+  }
+  .main-title{
+    font-size: 10px;
+  }
+
+  .nav-item {
+    margin: 0 15px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .navbar-nav {
+    margin-right: auto;
+  }
+  .main-title{
+    font-size: 10px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .navbar-collapse {
+    position: static;
+    transform: translateY(0);
+    flex-direction: row;
+    justify-content: flex-end;
+    background-color: transparent;
+    padding: 0;
+    border: none;
+  }
+  .main-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 45%;
+  }
+  .main-container div:nth-child(2){
+    width: 80%;
+  }
+
+  .main-title{
+    font-size: 16px;
+  }
 }
 </style>
