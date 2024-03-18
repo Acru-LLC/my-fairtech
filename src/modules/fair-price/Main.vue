@@ -478,6 +478,7 @@
           <b-row class="d-flex justify-content-between align-items-start">
             <b-col cols="12" lg="4" class="px-3">
               <div>
+
                 <div style="width:100%; max-width: 440px; height: 260px; display: flex; justify-content: center; align-items: center; border: 1px solid rgb(43, 103, 91, 0.1); box-shadow: rgb(201, 219, 215) 2px 4px 8px 0px; border-radius: 10px; padding: 5px 5px; text-align: center;">
                   <img class="d-lg-block d-none" v-if="detailInfo.photoPng && detailInfo.photoPng.uploadPath" :src="`${routeName}/${detailInfo.photoPng.uploadPath}`" width="415" height="240"
                        style="border-radius: 7px;" alt="">
