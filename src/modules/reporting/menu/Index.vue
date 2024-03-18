@@ -1480,7 +1480,7 @@ export default {
             // ktut: this.editingItem.ktut ? this.editingItem.ktut : '',
             stir: this.editingItem.stir ? this.editingItem.stir : '',
             address: this.editingItem.address ? this.editingItem.address : '',
-            check: this.editingItem.check ? this.editingItem.check : '',
+            check: this.editingItem.check,
             fio: this.editingItem.fio ? this.editingItem.fio : ''
           }
 
