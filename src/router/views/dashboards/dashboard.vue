@@ -31,11 +31,11 @@ export default {
       <!--START HOME-->
       <section class="section bg-home height-100vh green-gradient-bg" id="home">
         <!--        <div class="bg-overlay"></div>-->
-        <div class>
-          <div class>
+        <div>
+          <div>
             <div class="container slidero">
               <b-row cols="12" class="d-flex align-items-center">
-                <b-col cols="7">
+                <b-col cols="12" sm="7">
                   <div>
                   <span class="text-white font-weight-bold" style="font-size: 30px">
                     {{ $t('main_page.title') }}
@@ -53,7 +53,7 @@ export default {
                   </div>
                 </b-col>
 
-                <b-col class="d-flex justify-content-center">
+                <b-col class="d-flex justify-content-center main-logo">
                   <div>
                     <VanillaTilt parallax>
                       <img width="500" src="@/assets/image/big-logo.svg" alt="logo" class="img-fluid"
@@ -94,5 +94,10 @@ export default {
 
 ::v-deep .modal-backdrop {
   opacity: 0.5;
+}
+@media only screen and (max-width: 767px) {
+  .main-logo{
+    display: none!important;
+  }
 }
 </style>

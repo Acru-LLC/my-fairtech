@@ -27,6 +27,7 @@ export default {
         </div>
       </div>
       <div class="row margin-t-30">
+        <div class="col-lg-4 col-md-6 col-12 mb-4">
         <a href="https://cabinet.fairtech.uz/murojaat-create" target="_blank" class="col margin-t-20">
           <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
             <div class="services-box text-center hover-effect">
@@ -38,6 +39,8 @@ export default {
             </div>
           </div>
         </a>
+        </div>
+        <div class="col-lg-4 col-md-6 col-12 mb-4">
         <router-link to="/online-watching" teg="div" class="col mx-5 margin-t-20">
           <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
             <div class="services-box text-center hover-effect">
@@ -51,6 +54,8 @@ export default {
             </div>
           </div>
         </router-link>
+        </div>
+        <div class="col-lg-4 col-md-6 col-12 mb-4">
         <router-link to="/product-services" teg="div" class="col margin-t-20">
           <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
             <div class="services-box text-center hover-effect">
@@ -64,34 +69,36 @@ export default {
             </div>
           </div>
         </router-link>
+        </div>
 
       </div>
       <div class="row mt-5">
-        <div class="col-2 mx-2 margin-t-20"></div>
-              <router-link to="/online-report" teg="div" class="col margin-t-20">
-                <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
-                  <div class="services-box text-center hover-effect">
-                    <img src="@/assets/image/service-logo.svg" alt="">
-                    <h4 class="padding-t-15 text-color">{{ $t('services.online_report.card_title') }}</h4>
-                    <p class="padding-t-15 text-color">
-                      {{ $t('services.online_report.card_subtitle') }}
-                    </p>
-                  </div>
-                </div>
-              </router-link>
-<!--              <a href="https://my.gov.uz/uz/service/355" target="_blank" class="col mx-5 margin-t-20">-->
-                <div class="h-100 col mx-5 margin-t-20" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px" @click="showModal = true">
-                  <div class="services-box text-center hover-effect">
-                    <img src="@/assets/image/service-logo.svg" alt="">
-                    <h4 class="padding-t-15 text-color">{{ $t('services.agreement.card_title') }}</h4>
-                    <p class="padding-t-15 text-color">
-                      {{ $t('services.agreement.card_subtitle') }}
-                    </p>
-                  </div>
-                </div>
-<!--              </a>-->
-        <div class="col-2 mx-2 margin-t-20"></div>
+        <div class="col-lg-4 col-md-6 col-12 offset-lg-2 offset-md-3 mb-4 first-row-col">
+          <router-link to="/online-report" teg="div">
+            <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
+              <div class="services-box text-center hover-effect">
+                <img src="@/assets/image/service-logo.svg" alt="">
+                <h4 class="padding-t-15 text-color">{{ $t('services.online_report.card_title') }}</h4>
+                <p class="padding-t-15 text-color">
+                  {{ $t('services.online_report.card_subtitle') }}
+                </p>
+              </div>
             </div>
+          </router-link>
+        </div>
+        <div class="col-lg-4 col-md-6 col-12 mb-4">
+          <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px" @click="showModal = true">
+            <div class="services-box text-center hover-effect">
+              <img src="@/assets/image/service-logo.svg" alt="">
+              <h4 class="padding-t-15 text-color">{{ $t('services.agreement.card_title') }}</h4>
+              <p class="padding-t-15 text-color">
+                {{ $t('services.agreement.card_subtitle') }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
       <b-modal id="modal-1" hide-footer :title="$t('services.agreement.card_title')" v-model="showModal" size="lg">
         <b-row>
@@ -153,12 +160,21 @@ export default {
   <!--START SERVICES-->
 </template>
 
-<style>
+<style scoped>
 #modal-1 .modal-title {
   width: 200px;
   color: #ffffff;
   background-color: #2b675b;
   border-radius: 5px;
   text-align: center;
+}
+@media only screen and (max-width: 767px) {
+  .first-row-col{
+    margin-top: -20px;
+    margin-bottom: 10px;
+  }
+  h4{
+    font-size: 16px;
+  }
 }
 </style>
