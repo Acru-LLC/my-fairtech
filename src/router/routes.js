@@ -35,6 +35,15 @@ const routes = [
         children: []
     },
     {
+        path: '/fair-price',
+        name: 'FairPrice',
+        // meta: {
+        //     public: true,
+        // },
+        component: () => import('/src/modules/fair-price/Main.vue'),
+        children: []
+    }
+    {
         path: '/product-services',
         name: 'ProductInfoServices',
         // meta: {
@@ -78,6 +87,14 @@ const routes = [
         // },
         component: () => import('/src/modules/product/FAQ/index.vue'),
         children: []
+    },
+    {
+        path: '/fair-price',
+        name: 'FairPrice',
+        // meta: {
+        //     public: true,
+        // },
+        component: () => import('/src/modules/fair-price/Main.vue'),
+        children: []
     }
-
 ]

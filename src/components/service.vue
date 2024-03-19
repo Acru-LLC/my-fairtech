@@ -73,7 +73,7 @@ export default {
 
       </div>
       <div class="row mt-5">
-        <div class="col-lg-4 col-md-6 col-12 offset-lg-2 offset-md-3 mb-4 first-row-col">
+        <div class="col-lg-4 col-md-6 col-12 mb-4">
           <router-link to="/online-report" teg="div">
             <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
               <div class="services-box text-center hover-effect">
@@ -96,6 +96,21 @@ export default {
               </p>
             </div>
           </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-12 mb-4">
+          <router-link to="/fair-price" teg="div">
+            <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
+              <div class="services-box text-center hover-effect">
+                <img src="@/assets/image/service-logo.svg" alt="">
+                <h4 class="padding-t-15 text-color">{{ $t('services.fair_price.card_title') }}</h4>
+                <h5 class="text-color">{{ $t('services.fair_price.sub_title') }}</h5>
+
+                <p class="padding-t-15 text-color">
+                  {{ $t('services.fair_price.body_title') }}
+                </p>
+              </div>
+            </div>
+          </router-link>
         </div>
       </div>
 

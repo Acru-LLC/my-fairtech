@@ -4,6 +4,10 @@ import router from './router/index'
 import Lightbox from 'vue-easy-lightbox'
 import VueParticles from 'vue-particles'
 
+import VueCarousel from 'vue-carousel';
+
+Vue.use(VueCarousel);
+
 import Scrollspy from 'vue2-scrollspy';
 var VueScrollTo = require('vue-scrollto');
 Vue.use(VueParticles)
