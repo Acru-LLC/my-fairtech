@@ -10,7 +10,7 @@
     "service_button": "Xizmatlardan foydalanish"
   },
   "services": {
-    "appeal_title" : "MUROJAAT",
+    "appeal_title": "MUROJAAT",
     "appeal_subtitle": "Raqobat qo‘mitasiga elektron shaklda murojaat qilish",
     "online_checking": {
       "card_title": "ONLAYN KUZATUV",
@@ -196,6 +196,7 @@
   },
   "reporting": {
     "check": "Korxona faoliyati to'xtatilgan",
+    "other": "Korxona faoliyati o'zgargan",
     "regionalAdministration": "Hududiy boshqarma nomi",
     "error1": "Sanoat sohasida ma'lumotlar kiritilgan. Yuborish uchun \"Qo'shish\" tugmasini bosing",
     "error2": "Xizmat ko‘rsatish sohasida ma'lumotlar kiritilgan. Yuborish uchun \"Qo'shish\" tugmasini bosing",
@@ -203,6 +204,20 @@
     "send_button": "Yuborish",
     "title": "Tovar, moliya va raqamli bozorlar to‘g‘risidagi statistik ma'lumotlarni yuborish",
     "name": "Onlayn hisobot yuborish",
+    "pdf": {
+      "file_generation": "Fayl shakllantirish",
+      "title": "ning sanoat mahsulotlari to‘g‘risida statistik maʼlumotlari",
+      "miqdor": "Maxsulot miqdori",
+      "natura": "(naturada)",
+      "qiymat": "Maxsulot qiymati",
+      "som": "(so'mda)",
+      "all": "Jami",
+      "rahbar": "Raxbar",
+      "masul": "Statistik ma'lumotlarni to'ldirishga ma'sul bo'lgan mansabdor shaxs",
+      "fio": "(F.I.O)",
+      "imzo": "imzo",
+      "pdf": "(pdf)"
+    },
     "main": {
       "form1": {
         "title": "Subyekt ma’lumoti",
@@ -228,11 +243,11 @@
         "name2": "Maxsulot nomi",
         "name3": "MST kodi",
         "name4": "Ishlab chiqarish quvvati",
-        "name5": "Ishlab chiqarish xajmi ",
+        "name5": "Ishlab chiqarish xajmi",
         "name6": "Sotish xajmi (Ichki bozorda)",
         "name7": "Eksport xajmi",
         "name8": "Yil oxiriga tayyor maxsulot qoldig‘i",
-        "name9": "Миқдори",
+        "name9": "Miqdori",
         "name10": "Summasi (so'mda)",
         "name11": "(QQS va aksizsiz)"
       },

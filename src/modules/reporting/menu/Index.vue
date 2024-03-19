@@ -10,6 +10,7 @@
 
         <b-row>
           <b-col>
+
             <ValidationObserver
                 ref="observer"
                 v-slot="{}"
@@ -133,10 +134,60 @@
                       <strong style="color: #2b675b;">{{ $t('reporting.check') }}</strong>
                     </b-form-checkbox>
                   </b-col>
+
+                  <b-col cols="3" class="px-3 mt-4">
+                    <b-form-checkbox
+                        :value="true"
+                        :unchecked-value="false"
+                        v-model="editingItem.isOthers"
+                        style="font-size: medium;"
+                    >
+                      <strong style="color: #2b675b;">{{ $t('reporting.other') }}</strong>
+                    </b-form-checkbox>
+                  </b-col>
+
+                  <b-col cols="2" class="" v-if="editingItem.isOthers">
+                    <b-row v-if="uploadFilename !== ''">
+                      <b-col cols="6" class="mt-3">
+                        {{ uploadFilename }}
+                      </b-col>
+                      <b-col cols="6">
+                        <b-button
+                            style=" background: #f39138"
+                            class="mt-3 p-1"
+                            @click="clearFile"
+                        >
+                          <i class="fa fa-window-close"></i>
+                          {{ $t("validator.cancel") }}
+                        </b-button>
+                      </b-col>
+                    </b-row>
+                    <b-button
+                        v-else
+                        class="mt-3 p-2"
+                        :block="uploadFilename !== '' ? false : true"
+                        style="border: 1px solid #2b675b; background: #FFFFFF; width: 200px"
+                        @click="uploadFile"
+                    >
+                                <span style="color: #2b675b; !important;">
+                                                <i class="fa fa-upload"></i>
+                                            {{ $t("actions.upload_file") }}
+                                  <span style="color: red">
+                                    *
+                                  </span>
+                                           </span>
+                    </b-button>
+                    <b-form-file
+                        @change="onFileChange"
+                        v-model="uploadFiles"
+                        class="d-none"
+                        ref="ilovaRef"
+                    ></b-form-file>
+                  </b-col>
                 </b-row>
               </b-card>
 
-              <b-card v-if="!editingItem.check"
+              <b-card v-if="!editingItem.check && !editingItem.isOthers"
                       style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px;margin-top:10px;">
                 <b-row>
                   <b-col cols="3" class="px-3 py-0">
@@ -145,13 +196,30 @@
                       {{ $t('reporting.main.form2.title') }}
                     </div>
                   </b-col>
+                  <b-col cols="3" class="px-3 py-0"></b-col>
+                  <b-col cols="4" class="px-3 py-0"></b-col>
+                  <!--                  v-if="sanoat.length > 0 ||  hizmat.length > 0"-->
+                  <b-col cols="2" class="px-3 py-0">
+                    <!--                    <b-button-group style="width: 70%; float: right"-->
+                    <!--                                    v-if="editingItem.soato  && editingItem.soato !== '' && (hizmat.length > 0 || sanoat.length > 0)">-->
+                    <!--                      <b-button-->
+                    <!--                          @click="fileGeneration"-->
+                    <!--                          block-->
+                    <!--                          variant="primary"-->
+                    <!--                          class="pt-1 mt-2 pb-1 pr-2 pl-2"-->
+                    <!--                      >-->
+                    <!--                      <span style="font-size: 14px">-->
+                    <!--                         <i class="mdi mdi-file-document"></i>-->
+                    <!--                        {{ $t("reporting.pdf.file_generation") }}-->
+                    <!--                      </span>-->
+                    <!--                      </b-button>-->
+                    <!--                    </b-button-group>-->
+                  </b-col>
                 </b-row>
                 <b-row>
                   <b-col cols="3" class="px-3 py-0">
                     <BaseSelectWithValidation
                         v-model="editingItem.codeSoxa"
-                        class="required"
-                        rules="required"
                         :label="$t('reporting.main.form2.name1')"
                         label-on-top
                     >
@@ -230,402 +298,385 @@
                       </b-row>
                     </b-form-group>
                   </b-col>
-                  <b-col cols="3" class="py-0 px-3">
-                    <b-row v-if="uploadFilename !== ''">
-                      <b-col cols="6" class="mt-3">
-                        {{ uploadFilename }}
-                      </b-col>
-                      <b-col cols="6">
-                        <b-button
-                            style=" background: #f39138"
-                            class="mt-3 p-1"
-                            @click="clearFile"
-                        >
-                          <i class="fa fa-window-close"></i>
-                          {{ $t("validator.cancel") }}
-                        </b-button>
-                      </b-col>
-                    </b-row>
-                    <b-button
-                        v-else
-                        class="mt-3 p-2"
-                        :block="uploadFilename !== '' ? false : true"
-                        style="border: 1px solid #2b675b; background: #FFFFFF; width: 200px"
-                        @click="uploadFile"
-                    >
-                                <span style="color: #2b675b; !important;">
-                                                <i class="fa fa-upload"></i>
-                                            {{ $t("actions.upload_file") }}
-                                           </span>
-                    </b-button>
-                    <b-form-file
-                        @change="onFileChange"
-                        v-model="uploadFiles"
-                        class="d-none"
-                        ref="ilovaRef"
-                    ></b-form-file>
-                  </b-col>
+                  <b-col cols="3" class="py-0 px-3"></b-col>
+
                 </b-row>
               </b-card>
 
             </ValidationObserver>
 
-            <b-card v-if="editingItem.codeSoxa == 'SANOAT' && !editingItem.check"
-                    style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px;margin-top:10px;">
-              <b-row>
-                <b-col cols="3" class="px-3 py-0">
-                  <div
-                      style="font-size: 16px;background: #2b675b; color: white; padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 2px; font-weight: bold">
-                    {{ $t('reporting.main.form3.title') }}
-                  </div>
-                </b-col>
-                <b-col cols="3" class="px-3 py-0"></b-col>
-                <b-col cols="4" class="px-3 py-0"></b-col>
-                <b-col cols="2" class="px-3 py-0">
-                </b-col>
-              </b-row>
-              <ValidationObserver
-                  ref="observerSanoat"
-                  v-slot="{}"
-              >
+            <div v-if="!editingItem.check && !editingItem.isOthers">
+              <b-card v-if="editingItem.codeSoxa == 'SANOAT'"
+                      style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px;margin-top:10px;">
                 <b-row>
-                  <b-col class="px-3">
-                    <BaseInputWithValidation
-                        v-model="editingItem.codeTiftn"
-                        :label="$t('reporting.main.form3.name1')"
-                        :placeholder="$t('')"
-                        class="required"
-                        rules="required"
-                        type="number"
-                        label-on-top
-                        with-input-append
-                        @keyup.enter="findByCodeTiftn"
-                    >
-                      <template v-slot:append-slot>
-                        <b-button
-                            v-if="!loaderTifTn"
-                            @click="findByCodeTiftn"
-                            variant="outline-primary"
-                            id="contractorSearchButton"
-                            style="padding: 2.5px 10px; font-size: 1.2rem;"
-                        >
-                          <i class="mdi mdi-account-search"></i>
-                        </b-button>
-                        <b-button style="padding: 2.5px 10px; font-size: 1.2rem;"
-                                  variant="primary"
-                                  disabled v-else>
-                          <b-spinner small type="grow"></b-spinner>
-                        </b-button>
-                      </template>
-                    </BaseInputWithValidation>
+                  <b-col cols="3" class="px-3 py-0">
+                    <div
+                        style="font-size: 16px;background: #2b675b; color: white; padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 2px; font-weight: bold">
+                      {{ $t('reporting.main.form3.title') }}
+                    </div>
                   </b-col>
-                  <b-col class="px-3">
-                    <!--                    <label style="color: #2b6c58">-->
-                    <!--                      {{ $t('reporting.main.form3.name2') }}-->
-                    <!--                    </label>-->
-                    <!--                    <div-->
-                    <!--                        style="border: 1px solid #2b6c58; min-height: 35px;max-height: 35px; overflow-y: auto; border-radius: 3px">-->
-                    <!--                      <span style="width: 20px; text-overflow: hidden">-->
-                    <!--                        {{ editingItem.nameProduct }}-->
-                    <!--                      </span>-->
-
-                    <!--                    </div>-->
-                    <BaseInputWithValidation
-                        v-model="editingItem.nameProduct"
-                        :label="$t('reporting.main.form3.name2')"
-                        :placeholder="$t('')"
-                        class="required"
-                        rules="required"
-                        label-on-top
-                        with-input-append
-                    >
-                      <template v-slot:append-slot>
-                        <b-button v-b-popover.hover.top="{title:editingItem.nameProduct,content:null}"
-                                  style="padding: 2.5px 10px; font-size: 1.2rem;"
-                                  variant="outline-primary"
-                        >
-                          <i class="mdi mdi-information"></i>
-                        </b-button>
-                      </template>
-                    </BaseInputWithValidation>
-                  </b-col>
-                  <b-col class="px-3">
-                    <BaseInputWithValidation
-                        v-model="editingItem.codeMct"
-                        :label="$t('reporting.main.form3.name3')"
-                        :placeholder="$t('')"
-                        label-on-top
-                    />
-                  </b-col>
-
-                  <b-col>
-
-                    <BaseInputWithValidation
-                        v-model="editingItem.measureName"
-                        :label="$t('product_info.units')"
-                        :placeholder="$t('')"
-                        class="required"
-                        rules="required"
-                        label-on-top
-                    />
-                  </b-col>
-
-                  <b-col class="px-3">
-                    <BaseInputWithValidation
-                        v-model="editingItem.madePowerAll"
-                        :label="$t('reporting.main.form3.name4')"
-                        :placeholder="$t('')"
-                        class="required"
-                        rules="required"
-                        label-on-top
-                    />
+                  <b-col cols="3" class="px-3 py-0"></b-col>
+                  <b-col cols="4" class="px-3 py-0"></b-col>
+                  <b-col cols="2" class="px-3 py-0">
                   </b-col>
                 </b-row>
-                <b-row class="mt-4">
-                  <b-col cols="3" class="px-3 py-0">
-                    <div class="text-center"
-                         style="font-size: 14px;border:1px solid #2b675b;  padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 4px; font-weight: bold; cursor: none">
-                      {{ $t('reporting.main.form3.name5') }} <br>
-                      {{ $t('reporting.main.form3.name11') }}
-                    </div>
-                    <b-row>
-                      <b-col class="px-1 py-0">
-                        <BaseInputWithValidation
-                            v-model="editingItem.madeTonna"
-                            :label="$t('reporting.main.form3.name9')"
-                            :placeholder="$t('')"
-                            class="required"
-                            rules="required"
-                            label-on-top
-                        />
-                      </b-col>
-                      <b-col class="px-1 py-0">
-                        <BaseInputWithValidation
-                            v-model="editingItem.madeSum"
-                            :label="$t('reporting.main.form3.name10')"
-                            :placeholder="$t('')"
-                            class="required"
-                            rules="required"
-                            label-on-top
-                        />
-                      </b-col>
-                    </b-row>
-                  </b-col>
+                <ValidationObserver
+                    ref="observerSanoat"
+                    v-slot="{}"
+                >
 
-                  <b-col cols="3" class="px-3 py-0">
-                    <div class="text-center"
-                         style="font-size: 14px;border:1px solid #2b675b;  padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 4px; font-weight: bold; cursor: none">
-                      {{ $t('reporting.main.form3.name6') }} <br>
-                      {{ $t('reporting.main.form3.name11') }}
-                    </div>
-                    <b-row>
-                      <b-col class="px-1 py-0">
-                        <BaseInputWithValidation
-                            v-model="editingItem.buyTonna"
-                            :label="$t('reporting.main.form3.name9')"
-                            :placeholder="$t('')"
-                            class="required"
-                            rules="required"
-                            label-on-top
-                        />
-                      </b-col>
-                      <b-col class="px-1 py-0">
-                        <BaseInputWithValidation
-                            v-model="editingItem.buySum"
-                            :label="$t('reporting.main.form3.name10')"
-                            :placeholder="$t('')"
-                            class="required"
-                            rules="required"
-                            label-on-top
-                        />
-                      </b-col>
-                    </b-row>
-                  </b-col>
+                  <b-row>
+                    <b-col class="px-3">
+                      <BaseInputWithValidation
+                          v-model="editingItem.codeTiftn"
+                          :label="$t('reporting.main.form3.name1')"
+                          :placeholder="$t('')"
+                          class="required"
+                          rules="required"
+                          type="number"
+                          label-on-top
+                          with-input-append
+                          @keyup.enter="findByCodeTiftn"
+                      >
+                        <template v-slot:append-slot>
+                          <b-button
+                              v-if="!loaderTifTn"
+                              @click="findByCodeTiftn"
+                              variant="outline-primary"
+                              id="contractorSearchButton"
+                              style="padding: 2.5px 10px; font-size: 1.2rem;"
+                          >
+                            <i class="mdi mdi-account-search"></i>
+                          </b-button>
+                          <b-button style="padding: 2.5px 10px; font-size: 1.2rem;"
+                                    variant="primary"
+                                    disabled v-else>
+                            <b-spinner small type="grow"></b-spinner>
+                          </b-button>
+                        </template>
+                      </BaseInputWithValidation>
+                    </b-col>
+                    <b-col class="px-3">
+                      <!--                    <label style="color: #2b6c58">-->
+                      <!--                      {{ $t('reporting.main.form3.name2') }}-->
+                      <!--                    </label>-->
+                      <!--                    <div-->
+                      <!--                        style="border: 1px solid #2b6c58; min-height: 35px;max-height: 35px; overflow-y: auto; border-radius: 3px">-->
+                      <!--                      <span style="width: 20px; text-overflow: hidden">-->
+                      <!--                        {{ editingItem.nameProduct }}-->
+                      <!--                      </span>-->
 
-                  <b-col cols="3" class="px-3 py-0">
-                    <div class="text-center"
-                         style="font-size: 14px;border:1px solid #2b675b;  padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 4px; font-weight: bold; cursor: none">
-                      {{ $t('reporting.main.form3.name7') }} <br>
-                      {{ $t('reporting.main.form3.name11') }}
-                    </div>
-                    <b-row>
-                      <b-col class="px-1 py-0">
-                        <BaseInputWithValidation
-                            v-model="editingItem.exportTonna"
-                            :label="$t('reporting.main.form3.name9')"
-                            :placeholder="$t('')"
-                            class="required"
-                            rules="required"
-                            label-on-top
-                        />
-                      </b-col>
-                      <b-col class="px-1 py-0">
-                        <BaseInputWithValidation
-                            v-model="editingItem.exportSum"
-                            :label="$t('reporting.main.form3.name10')"
-                            :placeholder="$t('')"
-                            class="required"
-                            rules="required"
-                            label-on-top
-                        />
-                      </b-col>
-                    </b-row>
-                  </b-col>
+                      <!--                    </div>-->
+<!--                      <b-input-group class="mt-3">-->
+<!--                        <b-form-input v-model="editingItem.nameProduct" disabled></b-form-input>-->
+<!--                        <b-input-group-append>-->
+<!--                          <b-button v-b-popover.hover.top="{title:editingItem.nameProduct,content:null}"-->
+<!--                                    style="padding: 2.5px 10px; font-size: 1.2rem;"-->
+<!--                                    variant="outline-primary"-->
+<!--                          >-->
+<!--                            <i class="mdi mdi-information"></i>-->
+<!--                          </b-button>-->
+<!--                        </b-input-group-append>-->
+<!--                      </b-input-group>-->
+                                            <BaseInputWithValidation
+                                                v-model="editingItem.nameProduct"
+                                                :label="$t('reporting.main.form3.name2')"
+                                                :placeholder="$t('')"
+                                                class="required"
+                                                rules="required"
+                                                label-on-top
+                                                with-input-append
+                                            >
+                                              <template v-slot:append-slot>
+                                                <b-button v-b-popover.hover.top="{title:editingItem.nameProduct,content:null}"
+                                                          style="padding: 2.5px 10px; font-size: 1.2rem;"
+                                                          variant="outline-primary"
+                                                >
+                                                  <i class="mdi mdi-information"></i>
+                                                </b-button>
+                                              </template>
+                                            </BaseInputWithValidation>
+                    </b-col>
+                    <!--                  <b-col class="px-3">-->
+                    <!--                    <BaseInputWithValidation-->
+                    <!--                        v-model="editingItem.codeMct"-->
+                    <!--                        :label="$t('reporting.main.form3.name3')"-->
+                    <!--                        :placeholder="$t('')"-->
+                    <!--                        label-on-top-->
+                    <!--                    />-->
+                    <!--                  </b-col>-->
 
-                  <b-col cols="3" class="px-3 py-0">
-                    <div class="text-center"
-                         style="font-size: 14px;border:1px solid #2b675b;  padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 4px; font-weight: bold; cursor: none">
-                      {{ $t('reporting.main.form3.name8') }} <br>
-                      {{ $t('reporting.main.form3.name11') }}
-                    </div>
-                    <b-row>
-                      <b-col class="px-1 py-0">
-                        <BaseInputWithValidation
-                            v-model="editingItem.finallyTonna"
-                            :label="$t('reporting.main.form3.name9')"
-                            :placeholder="$t('')"
-                            class="required"
-                            rules="required"
-                            label-on-top
-                        />
-                      </b-col>
-                      <b-col class="px-1 py-0">
-                        <BaseInputWithValidation
-                            v-model="editingItem.finallySum"
-                            :label="$t('reporting.main.form3.name10')"
-                            :placeholder="$t('')"
-                            class="required"
-                            rules="required"
-                            label-on-top
-                        />
-                      </b-col>
-                    </b-row>
-                  </b-col>
-                </b-row>
-              </ValidationObserver>
-              <b-row>
-                <b-col cols="3" class="px-3 py-0">
+                    <b-col>
 
-                </b-col>
-                <b-col cols="3" class="px-3 py-0"></b-col>
-                <b-col cols="4" class="px-3 py-0"></b-col>
-                <b-col cols="2" class="px-3 py-0">
-                  <b-button-group style="width: 70%; float: right">
-                    <b-button
-                        @click="addFormSanoat"
-                        block
-                        variant="primary"
-                        class="pt-1 mt-2 pb-1 pr-2 pl-2"
-                    >
+                      <BaseInputWithValidation
+                          v-model="editingItem.measureName"
+                          :label="$t('product_info.units')"
+                          :placeholder="$t('')"
+                          class="required"
+                          rules="required"
+                          label-on-top
+                      />
+                    </b-col>
+
+                    <b-col class="px-3">
+                      <BaseInputWithValidation
+                          v-model="editingItem.madePowerAll"
+                          :label="$t('reporting.main.form3.name4')"
+                          :placeholder="$t('')"
+                          class="required"
+                          rules="required"
+                          label-on-top
+                      />
+                    </b-col>
+                  </b-row>
+                  <b-row class="mt-4">
+                    <b-col cols="3" class="px-3 py-0">
+                      <div class="text-center"
+                           style="font-size: 14px;border:1px solid #2b675b;  padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 4px; font-weight: bold; cursor: none">
+                        {{ $t('reporting.main.form3.name5') }} <br>
+                        {{ $t('reporting.main.form3.name11') }}
+                      </div>
+                      <b-row>
+                        <b-col class="px-1 py-0">
+                          <BaseInputWithValidation
+                              v-model="editingItem.madeTonna"
+                              :label="$t('reporting.main.form3.name9')"
+                              :placeholder="$t('')"
+                              class="required"
+                              rules="required"
+                              label-on-top
+                          />
+                        </b-col>
+                        <b-col class="px-1 py-0">
+                          <BaseInputWithValidation
+                              v-model="editingItem.madeSum"
+                              :label="$t('reporting.main.form3.name10')"
+                              :placeholder="$t('')"
+                              class="required"
+                              rules="required"
+                              label-on-top
+                          />
+                        </b-col>
+                      </b-row>
+                    </b-col>
+
+                    <b-col cols="3" class="px-3 py-0">
+                      <div class="text-center"
+                           style="font-size: 14px;border:1px solid #2b675b;  padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 4px; font-weight: bold; cursor: none">
+                        {{ $t('reporting.main.form3.name6') }} <br>
+                        {{ $t('reporting.main.form3.name11') }}
+                      </div>
+                      <b-row>
+                        <b-col class="px-1 py-0">
+                          <BaseInputWithValidation
+                              v-model="editingItem.buyTonna"
+                              :label="$t('reporting.main.form3.name9')"
+                              :placeholder="$t('')"
+                              class="required"
+                              rules="required"
+                              label-on-top
+                          />
+                        </b-col>
+                        <b-col class="px-1 py-0">
+                          <BaseInputWithValidation
+                              v-model="editingItem.buySum"
+                              :label="$t('reporting.main.form3.name10')"
+                              :placeholder="$t('')"
+                              class="required"
+                              rules="required"
+                              label-on-top
+                          />
+                        </b-col>
+                      </b-row>
+                    </b-col>
+
+                    <b-col cols="3" class="px-3 py-0">
+                      <div class="text-center"
+                           style="font-size: 14px;border:1px solid #2b675b;  padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 4px; font-weight: bold; cursor: none">
+                        {{ $t('reporting.main.form3.name7') }} <br>
+                        {{ $t('reporting.main.form3.name11') }}
+                      </div>
+                      <b-row>
+                        <b-col class="px-1 py-0">
+                          <BaseInputWithValidation
+                              v-model="editingItem.exportTonna"
+                              :label="$t('reporting.main.form3.name9')"
+                              :placeholder="$t('')"
+                              class="required"
+                              rules="required"
+                              label-on-top
+                          />
+                        </b-col>
+                        <b-col class="px-1 py-0">
+                          <BaseInputWithValidation
+                              v-model="editingItem.exportSum"
+                              :label="$t('reporting.main.form3.name10')"
+                              :placeholder="$t('')"
+                              class="required"
+                              rules="required"
+                              label-on-top
+                          />
+                        </b-col>
+                      </b-row>
+                    </b-col>
+
+                    <b-col cols="3" class="px-3 py-0">
+                      <div class="text-center"
+                           style="font-size: 14px;border:1px solid #2b675b;  padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 4px; font-weight: bold; cursor: none">
+                        {{ $t('reporting.main.form3.name8') }} <br>
+                        {{ $t('reporting.main.form3.name11') }}
+                      </div>
+                      <b-row>
+                        <b-col class="px-1 py-0">
+                          <BaseInputWithValidation
+                              v-model="editingItem.finallyTonna"
+                              :label="$t('reporting.main.form3.name9')"
+                              :placeholder="$t('')"
+                              class="required"
+                              rules="required"
+                              label-on-top
+                          />
+                        </b-col>
+                        <b-col class="px-1 py-0">
+                          <BaseInputWithValidation
+                              v-model="editingItem.finallySum"
+                              :label="$t('reporting.main.form3.name10')"
+                              :placeholder="$t('')"
+                              class="required"
+                              rules="required"
+                              label-on-top
+                          />
+                        </b-col>
+                      </b-row>
+                    </b-col>
+                  </b-row>
+                </ValidationObserver>
+                <b-row>
+                  <b-col cols="3" class="px-3 py-0">
+
+                  </b-col>
+                  <b-col cols="3" class="px-3 py-0"></b-col>
+                  <b-col cols="4" class="px-3 py-0"></b-col>
+                  <b-col cols="2" class="px-3 py-0">
+                    <b-button-group style="width: 70%; float: right">
+                      <b-button
+                          @click="addFormSanoat"
+                          block
+                          variant="primary"
+                          class="pt-1 mt-2 pb-1 pr-2 pl-2"
+                      >
                       <span style="font-size: 14px">
                         {{ $t("actions.add") }}
                       </span>
-                    </b-button>
-                    <!--                    <b-button-->
-                    <!--                        v-show="sanoat.length > 0"-->
-                    <!--                        variant="warning"-->
-                    <!--                        class="pt-1 mb-4 pb-1 pr-2 pl-2"-->
-                    <!--                        @click="isModalSanoat = true"-->
-                    <!--                    >-->
-                    <!--                      <i class="fa fa-eye"></i>-->
-                    <!--                    </b-button>-->
-                  </b-button-group>
-                </b-col>
-              </b-row>
-            </b-card>
-
-            <b-card v-else-if="editingItem.codeSoxa == 'HIZMAT'  && !editingItem.check"
-                    style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px;margin-top:10px;">
-              <b-row>
-                <b-col cols="3" class="px-3 py-0">
-                  <div
-                      style="font-size: 16px;background: #2b675b; color: white; padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 2px; font-weight: bold">
-                    {{ $t('reporting.main.form4.title') }}
-                  </div>
-                </b-col>
-                <b-col cols="3" class="px-3 py-0"></b-col>
-                <b-col cols="4" class="px-3 py-0"></b-col>
-                <b-col cols="2" class="px-3 py-0">
-
-                </b-col>
-              </b-row>
-              <ValidationObserver
-                  ref="observerHizmat"
-                  v-slot="{}"
-              >
-                <b-row>
-                  <b-col class="px-3">
-                    <BaseInputWithValidation
-                        v-model="editingItem.nameService"
-                        :label="$t('reporting.main.form4.name1')"
-                        :placeholder="$t('')"
-                        class="required"
-                        rules="required"
-                        label-on-top
-                    />
-                  </b-col>
-                  <b-col class="px-3">
-                    <BaseInputWithValidation
-                        v-model="editingItem.codeSevice"
-                        :label="$t('reporting.main.form4.name2')"
-                        :placeholder="$t('')"
-                        class="required"
-                        rules="required"
-                        label-on-top
-                    />
-                  </b-col>
-                  <b-col class="px-3">
-                    <BaseInputWithValidation
-                        v-model="editingItem.sumService"
-                        :label="$t('reporting.main.form4.name3')"
-                        :placeholder="$t('')"
-                        class="required"
-                        rules="required"
-                        label-on-top
-                    />
-                  </b-col>
-                  <b-col class="px-3">
-                    <BaseInputWithValidation
-                        v-model="editingItem.exportSumService"
-                        :label="$t('reporting.main.form4.name4')"
-                        :placeholder="$t('')"
-                        class="required"
-                        rules="required"
-                        label-on-top
-                    />
+                      </b-button>
+                      <!--                    <b-button-->
+                      <!--                        v-show="sanoat.length > 0"-->
+                      <!--                        variant="warning"-->
+                      <!--                        class="pt-1 mb-4 pb-1 pr-2 pl-2"-->
+                      <!--                        @click="isModalSanoat = true"-->
+                      <!--                    >-->
+                      <!--                      <i class="fa fa-eye"></i>-->
+                      <!--                    </b-button>-->
+                    </b-button-group>
                   </b-col>
                 </b-row>
-              </ValidationObserver>
-              <b-row>
-                <b-col cols="3" class="px-3 py-0">
+              </b-card>
+            </div>
 
-                </b-col>
-                <b-col cols="3" class="px-3 py-0"></b-col>
-                <b-col cols="4" class="px-3 py-0"></b-col>
-                <b-col cols="2" class="px-3 py-0">
-                  <b-button-group style="width: 70%; float: right">
-                    <b-button
-                        @click="addFormHizmat"
-                        block
-                        variant="primary"
-                        class="pt-1 mt-2 pb-1 pr-2 pl-2"
-                    >
+            <div v-if="!editingItem.check && !editingItem.isOthers">
+              <b-card v-if="editingItem.codeSoxa == 'HIZMAT'"
+                      style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px;margin-top:10px;">
+                <b-row>
+                  <b-col cols="3" class="px-3 py-0">
+                    <div
+                        style="font-size: 16px;background: #2b675b; color: white; padding: 5px; width: 100%; margin-bottom: 20px; border-radius: 2px; font-weight: bold">
+                      {{ $t('reporting.main.form4.title') }}
+                    </div>
+                  </b-col>
+                  <b-col cols="3" class="px-3 py-0"></b-col>
+                  <b-col cols="4" class="px-3 py-0"></b-col>
+                  <b-col cols="2" class="px-3 py-0">
+
+                  </b-col>
+                </b-row>
+                <ValidationObserver
+                    ref="observerHizmat"
+                    v-slot="{}"
+                >
+                  <b-row>
+                    <b-col class="px-3">
+                      <BaseInputWithValidation
+                          v-model="editingItem.nameService"
+                          :label="$t('reporting.main.form4.name1')"
+                          :placeholder="$t('')"
+                          class="required"
+                          rules="required"
+                          label-on-top
+                      />
+                    </b-col>
+                    <b-col class="px-3">
+                      <BaseInputWithValidation
+                          v-model="editingItem.codeSevice"
+                          :label="$t('reporting.main.form4.name2')"
+                          :placeholder="$t('')"
+                          class="required"
+                          rules="required"
+                          label-on-top
+                      />
+                    </b-col>
+                    <b-col class="px-3">
+                      <BaseInputWithValidation
+                          v-model="editingItem.sumService"
+                          :label="$t('reporting.main.form4.name3')"
+                          :placeholder="$t('')"
+                          class="required"
+                          rules="required"
+                          label-on-top
+                      />
+                    </b-col>
+                    <b-col class="px-3">
+                      <BaseInputWithValidation
+                          v-model="editingItem.exportSumService"
+                          :label="$t('reporting.main.form4.name4')"
+                          :placeholder="$t('')"
+                          class="required"
+                          rules="required"
+                          label-on-top
+                      />
+                    </b-col>
+                  </b-row>
+                </ValidationObserver>
+                <b-row>
+                  <b-col cols="3" class="px-3 py-0">
+
+                  </b-col>
+                  <b-col cols="3" class="px-3 py-0"></b-col>
+                  <b-col cols="4" class="px-3 py-0"></b-col>
+                  <b-col cols="2" class="px-3 py-0">
+                    <b-button-group style="width: 70%; float: right">
+                      <b-button
+                          @click="addFormHizmat"
+                          block
+                          variant="primary"
+                          class="pt-1 mt-2 pb-1 pr-2 pl-2"
+                      >
                       <span style="font-size: 14px">
                         {{ $t("actions.add") }}
                       </span>
-                    </b-button>
-                    <!--                    <b-button-->
-                    <!--                        v-show="sanoat.length > 0"-->
-                    <!--                        variant="warning"-->
-                    <!--                        class="pt-1 mb-4 pb-1 pr-2 pl-2"-->
-                    <!--                        @click="isModalSanoat = true"-->
-                    <!--                    >-->
-                    <!--                      <i class="fa fa-eye"></i>-->
-                    <!--                    </b-button>-->
-                  </b-button-group>
-                </b-col>
-              </b-row>
-            </b-card>
+                      </b-button>
+                      <!--                    <b-button-->
+                      <!--                        v-show="sanoat.length > 0"-->
+                      <!--                        variant="warning"-->
+                      <!--                        class="pt-1 mb-4 pb-1 pr-2 pl-2"-->
+                      <!--                        @click="isModalSanoat = true"-->
+                      <!--                    >-->
+                      <!--                      <i class="fa fa-eye"></i>-->
+                      <!--                    </b-button>-->
+                    </b-button-group>
+                  </b-col>
+                </b-row>
+              </b-card>
+            </div>
 
             <b-card style="border:1px solid #2b675b; border-radius: 5px; margin:15px; padding: 15px;margin-top:10px;"
                     v-if="sanoat.length > 0">
@@ -659,19 +710,19 @@
                       </div>
                     </b-col>
                     <b-col></b-col>
-                    <b-col cols="2">
-                      <div>
-                        <div style="color:#88a59e;">
-                          {{
-                            $t('reporting.main.form3.name3')
-                          }}:
-                        </div>
-                        <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
-                          {{ card.codeMct ? card.codeMct : '- - -' }}
-                        </div>
-                      </div>
-                    </b-col>
-                    <b-col cols="2">
+                    <!--                    <b-col cols="2">-->
+                    <!--                      <div>-->
+                    <!--                        <div style="color:#88a59e;">-->
+                    <!--                          {{-->
+                    <!--                            $t('reporting.main.form3.name3')-->
+                    <!--                          }}:-->
+                    <!--                        </div>-->
+                    <!--                        <div style="font-size: 16px; font-weight: bold; color: #2b675b;">-->
+                    <!--                          {{ card.codeMct ? card.codeMct : '- - -' }}-->
+                    <!--                        </div>-->
+                    <!--                      </div>-->
+                    <!--                    </b-col>-->
+                    <b-col cols="3">
                       <div>
                         <div style="color:#88a59e;">{{ $t('product_info.units') }}</div>
                         <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
@@ -679,7 +730,7 @@
                         </div>
                       </div>
                     </b-col>
-                    <b-col cols="2">
+                    <b-col cols="3">
                       <div>
                         <div style="color:#88a59e;">{{ $t('reporting.main.form3.name4') }}</div>
                         <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
@@ -884,7 +935,7 @@
 
 
             <b-row class="p-3 mb-5">
-              <b-col cols="12" md="10">
+              <b-col cols="3">
                 <b-col class="mb-2 mt-3">
                   <b-button style="background: #F39138; width: 150px; height: 33px" class="btn btn-warning" size="md"
                             @click="$router.go(-1)">
@@ -892,7 +943,66 @@
                   </b-button>
                 </b-col>
               </b-col>
-              <b-col cols="12" md="2" class="mt-3">
+              <b-col cols="3" class="mt-3"></b-col>
+              <b-col cols="2" class="mt-3" style="float: right">
+                <div v-if="isFileGeneration">
+                  <b-row v-if="uploadFilename !== ''">
+                    <b-col cols="6" class="mt-1">
+                      {{ uploadFilename }}
+                    </b-col>
+                    <b-col cols="6">
+                      <b-button
+                          style=" background: #f39138;float: right"
+                          class=" p-1"
+                          @click="clearFile"
+                      >
+                        <i class="fa fa-window-close"></i>
+                        {{ $t("validator.cancel") }}
+                      </b-button>
+                    </b-col>
+                  </b-row>
+                  <b-button
+                      v-else
+                      class="p-2"
+                      :block="uploadFilename !== '' ? false : true"
+                      style="border: 1px solid #2b675b; background: #FFFFFF; width: 200px;float: right"
+                      @click="uploadFile"
+                  >
+                                <span style="color: #2b675b; !important;">
+                                                <i class="fa fa-upload"></i>
+                                            {{ $t("actions.upload_file") }}
+                                    <span style="color: red">
+                                    *
+                                  </span>
+                                           </span>
+                  </b-button>
+                  <b-form-file
+                      @change="onFileChange"
+                      v-model="uploadFiles"
+                      class="d-none"
+                      ref="ilovaRef"
+                  ></b-form-file>
+                </div>
+
+              </b-col>
+              <b-col cols="2" class="mt-3">
+                <b-button
+                    @click="fileGeneration"
+                    block
+                    style="background: #2b675b; font-size: 16px; width: 200px; float: right"
+                    class="text-capitalize float-end p-1 ml-1"
+                    v-if="editingItem.soato  && editingItem.soato !== '' && (hizmat.length > 0 || sanoat.length > 0)">
+                                      <span style="font-size: 14px">
+                                         <i class="mdi mdi-file-document"></i>
+                                        {{ $t("reporting.pdf.file_generation") }}
+                                         <span style="color: red">
+                                    *
+                                  </span>
+                                      </span>
+                </b-button>
+              </b-col>
+
+              <b-col cols="2" class="mt-3">
                 <b-overlay
                     :show="loader"
                     rounded
@@ -928,7 +1038,7 @@
       <div v-for="(card, index) in sanoat" :key="index">
         <b-col cols="12" style="border:1px solid #2b675b; padding: 10px 20px; margin-bottom: 20px;">
           <b-row>
-            <b-col cols="12" md="3">
+            <b-col cols="12" md="4">
               <div class="d-flex justify-content-start align-items-center">
                 <div class="mr-3" style="font-size: 16px; font-weight: bold;">
                   {{ index + 1 }}.
@@ -941,7 +1051,7 @@
                 </div>
               </div>
             </b-col>
-            <b-col cols="12" md="3">
+            <b-col cols="12" md="4">
               <div>
                 <div style="color:#88a59e;">{{ $t('reporting.main.form3.name2') }}:</div>
                 <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
@@ -949,19 +1059,19 @@
                 </div>
               </div>
             </b-col>
-            <b-col cols="12" md="3">
-              <div>
-                <div style="color:#88a59e;">
-                  {{
-                    $t('reporting.main.form3.name3')
-                  }}:
-                </div>
-                <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
-                  {{ card.codeMct ? card.codeMct : '- - -' }}
-                </div>
-              </div>
-            </b-col>
-            <b-col cols="12" md="3">
+            <!--            <b-col cols="12" md="3">-->
+            <!--              <div>-->
+            <!--                <div style="color:#88a59e;">-->
+            <!--                  {{-->
+            <!--                    $t('reporting.main.form3.name3')-->
+            <!--                  }}:-->
+            <!--                </div>-->
+            <!--                <div style="font-size: 16px; font-weight: bold; color: #2b675b;">-->
+            <!--                  {{ card.codeMct ? card.codeMct : '- - -' }}-->
+            <!--                </div>-->
+            <!--              </div>-->
+            <!--            </b-col>-->
+            <b-col cols="12" md="4">
               <div>
                 <div style="color:#88a59e;">{{ $t('reporting.main.form3.name4') }}</div>
                 <div style="font-size: 16px; font-weight: bold; color: #2b675b;">
@@ -1051,19 +1161,284 @@
         </b-button>
       </template>
     </b-modal>
+
+
+    <b-modal
+        size="xl"
+        :no-close-on-backdrop="true"
+        scrollable
+        :hide-header="true"
+        v-model="isFileGenerationModal"
+    >
+      <div class="container-main">
+        <div class="container" id="element-to-print">
+          <h5 style="color: #236257; text-align: center">
+            <b> {{ editingItem.name }} {{ $t('reporting.pdf.title') }}</b>
+          </h5>
+
+          <div style="border-radius: 3px; margin: 25px 0" class="mt-4" v-if="sanoat.length > 0">
+            <h6 style="color: #236257;"><b> {{ $t('reporting.main.form3.title') }}</b></h6>
+            <table class="table">
+              <thead>
+              <tr>
+                <th rowspan="2" class="text-center" style="vertical-align: inherit !important;">№</th>
+                <th rowspan="2" class="text-center" style="vertical-align: inherit !important;">
+                  {{ $t('reporting.main.form2.name2') }}<br>
+                </th>
+                <th rowspan="2" class="text-center" style="vertical-align: inherit !important;">
+                  {{ $t('reporting.main.form2.name5') }}<br>
+                </th>
+                <th rowspan="2" class="text-center" style="vertical-align: inherit !important;">
+                  {{ $t('reporting.main.form3.name2') }}
+                </th>
+
+                <th rowspan="2" class="text-center" style="vertical-align: inherit !important;">
+                  {{ $t('reporting.main.form3.name1') }}
+                </th>
+                <th rowspan="2" class="text-center" style="vertical-align: inherit !important;">
+                  {{ $t('product_info.units') }}
+                </th>
+                <th rowspan="2" class="text-center" style="vertical-align: inherit !important;">
+                  {{ $t('reporting.main.form3.name4') }}<br>
+                </th>
+                <th colspan="2" class="text-center" style="vertical-align: inherit !important; width: 15%">
+                  {{ $t('reporting.main.form3.name5') }} <br> <i
+                    style="font-size: 11px">{{ $t('reporting.main.form3.name11') }}</i>
+                </th>
+                <th colspan="2" class="text-center" style="vertical-align: inherit !important; width: 15%">
+                  {{ $t('reporting.main.form3.name6') }} <br> <i
+                    style="font-size: 11px">{{ $t('reporting.main.form3.name11') }}</i>
+                </th>
+                <th colspan="2" class="text-center" style="vertical-align: inherit !important; width: 15%">
+                  {{ $t('reporting.main.form3.name7') }} <br> <i
+                    style="font-size: 11px">{{ $t('reporting.main.form3.name11') }}</i>
+                </th>
+                <th colspan="2" class="text-center" style="vertical-align: inherit !important; width: 15%">
+                  {{ $t('reporting.main.form3.name8') }} <br> <i
+                    style="font-size: 11px">{{ $t('reporting.main.form3.name11') }}</i>
+                </th>
+
+              </tr>
+              <tr>
+                <th class="text-center" style="vertical-align: inherit !important;font-size: 12px !important;">
+                  {{ $t('reporting.pdf.miqdor') }} <br> <i style="font-size: 11px">{{ $t('reporting.pdf.natura') }}</i>
+                </th>
+                <th class="text-center" style="vertical-align: inherit !important;font-size: 12px !important;">
+                  {{ $t('reporting.pdf.qiymat') }} <br> <i style="font-size: 11px">{{ $t('reporting.pdf.som') }}</i>
+                </th>
+                <th class="text-center" style="vertical-align: inherit !important;font-size: 12px !important;">
+                  {{ $t('reporting.pdf.miqdor') }} <br> <i style="font-size: 11px">{{ $t('reporting.pdf.natura') }}</i>
+                </th>
+                <th class="text-center" style="vertical-align: inherit !important;font-size: 12px !important;">
+                  {{ $t('reporting.pdf.qiymat') }} <br> <i style="font-size: 11px">{{ $t('reporting.pdf.som') }}</i>
+                </th>
+                <th class="text-center" style="vertical-align: inherit !important;font-size: 12px !important;">
+                  {{ $t('reporting.pdf.miqdor') }} <br> <i style="font-size: 11px">{{ $t('reporting.pdf.natura') }}</i>
+                </th>
+                <th class="text-center" style="vertical-align: inherit !important;font-size: 12px !important;">
+                  {{ $t('reporting.pdf.qiymat') }} <br> <i style="font-size: 11px">{{ $t('reporting.pdf.som') }}</i>
+                </th>
+                <th class="text-center" style="vertical-align: inherit !important;font-size: 12px !important;">
+                  {{ $t('reporting.pdf.miqdor') }} <br> <i style="font-size: 11px">{{ $t('reporting.pdf.natura') }}</i>
+                </th>
+                <th class="text-center" style="vertical-align: inherit !important;font-size: 12px !important;">
+                  {{ $t('reporting.pdf.qiymat') }} <br> <i style="font-size: 11px">{{ $t('reporting.pdf.som') }}</i>
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="(data, index) in sanoat"
+                  :key="index">
+                <td class="text-center" style="color: #2b675b">{{ index + 1 }}</td>
+                <td class="text-center">
+                   <span v-if="data.codeXisobod && data.codeXisobod == '6OYLIK'">
+                       {{ $t('reporting.main.form2.name3') }}
+                  </span>
+                  <span v-else-if="data.codeXisobod && data.codeXisobod == 'YILLIK'">
+                       {{ $t('reporting.main.form2.name4') }}
+                  </span>
+                </td>
+                <td class="text-center">
+                   <span v-if="data.codeXisobod && data.codeXisobod == '6OYLIK'">
+                    <b-badge variant="light" style="color: #2b675b">
+                       {{ data.dateFrom }}
+                    </b-badge> -
+                        <b-badge variant="light" style="color: #2b675b">
+                       {{ data.dateTo }}
+                    </b-badge>
+                  </span>
+                  <span v-else-if="data.codeXisobod && data.codeXisobod == 'YILLIK'">
+                         {{ data.year }}
+                  </span>
+                </td>
+
+                <td class="text-center">{{ editingItem.name ? editingItem.name : '-' }}</td>
+                <td class="text-center">{{ data.codeTiftn ? data.codeTiftn : '-' }}</td>
+                <td class="text-center">{{ data.measureName ? data.measureName : '-' }}</td>
+                <td class="text-center">{{ data.madePowerAll ? formatNumber(data.madePowerAll) : '-' }}</td>
+
+                <td class="text-center">{{ data.madeTonna ? formatNumber(data.madeTonna) : '-' }}</td>
+                <td class="text-center">{{ data.madeSum ? formatNumber(data.madeSum) : '-' }}</td>
+                <td class="text-center">{{ data.buyTonna ? formatNumber(data.buyTonna) : '-' }}</td>
+                <td class="text-center">{{ data.buySum ? formatNumber(data.buySum) : '-' }}</td>
+                <td class="text-center">{{ data.exportTonna ? formatNumber(data.exportTonna) : '-' }}</td>
+                <td class="text-center">{{ data.exportSum ? formatNumber(data.exportSum) : '-' }}</td>
+                <td class="text-center">{{ data.finallyTonna ? formatNumber(data.finallyTonna) : '-' }}</td>
+                <td class="text-center">{{ data.finallySum ? formatNumber(data.finallySum) : '-' }}</td>
+              </tr>
+              <tr>
+                <td colspan="6"><b>{{ $t('reporting.pdf.all') }}</b>:</td>
+                <td>{{ formatNumber(countMadePowerAll()) }}</td>
+                <td>{{ formatNumber(countmadeTonnaAll()) }}</td>
+                <td>{{ formatNumber(countmadeSumAll()) }}</td>
+                <td>{{ formatNumber(countbuyTonnaAll()) }}</td>
+                <td>{{ formatNumber(countbuySumAll()) }}</td>
+                <td>{{ formatNumber(countexportTonnaAll()) }}</td>
+                <td>{{ formatNumber(countexportSumAll()) }}</td>
+                <td>{{ formatNumber(countfinallyTonnaAll()) }}</td>
+                <td>{{ formatNumber(countfinallySumAll()) }}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="border-radius: 3px; margin: 25px 0" class="mt-5" v-if="hizmat.length > 0">
+            <h6 style="color: #236257;"><b> {{ $t('reporting.main.form4.title') }}</b></h6>
+            <table class="table">
+              <thead>
+
+              <tr class="text-center" style="vertical-align: inherit !important;">
+                <th class="text-center" style="vertical-align: inherit !important;">№</th>
+                <th class="text-center" style="vertical-align: inherit !important;">
+                  {{ $t('reporting.main.form2.name2') }}<br>
+                </th>
+                <th class="text-center" style="vertical-align: inherit !important;">
+                  {{ $t('reporting.main.form2.name5') }}<br>
+                </th>
+                <th class="text-center" style="vertical-align: inherit !important;">
+                  {{ $t('reporting.main.form4.name1') }}
+                </th>
+                <th class="text-center" style="vertical-align: inherit !important;">
+                  {{ $t('reporting.main.form4.name2') }}
+                </th>
+                <th class="text-center" style="vertical-align: inherit !important;">
+                  {{ $t('reporting.main.form4.name3') }}
+                </th>
+                <th class="text-center" style="vertical-align: inherit !important;">
+                  {{ $t('reporting.main.form4.name4') }}
+                </th>
+              </tr>
+
+              </thead>
+              <tbody>
+              <tr v-for="(data, index) in hizmat"
+                  :key="index">
+                <td class="text-center" style="color: #2b675b">{{ index + 1 }}</td>
+                <td class="text-center">
+                   <span v-if="data.codeXisobod && data.codeXisobod == '6OYLIK'">
+                       {{ $t('reporting.main.form2.name3') }}
+                  </span>
+                  <span v-else-if="data.codeXisobod && data.codeXisobod == 'YILLIK'">
+                       {{ $t('reporting.main.form2.name4') }}
+                  </span>
+                </td>
+                <td class="text-center">
+                   <span v-if="data.codeXisobod && data.codeXisobod == '6OYLIK'">
+                    <b-badge variant="light" style="color: #2b675b">
+                       {{ data.dateFrom }}
+                    </b-badge> -
+                        <b-badge variant="light" style="color: #2b675b">
+                       {{ data.dateTo }}
+                    </b-badge>
+                  </span>
+                  <span v-else-if="data.codeXisobod && data.codeXisobod == 'YILLIK'">
+                         {{ data.year }}
+                  </span>
+                </td>
+
+                <td class="text-center">{{ data.nameService ? data.nameService : '-' }}</td>
+                <td class="text-center">{{ data.codeSevice ? data.codeSevice : '-' }}</td>
+                <td class="text-center">{{ data.sumService ? formatNumber(data.sumService) : '-' }}</td>
+                <td class="text-center">{{ data.exportSumService ? formatNumber(data.exportSumService) : '-' }}</td>
+              </tr>
+
+              <tr>
+                <td colspan="5"><b>{{ $t('reporting.pdf.all') }}</b>:</td>
+                <td>{{ formatNumber(countsumService()) }}</td>
+                <td>{{ formatNumber(countexportSumService()) }}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top: 60px">
+            <b-row>
+              <b-col cols="1"></b-col>
+              <b-col cols="3" class="text-center" style="color: #2b675b; font-size: 15px">
+                <b>{{ $t('reporting.pdf.rahbar') }}</b></b-col>
+              <b-col cols="2"></b-col>
+              <b-col cols="2">
+                <h6 style="border-top: 1px solid #2b675b; color: #2b675b; width: 70%; margin-top: 20px"
+                    class="text-center">
+                  <b>{{ $t('reporting.pdf.fio') }}</b></h6>
+              </b-col>
+              <b-col cols="2">
+                <h6 style="border-top: 1px solid #2b675b; color: #2b675b; width: 70%; margin-top: 20px"
+                    class="text-center">
+                  <b>{{ $t('reporting.pdf.imzo') }}</b></h6>
+              </b-col>
+              <b-col cols="2"></b-col>
+            </b-row>
+          </div>
+
+          <div style="margin-top: 40px">
+            <b-row>
+              <b-col cols="1"></b-col>
+              <b-col cols="3" class="text-center" style="color: #2b675b; font-size: 15px">
+                <b>{{ $t('reporting.pdf.masul') }}</b></b-col>
+              <b-col cols="2"></b-col>
+              <b-col cols="2">
+                <h6 style="border-top: 1px solid #2b675b;color: #2b675b; width: 70%; margin-top: 30px"
+                    class="text-center">
+                  <b>{{ $t('reporting.pdf.fio') }}</b></h6>
+              </b-col>
+              <b-col cols="2">
+                <h6 style="border-top: 1px solid #2b675b;color: #2b675b; width: 70%; margin-top: 30px"
+                    class="text-center">
+                  <b>{{ $t('reporting.pdf.imzo') }}</b></h6>
+              </b-col>
+              <b-col cols="2"></b-col>
+            </b-row>
+          </div>
+
+        </div>
+      </div>
+
+      <template v-slot:modal-footer>
+
+        <b-button @click="generatePdf" class="pt-1 pl-3 pr-3 pb-1 float-right mr-2"
+                  style="background: #2b675b;color: white ">
+          <i class="bx bx-download label-icon"></i>
+          {{ $t('actions.upload_file') }} {{ $t('reporting.pdf.pdf') }}
+        </b-button>
+
+        <b-button class="pt-1 pl-3 pr-3 pb-1" style="background: rgb(243, 145, 56); color: white"
+                  @click="isFileGenerationModal = false">
+          {{ $t("actions.close") }}
+        </b-button>
+
+      </template>
+    </b-modal>
   </div>
 </template>
 
 <script>
-
-import integratsiyaService from "@/shared/services/integratsiya.service";
+import html2pdf from "html2pdf.js";
 
 const REF_NAME = 'court_instantions'
 import appConfig from "@/app.config";
 import crudAndListsService from '@/shared/services/crud_and_list.service'
 import Service from '../service'
-import ApiService from "@/shared/services/api.service";
-import * as moment from "moment";
 
 const MAIN_API_URL = 'contractor-advertising-construction'
 export default {
@@ -1082,8 +1457,11 @@ export default {
         name: '',
         fio: '',
         address: '',
-        check: false
+        check: false,
+        isOthers: false
       },
+      isFileGeneration: false,
+      isFileGenerationModal: false,
       sanoat: [],
       hizmat: [],
       isModalSanoat: false,
@@ -1098,7 +1476,7 @@ export default {
       phoneCodes: [],
       phoneCode: null,
       loaderTifTn: false,
-      resDataTifTn: null
+      dataTifTn: null
     }
   },
   watch: {
@@ -1137,6 +1515,30 @@ export default {
         // } else {
         //   this.editingItem.dateTo = null
         // }
+      }
+    },
+    'dataTifTn': {
+      async handler() {
+          this.editingItem.nameProduct = this.dataTifTn.name
+        this.editingItem.measureName = this.getName({
+          nameRu: this.dataTifTn.measureDto.nameRu,
+          nameUz: this.dataTifTn.measureDto.nameUz,
+          nameLt: this.dataTifTn.measureDto.nameLt,
+        })
+      }
+    },
+    'editingItem.check': {
+      async handler() {
+        if (this.editingItem.check) {
+          this.editingItem.isOthers = false
+        }
+      }
+    },
+    'editingItem.isOthers': {
+      async handler() {
+        if (this.editingItem.isOthers) {
+          this.editingItem.check = false
+        }
       }
     },
     'editingItem.codeSoxa': {
@@ -1253,11 +1655,13 @@ export default {
         }
       }
     },
-  },
+  }
+  ,
   async created() {
     await this.getMeasure();
     await this.getPhoneCode();
-  },
+  }
+  ,
   computed: {
     computedObserver() {
       return this.$refs.observer
@@ -1268,34 +1672,179 @@ export default {
     computedObserverHizmat() {
       return this.$refs.observerHizmat
     },
+    checkMethod() {
+      var checks = false
+      if ((!this.editingItem.check && !this.editingItem.isOthers) && this.uploadFilename !== '') {
+        checks = true
+      } else if (this.editingItem.isOthers && this.uploadFilename !== '') {
+        checks = true
+      }
+
+      return checks
+    },
   },
   methods: {
+    // formatNumber
+    formatNumber(num) {
+      return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ');
+    }
+    ,
+    countexportSumService() {
+      var exportSumService = parseInt(0)
+      for (let i = 0; i < this.hizmat.length; i++) {
+        exportSumService += parseInt(this.hizmat[i].exportSumService)
+      }
+      return exportSumService
+    }
+    ,
+    countsumService() {
+      var sumService = parseInt(0)
+      for (let i = 0; i < this.hizmat.length; i++) {
+        sumService += parseInt(this.hizmat[i].sumService)
+      }
+      return sumService
+    }
+    ,
+    countfinallySumAll() {
+      var finallySum = parseInt(0)
+      for (let i = 0; i < this.sanoat.length; i++) {
+        finallySum += parseInt(this.sanoat[i].finallySum)
+      }
+      return finallySum
+    }
+    ,
+    countfinallyTonnaAll() {
+      var finallyTonna = parseInt(0)
+      for (let i = 0; i < this.sanoat.length; i++) {
+        finallyTonna += parseInt(this.sanoat[i].finallyTonna)
+      }
+      return finallyTonna
+    }
+    ,
+    countexportSumAll() {
+      var exportSum = parseInt(0)
+      for (let i = 0; i < this.sanoat.length; i++) {
+        exportSum += parseInt(this.sanoat[i].exportSum)
+      }
+      return exportSum
+    }
+    ,
+    countexportTonnaAll() {
+      var exportTonna = parseInt(0)
+      for (let i = 0; i < this.sanoat.length; i++) {
+        exportTonna += parseInt(this.sanoat[i].exportTonna)
+      }
+      return exportTonna
+    }
+    ,
+    countbuySumAll() {
+      var buySum = parseInt(0)
+      for (let i = 0; i < this.sanoat.length; i++) {
+        buySum += parseInt(this.sanoat[i].buySum)
+      }
+      return buySum
+    }
+    ,
+    countbuyTonnaAll() {
+      var buyTonna = parseInt(0)
+      for (let i = 0; i < this.sanoat.length; i++) {
+        buyTonna += parseInt(this.sanoat[i].buyTonna)
+      }
+      return buyTonna
+    }
+    ,
+    countmadeSumAll() {
+      var madeSum = parseInt(0)
+      for (let i = 0; i < this.sanoat.length; i++) {
+        madeSum += parseInt(this.sanoat[i].madeSum)
+      }
+      return madeSum
+    }
+    ,
+    countmadeTonnaAll() {
+      var madeTonna = parseInt(0)
+      for (let i = 0; i < this.sanoat.length; i++) {
+        madeTonna += parseInt(this.sanoat[i].madeTonna)
+      }
+      return madeTonna
+    }
+    ,
+    countMadePowerAll() {
+      var madePower = parseInt(0)
+      for (let i = 0; i < this.sanoat.length; i++) {
+        madePower += parseInt(this.sanoat[i].madePowerAll)
+      }
+      return madePower
+    }
+    ,
+    generatePdf() {
+      try {
+        var element = document.getElementById("element-to-print");
+
+        var opt = {
+          margin: 0.4,
+          filename: "myfiles.pdf",
+          image: {
+            type: 'jpeg',
+            quality: 0.98
+          },
+          html2canvas: {
+            scale: 3,
+            letterRendering: true,
+            useCORS: true
+          },
+          pagebreak: {mode: 'legacy', before: '.newPage'},
+          jsPDF: {
+            unit: "mm",
+            format: 'a4',
+            orientation: "landscape",
+            putTotalPages: true,
+          },
+        };
+        html2pdf().set(opt).from(element).save();
+        this.isFileGenerationModal = false
+        this.isFileGeneration = true
+      } catch (error) {
+        this.isFileGenerationModal = true
+      }
+
+    },
+    fileGeneration() {
+      this.isFileGenerationModal = true
+    },
     findByCodeTiftn() {
       this.editingItem.nameProduct = ''
       this.editingItem.measureName = ''
       this.loaderTifTn = true
       Service.getByCodeTiftn(this.editingItem.codeTiftn, true)
           .then(res => {
-            this.loaderTifTn = false
-            if (res.data.status == -1) {
-              this.editingItem.nameProduct = ''
-              this.editingItem.measureName = ''
-              this.$toast(this.$t('actions.empty_table'), {type: 'error'});
-            }
-            if (res.data.status == 1) {
-              if (res.data) {
-                this.editingItem.nameProduct = res.data.data[0] && res.data.data[0].goods && res.data.data[0].goods[0] && res.data.data[0].goods[0].product_name
-                this.editingItem.measureName = res.data.data[0] && res.data.data[0].goods && res.data.data[0].goods[0] && res.data.data[0].goods[0].added_units_measureName
-              }
-              this.$toast(this.$t(this.$t('actions.success')), {type: 'success'});
-            }
+                this.loaderTifTn = false
 
-          })
+                this.dataTifTn = res.data
+
+                // this.editingItem.nameProduct = dataTifTn.name
+                // this.editingItem.measureName = this.getName({
+                //   nameRu: dataTifTn.measureDto.nameRu,
+                //   nameUz: dataTifTn.measureDto.nameUz,
+                //   nameLt: dataTifTn.measureDto.nameLt,
+                // })
+
+                // this.$set(this.editingItem, "nameProduct", res.data.name);
+                // this.$set(this.editingItem, "measureName", this.getName({
+                //   nameRu: res.data.measureDto.nameRu,
+                //   nameUz: res.data.measureDto.nameUz,
+                //   nameLt: res.data.measureDto.nameLt,
+                // }));
+
+                this.$toast(this.$t(this.$t('actions.success')), {type: 'success'});
+              }
+          )
           .catch(e => {
             console.log(e)
             this.loaderTifTn = false
           });
-    },
+    }
+    ,
     async getPhoneCode() {
       // this.var_default_search_payload.itemsPerPage = 100
       await crudAndListsService.searchListWithKeyword("message-phone-code", this.var_default_search_payload)
@@ -1305,30 +1854,36 @@ export default {
           .catch(e => {
             console.log(e)
           })
-    },
+    }
+    ,
     customLabelPhoneCode(opt) {
       let selectedCode = this.phoneCodes.find(e => e.id == opt);
       if (selectedCode) {
         return selectedCode.code;
       }
       return ``;
-    },
+    }
+    ,
     onFileChange(e) {
 
       const file = e.target.files[0];
       this.upload_files = file
       this.uploadFilename = file.name;
-    },
+    }
+    ,
     uploadFile() {
       this.$refs.ilovaRef.$el.firstChild.click();
-    },
+    }
+    ,
     clearFile() {
       this.upload_files = null
       this.uploadFilename = ''
-    },
+    }
+    ,
     deleteSanoat(index) {
       this.sanoat.splice(index, 1)
-    },
+    }
+    ,
     addFormSanoat() {
       this.loaderSanoat = true;
       this.computedObserverSanoat.validate().then(valid => {
@@ -1343,7 +1898,7 @@ export default {
             codeTiftn: this.editingItem.codeTiftn,
             nameProduct: this.editingItem.nameProduct,
             measureName: this.editingItem.measureName,
-            codeMct: this.editingItem.codeMct,
+            // codeMct: this.editingItem.codeMct,
             madePowerAll: this.editingItem.madePowerAll.replaceAll(' ', ''),
             madeTonna: this.editingItem.madeTonna.replaceAll(' ', ''),
             madeSum: this.editingItem.madeSum.replaceAll(' ', ''),
@@ -1358,7 +1913,7 @@ export default {
           this.editingItem.codeTiftn = ''
           this.editingItem.nameProduct = ''
           this.editingItem.measureName = ''
-          this.editingItem.codeMct = ''
+          // this.editingItem.codeMct = ''
           this.editingItem.madePowerAll = ''
           this.editingItem.madeTonna = ''
           this.editingItem.madeSum = ''
@@ -1376,12 +1931,13 @@ export default {
           this.$toast(this.$t('messages.fill_required_fields'), {type: 'error'});
         }
       })
-    },
+    }
+    ,
     deleteHizmat(index) {
       this.hizmat.splice(index, 1)
-    },
+    }
+    ,
     addFormHizmat() {
-
       this.loaderHizmat = true;
       this.computedObserverHizmat.validate().then(valid => {
         if (valid) {
@@ -1407,7 +1963,8 @@ export default {
           this.$toast(this.$t('messages.fill_required_fields'), {type: 'error'});
         }
       })
-    },
+    }
+    ,
 
     findContractorByInn() {
       this.loadingStirItems = true
@@ -1417,8 +1974,8 @@ export default {
             .then(res => {
               if (res.data) {
                 this.editingItem.name = res.data.company && res.data.company.name
-                if (res.data.accountant) {
-                  this.editingItem.fio = res.data.accountant.firstName + ' ' + res.data.accountant.lastName + ' ' + res.data.accountant.middleName
+                if (res.data.director) {
+                  this.editingItem.fio = res.data.director.firstName + ' ' + res.data.director.lastName + ' ' + res.data.director.middleName
                 }
                 if (res.data.companyBillingAddress) {
                   this.editingItem.soato = res.data.companyBillingAddress.soato
@@ -1438,7 +1995,7 @@ export default {
                 }
               }
 
-              this.$toast(this.$t('submodules.integration.statistics_info.download_success'), {type: 'success'});
+              this.$toast(this.$t('actions.success'), {type: 'success'});
               this.loadingStirItems = false
             })
             .catch(e => {
@@ -1451,7 +2008,8 @@ export default {
         this.$toast(this.$t('messages.fill_required_fields'), {type: 'error'});
       }
 
-    },
+    }
+    ,
     async getMeasure() {
       // GET STATUSES
       this.var_default_search_payload.keyword = this.searchKeyword
@@ -1466,12 +2024,12 @@ export default {
           })
           .finally(() => {
           })
-    },
+    }
+    ,
 
     saveData() {
-
       this.computedObserver.validate().then(valid => {
-        if (valid) {
+        if (valid && this.checkMethod) {
           this.loader = true;
           let obj = {
             phone: '+998' + this.phoneCode.code + this.phoneNumber.replaceAll('-', ''),
@@ -1481,18 +2039,18 @@ export default {
             stir: this.editingItem.stir ? this.editingItem.stir : '',
             address: this.editingItem.address ? this.editingItem.address : '',
             check: this.editingItem.check,
+            isOthers: this.editingItem.isOthers,
             fio: this.editingItem.fio ? this.editingItem.fio : ''
           }
 
-          // if (this.editingItem.codeTiftn == '' && this.editingItem.nameService == '') {
+          if (this.editingItem.check || this.editingItem.isOthers) {
 
-          var bool = true
-          if (bool) {
             let bodyData = []
             bodyData = bodyData.concat(this.sanoat)
             bodyData = bodyData.concat(this.hizmat)
 
-            Service.createReporting(obj, bodyData).then(res => {
+            obj.dtoList = bodyData
+            Service.createReporting(obj).then(res => {
 
               let bodyFormData = new FormData()
               bodyFormData.append("id", res.data.id)
@@ -1500,6 +2058,9 @@ export default {
 
               Service.createWithFiles1(bodyFormData).then(res2 => {
                 this.$toast.success(this.$t('messages.send_successfully'), {position: "top-right"});
+                setTimeout(function () {
+                  location.reload();
+                }, 500); //
                 this.editingItem = {}
                 this.phoneId = null
                 this.phoneNumber = ''
@@ -1517,27 +2078,75 @@ export default {
                 .finally(() => {
                   this.loader = false;
                 });
+          } else if ((!this.editingItem.check && !this.editingItem.isOthers) && (this.editingItem.codeTiftn == '' || this.editingItem.nameService == '')) {
+
+            let bodyData = []
+            bodyData = bodyData.concat(this.sanoat)
+            bodyData = bodyData.concat(this.hizmat)
+
+            obj.dtoList = bodyData
+            Service.createReporting(obj).then(res => {
+
+              let bodyFormData = new FormData()
+              bodyFormData.append("id", res.data.id)
+              bodyFormData.append("file", this.upload_files)
+
+              Service.createWithFiles1(bodyFormData).then(res2 => {
+                this.$toast.success(this.$t('messages.send_successfully'), {position: "top-right"});
+                setTimeout(function () {
+                  location.reload();
+                }, 500); // 3000 milliseconds = 3 seconds
+                this.editingItem = {}
+                this.phoneId = null
+                this.phoneNumber = ''
+                this.upload_files = null
+                this.uploadFiles = null
+                this.uploadFilename = ''
+                this.sanoat = []
+                this.hizmat = []
+                this.computedObserver.reset()
+                this.computedObserverHizmat.reset()
+                this.computedObserverSanoat.reset()
+                this.editingItem = Object.assign({}, {});
+
+              })
+            })
+                .finally(() => {
+                  this.loader = false;
+                });
           } else {
             this.loader = false;
-            if (this.editingItem.codeTiftn !== '') {
+            if (this.editingItem.codeTiftn !== '' && this.editingItem.codeSoxa == 'SANOAT') {
               this.$toast(this.$t('reporting.error1'), {type: 'error'});
-            } else if (this.editingItem.nameService !== '') {
+            } else if (this.editingItem.nameService !== '' && this.editingItem.codeSoxa == 'HIZMAT') {
               this.$toast(this.$t('reporting.error2'), {type: 'error'});
             }
           }
-
         } else {
           this.loader = false;
           this.$toast(this.$t('messages.fill_required_fields'), {type: 'error'});
         }
       })
-    },
+    }
+    ,
   }
 }
 const i18n = require("@/i18n");
 </script>
 
 <style scoped lang="scss">
+
+.container-main {
+  border: 1px solid #2b675b;
+  border-radius: 5px;
+  margin: 3px;
+}
+
+.container {
+  padding: 40px;
+  font-family: sans-serif;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -1601,5 +2210,23 @@ table {
 ::v-deep .custom-multiselect {
   border: 1px solid #2b675b;
   border-radius: 5px;
+}
+
+table {
+  border: 1px solid #2b675b;
+}
+
+thead th {
+  border: 1px solid #2b675b;
+  padding: 3px;
+}
+
+tbody td {
+  padding: 3px;
+  border: 1px solid #2b675b;
+}
+
+tbody td {
+  padding: 3px;
 }
 </style>

@@ -6,7 +6,7 @@ export default {
         return res;
     },
     getByCodeTiftn: async function (tnvedCode, withLoader = false) {
-        let res = await ApiService.post(`/bojxona/tnved-code?tnvedCode=${tnvedCode}`, withLoader);
+        let res = await ApiService.post(`/code-tf-list/get-code?code=${tnvedCode}`, withLoader);
         return res;
     },
     // yuridik-shaxs
@@ -44,9 +44,10 @@ export default {
             );
         }
     },
-    async createReporting(data, bodyData) {
-        return ApiService.post(`/number_market/create?name=${data.name}&stir=${data.stir}&address=${data.address}&fio=${data.fio}&phone=${data.phone}&soato=${data.soato}&check=${data.check}`, bodyData)
+    async createReporting(data) {
+        return ApiService.post(`/number_market/create`, data)
     },
+    
     async createWithFiles(bodyFormData, url) {
         const requestData = {
             method: 'post',
