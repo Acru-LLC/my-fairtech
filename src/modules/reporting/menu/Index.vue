@@ -1678,8 +1678,9 @@ export default {
         checks = true
       } else if (this.editingItem.isOthers && this.uploadFilename !== '') {
         checks = true
+      } else if (this.editingItem.check) {
+        checks = true
       }
-
       return checks
     },
   },
