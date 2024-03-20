@@ -1,8 +1,3 @@
-import main_menu from "@/modules/management/menuItems";
-import documents_menu from "@/modules/advertisement/menuItems";
-import murojaat_menu from "@/modules/reestr-contractors/menuItems";
-import interactive_services from "@/modules/integration/menuItems";
-import settings_menu from "@/modules/chat/menuItems";
 import price_menu from "@/modules/price/menuItems";
 import reporting_menu from "@/modules/reporting/menuItems";
 
@@ -12,11 +7,6 @@ function copy(o) {
 
 // RUXSAT BOR MENULARNI FILTERLAB QAYTAR (EXPORT QIL)
 export default [
-  ...main_menu,
-  ...documents_menu,
-  ...murojaat_menu,
-  ...interactive_services,
-  ...settings_menu,
   ...price_menu,
   // ...reporting_menu
   // {

@@ -1,9 +1,19 @@
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
-import VueRouter from 'vue-router'
 import router from './router/index'
 import Lightbox from 'vue-easy-lightbox'
+import VueParticles from 'vue-particles'
+
+import VueCarousel from 'vue-carousel';
+
+Vue.use(VueCarousel);
+
+import Scrollspy from 'vue2-scrollspy';
+var VueScrollTo = require('vue-scrollto');
+Vue.use(VueParticles)
 Vue.use(Lightbox)
+Vue.use(Scrollspy);
+Vue.use(VueScrollTo)
 
 import VueMultiselctCustomized from "./components/vue-multiselect-customized"
 Vue.component('MultiselectCustomized', VueMultiselctCustomized)
@@ -110,7 +120,6 @@ import { ability } from '@/shared/store/ability'
 Vue.use(abilitiesPlugin, ability);
 Vue.component("Can", Can);
 
-Vue.use(VueRouter)
 Vue.config.productionTip = false
 
 Vue.use(BootstrapVue)

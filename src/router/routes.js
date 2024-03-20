@@ -1,90 +1,100 @@
 /*
 * IMPORT MAIN REGISTER_MODULE ROUTES */
-import modules_routes from "@/modules/routes";
-import check_routes from "@/modules/check/routes";
+// import modules_routes from "@/modules/routes";
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 
-export default [
-    ...modules_routes,
-    ...check_routes,
+Vue.use(VueRouter)
+const routes = [
+    // ...modules_routes,
     {
         path: '/',
         name: 'dashboard',
-        meta: {
-            authRequired: true,
-        },
+        // meta: {
+        //     public: true,
+        // },
         component: () => import('./views/dashboards/dashboard'),
         children: []
     },
     {
-        path: '/dashboard',
-        name: 'dashboard',
-        meta: {
-            authRequired: true,
-        },
-        component: () => import('./views/dashboards/dashboard'),
+        path: '/murojaat',
+        name: 'MurojaatCreate',
+        // meta: {
+        //     public: true,
+        // },
+        component: () => import('/src/modules/appeal/MurojatMonitor.vue'),
         children: []
     },
     {
-        path: '/login',
-        name: 'Login',
-        component: () => import('@/shared/views/auth/one-id'),
-        meta: {
-            public: true, // allow even if not logged in
-            onlyWhenLoggedOut: true
-        }
+        path: '/online-watching',
+        name: 'OnlineWatching',
+        // meta: {
+        //     public: true,
+        // },
+        component: () => import('/src/modules/online-watching/onlineWatching.vue'),
+        children: []
     },
     {
-        path: '/one-id/login',
-        name: 'OneID Login',
-        component: () => import('@/shared/views/auth/one-id'),
-        meta: {
-            public: true, // allow even if not logged in
-            onlyWhenLoggedOut: true
-        }
+        path: '/fair-price',
+        name: 'FairPrice',
+        // meta: {
+        //     public: true,
+        // },
+        component: () => import('/src/modules/fair-price/Main.vue'),
+        children: []
+    }
+    {
+        path: '/product-services',
+        name: 'ProductInfoServices',
+        // meta: {
+        //     public: true
+        // },
+        component: () => import('/src/modules/product/index.vue'),
+        children: []
     },
     {
-        path: '/register',
-        name: 'Register',
-        component: () => import('@/shared/views/auth/register'),
-        meta: {
-            public: true, // allow even if not logged in
-            onlyWhenLoggedOut: true
-        }
+        path: '/tovar-mahsulot',
+        name: 'TovarMahsulot',
+        // meta: {
+        //     public: true
+        // },
+        component: () => import('/src/modules/product/serviceMahsulot.vue'),
+        children: []
     },
     {
-        path: '/forgot-password',
-        name: 'ForgotPassword',
-        component: () => import('@/shared/views/auth/forgot-password'),
-        meta: {
-            public: true, // allow even if not logged in
-            onlyWhenLoggedOut: true
-        }
+        path: '/ish-xizmatlar',
+        name: 'IshXizmatlar',
+        // meta: {
+        //     public: true
+        // },
+        component: () => import('/src/modules/product/serviceXizmat.vue'),
+        children: []
     },
     {
-        path: '/pharm-sms/confirm-window/:id',
-        name: 'PharmSmsConfirmWindow',
-        component: () => import('@/modules/pharm/start/PharmSmsConfirmWindow'),
-        meta: {
-            public: true,
-            onlyWhenLoggedOut: true
-        }
+        path: '/online-report',
+        name: 'OnlineReport',
+        // meta: {
+        //     public: true
+        // },
+        component: () => import('/src/modules/reporting/menu/Index.vue'),
+        children: []
     },
     {
-        path: '/pharm-check',
-        name: 'PharmCheck',
-        component: () => import('../shared/views/auth/PharmCheck'),
-        meta: {
-            public: true,
-            onlyWhenLoggedOut: true
-        }
+        path: '/faq',
+        name: 'FAQ',
+        // meta: {
+        //     public: true
+        // },
+        component: () => import('/src/modules/product/FAQ/index.vue'),
+        children: []
     },
     {
-        path: '/pharmacy-check/:id',
-        name: 'PharmacyCheckDoc',
-        component: () => import('../shared/views/auth/PharmacyCheckDoc'),
-        meta: {
-            public: true,
-            onlyWhenLoggedOut: true
-        }
-    },
+        path: '/fair-price',
+        name: 'FairPrice',
+        // meta: {
+        //     public: true,
+        // },
+        component: () => import('/src/modules/fair-price/Main.vue'),
+        children: []
+    }
 ]
