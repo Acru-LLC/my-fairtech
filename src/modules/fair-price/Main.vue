@@ -287,7 +287,7 @@
         <b-col cols="12" class="d-lg-block d-none">
           <b-row class="d-flex justify-content-center">
             <b-col v-for="(item,index) in productData.slice(0, 8)" :key="index" class="mb-3">
-              <div @click="showDetailInfo(item.id)"
+              <div v-if="item.id != 56 && item.id != 57 && item.id != 58" @click="showDetailInfo(item.id)"
                    style="width: 100%; max-width: 170px; cursor: pointer; border: 1px solid rgb(43, 103, 91, 0.2); border-radius: 3px; box-shadow: rgb(201, 219, 215) 2px 4px 8px 0px;">
                 <div style="padding: 5px 5px 2px 5px; text-align: center;">
                   <img v-if="item.photoSvg && item.photoSvg.uploadPath" :src="`${routeName}/${item.photoSvg.uploadPath}`" style="width: 100%;max-width: 55px;" alt="">
@@ -1035,7 +1035,7 @@
               :navigation-enabled="true"
           >
             <slide v-for="(vm, index) in productData" :key="index">
-              <div @click="showDetailInfo(vm.id)" style="cursor: pointer;">
+              <div v-if="vm.id != 56 && vm.id != 57 && vm.id != 58" @click="showDetailInfo(vm.id)" style="cursor: pointer;">
                 <div class="text-center mb-2 pt-4">
                   <img
                       v-if="vm.photoPng && vm.photoPng.uploadPath" :src="`${routeName}/${vm.photoPng.uploadPath}`" width="270" height="160" style="border:1px solid rgb(43, 103, 91, 0.3); box-shadow: rgb(201, 219, 215) 2px 4px 8px 0px; border-radius: 8px; padding: 5px;" alt="">
@@ -1065,7 +1065,7 @@
               :navigation-enabled="true"
           >
             <slide v-for="(vm, index) in productData" :key="index">
-              <div @click="showDetailInfo(vm.id)" style="cursor: pointer;">
+              <div v-if="vm.id != 56 && vm.id != 57 && vm.id != 58" @click="showDetailInfo(vm.id)" style="cursor: pointer;">
                 <div class="text-center mb-2 pt-4">
                   <img
                       v-if="vm.photoPng && vm.photoPng.uploadPath" :src="`${routeName}/${vm.photoPng.uploadPath}`" width="270" height="160" style="border:1px solid rgb(43, 103, 91, 0.3); box-shadow: rgb(201, 219, 215) 2px 4px 8px 0px; border-radius: 8px; padding: 5px;" alt="">
