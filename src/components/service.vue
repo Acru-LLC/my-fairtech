@@ -7,8 +7,7 @@ export default {
       showModal: false
     }
   },
-  methods: {
-  }
+  methods: {}
 };
 
 </script>
@@ -28,54 +27,58 @@ export default {
       </div>
       <div class="row margin-t-30">
         <div class="col-lg-4 col-md-6 col-12 mb-4">
-        <a href="https://cabinet.fairtech.uz/murojaat-create" target="_blank" class="col margin-t-20">
-          <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
-            <div class="services-box text-center hover-effect">
-              <img src="@/assets/image/service-logo.svg" alt="">
-              <h4 class="padding-t-15 text-color">{{ $t('services.appeal_title') }}</h4>
-              <p class="padding-t-15 text-color">
-                {{ $t('services.appeal_subtitle') }}
-              </p>
+          <a href="https://cabinet.fairtech.uz/murojaat-create" target="_blank" class="col margin-t-20">
+            <div class="h-100"
+                 style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
+              <div class="services-box text-center hover-effect">
+                <img src="@/assets/image/service-logo.svg" alt="">
+                <h4 class="padding-t-15 text-color">{{ $t('services.appeal_title') }}</h4>
+                <p class="padding-t-15 text-color">
+                  {{ $t('services.appeal_subtitle') }}
+                </p>
+              </div>
             </div>
-          </div>
-        </a>
+          </a>
         </div>
         <div class="col-lg-4 col-md-6 col-12 mb-4">
-        <router-link to="/online-watching" teg="div" class="col mx-5 margin-t-20">
-          <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
-            <div class="services-box text-center hover-effect">
-              <img src="@/assets/image/service-logo.svg" alt="">
-              <h4 class="padding-t-15 text-color">{{ $t('services.online_checking.card_title') }}</h4>
-              <p class="padding-t-15 text-color">
-                {{ $t('services.online_checking.card_subtitle1') }}
-                <a href="https://cabinet.fairtech.uz" target="_blank">cabinet.fairtech.uz</a>
-                {{ $t('services.online_checking.card_subtitle2') }}
-              </p>
+          <router-link to="/online-watching" teg="div" class="col mx-5 margin-t-20">
+            <div class="h-100"
+                 style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
+              <div class="services-box text-center hover-effect">
+                <img src="@/assets/image/service-logo.svg" alt="">
+                <h4 class="padding-t-15 text-color">{{ $t('services.online_checking.card_title') }}</h4>
+                <p class="padding-t-15 text-color">
+                  {{ $t('services.online_checking.card_subtitle1') }}
+                  <a href="https://cabinet.fairtech.uz" target="_blank">cabinet.fairtech.uz</a>
+                  {{ $t('services.online_checking.card_subtitle2') }}
+                </p>
+              </div>
             </div>
-          </div>
-        </router-link>
+          </router-link>
         </div>
         <div class="col-lg-4 col-md-6 col-12 mb-4">
-        <router-link to="/product-services" teg="div" class="col margin-t-20">
-          <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
-            <div class="services-box text-center hover-effect">
-              <img src="@/assets/image/service-logo.svg" alt="">
-              <h4 class="padding-t-15 text-color ">{{ $t('services.product_info.card_title') }}</h4>
-              <hr class="green-gradient-bg w-75" style="height: 2px">
-              <h4 class="text-color">{{ $t('services.product_info.card_subtitle1') }}</h4>
-              <p class="padding-t-15 text-color">
-                {{ $t('services.product_info.card_subtitle2') }}
-              </p>
+          <router-link to="/product-services" teg="div" class="col margin-t-20">
+            <div class="h-100"
+                 style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
+              <div class="services-box text-center hover-effect">
+                <img src="@/assets/image/service-logo.svg" alt="">
+                <h4 class="padding-t-15 text-color ">{{ $t('services.product_info.card_title') }}</h4>
+                <hr class="green-gradient-bg w-75" style="height: 2px">
+                <h4 class="text-color">{{ $t('services.product_info.card_subtitle1') }}</h4>
+                <p class="padding-t-15 text-color">
+                  {{ $t('services.product_info.card_subtitle2') }}
+                </p>
+              </div>
             </div>
-          </div>
-        </router-link>
+          </router-link>
         </div>
 
       </div>
       <div class="row mt-5">
         <div class="col-lg-4 col-md-6 col-12 mb-4">
-          <router-link to="/online-report" teg="div">
-            <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
+          <a href="https://cabinet.fairtech.uz/reporting/menu" target="_blank" class="col margin-t-20">
+            <div class="h-100"
+                 style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
               <div class="services-box text-center hover-effect">
                 <img src="@/assets/image/service-logo.svg" alt="">
                 <h4 class="padding-t-15 text-color">{{ $t('services.online_report.card_title') }}</h4>
@@ -84,10 +87,24 @@ export default {
                 </p>
               </div>
             </div>
-          </router-link>
+          </a>
+
+<!--          <router-link to="/online-report" teg="div">-->
+<!--            <div class="h-100"-->
+<!--                 style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">-->
+<!--              <div class="services-box text-center hover-effect">-->
+<!--                <img src="@/assets/image/service-logo.svg" alt="">-->
+<!--                <h4 class="padding-t-15 text-color">{{ $t('services.online_report.card_title') }}</h4>-->
+<!--                <p class="padding-t-15 text-color">-->
+<!--                  {{ $t('services.online_report.card_subtitle') }}-->
+<!--                </p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </router-link>-->
         </div>
         <div class="col-lg-4 col-md-6 col-12 mb-4">
-          <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px" @click="showModal = true">
+          <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px"
+               @click="showModal = true">
             <div class="services-box text-center hover-effect">
               <img src="@/assets/image/service-logo.svg" alt="">
               <h4 class="padding-t-15 text-color">{{ $t('services.agreement.card_title') }}</h4>
@@ -99,7 +116,8 @@ export default {
         </div>
         <div class="col-lg-4 col-md-6 col-12 mb-4">
           <router-link to="/fair-price" teg="div">
-            <div class="h-100" style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
+            <div class="h-100"
+                 style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
               <div class="services-box text-center hover-effect">
                 <img src="@/assets/image/service-logo.svg" alt="">
                 <h4 class="padding-t-15 text-color">{{ $t('services.fair_price.card_title') }}</h4>
@@ -134,16 +152,16 @@ export default {
 
           <b-col>
             <a href="https://license.gov.uz/service/3991" target="_blank">
-            <b-card class="text-center h-100" style="box-shadow: rgb(201, 219, 215) 2px 4px 8px 0px">
-<!--              <b-card class="default-bg">-->
+              <b-card class="text-center h-100" style="box-shadow: rgb(201, 219, 215) 2px 4px 8px 0px">
+                <!--              <b-card class="default-bg">-->
                 <img src="@/assets/image/service-logo.svg" alt="image" class="img-fluid bg-white"
                      style="border-radius: 50%; box-shadow: rgb(36, 98, 86) 1px 1px 7px 3px;">
-<!--              </b-card>-->
-              <h4 class="padding-t-15 text-color">{{ $t('services.agreement.card_title') }}</h4>
-              <p class="padding-t-15 text-color">
-                {{ $t('services.agreement.modal2_subtitle') }}
-              </p>
-            </b-card>
+                <!--              </b-card>-->
+                <h4 class="padding-t-15 text-color">{{ $t('services.agreement.card_title') }}</h4>
+                <p class="padding-t-15 text-color">
+                  {{ $t('services.agreement.modal2_subtitle') }}
+                </p>
+              </b-card>
             </a>
           </b-col>
         </b-row>
@@ -183,12 +201,14 @@ export default {
   border-radius: 5px;
   text-align: center;
 }
+
 @media only screen and (max-width: 767px) {
-  .first-row-col{
+  .first-row-col {
     margin-top: -20px;
     margin-bottom: 10px;
   }
-  h4{
+
+  h4 {
     font-size: 16px;
   }
 }
