@@ -38,6 +38,7 @@
     "vee-validate": "^3.4.9",
     "vue": "^2.6.12",
     "vue-apexcharts": "^1.6.2",
+    "vue-carousel": "^0.18.0",
     "vue-drag-resize": "^1.5.4",
     "vue-easy-lightbox": "^0.16.1",
     "vue-form-wizard": "^0.8.4",
