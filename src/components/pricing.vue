@@ -33,7 +33,7 @@ export default {
           <b-row class="h-100">
             <b-col cols="4" class="d-flex align-items-center">
               <div class="d-flex justify-content-center">
-                <img width="112" height="112" style="border-radius: 50%; border: 3px solid #246256" src="@/assets/image/vakant.png" alt="">
+                <img width="112" height="112" style="border-radius: 50%; border: 3px solid #246256" src="https://i0.wp.com/raqobat.gov.uz/wp-content/uploads/2024/06/rahbar11.jpg?w=420&ssl=1" alt="">
               </div>
               <!--              <div class="d-flex justify-content-center">-->
               <!--              <b-button class="mt-3 btn btn-bg-white"-->
@@ -64,7 +64,7 @@ export default {
               </b-row>
               <b-row>
                 <img style="width: 17px; margin-right: 10px" src="@/assets/image/phone.svg" alt="">
-                <h4 class="text-color">(71) 123-45-67</h4>
+                <h4 class="text-color">(71) 207-47-00</h4>
               </b-row>
               <b-row class="d-flex align-items-center">
                 <i class="fa fa-envelope font-size-17"></i>
