@@ -29,11 +29,11 @@ export default {
   <section class="section pt-5" id="pricing">
     <div class="container">
       <div class="row d-flex justify-content-center mb-4 p-2">
-        <div style="border-radius: 5px; box-shadow: rgb(201, 219, 215) 2px 4px 8px 0px;" class="col-12 col-lg-5 mb-4 p-3 text-color">
+        <div style="border-radius: 5px; box-shadow: rgb(201, 219, 215) 2px 4px 8px 0px;" class="col-12 col-lg-6 mb-4 p-3 text-color">
           <b-row class="h-100">
-            <b-col cols="4" class="d-flex align-items-center">
+            <b-col cols="3" class="d-flex align-items-center">
               <div class="d-flex justify-content-center">
-                <img width="112" height="112" style="border-radius: 50%; border: 3px solid #246256" src="https://i0.wp.com/raqobat.gov.uz/wp-content/uploads/2024/06/rahbar11.jpg?w=420&ssl=1" alt="">
+                <img width="112" height="112" style="border-radius: 50%; border: 3px solid #246256" src="@/assets/image/rais_new.png" alt="">
               </div>
               <!--              <div class="d-flex justify-content-center">-->
               <!--              <b-button class="mt-3 btn btn-bg-white"-->
@@ -43,7 +43,7 @@ export default {
               <!--              </div>-->
             </b-col>
 
-            <b-col cols="8">
+            <b-col cols="9">
               <b-row>
                 <h4 class="font-weight-bold text-color">{{ $t('boss.vakant_card_name') }}</h4>
                 <!--                  <img style="top: 0; right: 0;" class="position-absolute cursor-pointer" @click="openModal" src="@/assets/image/danger.png" alt="">-->
