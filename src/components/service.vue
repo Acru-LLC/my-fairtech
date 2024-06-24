@@ -76,7 +76,7 @@ export default {
       </div>
       <div class="row mt-5">
         <div class="col-lg-4 col-md-6 col-12 mb-4">
-          <a href="https://cabinet.fairtech.uz/reporting/menu" target="_blank" class="col margin-t-20">
+          <a href="https://cabinet.fairtech.uz/reporting/menu" target="_blank">
             <div class="h-100"
                  style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
               <div class="services-box text-center hover-effect">
