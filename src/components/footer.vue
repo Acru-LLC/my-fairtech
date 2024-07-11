@@ -53,6 +53,11 @@ export default {
                   <span class="h4 text-color">{{ $t('contact.call_number') }}</span>
                   <p class="text-color">(71) 207-47-00</p>
                 </li>
+                <li>
+                  <span class="h4 text-color">
+                    <router-link to="/privacy-policy">{{ $t('contact.policy') }}</router-link>
+                  </span>
+                </li>
               </ul>
             </div>
           </div>
