@@ -23,6 +23,15 @@ const routes = [
         children: []
     },
     {
+        path: '/privacy-policy',
+        name: 'PrivacyPolicy',
+        // meta: {
+        //     public: true,
+        // },
+        component: () => import('/src/modules/policy/Index.vue'),
+        children: []
+    },
+    {
         path: '/fair-price',
         name: 'FairPrice',
         // meta: {

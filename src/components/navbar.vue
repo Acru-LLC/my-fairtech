@@ -77,7 +77,7 @@ export default {
 
 <template>
   <!--Navbar Start-->
-  <nav class="navbar navbar-expand-lg fixed-top bg-white sticky sticky-dark" id="navbar">
+  <nav class="navbar navbar-expand-lg fixed-top bg-white sticky sticky-dark" id="navbar" style="box-shadow: 0 0 4px 3px rgba(128, 128, 128, 0.187);">
     <div class="container">
 
       <div class="main-container">
