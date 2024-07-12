@@ -41,6 +41,24 @@ const routes = [
         children: []
     },
     {
+        path: '/court-online',
+        name: 'CourtOnline',
+        // meta: {
+        //     public: true,
+        // },
+        component: () => import('/src/modules/court-online/onlineWatching.vue'),
+        children: []
+    },
+    {
+        path: '/court-table',
+        name: 'CourtTable',
+        // meta: {
+        //     public: true,
+        // },
+        component: () => import('/src/modules/court-table/onlineWatching.vue'),
+        children: []
+    },
+    {
         path: '/product-services',
         name: 'ProductInfoServices',
         // meta: {

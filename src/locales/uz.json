@@ -4484,5 +4484,16 @@
     "docdata": "Imtiyoz xaqida ma'lumot",
     "docno": "Imtiyoz no'meri",
     "docname": "Imtiyoz nomi"
+  },
+  "court_online": {
+    "card_title": "ONLAYN QAROR VA KO‘RSATMA",
+    "card_subtitle": "Maxsus komissiya tomonidan qabul qilingan qaror va ko‘rsatmalarni inson omilisiz onlayn olish",
+    "require_txt": "Sud qarorlarini tekshirish uchun JSH SHIR yoki STIR kiriting",
+    "take_court_btn": "Sud qarorini olish"
+  },
+  "court_table_list": {
+    "card_title": "MAJLISLAR JADVALI",
+    "card_subtitle": "Maxsus komissiya tomonidan ko‘rib chiqilayotgan ishlarning sanasi va vaqti haqida onlayn xabardor bo‘lish",
+    "take_court_btn": "Sud qarorini olish"
   }
 }

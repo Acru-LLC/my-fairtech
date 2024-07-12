@@ -7,6 +7,9 @@ const checkService = {
   pharmCheckOutside(data){
     return ApiService.post(`/pharm/checkOutside?phoneNumber=${data.phoneNumber ? data.phoneNumber : ''}&pinfl=${data.pinfl ? data.pinfl : ''}`)
   },
+  courtCheckOnline(data){
+    return ApiService.post(`/complaens_info_case_field/get-work-number?stir=${data.stir ? data.stir : ''}&pinfl=${data.pinfl ? data.pinfl : ''}`)
+  },
   getProductInfo(data) {
     return ApiService.post(`price_sum/parents-table-outer?code=${data.code}`)
   },

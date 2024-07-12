@@ -132,6 +132,54 @@ export default {
         </div>
       </div>
 
+      <div class="row margin-t-30">
+        <div class="col-lg-4 col-md-6 col-12 mb-4">
+          <router-link to="/court-online" teg="div" class="col mx-5 margin-t-20">
+            <div class="h-100"
+                 style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
+              <div class="services-box text-center hover-effect">
+                <img src="@/assets/image/service-logo.svg" alt="">
+                <h4 class="padding-t-15 text-color">{{ $t('court_online.card_title') }}</h4>
+                <p class="padding-t-15 text-color">
+                  {{ $t('court_online.card_subtitle') }}
+                </p>
+              </div>
+            </div>
+          </router-link>
+        </div>
+        <div class="col-lg-4 col-md-6 col-12 mb-4">
+          <router-link to="/court-table" class="col margin-t-20">
+            <div class="h-100"
+                 style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
+              <div class="services-box text-center hover-effect">
+                <img src="@/assets/image/service-logo.svg" alt="">
+                <h4 class="padding-t-15 text-color">{{ $t('court_table_list.card_title') }}</h4>
+                <p class="padding-t-15 text-color">
+                  {{ $t('court_table_list.card_subtitle') }}
+                </p>
+              </div>
+            </div>
+          </router-link>
+        </div>
+        <div class="col-lg-4 col-md-6 col-12 mb-4">
+          <router-link to="/product-services" teg="div" class="col margin-t-20">
+            <div class="h-100"
+                 style="border-radius: 5px; cursor: pointer; box-shadow: rgb(201 219 215) 2px 4px 8px 0px">
+              <div class="services-box text-center hover-effect">
+                <img src="@/assets/image/service-logo.svg" alt="">
+                <h4 class="padding-t-15 text-color ">{{ $t('services.product_info.card_title') }}</h4>
+                <hr class="green-gradient-bg w-75" style="height: 2px">
+                <h4 class="text-color">{{ $t('services.product_info.card_subtitle1') }}</h4>
+                <p class="padding-t-15 text-color">
+                  {{ $t('services.product_info.card_subtitle2') }}
+                </p>
+              </div>
+            </div>
+          </router-link>
+        </div>
+
+      </div>
+
 
       <b-modal id="modal-1" hide-footer :title="$t('services.agreement.card_title')" v-model="showModal" size="lg">
         <b-row>
