@@ -69,7 +69,7 @@ export default {
         appealDate: this.appealDate
       }
       this.searchLoader = true;
-      return CheckService.courtCheckOnline(check)
+      return CheckService.onlineSudQarori(check)
           .then((result)=>{
             this.getUserDatas = result.data;
             this.phoneNumber = '';
@@ -91,7 +91,7 @@ export default {
               this.modalVisible = true;
             }
             else{
-              this.$toast.error(this.$t('statistics_info.download_error'));
+              this.$toast.error(this.$t('statistics_info.empty_message'));
               this.modalVisible = true;
             }
             // console.log(result.data)
@@ -150,7 +150,7 @@ export default {
               <b-col style="height: 0" class="text-success">
                 {{ $t('pharm_check_sms.murojaat_count') }}
                 <b-form-text class="font-size-17 font-weight-bold" style="color: #226358">
-                  {{ getUserDatas.count ? getUserDatas.count : 0 }} ta
+                  {{ getUserDatas ? getUserDatas : 0 }} ta
                 </b-form-text>
               </b-col>
             </b-row>
