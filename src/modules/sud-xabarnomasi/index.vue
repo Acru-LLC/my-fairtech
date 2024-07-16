@@ -72,6 +72,7 @@ export default {
       return CheckService.courtCheckOnline(check)
           .then((result)=>{
             this.getUserDatas = result.data;
+            console.log(result.data)
             this.phoneNumber = '';
             this.pinfl = '';
             this.fish = '';
@@ -91,7 +92,7 @@ export default {
               this.modalVisible = true;
             }
             else{
-              this.$toast.error(this.$t('statistics_info.download_error'));
+              this.$toast.error(this.$t('statistics_info.empty_message'));
               this.modalVisible = true;
             }
             // console.log(result.data)
@@ -129,7 +130,7 @@ export default {
       </div>
       <div class="d-flex justify-content-center">
         <h4 class="p-5" style="color: #226358">
-          {{ $t('court_online.require_txt') }}
+          {{ $t('sud_xabarnoma.require_txt') }}
         </h4>
       </div>
       <div class="card mx-auto d-block p-3" style="border: 1px solid #226358; width: 560px">
@@ -150,7 +151,7 @@ export default {
               <b-col style="height: 0" class="text-success">
                 {{ $t('pharm_check_sms.murojaat_count') }}
                 <b-form-text class="font-size-17 font-weight-bold" style="color: #226358">
-                  {{ getUserDatas.count ? getUserDatas.count : 0 }} ta
+                  {{ getUserDatas ? getUserDatas : 0 }} ta
                 </b-form-text>
               </b-col>
             </b-row>
@@ -162,7 +163,7 @@ export default {
               {{ $t('submodules.dxa.close_modal') }}
             </b-button>
             <a href="https://cabinet.fairtech.uz/" target="_blank" class="btn btn-primary active-class-style">
-              {{ $t('court_online.take_court_btn') }}
+              {{ $t('sud_xabarnoma.take_court_btn') }}
             </a>
           </div>
         </template>
