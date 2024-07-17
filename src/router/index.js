@@ -55,7 +55,7 @@ const routes = [
         // meta: {
         //     public: true,
         // },
-        component: () => import('/src/modules/court-online/onlineWatching.vue'),
+        component: () => import('/src/modules/court-online/onlineSudQarori.vue'),
         children: []
     },
     {
@@ -64,7 +64,25 @@ const routes = [
         // meta: {
         //     public: true,
         // },
-        component: () => import('/src/modules/court-table/onlineWatching.vue'),
+        component: () => import('/src/modules/court-table/region.vue'),
+        children: []
+    },
+    {
+        path: '/online-kuzatuv',
+        name: 'OnlineKuzatuv',
+        // meta: {
+        //     public: true,
+        // },
+        component: () => import('/src/modules/online-kuzatuv/index.vue'),
+        children: []
+    },
+    {
+        path: '/sud-xabarnomasi',
+        name: 'SudXabarnomasi',
+        // meta: {
+        //     public: true,
+        // },
+        component: () => import('/src/modules/sud-xabarnomasi/index.vue'),
         children: []
     },
     {
