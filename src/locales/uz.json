@@ -15,7 +15,8 @@
     "online_checking": {
       "card_title": "ONLAYN KUZATUV",
       "card_subtitle1": "Raqobat qo‘mitasiga ",
-      "card_subtitle2": " orqali yuborilgan murojaatlar holatlarini onlayn kuzatib borish  ",
+      "card_subtitle2": " orqali yuborilgan murojaatlar, shuningdek maxsus komissiya tomonidan qo'zg'atilgan ishlar holatini onlayn kuzatib borish  ",
+      "card_subtitle3": " orqali yuborilgan murojaatlar holatlarini onlayn kuzatib borish  ",
       "main_title": "Raqobatni rivojlantirish va iste’molchilar xuquqlarini himoya qilish qo‘mitasi",
       "require_text": "Shaxsiy kabinetingizdagi murojaat(lar)ni tekshirish uchun telefon raqamingizni yoki JSH SHIRni kiriting",
       "with_phone_number": "Telefon raqam orqali",
@@ -78,7 +79,7 @@
   },
   "pharm_check_sms": {
     "main_title": "Raqobatni rivojlantirish va iste’molchilar xuquqlarini himoya qilish qo‘mitasi",
-    "require_text": "Shaxsiy kabinetingizdagi murojaat(lar)ni tekshirish uchun telefon raqamingizni yoki JSH SHIRni kiriting",
+    "require_text": "Murojaatlaringizni online kuzatish uchun telefon yoki JSH SHIRni kiriting",
     "with_phone_number": "Telefon raqam orqali",
     "with_pinfl": "JSH SHIR orqali",
     "pinfl_placeholder": "JSH SHIR kiriting",
@@ -4496,7 +4497,17 @@
   "court_table_list": {
     "card_title": "MAJLISLAR JADVALI",
     "card_subtitle": "Maxsus komissiya tomonidan ko‘rib chiqilayotgan ishlarning sanasi va vaqti haqida onlayn xabardor bo‘lish",
-    "take_court_btn": "Sud qarorini olish"
+    "take_court_btn": "Sud qarorini olish",
+    "table_columns": {
+      "subyekt": "Ish qo‘zg‘atgan subyekt",
+      "soha": "Ish qo‘zg‘atilgan soha",
+      "docs": "Buzilgan qonun hujjatlari",
+      "work_number": "Ish raqami",
+      "date_time": "Ish ko'riladigan sana va vaqti",
+      "chairmon": "Komissiya raisi",
+      "work_step": "Ish ko'rish bosqichi",
+      "first_step": "Dastlabki bosqich"
+    }
   },
   "telegram_menu_title": "Raqobat qo'mitasining ''TELEGRAM BOT'' dasturi",
   "telegram_menu_subtitle": "Foydalanuvchilar tomonidan raqobat sohasi yoki iste'molchilar huquqlarinihimoya qilish faoliyati yuzasidan kiritilgan savol va murojaatlarga qisqa fursatda tezkor javob olish",
@@ -4508,9 +4519,9 @@
   },
   "online_kuzatuv": {
     "card_title": "ONLAYN KUZATUV",
-    "card_subtitle": "Maxsus komissiya tomonidan qabul qilingan kuzatuvlarni inson omilisiz onlayn olish",
-    "require_txt": "Sud kuzatuvlarini tekshirish uchun ish raqamini kiriting",
+    "card_subtitle": "Maxsus komissiya tomonidan qo‘zg‘atilgan ishlar holatini inson omilisiz onlayn kuzatib borish",
+    "require_txt": "Maxsus komissiya tomonidan qo'zg'atilgan ishlar holatini online kuzatish uchun ish raqami, STIR yoki JSH SHIR raqamingizni kiriting",
     "work_number_placeholder": "Ish raqamini kiriting",
-    "take_court_btn": "Kuzatuvni olish"
+    "take_court_btn": "Tekshirish"
   }
 }
