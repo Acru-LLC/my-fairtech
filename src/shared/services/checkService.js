@@ -24,7 +24,7 @@ const checkService = {
   },
   // Online kuzatuv
   onlineKuzatuv(data){
-    return ApiService.post(`/complaens_info_case_field/get-all-workNumber?workNumber=${data.workNumber ? data.workNumber : ''}`)
+    return ApiService.post(`/complaens_info_case_field/get-all-workNumber?workNumber=${data.workNumber ? data.workNumber : ''}&pinfl=${data.pinfl ? data.pinfl : ''}&stir=${data.stir ? data.stir : ''}`)
   },
   getProductInfo(data) {
     return ApiService.post(`price_sum/parents-table-outer?code=${data.code}`)
