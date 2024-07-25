@@ -53,88 +53,93 @@
         <b-col cols="3" class="d-flex justify-content-end">
           <BaseDatePickerWithValidation v-model="formattedDate" only-form-element not-required
                                         :disabled="formattedDate === today"/>
-          <b-button variant="primary" class="p-2" @click="sendRequest(selectedRegion.value)">Излаш</b-button>
+          <b-button variant="primary" class="p-2 ml-1" style="height: 34px" @click="sendRequest(selectedRegion.value)">{{$t('actions.search')}}</b-button>
         </b-col>
       </b-row>
       <b-row class="mb-3 d-flex justify-content-center">
-        <h2><b class="text-color">{{ selectedRegionTitle }} </b>томонидан <b class="text-color">{{ formattedDate }}</b>
-          йилга суд мажлисига тайинланган жиноят ишлари рўйхати</h2>
-      </b-row>
-      <table>
-        <thead>
-        <tr>
-          <th>№</th>
-          <th>{{ $t('court_table_list.table_columns.subyekt') }}</th>
-          <th>{{ $t('court_table_list.table_columns.soha') }}</th>
-          <th>{{ $t('court_table_list.table_columns.docs') }}</th>
-          <th>{{ $t('court_table_list.table_columns.work_number') }}</th>
-          <th>{{ $t('court_table_list.table_columns.date_time') }}</th>
-          <th>{{ $t('court_table_list.table_columns.chairmon') }}</th>
-          <th>{{ $t('court_table_list.table_columns.work_step') }}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="(item, index) in cases" :key="index">
-          <td>{{ index + 1 }}</td>
-          <td>{{ item.step1.nameSubject }}</td>
-          <td v-if="item.step1.fieldWorkDto">
-            {{
-              getName({
-                nameLt: item.step1.fieldWorkDto.nameLt,
-                nameUz: item.step1.fieldWorkDto.nameRu,
-                nameRu: item.step1.fieldWorkDto.nameUz,
-              })
-            }}
-          </td>
-          <td>
-            <p class="mb-2">
-              <b class="detailText">
-      <span v-if="!showText">
-        <span v-if="item.step1?.resultsCaseReviews.length > 0">
-          <span v-if="getLocale == 'uz'">
-            {{ item.step1?.resultsCaseReviews[0].brokenDocsDto?.nameLt.split(' ').slice(0, 5).join(' ') }}
-          </span>
-          <span v-if="getLocale == 'uzCyrillic'">
-            {{ item.step1?.resultsCaseReviews[0].brokenDocsDto?.nameUz.split(' ').slice(0, 5).join(' ') }}
-          </span>
-          <span v-if="getLocale == 'ru'">
-            {{ item.step1?.resultsCaseReviews[0].brokenDocsDto?.nameRu.split(' ').slice(0, 5).join(' ') }}
-          </span>
-        </span>
-      </span>
-                <ol v-if="showText" class="ml-3">
-                  <li v-for="(tItem, tIndex) in item.step1?.resultsCaseReviews" :key="tIndex">
-                    {{
-                      getName({
-                        nameLt: tItem.brokenDocsDto?.nameLt,
-                        nameUz: tItem.brokenDocsDto?.nameUz,
-                        nameRu: tItem.brokenDocsDto?.nameRu,
-                      })
-                    }}
-                  </li>
-                </ol>
-                <span @click="toggleShowText" style="color:#f39138; cursor: pointer;">
-        <span v-if="!showText"> ...{{ $t('actions.details') }} ({{ lengthOfCaseBrake }})</span>
-        <span v-else> ...{{ $t('actions.close') }}</span>
-      </span>
-              </b>
-            </p>
-          </td>
+        <h2 v-if="selectedRegionTitle !== $t('rais.region.qomita')"><b class="text-color">{{$t('rais.region.qomita')}} {{ selectedRegionTitle }} </b>{{$t('rais.region.first_part_text')}} <b class="text-color">{{ formattedDate }}</b>
+          {{ $t('rais.region.second_part_text') }}</h2>
 
-          <td>{{ item.step1.numberOfWork }}</td>
-          <td>
-            {{
-              item.step1?.dateEnd ? item.step1.dateEnd : item.step2_all?.seeWorkDate ? item.step2_all.seeWorkDate : '- - -'
-            }},
-            {{
-              item.step1?.timeEnd ? item.step1.timeEnd.slice(0, 5) : item.step2_all?.timeEnd ? item.step2_all.timeEnd.slice(0, 5) : '- - -'
-            }}
-          </td>
-          <td>{{ item.step1.chairmanCommission }}</td>
-          <td>{{ $t('court_table_list.table_columns.first_step') }}</td>
-        </tr>
-        </tbody>
-      </table>
+        <h2 v-else><b class="text-color">{{$t('rais.region.qomita')}} {{ selectedRegionTitle }} </b>{{$t('rais.region.first_part_for_qomita')}} <b class="text-color">{{ formattedDate }}</b>
+          {{ $t('rais.region.second_part_text') }}</h2>
+      </b-row>
+      <!-- Scrollable Table Container -->
+      <div class="table-container">
+        <table class="table table-striped text-center">
+          <thead class="bg-primary text-white">
+          <tr class="text-center font-size-16">
+            <th class="align-middle">№</th>
+            <th class="align-middle">{{ $t('court_table_list.table_columns.subyekt') }}</th>
+            <th class="align-middle">{{ $t('court_table_list.table_columns.soha') }}</th>
+            <th class="align-middle">{{ $t('court_table_list.table_columns.docs') }}</th>
+            <th class="align-middle">{{ $t('court_table_list.table_columns.work_number') }}</th>
+            <th class="align-middle">{{ $t('court_table_list.table_columns.date_time') }}</th>
+            <th class="align-middle">{{ $t('court_table_list.table_columns.chairmon') }}</th>
+            <th class="align-middle">{{ $t('court_table_list.table_columns.work_step') }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="(item, index) in cases" :key="index">
+            <td class="align-middle">{{ index + 1 }}</td>
+            <td class="align-middle">{{ item.step1.nameSubject }}</td>
+            <td class="align-middle" v-if="item.step1.fieldWorkDto">
+              {{
+                getName({
+                  nameLt: item.step1.fieldWorkDto.nameLt,
+                  nameUz: item.step1.fieldWorkDto.nameRu,
+                  nameRu: item.step1.fieldWorkDto.nameUz,
+                })
+              }}
+            </td>
+            <td class="align-middle">
+              <p class="mb-2">
+                <b class="detailText">
+                <span v-if="!showText">
+                  <span v-if="item.step1?.resultsCaseReviews.length > 0">
+                    <span v-if="getLocale == 'uz'">
+                      {{ item.step1?.resultsCaseReviews[0].brokenDocsDto?.nameLt.split(' ').slice(0, 5).join(' ') }}
+                    </span>
+                    <span v-if="getLocale == 'uzCyrillic'">
+                      {{ item.step1?.resultsCaseReviews[0].brokenDocsDto?.nameUz.split(' ').slice(0, 5).join(' ') }}
+                    </span>
+                    <span v-if="getLocale == 'ru'">
+                      {{ item.step1?.resultsCaseReviews[0].brokenDocsDto?.nameRu.split(' ').slice(0, 5).join(' ') }}
+                    </span>
+                  </span>
+                </span>
+                  <ol v-if="showText" class="ml-3">
+                    <li v-for="(tItem, tIndex) in item.step1?.resultsCaseReviews" :key="tIndex">
+                      {{
+                        getName({
+                          nameLt: tItem.brokenDocsDto?.nameLt,
+                          nameUz: tItem.brokenDocsDto?.nameUz,
+                          nameRu: tItem.brokenDocsDto?.nameRu,
+                        })
+                      }}
+                    </li>
+                  </ol>
+                  <span @click="toggleShowText" style="color:#f39138; cursor: pointer;">
+                  <span v-if="!showText"> ...{{ $t('actions.details') }} ({{ lengthOfCaseBrake }})</span>
+                  <span v-else> ...{{ $t('actions.close') }}</span>
+                </span>
+                </b>
+              </p>
+            </td>
+            <td class="align-middle">{{ item.step1.numberOfWork }}</td>
+            <td class="align-middle">
+              {{
+                item.step1?.dateEnd ? item.step1.dateEnd : item.step2_all?.seeWorkDate ? item.step2_all.seeWorkDate : '- - -'
+              }},
+              {{
+                item.step1?.timeEnd ? item.step1.timeEnd.slice(0, 5) : item.step2_all?.timeEnd ? item.step2_all.timeEnd.slice(0, 5) : '- - -'
+              }}
+            </td>
+            <td class="align-middle">{{ item.step1.chairmanCommission }}</td>
+            <td class="align-middle">{{ $t('court_table_list.table_columns.first_step') }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>
@@ -200,7 +205,7 @@ export default {
       const formattedDate = today.toISOString().split('T')[0];
       let check = {
         soato: data,
-        date: formattedDate
+        date: "2023-11-02" // formattedDate  // 2023-11-02
       };
       this.searchLoader = true;
       return CheckService.courtTable(check)
@@ -245,6 +250,9 @@ export default {
   computed: {
     selectedRegionTitle() {
       return this.selectedRegion ? this.$t(this.selectedRegion.title) : '';
+    },
+    selectedRegionValue() {
+      return this.selectedRegion ? this.selectedRegion.value : '';
     },
     lengthOfCaseBrake() {
       return this.cases.reduce((acc, e) => acc + (e.step1.resultsCaseReviews?.length || 0), 0);
@@ -327,19 +335,14 @@ export default {
   border: 3px solid #029984;
   box-shadow: 0 0 13px #029984
 }
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
 
 th, td {
   border: 1px solid #ddd;
   padding: 8px;
-  text-align: left;
 }
-
-th {
-  background-color: #f2f2f2;
+.table-container {
+  max-height: 500px; /* Adjust this value as needed */
+  overflow-y: auto;
 }
 /*.box-style:hover {
   background-color: #029984 !important;
