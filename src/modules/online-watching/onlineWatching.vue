@@ -17,7 +17,7 @@ export default {
       fish: '',
       appealCount: '',
       appealDate: '',
-      getUserDatas:{},
+      getUserDatas: {},
       modalVisible: false,
     }
   },
@@ -55,15 +55,15 @@ export default {
     sendRequest() {
       this.loading = true;
       let check = {
-        phoneNumber:this.telefonInput.slice(4),
-        pinfl:this.jshshirInput,
+        phoneNumber: this.telefonInput.slice(4),
+        pinfl: this.jshshirInput,
         fish: this.fish,
         appealCount: this.appealCount,
         appealDate: this.appealDate
       }
       this.searchLoader = true;
       return CheckService.pharmCheckOutside(check)
-          .then((result)=>{
+          .then((result) => {
             this.getUserDatas = result.data;
             this.phoneNumber = '';
             this.pinfl = '';
@@ -79,11 +79,10 @@ export default {
                     result.data.firstName !== null ||
                     result.data.lastName !== null ||
                     result.data.middleName !== null)
-            ){
+            ) {
               this.$toast.success(this.$t('statistics_info.download_success'));
               this.modalVisible = true;
-            }
-            else{
+            } else {
               this.$toast.error(this.$t('statistics_info.download_error'));
               this.modalVisible = true;
             }
@@ -126,35 +125,48 @@ export default {
       </div>
       <div class="card mx-auto d-block p-3 " style="border: 1px solid #226358; width: 560px">
         <div class="d-flex justify-content-between">
-          <button @click="showInput('phoneNumber')" class="active-class-style btn btn-success">{{$t('pharm_check_sms.with_phone_number')}}</button>
-          <button @click="showInput('pinfl')" class="active-class-style btn btn-success">{{$t('pharm_check_sms.with_pinfl')}}</button>
+          <button @click="showInput('phoneNumber')" class="active-class-style btn btn-success">
+            {{ $t('pharm_check_sms.with_phone_number') }}
+          </button>
+          <button @click="showInput('pinfl')" class="active-class-style btn btn-success">
+            {{ $t('pharm_check_sms.with_pinfl') }}
+          </button>
         </div>
         <div class="d-flex justify-content-between my-3">
-          <input class="form-control" style="width: 48%!important;" v-model="telefonInput" v-mask="'+998#########'" :placeholder="'+998 -- --- -- --'"/>
-          <input class="form-control" style="width: 48%!important;" v-model="jshshirInput" v-mask="'##############'" :placeholder="$t('pharm_check_sms.pinfl_placeholder')"/>
+          <input class="form-control" style="width: 48%!important;" v-model="telefonInput" v-mask="'+998#########'"
+                 :placeholder="'+998 -- --- -- --'"/>
+          <input class="form-control" style="width: 48%!important;" v-model="jshshirInput" v-mask="'##############'"
+                 :placeholder="$t('pharm_check_sms.pinfl_placeholder')"/>
         </div>
 
-        <button @click="sendRequest" :disabled="!telefonInput.trim() && !jshshirInput.trim()" v-if="isJshshirActive || isTelefonActive" class="btn btn-success w-50 d-flex justify-content-center mx-auto" style="background-color: #226358">{{ $t('pharm_check_sms.check_btn') }}</button>
+        <button @click="sendRequest" :disabled="!telefonInput.trim() && !jshshirInput.trim()"
+                v-if="isJshshirActive || isTelefonActive"
+                class="btn btn-success w-50 d-flex justify-content-center mx-auto" style="background-color: #226358">
+          {{ $t('pharm_check_sms.check_btn') }}
+        </button>
       </div>
-      <b-modal id="modal-lg" size="lg" v-model="modalVisible" centered v-centered hide-footer>
+      <b-modal id="modal-lg" size="lg" centered v-centered hide-footer>
         <div class="w-100 h-50 pt-3 pb-3">
           <div class="bg-white w-100 h-100 d-flex justify-content-center p-3">
             <b-row cols="12" class="text-center">
               <b-col style="height: 0" class="text-success">
                 {{ $t('pharm_check_sms.full_name') }}
                 <b-form-text class="font-size-17 font-weight-bold" style="color: #226358">
-                  {{getUserDatas.lastName ? getUserDatas.lastName.slice(0, 1) : ''}}. {{getUserDatas.firstName ? getUserDatas.firstName.slice(0, 1) : ''}}. {{getUserDatas.middleName ? getUserDatas.middleName.slice(0, 1) : ''}}
+                  {{ getUserDatas.lastName ? getUserDatas.lastName.slice(0, 1) : '' }}.
+                  {{ getUserDatas.firstName ? getUserDatas.firstName.slice(0, 1) : '' }}.
+                  {{ getUserDatas.middleName ? getUserDatas.middleName.slice(0, 1) : '' }}
                 </b-form-text>
               </b-col>
               <b-col style="height: 0" class="text-success">
                 {{ $t('pharm_check_sms.murojaat_count') }}
                 <b-form-text class="font-size-17 font-weight-bold" style="color: #226358">
-                  {{getUserDatas.count}} ta</b-form-text>
+                  {{ getUserDatas.count }} ta
+                </b-form-text>
               </b-col>
               <b-col style="height: 0" class="text-success">
                 {{ $t('pharm_check_sms.last_submit_date') }}
                 <b-form-text class="font-size-17 font-weight-bold" style="color: #226358">
-                  {{getUserDatas.date ? getUserDatas.date.slice(0,11).split('-').join('.') : ''}}
+                  {{ getUserDatas.date ? getUserDatas.date.slice(0, 11).split('-').join('.') : '' }}
                 </b-form-text>
               </b-col>
               <!--            <b-row class="w-100 d-flex justify-content-center text-success font-size-14 mt-3" style="height: 0">{{$t('pharm_check_sms.login_require_text')}}</b-row>-->
@@ -170,6 +182,34 @@ export default {
           </div>
         </div>
       </b-modal>
+      <div class="p-3" v-if="modalVisible">
+        <table class="table table-striped table-hover table-bordered">
+          <thead class="bg-primary text-white">
+          <tr class="font-size-16 text-center">
+            <th class="align-middle">№</th>
+            <th class="align-middle">{{ $t('login.fio') }}</th>
+            <th class="align-middle">{{ $t('column.address') }}</th>
+            <th class="align-middle">{{ $t('product_dashboard_info.type') }}</th>
+            <th class="align-middle">{{ $t('product_dashboard_info.phone_number') }}</th>
+            <th class="align-middle">{{ $t('submodules.integration.ssv_info.pinfl') }}</th>
+            <th class="align-middle">{{ $t('pharm.chakanaData.appealDesc') }}</th>
+            <th class="align-middle">{{ $t('pharm.appeal_date') }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="(item, index) in getUserDatas" :key="index" class="text-center">
+            <td class="align-middle">{{ index + 1 }}</td>
+            <td class="align-middle">{{ item.fullname }}</td>
+            <td class="align-middle">{{ item.address }}</td>
+            <td class="align-middle">{{ item.personType }}</td>
+            <td class="align-middle">{{ item.phone }}</td>
+            <td class="align-middle">{{ item.pinfl }}</td>
+            <td class="align-middle">{{ item.description }}</td>
+            <td class="align-middle">{{ item.createJson }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>
@@ -271,12 +311,14 @@ export default {
   z-index: 2;
 }
 
-.modal-dialog{
-  max-height: 150px!important;
+.modal-dialog {
+  max-height: 150px !important;
 }
-.modal-content{
+
+.modal-content {
   height: 200px;
 }
+
 .date-label {
   width: 156px;
   height: 40px;
@@ -352,4 +394,5 @@ export default {
   font-size: 17px;
   width: 48%;
 }
+
 </style>

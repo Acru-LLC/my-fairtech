@@ -7,6 +7,7 @@ import Toast from "vue-toastification";
 export default {
   data() {
     return {
+      controlWorkNumber: null,
       loading: false,
       searchingModal: false,
       currentLocale: {},
@@ -22,6 +23,17 @@ export default {
     }
   },
   computed: {
+    nameState() {
+      // if(this.createFirstInstItem.appealWorkNumber) {
+      const pattern1 = /^\d+\s*-\s*\d+\s*-\s*\d+\s*\/\s*\d+$/;
+      const pattern2 = /^\d+\s*\/\s*\d+\s*-\s*\d+\s*-\s*\d+$/;
+      const pattern3 = /^\d+\s*-\s*\d+\s*\/\s*\d+\s*-\s*\d+$/;
+      return (pattern1.test(this.workNumber) || pattern2.test(this.workNumber) || pattern3.test(this.workNumber)) ? true : false
+      // }
+      // else {
+      //   return true
+      // }
+    },
     getCurrentDate() {
       const now = new Date();
       // console.log(new Date())
@@ -118,6 +130,15 @@ export default {
     this.text = this.value.title;
     this.flag = this.value.flag;
   },
+  watch: {
+    'workNumber': {
+      handler(newVal) {
+        if (newVal) {
+          this.controlWorkNumber = this.nameState;
+        }
+      }
+    },
+  }
 }
 </script>
 <template>
@@ -156,32 +177,53 @@ export default {
             {{ $t('services.online_checking.pinfl_placeholder') }}
           </button>
         </div>
-        <div class="d-flex justify-content-center my-3">
-          <input
+        <b-row class="d-flex justify-content-center my-3">
+<!--          <input-->
+<!--              v-if="activeInput === 'workNumber'"-->
+<!--              class="form-control"-->
+<!--              style="width: 48%!important;"-->
+<!--              v-model="workNumber"-->
+<!--              placeholder="0-00-2024/00"-->
+<!--          />-->
+<!--          <label class="base-form-component__label" for="input-live">{{ $t('purchase_info.form1.number') }} <span style="color: red">*</span></label>-->
+          <b-col cols="6" v-if="activeInput === 'workNumber'">
+          <b-form-input
               v-if="activeInput === 'workNumber'"
-              class="form-control"
-              style="width: 48%!important;"
+              id="input-live"
               v-model="workNumber"
+              :state="nameState"
+              class=""
               placeholder="0-00-2024/00"
-          />
+              trim
+          ></b-form-input>
+          <b-form-invalid-feedback
+              id="input-live-feedback"
+              v-if="activeInput === 'workNumber'"
+          >
+            <span v-if="workNumber">{{ $t('online_kuzatuv.errorFeedback') }}</span>
+          </b-form-invalid-feedback>
+          </b-col>
+          <b-col cols="6" v-if="activeInput === 'stir'">
           <input
               v-if="activeInput === 'stir'"
               class="form-control"
-              style="width: 48%!important;"
               v-model="stir"
               maxlength="9"
+              :state="nameState"
               placeholder="000 000 000"
           />
+          </b-col>
+          <b-col cols="6"  v-if="activeInput === 'pinfl'">
           <input
               v-if="activeInput === 'pinfl'"
               class="form-control"
-              style="width: 48%!important;"
               v-model="pinfl"
               maxlength="14"
               type="number"
               placeholder="00000000000000"
           />
-        </div>
+          </b-col>
+        </b-row>
         <button
             @click="sendRequest"
             :disabled="!activeInputValue"
@@ -250,7 +292,15 @@ export default {
           </b-row>
           <b-row>
             <b-col>
-              <p> Наманган вилояти</p>
+              <p>
+                {{
+                  getName({
+                    nameLt: item.regionNameLt,
+                    nameUz: item.regionNameRu,
+                    nameRu: item.regionNameUz,
+                  })
+                }}
+              </p>
             </b-col>
             <b-col>
               <p> Фуқаролик ишлари бўйича Учқўрғон туманлараро суди</p>
@@ -280,20 +330,28 @@ export default {
           </b-row>
           <b-row>
             <b-col>
-              <p>17.07.2024</p>
+              <p>{{item.step1.createDate}}</p>
             </b-col>
             <b-col>
               <b-row>
                 <b-col>
-                  <p class="value">19.07.2024</p>
+                  <p class="value">{{item && item.step2_all && item.step2_all.seeWorkDate}}</p>
                 </b-col>
                 <b-col>
-                  <p class="value">00:00</p>
+                  <p class="value">{{item && item.step2_all && item.step2_all.timeEnd}}</p>
                 </b-col>
               </b-row>
             </b-col>
             <b-col>
-              <p>Тўлиқ қаноатлантирилган</p>
+              <p v-if="item && item.step2_all && item.step2_all.resultDecisionNewDto">
+                {{
+                  getName({
+                    nameLt: item.step2_all.resultDecisionNewDto.nameLt,
+                    nameUz: item.step2_all.resultDecisionNewDto.nameRu,
+                    nameRu: item.step2_all.resultDecisionNewDto.nameUz,
+                  })
+                }}
+              </p>
             </b-col>
           </b-row>
 
@@ -304,7 +362,7 @@ export default {
                 <span>Даъвогар: </span>
               </b-col>
               <b-col>
-                <span>Маънфааидан чиққан шахс: </span>
+                <span>Манфаатидан чиққан шахс: </span>
               </b-col>
               <b-col>
                 <span>Жавобгар: </span>
@@ -332,10 +390,26 @@ export default {
             </b-row>
             <b-row>
               <b-col cols="8">
-                <p>вояга етмаган болалар учун алиментлар ундириш тўғрисидаги талаб</p>
+                <p>
+                  {{
+                    getName({
+                      nameLt: item && item.step2 && item.step2[0] && item.step2[0].terminationWorkDto && item.step2[0].terminationWorkDto.nameLt ? item && item.step2 && item.step2[0] && item.step2[0].terminationWorkDto && item.step2[0].terminationWorkDto.nameLt : '---',
+                      nameUz: item && item.step2 && item.step2[0] && item.step2[0].terminationWorkDto && item.step2[0].terminationWorkDto.nameUz ? item && item.step2 && item.step2[0] && item.step2[0].terminationWorkDto && item.step2[0].terminationWorkDto.nameUz : '---',
+                      nameRu: item && item.step2 && item.step2[0] && item.step2[0].terminationWorkDto && item.step2[0].terminationWorkDto.nameRu ? item && item.step2 && item.step2[0] && item.step2[0].terminationWorkDto && item.step2[0].terminationWorkDto.nameRu : '---',
+                    })
+                  }}
+                </p>
               </b-col>
               <b-col>
-                <p>eeee </p>
+                <p v-if="item && item.step1 && item.step1.fieldWorkDto">
+                  {{
+                  getName({
+                    nameLt: item.step1.fieldWorkDto.nameLt ? item.step1.fieldWorkDto.nameLt : '---',
+                    nameUz: item.step1.fieldWorkDto.nameUz ? item.step1.fieldWorkDto.nameUz : '---',
+                    nameRu: item.step1.fieldWorkDto.nameRu ? item.step1.fieldWorkDto.nameRu : '---'
+                  })
+                      }}
+                </p>
               </b-col>
             </b-row>
           </div>
