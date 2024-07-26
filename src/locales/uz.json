@@ -300,23 +300,26 @@
       "republic": "RESPUBLIKA"
     },
     "region": {
-      "tabTitle": "HUDUDLAR",
-      "republic": "RESPUBLIKA",
-      "qoraqalpoq": "QORAQALPOG‘ISTON RESPUBLIKASI",
-      "andijon": "ANDIJON VILOYATI",
-      "buxoro": "BUXORO VILOYATI",
-      "jizzax": "JIZZAX VILOYATI",
-      "navoi": "NAVOIY VILOYATI",
-      "namangan": "NAMANGAN VILOYATI",
-      "samarqand": "SAMARQAND VILOYATI",
-      "sirdaryo": "SIRDARYO VILOYATI",
-      "surxandaryo": "SURXONDARYO VILOYATI",
-      "fargona": "FARG‘ONA VILOYATI",
-      "toshkentV": "TOSHKENT VILOYATI",
-      "toshkentSh": "TOSHKENT SHAHAR",
-      "qashqadaryo": "QASHQADARYO VILOYATI",
-      "xorazm": "XORAZM VILOYATI",
-      "qomita": "QO‘MITA"
+      "tabTitle": "Hududlar",
+      "republic": "Respublika",
+      "qoraqalpoq": "Qoraqalpog‘iston Respublikasi",
+      "andijon": "Andijon viloyati",
+      "buxoro": "Buxoro viloyati",
+      "jizzax": "Jizzax viloyati",
+      "navoi": "Navoiy viloyati",
+      "namangan": "Namangan viloyati",
+      "samarqand": "Samarqand viloyati",
+      "sirdaryo": "Sirdaryo viloyati",
+      "surxandaryo": "Surxondaryo viloyati",
+      "fargona": "Farg‘ona viloyati",
+      "toshkentV": "Toshkent viloyati",
+      "toshkentSh": "Toshkent shahar",
+      "qashqadaryo": "Qashqadaryo viloyati",
+      "xorazm": "Xorazm viloyati",
+      "qomita": "Raqobat qo'mitasi",
+      "first_part_text": "hududiy boshqarmasining maxsus komissiyasi tomonidan",
+      "first_part_for_qomita": "sining maxsus komissiyasi tomonidan",
+      "second_part_text": "yilga tayinlangan ishlar ro‘yxati"
     }
   },
   "footerTitle": "holatiga",
@@ -4512,7 +4515,7 @@
   "telegram_menu_title": "Raqobat qo'mitasining ''TELEGRAM BOT'' dasturi",
   "telegram_menu_subtitle": "Foydalanuvchilar tomonidan raqobat sohasi yoki iste'molchilar huquqlarinihimoya qilish faoliyati yuzasidan kiritilgan savol va murojaatlarga qisqa fursatda tezkor javob olish",
   "sud_xabarnoma": {
-    "card_title": "Уведомление суда",
+    "card_title": "Sud xabarnomasi",
     "card_subtitle": "Xo'jalik yurituvchi subyektlar ustav fondidagi (ustav kapitalidagi) aksiyalarni (ulushlarni) olish hamda ularni qo'shib yuborish va qo'shib olishga doir bitimlarga oldindan rozilik berish to'g'risida murojaat yuborish",
     "require_txt": "Sud xabarnomasini tekshirish uchun JSH SHIR yoki STIR kiriting",
     "take_court_btn": "Xabarnomani o'qish"
@@ -4522,6 +4525,7 @@
     "card_subtitle": "Maxsus komissiya tomonidan qo‘zg‘atilgan ishlar holatini inson omilisiz onlayn kuzatib borish",
     "require_txt": "Maxsus komissiya tomonidan qo'zg'atilgan ishlar holatini online kuzatish uchun ish raqami, STIR yoki JSH SHIR raqamingizni kiriting",
     "work_number_placeholder": "Ish raqamini kiriting",
-    "take_court_btn": "Tekshirish"
+    "take_court_btn": "Tekshirish",
+    "errorFeedback": "Ish raqamini to`g`ri kiriting ( ' - ' , ' / ' )"
   }
 }

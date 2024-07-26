@@ -316,7 +316,10 @@
       "toshkentSh": "TOSHKENT SHAHAR",
       "qashqadaryo": "QASHQADARYO VILOYATI",
       "xorazm": "XORAZM VILOYATI",
-      "qomita": "QO‘MITA"
+      "qomita": "Конкурсный комитет",
+      "first_part_text": "ҳудудий бошқармасининг махсус комиссияси томонидан",
+      "first_part_for_qomita": "сининг махсус комиссияси томонидан",
+      "second_part_text": "йилга тайинланган ишлар рўйхати"
     }
   },
   "footerTitle": "holatiga",
@@ -4527,6 +4530,7 @@
     "card_subtitle": "Мониторинг статуса дел, возбужденных специальной комиссией, в режиме онлайн без человеческого фактора",
     "require_txt": "Чтобы отслеживать статус дел, возбужденных Спецкомиссией онлайн, введите номер вашего дела, номер СТИР или ЖШ ШИР.",
     "work_number_placeholder": "Введите номер дела",
-    "take_court_btn": "Проверять"
+    "take_court_btn": "Проверять",
+    "errorFeedback": "Введите номер задания правильно ( ' - ' , ' / ' )"
   }
 }
